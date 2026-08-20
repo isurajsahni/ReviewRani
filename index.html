@@ -60,6 +60,23 @@
 
   ::selection { background: var(--rr); color: var(--dark); }
 
+  /* a keyboard user has to be able to see where they are */
+  :focus-visible { outline: 2px solid var(--rr); outline-offset: 3px; border-radius: 4px; }
+  .light :focus-visible, .mist :focus-visible, .light-tinted :focus-visible { outline-color: var(--rr-deep); }
+  .field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible { outline-offset: 1px; }
+
+  .skip {
+    position: absolute; left: 1rem; top: -4rem; z-index: 200;
+    background: var(--text-on-dark); color: var(--dark);
+    padding: 0.7rem 1.2rem; border-radius: 99px; font-size: 0.85rem; font-weight: 600;
+    transition: top 0.25s var(--ease);
+  }
+  .skip:focus { top: 1rem; }
+
+  /* no single word left stranded on the last line of a headline */
+  h1, h2, h3 { text-wrap: balance; }
+  p, .sub, .tile p, .chan-note { text-wrap: pretty; }
+
   /* ============ NAV ============ */
   nav {
     position: fixed;
@@ -108,6 +125,9 @@
     transition: transform 0.35s var(--ease);
   }
   nav .links a:hover::after { transform: scaleX(1); }
+  /* the section you are in is named in the nav, so the page says where you are */
+  nav .links a.here { color: var(--text-on-dark); }
+  nav .links a.here::after { transform: scaleX(1); }
 
   .nav-cta {
     font-size: 0.8rem !important;
@@ -219,6 +239,7 @@
   /* ============ HERO ============ */
   .hero {
     min-height: 100vh;
+    min-height: 100dvh; /* iOS Safari counts the collapsing toolbar into 100vh */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -588,7 +609,10 @@
   .fn:last-child { margin-bottom: 0; }
   .fn-l { font-size: 12.5px; color: var(--text-2); }
   .fn-t { height: 10px; border-radius: 99px; background: var(--grid-a); overflow: hidden; }
-  .fn-b { height: 100%; border-radius: 99px; background: var(--navy); width: 0; transition: width 1s var(--ease); }
+  /* the bar grows on the GPU: animating width relayouts the row on every frame */
+  .fn-t { position: relative; }
+  .fn-b { position: absolute; inset: 0; border-radius: 99px; background: var(--navy);
+    transform: scaleX(0); transform-origin: left center; transition: transform 1s var(--ease); }
   .fn-v { font-family: var(--mono); font-size: 13px; text-align: right; font-variant-numeric: tabular-nums; }
 
   /* ============ CARD GRIDS ============ */
@@ -702,9 +726,11 @@
   /* a figure counts up to itself, so the number is read rather than skimmed */
   .count { font-variant-numeric: tabular-nums; }
 
-  /* an answer arrives word by word, the way the assistant writes it */
-  .js .w { opacity: 0; filter: blur(3px); transition: opacity 0.34s var(--ease), filter 0.34s var(--ease); }
-  .js .w.on { opacity: 1; filter: blur(0); }
+  /* an answer arrives word by word, the way the assistant writes it.
+     Opacity only: forty-odd separately blurred spans is a repaint storm for an
+     effect nobody can see at this size. */
+  .js .w { opacity: 0; transition: opacity 0.3s var(--ease); }
+  .js .w.on { opacity: 1; }
 
   .thinking { display: inline-flex; gap: 5px; padding-left: 26px; height: 20px; align-items: center; }
   .thinking i { width: 5px; height: 5px; border-radius: 50%; background: var(--rr); opacity: 0.35;
@@ -787,9 +813,11 @@
 
   /* ============ 04 · THE ANSWER ============ */
   .qchips { display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center; margin-bottom: 2rem; }
-  .qchip { font-size: 0.8rem; color: var(--text-on-dark-soft); border: 1px solid var(--line-dark);
-    background: #ffffff08; border-radius: 5rem; padding: 0.45rem 0.95rem;
+  .qchip { font-size: 0.8rem; font-family: var(--sans); color: var(--text-on-dark-soft);
+    border: 1px solid var(--line-dark); background: #ffffff08; border-radius: 5rem;
+    padding: 0.45rem 0.95rem; cursor: pointer;
     transition: border-color 0.35s, color 0.35s, transform 0.35s var(--ease); }
+  .qchip:hover { color: var(--text-on-dark); border-color: rgba(91,143,217,0.35); }
   .qchip.on { border-color: rgba(91,143,217,0.5); color: var(--text-on-dark); transform: translateY(-2px); }
 
   .js .wa-msg { opacity: 0; transform: translateY(0.9rem); transition: opacity 0.55s var(--ease), transform 0.55s var(--ease); }
@@ -852,9 +880,22 @@
     .qchips { gap: 0.4rem; }
     .qchip { font-size: 0.74rem; padding: 0.35rem 0.75rem; }
   }
+  /* a tap is not a hover: without this the lift and the spotlight stick after
+     a touch and the card sits there looking pressed */
+  @media (hover: none) {
+    .tile:hover, .chan:hover, .level:hover, .video-frame:hover, .visual:hover .shell,
+    .button:hover, .nav-cta:hover, .statband .cell:hover, .video-frame:hover .play-btn,
+    .tile:hover .ico { transform: none; }
+    .spot:hover::before { opacity: 0; }
+    .text-link:hover { gap: 0.4rem; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    .js .reveal, .js .w, .js .wa-msg { opacity: 1; transform: none; filter: none; transition: none; }
+    /* gentler, not off: the movement and the blur go, the fade stays, so the
+       page still reads as arriving rather than snapping into place */
+    .js .reveal, .js .wa-msg { transform: none; filter: none; transition: opacity 0.4s ease-out; }
+    .js .w { opacity: 1; transform: none; filter: none; transition: none; }
     .js .draw { stroke-dasharray: none; stroke-dashoffset: 0; }
     .js .dot-end { opacity: 1; transition: none; }
     .hero .enter-1, .hero .enter-2, .hero .enter-3, .hero .enter-4, .hero .enter-5 { animation: none; }
@@ -867,6 +908,8 @@
 </style>
 </head>
 <body>
+
+<a class="skip" href="#why">Skip to content</a>
 
 <nav id="nav">
   <a class="logo" href="#top">
@@ -881,6 +924,8 @@
     <a href="#contact" class="nav-cta">Get in touch</a>
   </div>
 </nav>
+
+<main>
 
 <!-- ============ HERO ============ -->
 <section class="hero" id="top">
@@ -1160,10 +1205,22 @@
     <p class="sub reveal d2">An assistant that has read your review data and answers in plain language, with the figures the product would have shown you anyway. Every answer ends with the page that owns the detail, so you can go and look rather than take its word for it.</p>
 
     <div class="qchips reveal d2" id="qchips">
-      <span class="qchip on">Why is Kadapa falling behind?</span>
-      <span class="qchip">Who has stopped asking for reviews?</span>
-      <span class="qchip">What do customers say about delivery?</span>
-      <span class="qchip">Which cluster is closest to a drop?</span>
+      <button type="button" class="qchip on"
+        data-q="Why is Kadapa falling behind?"
+        data-a="Its rating in this period is &lt;b&gt;3.74&lt;/b&gt;, down &lt;b&gt;0.08&lt;/b&gt; on last month and the lowest of the twenty. Billing wait is named in &lt;b&gt;9&lt;/b&gt; reviews this period against 2 the month before, and it is the only location where that theme is growing."
+        data-go="Open Analyse: Kadapa Highway">Why is Kadapa falling behind?</button>
+      <button type="button" class="qchip"
+        data-q="Who has stopped asking for reviews?"
+        data-a="Four locations have sent nothing in 30 days: &lt;b&gt;Nellore Bypass&lt;/b&gt;, Ongole Ring Road, Chittoor Main and Madanapalle. Between them that is about &lt;b&gt;340&lt;/b&gt; requests a month that are not going out."
+        data-go="Open Monitor: head office">Who has stopped asking for reviews?</button>
+      <button type="button" class="qchip"
+        data-q="What do customers say about delivery?"
+        data-a="Delivery is named in &lt;b&gt;74&lt;/b&gt; reviews this period, &lt;b&gt;61&lt;/b&gt; of them negative. It is the second largest theme after billing wait, and it sits in one cluster rather than spread across the network."
+        data-go="Open Analyse: strengths and themes">What do customers say about delivery?</button>
+      <button type="button" class="qchip"
+        data-q="Which cluster is closest to a drop?"
+        data-a="Rayalaseema, at &lt;b&gt;4.18&lt;/b&gt;. Two of its six locations are within &lt;b&gt;3&lt;/b&gt; one star reviews of falling a whole rating band, and both have gone quiet on requests."
+        data-go="Open Compare: clusters">Which cluster is closest to a drop?</button>
     </div>
 
     <div class="visual reveal" style="width:min(48rem,100%);margin-top:0" id="askVisual">
@@ -1177,7 +1234,7 @@
             <span class="ask-scope">Answering for 20 locations</span>
           </div>
           <div class="ask-body">
-            <div class="q"><span class="k">Q</span><span>Why is Kadapa falling behind?</span></div>
+            <div class="q"><span class="k">Q</span><span id="askQ">Why is Kadapa falling behind?</span></div>
             <div class="thinking" id="askThinking" hidden><i></i><i></i><i></i></div>
             <p class="a" id="askAnswer">Its rating in this period is <b>3.74</b>, down <b>0.08</b> on last month and the lowest of the twenty. Billing wait is named in <b>9</b> reviews this period against 2 the month before, and it is the only location where that theme is growing.</p>
             <div class="a-go" id="askGo">Open Analyse: Kadapa Highway →</div>
@@ -1421,6 +1478,8 @@
   </div>
 </section>
 
+</main>
+
 <footer>
   <span class="brand">
     <a class="logo" href="#top" style="font-size:1.15rem">
@@ -1430,6 +1489,7 @@
   </span>
   <p>Review intelligence for businesses with more than one location.</p>
   <p>Questions? Reply on WhatsApp or <a href="mailto:hello@salesraja.com">write to us</a>.</p>
+  <p><a href="privacy.html">Privacy policy</a> · <a href="terms.html">Terms of service</a></p>
   <p class="signoff">A SalesRaja product · ReviewRani · LeadsRaja · WebRani</p>
 </footer>
 
@@ -1457,11 +1517,28 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
+  /* which section the reader is in, named in the nav */
+  var navLinks = [].slice.call(document.querySelectorAll('nav .links a[href^="#"]:not(.nav-cta)'));
+  var marks = navLinks.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+  function markHere() {
+    var at = window.pageYOffset + window.innerHeight * 0.35, found = -1;
+    for (var i = 0; i < marks.length; i++) {
+      if (marks[i] && marks[i].offsetTop <= at) { found = i; }
+    }
+    for (var j = 0; j < navLinks.length; j++) {
+      navLinks[j].classList.toggle('here', j === found);
+    }
+  }
+  window.addEventListener('scroll', markHere, { passive: true });
+  markHere();
+
   /* ---------- reveals ---------- */
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var bars = document.querySelectorAll('.fn-b');
   function drawBars() {
-    for (var i = 0; i < bars.length; i++) { bars[i].style.width = bars[i].getAttribute('data-w') + '%'; }
+    for (var i = 0; i < bars.length; i++) {
+      bars[i].style.transform = 'scaleX(' + (parseFloat(bars[i].getAttribute('data-w')) / 100) + ')';
+    }
   }
 
   /* a rect check on scroll rather than an observer: it cannot end up with a
@@ -1541,7 +1618,11 @@
       answer.hidden = false;
       wordReveal(answer, 0);
       var words = answer.querySelectorAll('.w').length;
-      setTimeout(function () { go.hidden = false; wordReveal(go, 0); }, reduce ? 0 : 180 + words * 28);
+      setTimeout(function () {
+        go.hidden = false;
+        wordReveal(go, 0);
+        startChipWalk();
+      }, reduce ? 0 : 180 + words * 28);
     }, wait);
   }
 
@@ -1558,15 +1639,53 @@
     setTimeout(function () { typing.hidden = true; reply.classList.add('in'); }, 2100);
   }
 
-  /* the question chips walk, so the section shows breadth rather than claiming it */
+  /* the chips are real: pressing one asks it. They also walk on their own until
+     somebody takes over, so the section shows its breadth without a control
+     that looks live and does nothing. */
   var chips = document.querySelectorAll('#qchips .qchip');
-  if (chips.length && !reduce) {
-    var chipAt = 0;
-    setInterval(function () {
-      chips[chipAt].classList.remove('on');
-      chipAt = (chipAt + 1) % chips.length;
-      chips[chipAt].classList.add('on');
-    }, 2400);
+  var chipAt = 0, chipTimer = null, chipTaken = false;
+
+  function askChip(i) {
+    var chip = chips[i];
+    for (var c = 0; c < chips.length; c++) { chips[c].classList.remove('on'); }
+    chip.classList.add('on');
+    chipAt = i;
+
+    var qEl = document.getElementById('askQ');
+    var answer = document.getElementById('askAnswer');
+    var go = document.getElementById('askGo');
+    var dots = document.getElementById('askThinking');
+    if (!qEl || !answer) { return; }
+
+    qEl.textContent = chip.getAttribute('data-q');
+    answer.innerHTML = chip.getAttribute('data-a');
+    go.textContent = chip.getAttribute('data-go') + ' →';
+    answer.rrDone = false;
+    go.rrDone = false;
+
+    if (reduce) { answer.hidden = false; go.hidden = false; return; }
+    answer.hidden = true;
+    go.hidden = true;
+    dots.hidden = false;
+    askRan = false;
+    runAsk();
+  }
+
+  for (var ch = 0; ch < chips.length; ch++) {
+    (function (i) {
+      chips[i].addEventListener('click', function () {
+        chipTaken = true;
+        if (chipTimer) { clearInterval(chipTimer); chipTimer = null; }
+        askChip(i);
+      });
+    })(ch);
+  }
+
+  function startChipWalk() {
+    if (chipTaken || reduce || chipTimer) { return; }
+    chipTimer = setInterval(function () {
+      askChip((chipAt + 1) % chips.length);
+    }, 7000);
   }
 
   /* a card lights under the cursor */
