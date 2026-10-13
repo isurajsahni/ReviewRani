@@ -28,7 +28,7 @@
   --coral: #e2583f;
   --font: 'Open Sans', 'Avenir Next', 'Segoe UI', system-ui, sans-serif;
   --gut: clamp(16px, 4vw, 40px);
-  --max: 1200px;
+  --max: 1340px;
   --shadow: 0 24px 60px -24px rgba(15, 29, 51, .28);
   --shadow-sm: 0 10px 30px -12px rgba(15, 29, 51, .22);
   color-scheme: light;
@@ -230,15 +230,15 @@ section { position: relative; padding-block: clamp(72px, 10vw, 120px); }
 .v3 .wrap { position: relative; }
 .v3 .lede { color: #c5d4ea; }
 .v3 .tag.soon { background: rgba(242, 169, 0, .18); color: #ffd36b; }
-.v3-cards { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 18px; counter-reset: v3; }
+.v3-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
 .v3c { position: relative; display: grid; grid-template-rows: auto 1fr; border-radius: 24px; overflow: hidden; background: linear-gradient(180deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .04)); border: 1px solid rgba(255, 255, 255, .14); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 30px 60px -30px rgba(0, 0, 0, .55); transition: transform .5s var(--ease), border-color .5s, background .5s; }
 .v3c:hover { transform: translateY(-8px); border-color: rgba(255, 211, 107, .5); background: linear-gradient(180deg, rgba(255, 255, 255, .14), rgba(255, 255, 255, .06)); }
-.v3c .ph { position: relative; aspect-ratio: 4 / 3.4; overflow: hidden; }
+.v3c .ph { position: relative; aspect-ratio: 16 / 10; overflow: hidden; }
 .v3c .ph::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, rgba(15, 34, 64, .75)); }
 .v3c .ph img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s var(--ease); }
 .v3c:hover .ph img { transform: scale(1.06); }
 .v3c .n { position: absolute; z-index: 1; left: 16px; bottom: 10px; font: 800 44px/1 var(--display); letter-spacing: -.04em; color: transparent; -webkit-text-stroke: 1.5px rgba(255, 255, 255, .85); }
-.v3c .tx { padding: 18px 20px 24px; display: grid; gap: 10px; align-content: start; }
+.v3c .tx { padding: 22px 26px 28px; display: grid; gap: 10px; align-content: start; }
 .v3c .nm { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #ffd36b; }
 .v3c .nm i { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: rgba(255, 211, 107, .14); border: 1px solid rgba(255, 211, 107, .35); }
 .v3c .nm svg { width: 17px; height: 17px; stroke: #ffd36b; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
@@ -351,10 +351,7 @@ footer .bottom { display: flex; justify-content: space-between; gap: 12px; flex-
 
 /* responsive */
 @media (max-width: 1080px) {
-  .v3-cards { grid-template-columns: repeat(6, minmax(0, 1fr)); }
-  .v3c { grid-column: span 2; }
-  .v3c:nth-child(n + 4) { grid-column: span 3; }
-  .v3c:nth-child(n + 4) .ph { aspect-ratio: 16 / 9; }
+  .v3-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
 }
 @media (max-width: 980px) {
   .hero .wrap, .problem .wrap, .split .wrap, .deal, .ask-grid { grid-template-columns: minmax(0, 1fr); }
@@ -397,8 +394,8 @@ footer .bottom { display: flex; justify-content: space-between; gap: 12px; flex-
   .duo { grid-template-columns: minmax(0, 1fr); }
   .row { grid-template-columns: 34px minmax(0, 1.3fr) minmax(50px, 1fr) 40px; gap: 10px; font-size: 14px; }
   .v3-cards { grid-template-columns: minmax(0, 1fr); gap: 16px; }
-  .v3c, .v3c:nth-child(n + 4) { grid-column: auto; grid-template-rows: none; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); }
-  .v3c .ph, .v3c:nth-child(n + 4) .ph { aspect-ratio: auto; min-height: 100%; }
+  .v3c { grid-template-rows: none; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); }
+  .v3c .ph { aspect-ratio: auto; min-height: 100%; }
   .v3c .n { font-size: 34px; left: 12px; }
   .v3c .tx { padding: 16px 16px 18px; gap: 8px; text-align: left; }
   .v3c h3 { font-size: 19px; }
@@ -880,11 +877,19 @@ footer .wrap { position: relative; }
           <p>The rating-gap check shows a month later whether the fix moved the number.</p>
         </div>
       </article>
+      <article class="v3c">
+        <div class="ph"><img src="v2-img/chef.jpg" alt="A chef at a restaurant counter" loading="lazy"><span class="n">06</span></div>
+        <div class="tx">
+          <span class="nm"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a7.5 7.5 0 0 1-10.9 6.7L4 20l1.8-5.1A7.5 7.5 0 1 1 21 11.5Z M9 10h6 M9 13.5h4"/></svg></i>Ask ReviewRani</span>
+          <h3>Just ask</h3>
+          <p>Ask in plain language. Every answer comes from your review data and links to its source.</p>
+        </div>
+      </article>
     </div>
 
     <div class="also">
       <span class="lab">Also new in v3</span>
-      <span class="pill">Ask ReviewRani</span><span class="pill">Alert record</span><span class="pill">Coverage &amp; access</span><span class="pill">Rating-gap check</span><span class="pill">Usage</span><span class="pill">Admins</span>
+      <span class="pill">Alert record</span><span class="pill">Coverage &amp; access</span><span class="pill">Rating-gap check</span><span class="pill">Usage</span><span class="pill">Admins</span>
     </div>
   </div>
 </section>
