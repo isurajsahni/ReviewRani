@@ -52,7 +52,7 @@ a { color: inherit; }
 img { display: block; max-width: 100%; }
 p { margin: 0; }
 h1, h2, h3, h4, h5, h6 { margin: 0; color: var(--ink); font-weight: 600; letter-spacing: -.02em; text-wrap: balance; }
-h1 { font-size: clamp(40px, 6vw, 80px); line-height: 1.06; }
+h1 { font-size: clamp(38px, 5.4vw, 76px); line-height: 1.08; }
 h2 { font-size: clamp(34px, 4.2vw, 56px); line-height: 1.1; }
 h3 { font-size: clamp(21px, 1.9vw, 25px); line-height: 1.2; }
 .gt { background: var(--g); -webkit-background-clip: text; background-clip: text; color: transparent; padding-bottom: .06em; }
@@ -108,7 +108,7 @@ section { position: relative; padding-block: clamp(72px, 9vw, 120px); scroll-mar
   radial-gradient(50% 40% at 15% 10%, rgba(143, 180, 232, .28), transparent 70%),
   radial-gradient(40% 35% at 90% 20%, rgba(45, 212, 191, .16), transparent 70%); }
 .hero .wrap { display: grid; justify-items: center; gap: 24px; }
-.hero h1 { max-width: 16ch; }
+.hero h1 { max-width: none; }
 .hero .sub { font-size: clamp(18px, 1.6vw, 21px); max-width: 52ch; color: var(--text); text-wrap: pretty; }
 .hero .btns { justify-content: center; }
 .shot { position: relative; width: 100%; max-width: 1140px; margin: clamp(36px, 5vw, 64px) auto 0; padding-bottom: clamp(60px, 8vw, 110px); }
@@ -136,7 +136,7 @@ section { position: relative; padding-block: clamp(72px, 9vw, 120px); scroll-mar
 @media (prefers-reduced-motion: no-preference) { .play i { animation: ping 2.4s var(--ease) infinite; } @keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(143, 180, 232, .7); } 70%, 100% { box-shadow: 0 0 0 14px rgba(143, 180, 232, 0); } } }
 dialog.vid { border: 0; padding: 0; border-radius: 22px; width: min(960px, 92vw); background: #0d1b2e; color: #fff; box-shadow: 0 40px 90px -30px rgba(0, 0, 0, .6); }
 dialog.vid::backdrop { background: rgba(13, 27, 46, .7); backdrop-filter: blur(4px); }
-dialog.vid video, dialog.vid .ph { display: block; width: 100%; aspect-ratio: 16 / 9; background: #0d1b2e; }
+dialog.vid iframe, dialog.vid .ph { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; background: #0d1b2e; }
 dialog.vid .ph { display: grid; place-items: center; text-align: center; padding: 24px; color: #b8c0da; }
 dialog.vid .x { position: absolute; top: 12px; right: 12px; z-index: 1; width: 40px; height: 40px; border-radius: 50%; border: 0; background: rgba(255, 255, 255, .14); color: #fff; font-size: 20px; cursor: pointer; }
 
@@ -215,19 +215,15 @@ dialog.vid .x { position: absolute; top: 12px; right: 12px; z-index: 1; width: 4
 
 /* ---------- 2 · problem ---------- */
 .why .wrap { display: grid; justify-items: center; gap: 22px; text-align: center; }
-.crack { position: relative; display: inline-grid; margin: clamp(8px, 2vw, 20px) 0 clamp(10px, 2vw, 24px); font-size: clamp(88px, 13vw, 170px); font-weight: 600; line-height: 1; letter-spacing: -.04em; color: var(--ink); }
-.crack > span { grid-area: 1 / 1; display: inline-flex; align-items: baseline; gap: .08em; transition: transform 1.2s var(--ease) .35s; }
-.crack .st { color: var(--gold); font-size: .7em; }
-.crack .l { clip-path: polygon(0 0, 54% 0, 47% 28%, 56% 50%, 46% 74%, 53% 100%, 0 100%); }
-.crack .r { clip-path: polygon(54% 0, 100% 0, 100% 100%, 53% 100%, 46% 74%, 56% 50%, 47% 28%); }
-.crack svg { position: absolute; inset: -6% 0; width: 100%; height: 112%; overflow: visible; pointer-events: none; }
-.crack path { fill: none; stroke: url(#gg); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset .7s ease-out, opacity .4s 1.3s; }
-.crack.in path { stroke-dashoffset: 0; opacity: 0; }
-.crack .l { transform-origin: 20% 100%; }
-.crack .r { transform-origin: 85% 100%; }
-.crack.in .l { transform: translate(-.06em, .02em) rotate(-2.5deg); }
-.crack.in .r { transform: translate(.06em, -.01em) rotate(2.5deg); }
-.probs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; width: 100%; margin-top: clamp(16px, 3vw, 36px); text-align: left; }
+.split { position: relative; width: 100%; display: grid; justify-items: center; margin-top: clamp(14px, 2.4vw, 30px); }
+.rate { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 14px; background: #fff; border-radius: 28px; padding: 16px 28px 16px 30px; box-shadow: var(--shadow), 0 0 0 1px var(--line); color: var(--ink); }
+.rate b { font-size: clamp(56px, 7vw, 92px); font-weight: 600; line-height: 1; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+.rate .st { color: var(--gold); font-size: clamp(36px, 4.4vw, 58px); line-height: 1; }
+.rate small { display: grid; text-align: left; font-size: 14px; line-height: 1.35; color: var(--mute); font-weight: 500; padding-left: 14px; border-left: 1px solid var(--line); }
+.rate small em { font-style: normal; color: var(--ink); font-weight: 600; }
+.wires { display: block; width: 100%; height: clamp(54px, 6vw, 90px); overflow: visible; }
+.wires path { fill: none; stroke: #8fb4e8; stroke-width: 2; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 0; }
+.probs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; width: 100%; text-align: left; }
 .prob { display: grid; gap: 14px; align-content: start; }
 .prob .box { background: var(--soft); border-radius: 24px; aspect-ratio: 1.35; display: grid; place-items: center; padding: 22px; }
 .prob .ui { width: 100%; max-width: 300px; background: #fff; border-radius: 16px; padding: 16px; box-shadow: var(--shadow-sm); font-size: 14px; color: var(--ink); }
@@ -296,7 +292,7 @@ dialog.vid .x { position: absolute; top: 12px; right: 12px; z-index: 1; width: 4
 /* ---------- 4 · multi-location: three-step zoom ---------- */
 .scale { padding-block: 0; }
 .zoom { height: 330vh; }
-.zstick { position: sticky; top: var(--navh); height: calc(100vh - var(--navh)); min-height: 560px; display: grid; align-items: center; overflow: hidden; }
+.zstick { position: sticky; top: var(--navh); height: calc(100vh - var(--navh)); min-height: 560px; display: grid; align-items: center; overflow: hidden; padding-top: 40px; }
 .zgrid { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.5fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
 .zcopy { display: grid; gap: 20px; }
 .lvls { display: grid; gap: 4px; margin-top: 10px; counter-reset: l; }
@@ -309,7 +305,9 @@ dialog.vid .x { position: absolute; top: 12px; right: 12px; z-index: 1; width: 4
 .lvls { padding: 0; margin-bottom: 0; }
 .zstage { position: relative; display: grid; }
 .zstage::before { content: ""; position: absolute; inset: 0 6%; border-radius: 50%; background: radial-gradient(closest-side, rgba(143, 180, 232, .5), rgba(45, 212, 191, .14) 60%, transparent); filter: blur(40px); }
-.lvl { grid-area: 1 / 1; position: relative; transform-origin: 50% 45%; will-change: transform, opacity; }
+.lvl { grid-area: 1 / 1; position: relative; transform-origin: 50% 0; will-change: transform; }
+.lvl::after { content: ""; position: absolute; inset: 0; border-radius: 18px; background: var(--ink); opacity: var(--dim, 0); pointer-events: none; z-index: 3; }
+.lvl .lab { transition: opacity .3s; }
 .lvl .lab { position: absolute; z-index: 2; left: 22px; top: -18px; display: inline-flex; align-items: center; gap: 8px; padding: 4px 14px 4px 4px; border-radius: 30px; background: var(--g-d); color: #fff; font-weight: 600; font-size: 14px; line-height: 1; box-shadow: 0 8px 18px -8px rgba(47, 99, 184, .5); }
 .lvl .lab i { width: 28px; height: 28px; border-radius: 50%; border: 2px solid rgba(255, 255, 255, .9); background: center / cover; }
 
@@ -333,8 +331,6 @@ dialog.vid .x { position: absolute; top: 12px; right: 12px; z-index: 1; width: 4
 .bc.big h3 { font-size: clamp(24px, 2.2vw, 30px); }
 .bc.big p { font-size: 17px; max-width: 40ch; }
 .pv { position: relative; margin: 14px -22px 0; padding: 18px 22px 22px; background: linear-gradient(180deg, var(--violet-s), #f7f5ff); border-top: 1px solid #e6defc; font-size: 13px; color: var(--ink); min-height: 150px; overflow: hidden; }
-.pv > * { filter: blur(2.6px) saturate(.85); opacity: .78; transition: filter .55s var(--ease), opacity .55s var(--ease); }
-.bc:hover .pv > *, .bc:focus-within .pv > * { filter: none; opacity: 1; }
 .pv .card { background: #fff; border-radius: 14px; padding: 12px 14px; box-shadow: 0 10px 24px -18px rgba(60, 40, 140, .5); }
 .pv .card + .card { margin-top: 8px; }
 .pv small { color: var(--mute); }
@@ -398,17 +394,18 @@ footer .bottom nav { display: flex; gap: 18px; }
 @media (prefers-reduced-motion: no-preference) {
   .js [data-rv] { opacity: 0; transform: translateY(30px); transition: opacity .9s var(--ease), transform .9s var(--ease); transition-delay: var(--d, 0s); }
   .js [data-rv].in { opacity: 1; transform: none; }
-  .js .probs .prob { opacity: 0; transform: translateY(-40px) scale(.94); transition: opacity .8s var(--ease), transform .9s var(--ease); }
-  .js .probs.in .prob { opacity: 1; transform: none; transition-delay: calc(1s + var(--d, 0s)); }
+  .js .split .rate { opacity: 0; transform: translateY(16px) scale(.9); transition: opacity .7s var(--ease), transform .8s var(--ease); }
+  .js .split.in .rate { opacity: 1; transform: none; }
+  .js .split .wires path { stroke-dashoffset: 1; transition: stroke-dashoffset 1s var(--ease) .55s; }
+  .js .split.in .wires path { stroke-dashoffset: 0; }
+  .js .probs .prob { opacity: 0; transform: translateY(-24px); transition: opacity .8s var(--ease), transform .9s var(--ease); }
+  .js .probs.in .prob { opacity: 1; transform: none; transition-delay: calc(1.25s + var(--d, 0s)); }
   .bob { animation: bob 5s ease-in-out infinite; animation-delay: var(--b, 0s); }
   @keyframes bob { 50% { transform: translateY(-10px); } }
 }
-@media (prefers-reduced-motion: reduce) {
-  .crack path { display: none; }
-}
 /* no hover on touch screens, so previews start sharp */
 @media (hover: none) {
-  .pv > *, .one .chips span { filter: none; opacity: 1; }
+  .one .chips span { filter: none; opacity: 1; }
 }
 
 /* ---------- responsive ---------- */
@@ -423,6 +420,8 @@ footer .bottom nav { display: flex; gap: 18px; }
   .pt, .cta .wrap { grid-template-columns: minmax(0, 1fr); }
   .tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .probs { grid-template-columns: minmax(0, 1fr); max-width: 520px; margin-inline: auto; }
+  .wires { height: 44px; }
+  .wires path:not(:nth-child(2)) { display: none; }
   .panel .top { grid-template-columns: minmax(0, 1fr); }
   footer .top { grid-template-columns: 1fr 1fr; }
   footer .top > :first-child { grid-column: 1 / -1; }
@@ -432,12 +431,13 @@ footer .bottom nav { display: flex; gap: 18px; }
 @media (max-width: 900px), (prefers-reduced-motion: reduce) {
   .scale { padding-block: clamp(72px, 9vw, 120px); }
   .zoom { height: auto; }
-  .zstick { position: static; height: auto; min-height: 0; overflow: visible; }
+  .zstick { position: static; height: auto; min-height: 0; overflow: visible; padding-top: 0; }
   .zgrid { grid-template-columns: minmax(0, 1fr); }
   .lvls { display: none; }
   .zstage { gap: 28px; }
   .zstage::before { display: none; }
-  .lvl { grid-area: auto; opacity: 1 !important; transform: none !important; }
+  .lvl { grid-area: auto; opacity: 1 !important; transform: none !important; --dim: 0 !important; }
+  .lvl .lab { opacity: 1 !important; }
   .lvl { margin-top: 18px; }
 }
 @media (max-width: 900px) {
@@ -542,7 +542,7 @@ footer .bottom nav { display: flex; gap: 18px; }
 <!-- 1 · HERO -->
 <section class="hero" id="hero-sec" aria-labelledby="h-hero">
   <div class="wrap">
-    <h1 id="h-hero" data-rv>Every review. Every location. <span class="gt">One clear view.</span></h1>
+    <h1 id="h-hero" data-rv>Every review. Every location.<br><span class="gt">One clear view.</span></h1>
     <p class="sub" data-rv style="--d:.1s">ReviewRani turns customer reviews into clear performance insights for every location, cluster and your whole business.</p>
     <div class="btns" data-rv style="--d:.2s">
       <a class="btn" href="#contact" data-interest="demo">Book a Demo <span class="ar">→</span></a>
@@ -605,10 +605,13 @@ footer .bottom nav { display: flex; gap: 18px; }
 <section class="why" id="why" aria-labelledby="h-why" style="padding-top:clamp(40px,5vw,72px)">
   <div class="wrap">
     <h2 id="h-why" data-rv>Your star rating <span class="gt">hides the real story.</span></h2>
-    <div class="crack" aria-label="A 4.2 star rating, cracking open">
-      <span class="l" aria-hidden="true">4.2<span class="st">★</span></span>
-      <span class="r" aria-hidden="true">4.2<span class="st">★</span></span>
-      <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M54 0 L47 28 L56 50 L46 74 L53 100" vector-effect="non-scaling-stroke"/></svg>
+    <div class="split" id="split">
+      <div class="rate" role="img" aria-label="One 4.2 star rating"><b data-to="4.2">4.2</b><span class="st" aria-hidden="true">★</span><small aria-hidden="true"><em>One number</em>three stories</small></div>
+      <svg class="wires" viewBox="0 0 1200 90" preserveAspectRatio="none" aria-hidden="true">
+        <path pathLength="1" d="M600 0 V30 Q600 45 585 45 H215 Q200 45 200 60 V90" vector-effect="non-scaling-stroke"/>
+        <path pathLength="1" d="M600 0 V90" vector-effect="non-scaling-stroke"/>
+        <path pathLength="1" d="M600 0 V30 Q600 45 615 45 H985 Q1000 45 1000 60 V90" vector-effect="non-scaling-stroke"/>
+      </svg>
     </div>
     <div class="probs">
       <article class="prob">
@@ -1057,14 +1060,14 @@ footer .bottom nav { display: flex; gap: 18px; }
 
 <dialog class="vid" id="vid" aria-label="ReviewRani introduction video">
   <button class="x" type="button" aria-label="Close video">×</button>
-  <div class="ph" id="vidph">The ReviewRani V2 introduction video goes here.</div>
+  <div class="ph" id="vidph">Loading the video…</div>
 </dialog>
 
 <script>
 (function () {
   /* Fill these in before going live. */
   var SIGN_IN_URL = '';   // existing V2 dashboard login
-  var VIDEO_SRC = '';     // ReviewRani V2 introduction video (mp4)
+  var VIDEO_ID = 'QpRGDM-UoYs';   // ReviewRani V2 introduction video on YouTube
 
   var still = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var fine = matchMedia('(pointer: fine)').matches;
@@ -1131,26 +1134,35 @@ footer .bottom nav { display: flex; gap: 18px; }
     var io = new IntersectionObserver(function (es) {
       es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-    $$('[data-rv], .crack, .probs').forEach(function (el) { io.observe(el); });
+    $$('[data-rv], .split, .probs').forEach(function (el) { io.observe(el); });
   } else {
-    $$('.crack, .probs').forEach(function (el) { el.classList.add('in'); });
+    $$('.split, .probs').forEach(function (el) { el.classList.add('in'); });
   }
 
-  /* hero video */
-  var dlg = $('#vid');
+  /* the rating counts up as it appears */
+  if (!still && 'IntersectionObserver' in window) {
+    var rb = $('.rate b'), rgo = new IntersectionObserver(function (es) {
+      if (!es[0].isIntersecting) return; rgo.disconnect();
+      var t0 = performance.now(), to = +rb.dataset.to;
+      (function tick(t) { var k = Math.min(1, (t - t0) / 1100); k = 1 - Math.pow(1 - k, 3); rb.textContent = (to * k).toFixed(1); if (k < 1) requestAnimationFrame(tick); })(t0);
+    }, { threshold: .6 });
+    rb.textContent = '0.0'; rgo.observe(rb);
+  }
+
+  /* hero video: the YouTube player loads only when asked for, and is removed on close so it stops */
+  var dlg = $('#vid'), vidBox = $('#vidph');
   $('[data-video]').addEventListener('click', function () {
-    if (VIDEO_SRC && !$('video', dlg)) {
-      var v = document.createElement('video');
-      v.src = VIDEO_SRC; v.controls = true; v.playsInline = true;
-      $('#vidph').replaceWith(v);
-    }
+    var f = document.createElement('iframe');
+    f.src = 'https://www.youtube-nocookie.com/embed/' + VIDEO_ID + '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+    f.title = 'ReviewRani introduction video';
+    f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    f.allowFullscreen = true;
+    vidBox.replaceWith(f);
     dlg.showModal();
-    var v2 = $('video', dlg); if (v2) v2.play().catch(function () {});
   });
-  var closeVid = function () { var v = $('video', dlg); if (v) v.pause(); dlg.close(); };
-  $('.x', dlg).addEventListener('click', closeVid);
-  dlg.addEventListener('click', function (e) { if (e.target === dlg) closeVid(); });
-  dlg.addEventListener('close', function () { var v = $('video', dlg); if (v) v.pause(); });
+  $('.x', dlg).addEventListener('click', function () { dlg.close(); });
+  dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+  dlg.addEventListener('close', function () { var f = $('iframe', dlg); if (f) f.replaceWith(vidBox); });
 
   /* product tabs: auto-advance every 6s until clicked; swipeable cards on phones */
   var pt = $('#pt'), tabs = $$('.tab', pt), panes = $$('.tp', pt), dots = $$('#dots button'), stage = $('#stage');
@@ -1196,22 +1208,20 @@ footer .bottom nav { display: flex; gap: 18px; }
   var zoomOn = matchMedia('(min-width: 901px) and (prefers-reduced-motion: no-preference)');
   var clamp = function (v, a, b) { return Math.max(a, Math.min(b, v)); };
   var doZoom = function () {
-    if (!zoomOn.matches) { lvls.forEach(function (l) { l.style.opacity = ''; l.style.transform = ''; l.style.visibility = ''; }); return; }
+    if (!zoomOn.matches) { lvls.forEach(function (l) { l.style.transform = ''; l.style.visibility = ''; l.style.removeProperty('--dim'); $('.lab', l).style.opacity = ''; }); return; }
     var r = zoom.getBoundingClientRect(), span = r.height - (innerHeight - navH());
     var p = clamp(-r.top / span, 0, 1) * 2;          // 0 → 2 across the pinned scroll
+    // how far each level has slid in: the first is already there, the next rise from below and land on top
+    var ins = lvls.map(function (l, i) { if (!i) return 1; var t = clamp((p - (i - 1) - .15) / .7, 0, 1); return 1 - Math.pow(1 - t, 3); });
     lvls.forEach(function (l, i) {
-      var d = p - i;                                  // <0 still to come, 0 on screen, >0 behind us
-      var into = clamp((d + 1) / .55, 0, 1);          // fade in during the last 55% before it lands
-      var out = clamp((d - .45) / .55, 0, 1);         // shrink away after 45% past it
-      if (i === 0) into = 1;
-      if (i === lvls.length - 1) out = 0;
-      var s = (1 + (1 - into) * .35) * (1 - out * .42);
-      var o = into * (1 - out);
-      l.style.opacity = o.toFixed(3);
-      l.style.transform = 'scale(' + s.toFixed(4) + ')';
-      l.style.visibility = o < .01 ? 'hidden' : '';
+      var depth = 0;                                  // how many cards now sit on top of this one
+      for (var j = i + 1; j < ins.length; j++) depth += ins[j];
+      l.style.transform = 'translateY(calc(' + ((1 - ins[i]) * 115).toFixed(2) + '% - ' + (depth * 30).toFixed(1) + 'px)) scale(' + (1 - depth * .06).toFixed(4) + ')';
+      l.style.visibility = ins[i] < .001 ? 'hidden' : '';
+      l.style.setProperty('--dim', Math.min(.3, depth * .22).toFixed(3));
+      $('.lab', l).style.opacity = clamp(1 - depth * 2, 0, 1).toFixed(2);
     });
-    var on = clamp(Math.round(p), 0, 2);
+    var on = 0; ins.forEach(function (v, k) { if (v > .5) on = k; });
     steps.forEach(function (s, k) { s.classList.toggle('on', k === on); });
   };
 
