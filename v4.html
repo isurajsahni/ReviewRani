@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ReviewRani | Every review. Every location. One clear view.</title>
+<meta name="description" content="ReviewRani turns customer reviews into clear performance insights for every location, cluster and your whole business.">
+<link rel="icon" href="reviewrani-crown.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap">
+<style>
+/* ReviewRani single-page landing, built to the "Single-Page Landing Blueprint" (Notion) in the v3 page's style:
+   white page, brand navy ink, one brand gradient on the words that matter, soft panels and slanted gradient seams.
+   Live (V2) things carry green; upcoming (V3) things carry violet, so the two never blur together. */
+:root {
+  --ink: #1d3e63;
+  --text: #4b5068;
+  --mute: #8a8fa3;
+  --line: #e7e8ef;
+  --soft: #f5f6fa;
+  --white: #ffffff;
+  --gold: #f2a900;
+  --blue: #5b8fd9;
+  --sky: #8fb4e8;
+  --teal: #2dd4bf;
+  --green: #0e9f8a;
+  --green-s: #e3f5ee;
+  --red: #e0533d;
+  --red-s: #fdeae6;
+  --violet: #7c5cd6;
+  --violet-d: #5b3fc4;
+  --violet-s: #f0ebff;
+  --g: linear-gradient(90deg, #2f63b8 0%, #5b8fd9 55%, #17b3a3 100%);
+  --g-d: linear-gradient(135deg, #1d3e63 0%, #2f63b8 45%, #5b8fd9 78%, #8fb4e8 100%);
+  --g-v: linear-gradient(135deg, #1d3e63 0%, #3a3f9f 48%, #6d4fd0 100%);
+  --font: 'Outfit', 'Avenir Next', 'Segoe UI', system-ui, sans-serif;
+  --gut: clamp(16px, 4vw, 40px);
+  --max: 1340px;
+  --navh: 84px;
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  --shadow: 0 2px 4px rgba(29, 62, 99, .04), 0 24px 50px -24px rgba(29, 62, 99, .28);
+  --shadow-sm: 0 1px 2px rgba(29, 62, 99, .05), 0 12px 26px -16px rgba(29, 62, 99, .3);
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body { margin: 0; background: var(--white); color: var(--text); font: 400 17px/1.6 var(--font); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+a { color: inherit; }
+img { display: block; max-width: 100%; }
+p { margin: 0; }
+h1, h2, h3, h4, h5, h6 { margin: 0; color: var(--ink); font-weight: 600; letter-spacing: -.02em; text-wrap: balance; }
+h1 { font-size: clamp(40px, 6vw, 80px); line-height: 1.06; }
+h2 { font-size: clamp(34px, 4.2vw, 56px); line-height: 1.1; }
+h3 { font-size: clamp(21px, 1.9vw, 25px); line-height: 1.2; }
+.gt { background: var(--g); -webkit-background-clip: text; background-clip: text; color: transparent; padding-bottom: .06em; }
+.wrap { max-width: var(--max); margin: 0 auto; padding-inline: var(--gut); }
+section { position: relative; padding-block: clamp(72px, 9vw, 120px); scroll-margin-top: var(--navh); }
+.center { text-align: center; display: grid; justify-items: center; gap: 20px; }
+.lede { font-size: clamp(17px, 1.4vw, 19px); max-width: 60ch; text-wrap: pretty; }
+:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; border-radius: 8px; }
+.small { font-size: 13px; color: var(--mute); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+.btn { display: inline-flex; align-items: center; gap: 10px; padding: 16px 30px; border-radius: 30px; background: var(--ink); color: #fff; font: 600 16px/1 var(--font); text-decoration: none; border: 0; cursor: pointer; white-space: nowrap; transition: transform .3s var(--ease), box-shadow .3s var(--ease), background .3s; box-shadow: 0 10px 24px -12px rgba(29, 62, 99, .6); }
+.btn:hover { transform: translateY(-2px); background: #24507f; box-shadow: 0 16px 30px -14px rgba(29, 62, 99, .7); }
+.btn .ar { transition: transform .3s var(--ease); }
+.btn:hover .ar { transform: translateX(4px); }
+.btn.ghost { background: #fff; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--line), var(--shadow-sm); }
+.btn.ghost:hover { background: #fff; box-shadow: inset 0 0 0 1.5px var(--sky), var(--shadow-sm); }
+.btn.light { background: #fff; color: var(--ink); }
+.btn.light:hover { background: #fff; }
+.btns { display: flex; flex-wrap: wrap; gap: 12px; }
+.tlink { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; color: #2f63b8; text-decoration: none; }
+.tlink:hover .ar { transform: translateX(4px); }
+.tlink .ar { transition: transform .3s var(--ease); }
+
+.tag { justify-self: start; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--green); background: var(--green-s); border-radius: 30px; padding: 7px 13px; line-height: 1.2; white-space: nowrap; }
+.tag i { width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.tag.soon { color: var(--violet-d); background: var(--violet-s); }
+.center .tag { justify-self: center; }
+.ticks { display: flex; flex-wrap: wrap; gap: 8px; }
+.ticks span { display: inline-flex; align-items: center; gap: 8px; background: #fff; border-radius: 30px; padding: 6px 12px 6px 6px; font-size: 13px; font-weight: 500; color: var(--ink); border: 1px solid var(--line); }
+.ticks span::before { content: ""; width: 18px; height: 18px; border-radius: 50%; flex: none; background: var(--ink) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 6.2 5 8.5l4.5-5' fill='none' stroke='%23fff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 10px no-repeat; }
+.stars { color: var(--gold); letter-spacing: 1px; }
+
+/* ---------- nav: transparent over the hero, solid after scroll ---------- */
+.nav { position: fixed; inset: 0 0 auto; z-index: 50; transition: background .3s, box-shadow .3s, backdrop-filter .3s; }
+.nav.scrolled { background: rgba(255, 255, 255, .92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 8px 24px -18px rgba(29, 62, 99, .35); }
+.nav .wrap { display: flex; align-items: center; height: var(--navh); gap: 20px; }
+.brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 700; font-size: 24px; color: var(--ink); letter-spacing: -.02em; }
+.brand svg { width: 36px; height: 36px; }
+.nav nav { display: flex; gap: 6px; margin-left: auto; }
+.nav nav a { position: relative; display: inline-flex; align-items: center; gap: 7px; text-decoration: none; color: var(--ink); font-weight: 500; font-size: 15px; padding: 8px 12px; border-radius: 30px; transition: color .2s, background .2s; }
+.nav nav a:hover { color: #2f63b8; }
+.nav nav a[aria-current="true"] { background: #eaf1fc; color: #2f63b8; }
+.soon-b { font-size: 11px; font-weight: 600; letter-spacing: .04em; color: #fff; background: var(--violet); border-radius: 20px; padding: 3px 8px; line-height: 1.2; }
+.nav .signin { text-decoration: none; color: var(--ink); font-weight: 600; font-size: 15px; margin-left: 8px; }
+.nav .signin:hover { color: #2f63b8; }
+.nav .btn { padding: 13px 22px; font-size: 15px; }
+.menu-btn { display: none; }
+.sheet { display: none; }
+
+/* ---------- 1 · hero ---------- */
+.hero { padding-block: calc(var(--navh) + clamp(48px, 7vw, 90px)) 0; text-align: center; overflow: clip; background:
+  radial-gradient(50% 40% at 15% 10%, rgba(143, 180, 232, .28), transparent 70%),
+  radial-gradient(40% 35% at 90% 20%, rgba(45, 212, 191, .16), transparent 70%); }
+.hero .wrap { display: grid; justify-items: center; gap: 24px; }
+.hero h1 { max-width: 16ch; }
+.hero .sub { font-size: clamp(18px, 1.6vw, 21px); max-width: 52ch; color: var(--text); text-wrap: pretty; }
+.hero .btns { justify-content: center; }
+.shot { position: relative; width: 100%; max-width: 1140px; margin: clamp(36px, 5vw, 64px) auto 0; padding-bottom: clamp(60px, 8vw, 110px); }
+.shot::before { content: ""; position: absolute; inset: 6% 4% 10%; border-radius: 50%; background: radial-gradient(closest-side, rgba(143, 180, 232, .55), rgba(45, 212, 191, .18) 60%, transparent); filter: blur(40px); z-index: 0; }
+.shot > .win { position: relative; z-index: 1; }
+.float { position: absolute; z-index: 2; background: #fff; border-radius: 18px; box-shadow: var(--shadow); padding: 16px 18px; text-align: left; font-size: 14px; color: var(--ink); width: clamp(220px, 22vw, 280px); translate: 0 var(--py, 0px); transition: translate .25s linear; }
+.float h5 { font-size: 12px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--mute); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+.float h5 i { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-size: 12px; color: #fff; background: var(--g-d); }
+.float .fr { display: flex; justify-content: space-between; gap: 10px; padding: 5px 0; }
+.float .fr + .fr { border-top: 1px solid var(--line); }
+.float .fr b { font-weight: 600; font-variant-numeric: tabular-nums; }
+.float .up { color: var(--green); }
+.float .dn { color: var(--red); }
+.f1 { left: -3%; top: 34%; }
+.f2 { right: -3%; top: 9%; }
+.f3 { right: 5%; bottom: 3%; }
+.f3 .who { display: flex; gap: 12px; align-items: center; }
+.f3 .av { width: 40px; height: 40px; border-radius: 50%; background: center / cover; flex: none; }
+.f3 small { display: block; color: var(--mute); font-size: 12px; }
+.f3 .warn { display: inline-flex; margin-top: 10px; font-size: 12px; font-weight: 600; color: var(--red); background: var(--red-s); border-radius: 20px; padding: 4px 10px; }
+.play { position: absolute; z-index: 3; left: 50%; top: 52%; translate: -50% -50%; display: inline-flex; align-items: center; gap: 12px; padding: 8px 20px 8px 8px; border: 0; border-radius: 40px; cursor: pointer; background: rgba(29, 62, 99, .88); color: #fff; font: 600 15px/1 var(--font); backdrop-filter: blur(6px); box-shadow: 0 18px 40px -16px rgba(29, 62, 99, .8); transition: transform .3s var(--ease), background .3s; }
+.play:hover { transform: scale(1.04); background: var(--ink); }
+.play i { width: 44px; height: 44px; border-radius: 50%; background: var(--g-d); display: grid; place-items: center; }
+.play i::before { content: ""; border-left: 13px solid #fff; border-top: 8px solid transparent; border-bottom: 8px solid transparent; margin-left: 3px; }
+@media (prefers-reduced-motion: no-preference) { .play i { animation: ping 2.4s var(--ease) infinite; } @keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(143, 180, 232, .7); } 70%, 100% { box-shadow: 0 0 0 14px rgba(143, 180, 232, 0); } } }
+dialog.vid { border: 0; padding: 0; border-radius: 22px; width: min(960px, 92vw); background: #0d1b2e; color: #fff; box-shadow: 0 40px 90px -30px rgba(0, 0, 0, .6); }
+dialog.vid::backdrop { background: rgba(13, 27, 46, .7); backdrop-filter: blur(4px); }
+dialog.vid video, dialog.vid .ph { display: block; width: 100%; aspect-ratio: 16 / 9; background: #0d1b2e; }
+dialog.vid .ph { display: grid; place-items: center; text-align: center; padding: 24px; color: #b8c0da; }
+dialog.vid .x { position: absolute; top: 12px; right: 12px; z-index: 1; width: 40px; height: 40px; border-radius: 50%; border: 0; background: rgba(255, 255, 255, .14); color: #fff; font-size: 20px; cursor: pointer; }
+
+/* ---------- product "screenshots": V2 screens drawn in HTML, sized off their own width ---------- */
+.win { border-radius: 18px; background: #fff; overflow: hidden; box-shadow: var(--shadow), 0 0 0 1px rgba(29, 62, 99, .07); container-type: inline-size; }
+.win .bar { display: flex; align-items: center; gap: 6px; height: 34px; padding: 0 14px; background: #fff; border-bottom: 1px solid var(--line); }
+.win .bar i { width: 10px; height: 10px; border-radius: 50%; background: #e3e5ee; }
+.win .bar span { margin: 0 auto; max-width: 70%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 12px; color: var(--mute); background: var(--soft); border-radius: 20px; padding: 3px 14px; line-height: 1.3; }
+.app { display: grid; grid-template-columns: 13em minmax(0, 1fr); font-size: clamp(6.5px, 1.18cqw, 13px); line-height: 1.35; background: #f6f7fb; color: var(--ink); text-align: left; }
+.sb { background: #fff; border-right: 1px solid var(--line); padding: 1.3em .9em; display: grid; gap: .2em; align-content: start; }
+.sb .lg { display: flex; align-items: center; gap: .5em; font-weight: 700; font-size: 1.15em; padding: 0 .5em 1em; }
+.sb .lg svg { width: 1.7em; height: 1.7em; }
+.sb span { display: flex; align-items: center; gap: .7em; padding: .5em .7em; border-radius: .7em; color: var(--text); white-space: nowrap; }
+.sb span::before { content: ""; width: .85em; height: .85em; border-radius: .28em; background: currentColor; opacity: .3; flex: none; }
+.sb span.on { background: #eaf1fc; color: #2f63b8; font-weight: 600; }
+.sb span.on::before { opacity: .9; }
+.sb em { font-style: normal; font-size: .78em; letter-spacing: .08em; text-transform: uppercase; color: var(--mute); padding: .9em .9em .3em; }
+.mn { padding: 1.5em; display: grid; gap: 1.1em; align-content: start; min-width: 0; }
+.hd { display: flex; justify-content: space-between; align-items: center; gap: 1em; }
+.hd h6 { font-size: 1.55em; }
+.hd small { display: block; font-size: .62em; color: var(--mute); font-weight: 400; letter-spacing: 0; }
+.chp { display: flex; gap: .5em; flex-wrap: wrap; }
+.chp span { background: #fff; border: 1px solid var(--line); border-radius: 2em; padding: .35em .9em; font-size: .92em; white-space: nowrap; }
+.chp span.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+.kp { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .9em; }
+.k { background: #fff; border: 1px solid var(--line); border-radius: 1em; padding: 1em 1.1em; display: grid; gap: .25em; }
+.k span { font-size: .9em; color: var(--mute); }
+.k b { font-size: 2em; font-weight: 600; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.k b small { font-size: .5em; color: var(--gold); }
+.k em { font-style: normal; font-size: .85em; font-weight: 600; color: var(--green); }
+.k em.dn { color: var(--red); }
+.g2 { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: .9em; }
+.g2.eq { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.pn { background: #fff; border: 1px solid var(--line); border-radius: 1em; padding: 1.1em 1.2em; display: grid; gap: .7em; align-content: start; min-width: 0; }
+.pn h6 { font-size: .85em; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--mute); display: flex; justify-content: space-between; gap: 1em; }
+.pn h6 b { color: #2f63b8; font-weight: 600; letter-spacing: 0; text-transform: none; }
+.pn svg.ch { width: 100%; height: 11em; display: block; overflow: visible; }
+.rw { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(3em, 1.2fr) 3em; gap: .8em; align-items: center; padding: .25em 0; }
+.rw .nm { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rw .v { text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; }
+.tk { height: .65em; border-radius: 1em; background: var(--soft); overflow: hidden; }
+.tk i { display: block; height: 100%; width: var(--w); border-radius: 1em; background: var(--c, var(--ink)); }
+.th { display: flex; flex-wrap: wrap; gap: .5em; }
+.th span { border-radius: 2em; padding: .35em .85em; font-weight: 500; }
+.th .p { background: var(--green-s); color: var(--green); }
+.th .n { background: var(--red-s); color: var(--red); }
+.rvw { display: flex; gap: .8em; align-items: flex-start; }
+.rvw + .rvw { border-top: 1px solid var(--line); padding-top: .7em; }
+.rvw .av { width: 2.4em; height: 2.4em; border-radius: 50%; background: center / cover; flex: none; }
+.rvw small { color: var(--mute); display: block; }
+.ro { font-size: .8em; color: var(--mute); background: var(--soft); border-radius: 2em; padding: .2em .7em; font-weight: 500; }
+.est { display: grid; grid-template-columns: auto 1fr; gap: .4em 1em; align-items: center; }
+.est b.big { font-size: 2.2em; letter-spacing: -.02em; }
+.vb { display: flex; align-items: end; gap: .7em; height: 9em; border-bottom: 1px solid var(--line); }
+.vb div { flex: 1; display: grid; justify-items: center; gap: .3em; font-size: .85em; color: var(--mute); }
+.vb i { width: 100%; max-width: 3.2em; border-radius: .5em .5em .15em .15em; background: var(--c, #d9dbe6); height: var(--h); }
+.vb b { color: var(--ink); }
+.tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .7em; }
+.tile { border: 1px solid var(--line); border-radius: .9em; padding: .8em .9em; display: grid; gap: .35em; background: #fff; }
+.tile b { font-size: 1.4em; font-variant-numeric: tabular-nums; }
+.tile.hl { box-shadow: 0 0 0 2px #5b8fd9; }
+.feed { display: grid; gap: .6em; }
+.feed div { display: grid; grid-template-columns: 2.4em minmax(0, 1fr) auto; gap: .8em; align-items: center; background: #fff; border: 1px solid var(--line); border-radius: .9em; padding: .7em .9em; }
+.feed i { width: 2.4em; height: 2.4em; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-weight: 700; color: #fff; font-size: .9em; }
+.feed small { color: var(--mute); display: block; }
+.feed em { font-style: normal; font-size: .8em; color: var(--mute); white-space: nowrap; }
+.c-wa { background: #25d366; } .c-em { background: #5b8fd9; } .c-sms { background: #1d3e63; }
+@container (max-width: 620px) {
+  .app { grid-template-columns: minmax(0, 1fr); font-size: 2.15cqw; }
+  .sb { display: none; }
+  .mn { padding: 1.3em; }
+  .kp { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .g2, .g2.eq { grid-template-columns: minmax(0, 1fr); }
+  .g2 > :nth-child(n + 2) { display: none; }
+}
+
+/* ---------- 2 · problem ---------- */
+.why .wrap { display: grid; justify-items: center; gap: 22px; text-align: center; }
+.crack { position: relative; display: inline-grid; margin: clamp(8px, 2vw, 20px) 0 clamp(10px, 2vw, 24px); font-size: clamp(88px, 13vw, 170px); font-weight: 600; line-height: 1; letter-spacing: -.04em; color: var(--ink); }
+.crack > span { grid-area: 1 / 1; display: inline-flex; align-items: baseline; gap: .08em; transition: transform 1.2s var(--ease) .35s; }
+.crack .st { color: var(--gold); font-size: .7em; }
+.crack .l { clip-path: polygon(0 0, 54% 0, 47% 28%, 56% 50%, 46% 74%, 53% 100%, 0 100%); }
+.crack .r { clip-path: polygon(54% 0, 100% 0, 100% 100%, 53% 100%, 46% 74%, 56% 50%, 47% 28%); }
+.crack svg { position: absolute; inset: -6% 0; width: 100%; height: 112%; overflow: visible; pointer-events: none; }
+.crack path { fill: none; stroke: url(#gg); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset .7s ease-out, opacity .4s 1.3s; }
+.crack.in path { stroke-dashoffset: 0; opacity: 0; }
+.crack .l { transform-origin: 20% 100%; }
+.crack .r { transform-origin: 85% 100%; }
+.crack.in .l { transform: translate(-.06em, .02em) rotate(-2.5deg); }
+.crack.in .r { transform: translate(.06em, -.01em) rotate(2.5deg); }
+.probs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; width: 100%; margin-top: clamp(16px, 3vw, 36px); text-align: left; }
+.prob { display: grid; gap: 14px; align-content: start; }
+.prob .box { background: var(--soft); border-radius: 24px; aspect-ratio: 1.35; display: grid; place-items: center; padding: 22px; }
+.prob .ui { width: 100%; max-width: 300px; background: #fff; border-radius: 16px; padding: 16px; box-shadow: var(--shadow-sm); font-size: 14px; color: var(--ink); }
+.prob .ui h5 { font-size: 12px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--mute); margin-bottom: 10px; }
+.prob h3 { display: flex; align-items: center; gap: 12px; }
+.prob h3 .ic { width: 40px; height: 40px; border-radius: 50%; background: var(--g-d); display: grid; place-items: center; flex: none; box-shadow: 0 8px 18px -8px rgba(47, 99, 184, .55); }
+.prob h3 .ic svg { width: 20px; height: 20px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.prob p { font-size: 16px; }
+.lag svg { width: 100%; height: 90px; display: block; overflow: visible; }
+.lag .lg2 { display: flex; gap: 14px; font-size: 12px; color: var(--mute); margin-top: 8px; }
+.lag .lg2 i { display: inline-block; width: 14px; height: 3px; border-radius: 2px; vertical-align: middle; margin-right: 6px; }
+.one .big { display: flex; align-items: baseline; gap: 8px; font-size: 34px; font-weight: 600; margin-bottom: 10px; }
+.one .big small { font-size: 13px; color: var(--mute); font-weight: 400; }
+.one .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.one .chips span { border-radius: 20px; padding: 4px 10px; font-size: 12px; font-weight: 500; filter: blur(3px); opacity: .7; transition: filter .6s var(--ease), opacity .6s; }
+.prob:hover .one .chips span, .prob:focus-within .one .chips span { filter: none; opacity: 1; }
+.one .chips .p { background: var(--green-s); color: var(--green); }
+.one .chips .n { background: var(--red-s); color: var(--red); }
+.brs .b { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 10px; align-items: center; padding: 6px 0; font-size: 14px; }
+.brs .b + .b { border-top: 1px solid var(--line); }
+.brs .b em { font-style: normal; font-size: 12px; color: var(--mute); }
+.brs .b .dn { color: var(--red); font-weight: 600; }
+.brs .b .up { color: var(--green); font-weight: 600; }
+
+/* slanted seam, as on v3 */
+.seam { display: block; width: 100%; height: clamp(60px, 10vw, 150px); }
+.seam-wrap { position: relative; line-height: 0; }
+
+/* ---------- 3 · product: tabbed showcase ---------- */
+.prod .head { margin-bottom: clamp(36px, 5vw, 60px); }
+.pt { display: grid; grid-template-columns: minmax(0, .82fr) minmax(0, 1.6fr); gap: clamp(24px, 4vw, 56px); align-items: start; }
+.tabs { display: grid; gap: 10px; }
+.tab { position: relative; display: grid; gap: 6px; text-align: left; font: inherit; color: inherit; background: transparent; border: 0; border-radius: 20px; padding: 18px 20px 20px; cursor: pointer; overflow: hidden; transition: background .3s, box-shadow .3s; }
+.tab:hover { background: var(--soft); }
+.tab[aria-selected="true"] { background: #fff; box-shadow: var(--shadow), 0 0 0 1px var(--line); }
+.tab .tt { display: flex; align-items: center; gap: 12px; font-size: 20px; font-weight: 600; color: var(--ink); letter-spacing: -.01em; }
+.tab .tt b { font-size: 13px; font-weight: 600; color: var(--mute); font-variant-numeric: tabular-nums; }
+.tab[aria-selected="true"] .tt b { color: #2f63b8; }
+.tab p { font-size: 15px; }
+.tab .more { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .45s var(--ease); }
+.tab .more > span { overflow: hidden; min-height: 0; }
+.tab .more .ticks { padding-top: 10px; }
+.tab[aria-selected="true"] .more { grid-template-rows: 1fr; }
+.tab .pg { position: absolute; left: 20px; right: 20px; bottom: 8px; height: 3px; border-radius: 3px; background: var(--line); overflow: hidden; opacity: 0; }
+.tab .pg i { display: block; height: 100%; width: 100%; background: var(--g); transform-origin: left; transform: scaleX(0); }
+.pt.auto .tab[aria-selected="true"] .pg { opacity: 1; }
+.pt.auto .tab[aria-selected="true"] .pg i { animation: fill 6s linear forwards; }
+.pt.auto.paused .tab[aria-selected="true"] .pg i { animation-play-state: paused; }
+@keyframes fill { to { transform: scaleX(1); } }
+.stage-col { display: grid; gap: 18px; justify-items: start; min-width: 0; }
+.stage { position: relative; width: 100%; display: grid; }
+.stage .tp { grid-area: 1 / 1; opacity: 0; visibility: hidden; transform: translateY(10px) scale(.985); transition: opacity .55s var(--ease), transform .55s var(--ease), visibility 0s .55s; }
+.stage .tp.on { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+.tp .cap { display: none; }
+.dots { display: none; }
+.alerts { margin-top: clamp(36px, 5vw, 56px); display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 18px 28px; background: var(--soft); border-radius: 24px; padding: 22px clamp(20px, 3vw, 32px); }
+.alerts .ics { display: flex; }
+.alerts .ics span { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; background: #fff; box-shadow: var(--shadow-sm); border: 3px solid var(--soft); }
+.alerts .ics span + span { margin-left: -10px; }
+.alerts .ics svg { width: 24px; height: 24px; }
+.alerts h3 { font-size: 19px; }
+.alerts p { font-size: 15px; }
+.setup { margin-top: 18px; text-align: center; font-size: 15px; color: var(--text); }
+.setup b { color: var(--ink); font-weight: 600; }
+
+/* ---------- 4 · multi-location: three-step zoom ---------- */
+.scale { padding-block: 0; }
+.zoom { height: 330vh; }
+.zstick { position: sticky; top: var(--navh); height: calc(100vh - var(--navh)); min-height: 560px; display: grid; align-items: center; overflow: hidden; }
+.zgrid { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.5fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
+.zcopy { display: grid; gap: 20px; }
+.lvls { display: grid; gap: 4px; margin-top: 10px; counter-reset: l; }
+.lvls li { list-style: none; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 2px 14px; padding: 12px 0; opacity: .45; transition: opacity .4s; }
+.lvls li::before { counter-increment: l; content: counter(l); grid-row: span 2; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 14px; color: var(--ink); background: var(--soft); transition: background .4s, color .4s; }
+.lvls li.on { opacity: 1; }
+.lvls li.on::before { background: var(--g-d); color: #fff; }
+.lvls b { color: var(--ink); font-size: 18px; font-weight: 600; }
+.lvls span { font-size: 15px; }
+.lvls { padding: 0; margin-bottom: 0; }
+.zstage { position: relative; display: grid; }
+.zstage::before { content: ""; position: absolute; inset: 0 6%; border-radius: 50%; background: radial-gradient(closest-side, rgba(143, 180, 232, .5), rgba(45, 212, 191, .14) 60%, transparent); filter: blur(40px); }
+.lvl { grid-area: 1 / 1; position: relative; transform-origin: 50% 45%; will-change: transform, opacity; }
+.lvl .lab { position: absolute; z-index: 2; left: 22px; top: -18px; display: inline-flex; align-items: center; gap: 8px; padding: 4px 14px 4px 4px; border-radius: 30px; background: var(--g-d); color: #fff; font-weight: 600; font-size: 14px; line-height: 1; box-shadow: 0 8px 18px -8px rgba(47, 99, 184, .5); }
+.lvl .lab i { width: 28px; height: 28px; border-radius: 50%; border: 2px solid rgba(255, 255, 255, .9); background: center / cover; }
+
+/* ---------- 5 · what's next (V3, coming soon) ---------- */
+.panel { border-radius: 30px; background: var(--g-v); padding: clamp(28px, 5vw, 64px); position: relative; overflow: hidden; }
+.panel::after { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 50% at 8% 0%, rgba(255, 255, 255, .22), transparent 70%), radial-gradient(40% 40% at 100% 100%, rgba(167, 139, 250, .35), transparent 70%); pointer-events: none; }
+.panel > * { position: relative; z-index: 1; }
+.panel .top { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); align-items: end; gap: 24px 40px; margin-bottom: clamp(28px, 4vw, 48px); }
+.panel h2 { color: #fff; max-width: 15ch; }
+.panel .top p { color: rgba(255, 255, 255, .9); max-width: 44ch; }
+.badge-soon { display: inline-flex; align-items: center; gap: 8px; background: rgba(255, 255, 255, .16); color: #fff; border: 1px solid rgba(255, 255, 255, .45); border-radius: 30px; padding: 8px 15px; font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 16px; }
+.badge-soon i { width: 7px; height: 7px; border-radius: 50%; background: #c4b5fd; box-shadow: 0 0 0 4px rgba(196, 181, 253, .3); }
+.bento { display: grid; grid-template-columns: minmax(0, 1.25fr) repeat(2, minmax(0, 1fr)); grid-auto-rows: minmax(0, auto); gap: 18px; }
+.bc { background: #fff; border-radius: 22px; padding: 22px 22px 0; display: grid; grid-template-rows: auto auto 1fr; gap: 8px; overflow: hidden; transition: transform .45s var(--ease), box-shadow .45s var(--ease); }
+.bc:hover { transform: translateY(-6px); box-shadow: 0 30px 50px -28px rgba(13, 10, 50, .6); }
+.bc .row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.bc h3 { font-size: 21px; }
+.bc p { font-size: 15px; }
+.bc .tag { font-size: 11px; padding: 5px 10px; }
+.bc.big { grid-row: span 2; }
+.bc.big h3 { font-size: clamp(24px, 2.2vw, 30px); }
+.bc.big p { font-size: 17px; max-width: 40ch; }
+.pv { position: relative; margin: 14px -22px 0; padding: 18px 22px 22px; background: linear-gradient(180deg, var(--violet-s), #f7f5ff); border-top: 1px solid #e6defc; font-size: 13px; color: var(--ink); min-height: 150px; overflow: hidden; }
+.pv > * { filter: blur(2.6px) saturate(.85); opacity: .78; transition: filter .55s var(--ease), opacity .55s var(--ease); }
+.bc:hover .pv > *, .bc:focus-within .pv > * { filter: none; opacity: 1; }
+.pv .card { background: #fff; border-radius: 14px; padding: 12px 14px; box-shadow: 0 10px 24px -18px rgba(60, 40, 140, .5); }
+.pv .card + .card { margin-top: 8px; }
+.pv small { color: var(--mute); }
+.pv .q { justify-self: end; max-width: 80%; margin-left: auto; background: var(--violet-d); color: #fff; border-radius: 16px 16px 4px 16px; padding: 10px 14px; }
+.pv .a { max-width: 88%; background: #fff; border-radius: 16px 16px 16px 4px; padding: 12px 14px; margin-top: 10px; box-shadow: 0 10px 24px -18px rgba(60, 40, 140, .5); line-height: 1.45; }
+.pv .a .lnk { display: inline-flex; margin-top: 8px; gap: 6px; color: var(--violet-d); background: var(--violet-s); border-radius: 20px; padding: 4px 10px; font-weight: 600; font-size: 12px; }
+.pv .ask { display: flex; gap: 8px; align-items: center; margin-top: 14px; background: #fff; border: 1px solid #e6defc; border-radius: 30px; padding: 6px 6px 6px 14px; color: var(--mute); }
+.pv .ask b { margin-left: auto; width: 30px; height: 30px; border-radius: 50%; background: var(--violet); display: grid; place-items: center; color: #fff; }
+.pv .mr { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; align-items: center; padding: 6px 0; }
+.pv .mr + .mr { border-top: 1px solid var(--line); }
+.pill-s { font-size: 11px; font-weight: 600; border-radius: 20px; padding: 3px 9px; white-space: nowrap; }
+.ps-r { background: var(--red-s); color: var(--red); }
+.ps-a { background: #fff4d6; color: #a86b00; }
+.ps-v { background: var(--violet-s); color: var(--violet-d); }
+.pv .tl { display: grid; gap: 6px; margin-top: 10px; border-left: 2px solid #e6defc; padding-left: 12px; font-size: 12px; color: var(--text); }
+.pv .qr { display: grid; grid-template-columns: 54px minmax(0, 1fr); gap: 12px; align-items: center; }
+.pv .qr i { width: 54px; height: 54px; border-radius: 8px; background:
+  conic-gradient(var(--ink) 25%, #fff 0 50%, var(--ink) 0 75%, #fff 0) 0 0 / 12px 12px; box-shadow: 0 0 0 5px #fff, 0 0 0 6px var(--line); }
+.foot { display: flex; justify-content: space-between; align-items: center; gap: 16px 24px; flex-wrap: wrap; margin-top: clamp(24px, 3.5vw, 40px); }
+.foot .also { color: #fff; font-size: 15px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.foot .also b { font-weight: 600; margin-right: 4px; }
+.foot .also span { border: 1px solid rgba(255, 255, 255, .35); border-radius: 30px; padding: 5px 12px; font-size: 14px; color: rgba(255, 255, 255, .92); }
+.v3note { text-align: center; margin-top: 18px; }
+
+/* ---------- 6 · final CTA ---------- */
+.cta { background: var(--soft); }
+.cta .wrap { display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
+.cta .copy { display: grid; gap: 18px; align-content: start; }
+form.card { margin-top: 10px; border-radius: 26px; background: #fff; box-shadow: var(--shadow); padding: clamp(22px, 3.4vw, 36px); display: grid; gap: 16px; }
+.fgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+form label, form fieldset { display: grid; gap: 6px; font-size: 14px; font-weight: 500; color: var(--ink); }
+form fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+form legend { padding: 0; margin-bottom: 6px; }
+form input:not([type="radio"]), form select { font: 16px var(--font); color: var(--ink); background: var(--soft); border: 1px solid var(--line); border-radius: 14px; padding: 13px 16px; width: 100%; min-width: 0; transition: border-color .2s, box-shadow .2s, background .2s; }
+form input:not([type="radio"]):focus, form select:focus { outline: none; background: #fff; border-color: var(--blue); box-shadow: 0 0 0 4px rgba(91, 143, 217, .2); }
+.seg { display: grid; grid-template-columns: 1fr 1fr; background: var(--soft); border: 1px solid var(--line); border-radius: 14px; padding: 4px; gap: 4px; }
+.seg label { position: relative; display: block; cursor: pointer; }
+.seg input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.seg span { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 12px; border-radius: 10px; font-weight: 600; font-size: 15px; transition: background .25s, color .25s, box-shadow .25s; }
+.seg input:checked + span { background: #fff; box-shadow: var(--shadow-sm); }
+.seg input:focus-visible + span { outline: 3px solid var(--blue); outline-offset: 1px; }
+.seg input[value="v3"]:checked + span { color: var(--violet-d); }
+.seg .soon-b { font-size: 10px; }
+form .btn { justify-self: start; }
+.done { color: var(--green); font-size: 15px; }
+.cta .art { position: relative; }
+.cta .art::before { content: ""; position: absolute; inset: 0 4%; border-radius: 50%; background: radial-gradient(closest-side, rgba(143, 180, 232, .55), rgba(45, 212, 191, .16) 60%, transparent); filter: blur(36px); }
+.cta .art .win { position: relative; }
+
+footer { background: var(--ink); color: #b8c0da; padding-block: 56px 30px; font-size: 15px; }
+footer .top { display: grid; grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, .7fr)); gap: 32px; padding-bottom: 36px; border-bottom: 1px solid rgba(255, 255, 255, .12); }
+footer .brand { color: #fff; }
+footer h4 { color: #fff; font-size: 15px; font-weight: 600; margin-bottom: 14px; }
+footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
+footer a { text-decoration: none; }
+footer a:hover { color: #fff; }
+footer .bottom { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding-top: 22px; font-size: 13px; color: #8790b0; }
+footer .bottom nav { display: flex; gap: 18px; }
+
+/* ---------- motion ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-rv] { opacity: 0; transform: translateY(30px); transition: opacity .9s var(--ease), transform .9s var(--ease); transition-delay: var(--d, 0s); }
+  .js [data-rv].in { opacity: 1; transform: none; }
+  .js .probs .prob { opacity: 0; transform: translateY(-40px) scale(.94); transition: opacity .8s var(--ease), transform .9s var(--ease); }
+  .js .probs.in .prob { opacity: 1; transform: none; transition-delay: calc(1s + var(--d, 0s)); }
+  .bob { animation: bob 5s ease-in-out infinite; animation-delay: var(--b, 0s); }
+  @keyframes bob { 50% { transform: translateY(-10px); } }
+}
+@media (prefers-reduced-motion: reduce) {
+  .crack path { display: none; }
+}
+/* no hover on touch screens, so previews start sharp */
+@media (hover: none) {
+  .pv > *, .one .chips span { filter: none; opacity: 1; }
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 1080px) {
+  .nav nav a { padding: 8px 9px; }
+  .bento { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .bc.big { grid-column: 1 / -1; grid-row: auto; }
+  .f1 { left: -1%; }
+  .f2 { right: -1%; }
+}
+@media (max-width: 960px) {
+  .pt, .cta .wrap { grid-template-columns: minmax(0, 1fr); }
+  .tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .probs { grid-template-columns: minmax(0, 1fr); max-width: 520px; margin-inline: auto; }
+  .panel .top { grid-template-columns: minmax(0, 1fr); }
+  footer .top { grid-template-columns: 1fr 1fr; }
+  footer .top > :first-child { grid-column: 1 / -1; }
+  .float { width: 210px; font-size: 13px; padding: 13px 14px; }
+}
+/* the zoom needs room: below 900px wide, or with reduced motion, the three levels simply stack */
+@media (max-width: 900px), (prefers-reduced-motion: reduce) {
+  .scale { padding-block: clamp(72px, 9vw, 120px); }
+  .zoom { height: auto; }
+  .zstick { position: static; height: auto; min-height: 0; overflow: visible; }
+  .zgrid { grid-template-columns: minmax(0, 1fr); }
+  .lvls { display: none; }
+  .zstage { gap: 28px; }
+  .zstage::before { display: none; }
+  .lvl { grid-area: auto; opacity: 1 !important; transform: none !important; }
+  .lvl { margin-top: 18px; }
+}
+@media (max-width: 900px) {
+  .zcopy { text-align: center; justify-items: center; }
+}
+@media (max-width: 860px) {
+  .nav nav, .nav .signin { display: none; }
+  .nav .btn { margin-left: auto; padding: 12px 18px; font-size: 14px; }
+  .menu-btn { display: inline-grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; border: 0; background: var(--soft); cursor: pointer; padding: 0; flex: none; }
+  .menu-btn span { display: block; width: 18px; height: 2px; border-radius: 2px; background: var(--ink); box-shadow: 0 -6px 0 var(--ink), 0 6px 0 var(--ink); transition: .3s var(--ease); }
+  .nav.open .menu-btn span { background: transparent; box-shadow: none; }
+  .nav.open .menu-btn span::before, .nav.open .menu-btn span::after { content: ""; position: absolute; width: 18px; height: 2px; border-radius: 2px; background: var(--ink); transform: rotate(45deg); }
+  .nav.open .menu-btn span::after { transform: rotate(-45deg); }
+  .nav.open { background: #fff; }
+  :root { --navh: 72px; }
+  .sheet { display: grid; position: absolute; left: 0; right: 0; top: var(--navh); background: #fff; padding: 8px var(--gut) 22px; box-shadow: 0 20px 30px -20px rgba(29, 62, 99, .3); opacity: 0; visibility: hidden; transform: translateY(-6px); transition: .3s var(--ease); }
+  .nav.open .sheet { opacity: 1; visibility: visible; transform: none; }
+  .sheet a { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); font-weight: 500; font-size: 20px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .sheet a[aria-current="true"] { color: #2f63b8; }
+  .sheet a:last-child { border-bottom: 0; color: #2f63b8; font-weight: 600; font-size: 17px; }
+}
+@media (max-width: 720px) {
+  .center, .why .wrap, .cta .copy { text-align: center; justify-items: center; }
+  .btns { justify-content: center; }
+  .tag { justify-self: center; }
+  .float { display: none; }
+  .float.f3 { display: block; position: relative; right: auto; bottom: auto; margin: -36px auto 0; width: min(300px, 88%); translate: none; }
+  .shot { padding-bottom: 50px; }
+  .play { top: 45%; font-size: 14px; padding: 6px 16px 6px 6px; }
+  .play i { width: 36px; height: 36px; }
+  /* product: tabs become swipeable cards */
+  .tabs { display: none; }
+  .stage { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; margin-inline: calc(var(--gut) * -1); padding: 4px var(--gut) 18px; scrollbar-width: none; }
+  .stage::-webkit-scrollbar { display: none; }
+  .stage .tp { flex: 0 0 86%; scroll-snap-align: center; opacity: 1; visibility: visible; transform: none; display: grid; gap: 14px; align-content: start; }
+  .tp .cap { display: grid; gap: 6px; text-align: left; }
+  .tp .cap h3 { font-size: 20px; }
+  .tp .cap p { font-size: 15px; }
+  .stage-col { justify-items: center; }
+  .dots { display: flex; gap: 8px; justify-content: center; }
+  .dots button { width: 8px; height: 8px; border-radius: 8px; border: 0; padding: 0; background: var(--line); cursor: pointer; transition: width .3s var(--ease), background .3s; }
+  .dots button[aria-current="true"] { width: 26px; background: var(--ink); }
+  .alerts { grid-template-columns: minmax(0, 1fr); text-align: center; justify-items: center; }
+  .bento { grid-template-columns: minmax(0, 1fr); }
+  .panel .top { text-align: center; justify-items: center; }
+  .panel h2 { margin-inline: auto; }
+  .foot { justify-content: center; text-align: center; }
+  .foot .also { justify-content: center; }
+  .fgrid { grid-template-columns: minmax(0, 1fr); }
+  form.card { text-align: left; width: 100%; }
+  form .btn { justify-self: center; }
+  footer .bottom { justify-content: center; text-align: center; }
+}
+@media (max-width: 420px) {
+  .nav .btn { padding: 11px 14px; }
+  .brand { font-size: 21px; gap: 8px; }
+  .brand svg { width: 32px; height: 32px; }
+  .nav .wrap { gap: 10px; }
+  footer .top { grid-template-columns: minmax(0, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gg" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#2f63b8"/><stop offset=".5" stop-color="#5b8fd9"/><stop offset="1" stop-color="#17b3a3"/></linearGradient>
+    <linearGradient id="sg" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#2f63b8"/><stop offset=".5" stop-color="#5b8fd9"/><stop offset="1" stop-color="#17b3a3"/></linearGradient>
+    <linearGradient id="fa" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#5b8fd9" stop-opacity=".28"/><stop offset="1" stop-color="#5b8fd9" stop-opacity="0"/></linearGradient>
+  </defs>
+  <symbol id="crown" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#1D3E63"/><g transform="translate(4 4)" fill="#FFFFFF"><path d="M2.6 9.4L7.6 15.3L12 7.4L16.4 15.3L21.4 9.4L21.4 17.6C21.4 18.4 21 18.8 20.2 18.8L3.8 18.8C3 18.8 2.6 18.4 2.6 17.6ZM1 7.9a1.6 1.6 0 1 0 3.2 0a1.6 1.6 0 1 0-3.2 0ZM10.4 5.6a1.6 1.6 0 1 0 3.2 0a1.6 1.6 0 1 0-3.2 0ZM19.8 7.9a1.6 1.6 0 1 0 3.2 0a1.6 1.6 0 1 0-3.2 0Z"/></g></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24"><path fill="#25d366" d="M12 2.5a9.4 9.4 0 0 0-8.1 14.2L2.6 21.4l4.8-1.3A9.4 9.4 0 1 0 12 2.5z"/><path fill="#fff" d="M9 7.6c-.2-.5-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.3.3-1 .9-1 2.2s1 2.6 1.1 2.8c.1.2 1.9 3 4.7 4.1 2.3.9 2.8.7 3.3.7.5-.1 1.6-.7 1.8-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3l-1.9-.9c-.3-.1-.5-.1-.7.1l-.9 1.1c-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.2-1.4-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.4.1-.5l.4-.5.3-.5v-.5L9 7.6z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3" fill="none" stroke="#5b8fd9" stroke-width="1.9"/><path d="M4 7l8 6 8-6" fill="none" stroke="#1d3e63" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-sms" viewBox="0 0 24 24"><path fill="none" stroke="#1d3e63" stroke-width="1.9" stroke-linejoin="round" d="M4 5.5h16a1 1 0 0 1 1 1V16a1 1 0 0 1-1 1h-9l-5 3.5V17H4a1 1 0 0 1-1-1V6.5a1 1 0 0 1 1-1z"/><path stroke="#17b3a3" stroke-width="2.2" stroke-linecap="round" d="M8 11.3h.01M12 11.3h.01M16 11.3h.01"/></symbol>
+</svg>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="#top"><svg aria-hidden="true"><use href="#crown"/></svg>ReviewRani</a>
+    <nav aria-label="Sections">
+      <a href="#product">Product</a>
+      <a href="#scale">Multi-location</a>
+      <a href="#v3">What’s next <span class="soon-b">Soon</span></a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <!-- TODO: point Sign in at the live V2 dashboard login -->
+    <a class="signin" href="#" data-signin>Sign in</a>
+    <a class="btn" href="#contact" data-interest="demo">Book a Demo</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="sheet" aria-label="Open menu"><span></span></button>
+  </div>
+  <div class="sheet" id="sheet">
+    <a href="#product">Product</a>
+    <a href="#scale">Multi-location</a>
+    <a href="#v3">What’s next <span class="soon-b">Soon</span></a>
+    <a href="#contact">Contact</a>
+    <a href="#" data-signin>Sign in</a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- 1 · HERO -->
+<section class="hero" id="hero-sec" aria-labelledby="h-hero">
+  <div class="wrap">
+    <h1 id="h-hero" data-rv>Every review. Every location. <span class="gt">One clear view.</span></h1>
+    <p class="sub" data-rv style="--d:.1s">ReviewRani turns customer reviews into clear performance insights for every location, cluster and your whole business.</p>
+    <div class="btns" data-rv style="--d:.2s">
+      <a class="btn" href="#contact" data-interest="demo">Book a Demo <span class="ar">→</span></a>
+      <a class="btn ghost" href="#v3">See what’s next</a>
+    </div>
+
+    <div class="shot" data-rv style="--d:.3s">
+      <div class="win" id="homeWin" aria-label="The ReviewRani Home screen, with sample data" role="img">
+        <div class="bar"><i></i><i></i><i></i><span>ReviewRani · Home</span></div>
+        <div class="app">
+          <div class="sb" data-on="Home"></div>
+          <div class="mn">
+            <div class="hd"><h6>Home<small>All locations · last 30 days</small></h6><div class="chp"><span class="on">Enterprise</span><span>Last 30 days</span></div></div>
+            <div class="kp">
+              <div class="k"><span>Average Rating</span><b>4.22 <small>★</small></b><em>▲ 0.06</em></div>
+              <div class="k"><span>Total Reviews</span><b>18,420</b><em>▲ 7.4%</em></div>
+              <div class="k"><span>Rating this month</span><b>4.31 <small>★</small></b><em>▲ 0.09</em></div>
+              <div class="k"><span>Reviews this month</span><b>1,284</b><em class="dn">▼ 2.1%</em></div>
+            </div>
+            <div class="g2">
+              <div class="pn"><h6>Rating trend <b>Month on month</b></h6>
+                <svg class="ch" viewBox="0 0 400 120" preserveAspectRatio="none"><path d="M0 80 C40 76 60 60 100 64 S160 40 200 46 S260 70 300 52 S360 24 400 28 V120 H0Z" fill="url(#fa)"/><path d="M0 80 C40 76 60 60 100 64 S160 40 200 46 S260 70 300 52 S360 24 400 28" fill="none" stroke="url(#gg)" stroke-width="3" vector-effect="non-scaling-stroke"/><path d="M0 60 H400" stroke="#e7e8ef" stroke-dasharray="4 4" vector-effect="non-scaling-stroke"/></svg>
+              </div>
+              <div class="pn"><h6>Reviews by location</h6>
+                <div class="rw"><span class="nm">Tirupati Central</span><div class="tk"><i style="--w:92%"></i></div><span class="v">312</span></div>
+                <div class="rw"><span class="nm">Ongole Ring Road</span><div class="tk"><i style="--w:76%"></i></div><span class="v">258</span></div>
+                <div class="rw"><span class="nm">Nellore Bypass</span><div class="tk"><i style="--w:64%"></i></div><span class="v">219</span></div>
+                <div class="rw"><span class="nm">Madanapalle</span><div class="tk"><i style="--w:51%"></i></div><span class="v">174</span></div>
+                <div class="rw"><span class="nm">Kadapa Highway</span><div class="tk"><i style="--w:40%"></i></div><span class="v">138</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="play" type="button" data-video>
+        <i aria-hidden="true"></i>Watch the intro
+      </button>
+      <div class="float f1" data-par=".06">
+        <h5><i>★</i>Best performing locations</h5>
+        <div class="fr"><span>Tirupati Central</span><b class="up">4.41</b></div>
+        <div class="fr"><span>Ongole Ring Road</span><b class="up">4.27</b></div>
+        <div class="fr"><span>Madanapalle</span><b>4.18</b></div>
+      </div>
+      <div class="float f2" data-par="-.05">
+        <h5><i>!</i>Top customer concerns</h5>
+        <div class="fr"><span>Billing wait</span><b class="dn">41</b></div>
+        <div class="fr"><span>Delivery time</span><b class="dn">27</b></div>
+        <div class="fr"><span>Callback after service</span><b class="dn">19</b></div>
+      </div>
+      <div class="float f3" data-par=".1">
+        <h5><i>☺</i>Employee performance alert</h5>
+        <div class="who"><span class="av" style="background-image:url(v2-img/staff.jpg)"></span><div><b>Suresh K.</b><small>Kadapa Highway · front desk</small></div></div>
+        <span class="warn">6 negative mentions this month</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2 · PROBLEM -->
+<section class="why" id="why" aria-labelledby="h-why" style="padding-top:clamp(40px,5vw,72px)">
+  <div class="wrap">
+    <h2 id="h-why" data-rv>Your star rating <span class="gt">hides the real story.</span></h2>
+    <div class="crack" aria-label="A 4.2 star rating, cracking open">
+      <span class="l" aria-hidden="true">4.2<span class="st">★</span></span>
+      <span class="r" aria-hidden="true">4.2<span class="st">★</span></span>
+      <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M54 0 L47 28 L56 50 L46 74 L53 100" vector-effect="non-scaling-stroke"/></svg>
+    </div>
+    <div class="probs">
+      <article class="prob">
+        <div class="box"><div class="ui lag">
+          <h5>Kadapa Highway</h5>
+          <svg viewBox="0 0 260 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 26 H260" stroke="#1d3e63" stroke-width="2.5" stroke-dasharray="6 5" fill="none"/><path d="M0 22 C40 20 70 30 100 28 S150 40 180 52 S230 74 260 80" stroke="#e0533d" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="260" cy="80" r="5" fill="#e0533d"/></svg>
+          <div class="lg2"><span><i style="background:#1d3e63"></i>Lifetime 4.3</span><span><i style="background:#e0533d"></i>This month 3.6</span></div>
+        </div></div>
+        <h3><span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></span>It lags</h3>
+        <p>A lifetime average hides how a branch is doing now.</p>
+      </article>
+      <article class="prob" style="--d:.15s">
+        <div class="box"><div class="ui one">
+          <div class="big">4.2 <span class="stars" style="font-size:22px">★</span><small>· and why?</small></div>
+          <div class="chips"><span class="n">Billing wait</span><span class="p">Friendly staff</span><span class="n">Slow delivery</span><span class="p">Clean store</span><span class="n">No callback</span></div>
+        </div></div>
+        <h3><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8z"/></svg></span>It’s one number</h3>
+        <p>It can’t tell you what’s actually going wrong.</p>
+      </article>
+      <article class="prob" style="--d:.3s">
+        <div class="box"><div class="ui brs">
+          <h5>Seen only by the branch</h5>
+          <div class="b"><span>Kadapa Highway</span><em>3.74</em><span class="dn">▼</span></div>
+          <div class="b"><span>Nellore Bypass</span><em>4.02</em><span class="dn">▼</span></div>
+          <div class="b"><span>Madanapalle</span><em>4.18</em><span class="up">▲</span></div>
+          <div class="b"><span>Ongole Ring Road</span><em>4.27</em><span class="up">▲</span></div>
+        </div></div>
+        <h3><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.4"/></svg></span>It’s one branch at a time</h3>
+        <p>Nobody above a location sees the pattern.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="seam-wrap" aria-hidden="true">
+  <svg class="seam" viewBox="0 0 1440 150" preserveAspectRatio="none"><path d="M0 120 L340 20 L1000 140 L1440 40" fill="none" stroke="url(#sg)" stroke-width="5" vector-effect="non-scaling-stroke"/></svg>
+</div>
+
+<!-- 3 · PRODUCT (live today) -->
+<section class="prod" id="product" aria-labelledby="h-prod" style="padding-top:clamp(36px,5vw,64px)">
+  <div class="wrap">
+    <div class="center head">
+      <span class="tag" data-rv><i></i>Available now</span>
+      <h2 id="h-prod" data-rv>Your reputation data, <span class="gt">all in one place.</span></h2>
+    </div>
+
+    <div class="pt" id="pt" data-rv>
+      <div class="tabs" role="tablist" aria-label="What you can do today">
+        <button class="tab" role="tab" id="tab-0" aria-controls="tp-0" aria-selected="true">
+          <span class="tt"><b>01</b>Performance</span>
+          <p>Track ratings and review trends, and see what new reviews would do to your rating.</p>
+          <span class="more"><span><span class="ticks"><span>Overview</span><span>Performance Analysis</span><span>Rating Estimator</span><span>Reports</span></span></span></span>
+          <span class="pg"><i></i></span>
+        </button>
+        <button class="tab" role="tab" id="tab-1" aria-controls="tp-1" aria-selected="false" tabindex="-1">
+          <span class="tt"><b>02</b>Review Insights</span>
+          <p>See what’s driving positive and negative feedback.</p>
+          <span class="more"><span><span class="ticks"><span>Review Analysis</span><span>Keyword Analysis</span><span>Opportunities &amp; Threats</span><span>Reviews feed</span></span></span></span>
+          <span class="pg"><i></i></span>
+        </button>
+        <button class="tab" role="tab" id="tab-2" aria-controls="tp-2" aria-selected="false" tabindex="-1">
+          <span class="tt"><b>03</b>Products &amp; People</span>
+          <p>Know what customers say about your products and your staff.</p>
+          <span class="more"><span><span class="ticks"><span>Product Analysis</span><span>Employee Analysis</span></span></span></span>
+          <span class="pg"><i></i></span>
+        </button>
+        <button class="tab" role="tab" id="tab-3" aria-controls="tp-3" aria-selected="false" tabindex="-1">
+          <span class="tt"><b>04</b>Rankings &amp; Competitors</span>
+          <p>Rank and compare branches, clusters and nearby competitors.</p>
+          <span class="more"><span><span class="ticks"><span>Location Rankings</span><span>Cluster Rankings</span><span>Compare Locations</span><span>Compare Clusters</span><span>Competitor Analysis</span></span></span></span>
+          <span class="pg"><i></i></span>
+        </button>
+      </div>
+
+      <div class="stage-col">
+        <div class="stage" id="stage">
+          <!-- Performance -->
+          <div class="tp on" role="tabpanel" id="tp-0" aria-labelledby="tab-0">
+            <div class="cap"><h3>Performance</h3><p>Track ratings and review trends, and see what new reviews would do to your rating.</p></div>
+            <div class="win" aria-hidden="true"><div class="bar"><i></i><i></i><i></i><span>ReviewRani · Performance Analysis</span></div>
+              <div class="app"><div class="sb" data-on="Performance"></div>
+                <div class="mn">
+                  <div class="hd"><h6>Performance Analysis<small>Tirupati Central</small></h6><div class="chp"><span class="on">Month on month</span><span>Year on year</span><span>Custom range</span></div></div>
+                  <div class="kp">
+                    <div class="k"><span>Rating</span><b>4.41 <small>★</small></b><em>▲ 0.08</em></div>
+                    <div class="k"><span>Reviews</span><b>312</b><em>▲ 12%</em></div>
+                    <div class="k"><span>5★ share</span><b>71%</b><em>▲ 4 pts</em></div>
+                    <div class="k"><span>1–2★ share</span><b>9%</b><em>▼ 2 pts</em></div>
+                  </div>
+                  <div class="g2">
+                    <div class="pn"><h6>Rating, month on month <b>2026</b></h6>
+                      <svg class="ch" viewBox="0 0 400 120" preserveAspectRatio="none"><path d="M0 90 L50 84 L100 70 L150 76 L200 58 L250 50 L300 44 L350 30 L400 24 V120 H0Z" fill="url(#fa)"/><path d="M0 90 L50 84 L100 70 L150 76 L200 58 L250 50 L300 44 L350 30 L400 24" fill="none" stroke="url(#gg)" stroke-width="3" vector-effect="non-scaling-stroke"/></svg>
+                    </div>
+                    <div class="pn"><h6>Rating Estimator</h6>
+                      <div class="est"><span>Today</span><b class="big">4.41</b><span>+ 20 reviews at 5★</span><b class="big gt">4.46</b></div>
+                      <div class="tk"><i style="--w:88%;--c:var(--green)"></i></div>
+                      <span style="color:var(--mute)">What new reviews would do to your rating</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Review insights -->
+          <div class="tp" role="tabpanel" id="tp-1" aria-labelledby="tab-1">
+            <div class="cap"><h3>Review Insights</h3><p>See what’s driving positive and negative feedback.</p></div>
+            <div class="win" aria-hidden="true"><div class="bar"><i></i><i></i><i></i><span>ReviewRani · Review Analysis</span></div>
+              <div class="app"><div class="sb" data-on="Review Analysis"></div>
+                <div class="mn">
+                  <div class="hd"><h6>Review Analysis<small>All locations · last 30 days</small></h6><div class="chp"><span class="on">Themes</span><span>Keywords</span></div></div>
+                  <div class="g2 eq">
+                    <div class="pn"><h6>Driving positive feedback</h6>
+                      <div class="rw"><span class="nm">Friendly staff</span><div class="tk"><i style="--w:90%;--c:var(--green)"></i></div><span class="v">128</span></div>
+                      <div class="rw"><span class="nm">Service quality</span><div class="tk"><i style="--w:70%;--c:var(--green)"></i></div><span class="v">96</span></div>
+                      <div class="rw"><span class="nm">Clean store</span><div class="tk"><i style="--w:48%;--c:var(--green)"></i></div><span class="v">64</span></div>
+                    </div>
+                    <div class="pn"><h6>Driving negative feedback</h6>
+                      <div class="rw"><span class="nm">Delivery time</span><div class="tk"><i style="--w:62%;--c:var(--red)"></i></div><span class="v">41</span></div>
+                      <div class="rw"><span class="nm">Billing wait</span><div class="tk"><i style="--w:44%;--c:var(--red)"></i></div><span class="v">27</span></div>
+                      <div class="rw"><span class="nm">No callback</span><div class="tk"><i style="--w:30%;--c:var(--red)"></i></div><span class="v">19</span></div>
+                    </div>
+                  </div>
+                  <div class="g2">
+                    <div class="pn"><h6>Reviews <span class="ro">Read-only</span></h6>
+                      <div class="rvw"><span class="av" style="background-image:url(v2-img/happy.jpg)"></span><span><span class="stars">★★★★★</span> Ravi made the whole purchase easy.<small>Tirupati Central · today</small></span></div>
+                      <div class="rvw"><span class="av" style="background-image:url(v2-img/counter.jpg)"></span><span><span class="stars">★★☆☆☆</span> Waited 40 minutes at billing.<small>Kadapa Highway · yesterday</small></span></div>
+                    </div>
+                    <div class="pn"><h6>Opportunities &amp; Threats</h6>
+                      <div class="th"><span class="p">Weekend staffing</span><span class="p">Test drives</span><span class="n">Billing queue</span><span class="n">Service callbacks</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Products & people -->
+          <div class="tp" role="tabpanel" id="tp-2" aria-labelledby="tab-2">
+            <div class="cap"><h3>Products &amp; People</h3><p>Know what customers say about your products and your staff.</p></div>
+            <div class="win" aria-hidden="true"><div class="bar"><i></i><i></i><i></i><span>ReviewRani · Employee Analysis</span></div>
+              <div class="app"><div class="sb" data-on="Employee Analysis"></div>
+                <div class="mn">
+                  <div class="hd"><h6>Products &amp; People<small>All locations · last 90 days</small></h6><div class="chp"><span>Products</span><span class="on">Employees</span></div></div>
+                  <div class="g2 eq">
+                    <div class="pn"><h6>Most praised staff</h6>
+                      <div class="rvw"><span class="av" style="background-image:url(v2-img/staff.jpg)"></span><span><b>Lakshmi R.</b> · named in 29 reviews<small>Ongole Ring Road · 27 positive</small></span></div>
+                      <div class="rvw"><span class="av" style="background-image:url(v2-img/manager.jpg)"></span><span><b>Ravi M.</b> · named in 22 reviews<small>Tirupati Central · 21 positive</small></span></div>
+                      <div class="rvw"><span class="av" style="background-image:url(v2-img/owner.jpg)"></span><span><b>Arjun P.</b> · named in 15 reviews<small>Madanapalle · 13 positive</small></span></div>
+                    </div>
+                    <div class="pn"><h6>Product sentiment</h6>
+                      <div class="rw"><span class="nm">SUV range</span><div class="tk"><i style="--w:86%;--c:var(--green)"></i></div><span class="v">86%</span></div>
+                      <div class="rw"><span class="nm">Hatchbacks</span><div class="tk"><i style="--w:74%;--c:var(--green)"></i></div><span class="v">74%</span></div>
+                      <div class="rw"><span class="nm">Accessories</span><div class="tk"><i style="--w:58%"></i></div><span class="v">58%</span></div>
+                      <div class="rw"><span class="nm">Extended warranty</span><div class="tk"><i style="--w:39%;--c:var(--red)"></i></div><span class="v">39%</span></div>
+                    </div>
+                  </div>
+                  <div class="kp">
+                    <div class="k"><span>Staff named</span><b>64</b></div>
+                    <div class="k"><span>Positive mentions</span><b>412</b><em>▲ 9%</em></div>
+                    <div class="k"><span>Products tracked</span><b>18</b></div>
+                    <div class="k"><span>Negative mentions</span><b>57</b><em class="dn">▲ 3</em></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Rankings & competitors -->
+          <div class="tp" role="tabpanel" id="tp-3" aria-labelledby="tab-3">
+            <div class="cap"><h3>Rankings &amp; Competitors</h3><p>Rank and compare branches, clusters and nearby competitors.</p></div>
+            <div class="win" aria-hidden="true"><div class="bar"><i></i><i></i><i></i><span>ReviewRani · Location Rankings</span></div>
+              <div class="app"><div class="sb" data-on="Rankings"></div>
+                <div class="mn">
+                  <div class="hd"><h6>Location Rankings<small>All locations · last 30 days</small></h6><div class="chp"><span class="on">Locations</span><span>Clusters</span><span>Compare</span></div></div>
+                  <div class="g2">
+                    <div class="pn"><h6>Ranked by rating</h6>
+                      <div class="rw"><span class="nm">1 · Tirupati Central</span><div class="tk"><i style="--w:88%;--c:var(--green)"></i></div><span class="v">4.41</span></div>
+                      <div class="rw"><span class="nm">2 · Ongole Ring Road</span><div class="tk"><i style="--w:85%;--c:var(--green)"></i></div><span class="v">4.27</span></div>
+                      <div class="rw"><span class="nm">3 · Madanapalle</span><div class="tk"><i style="--w:83%"></i></div><span class="v">4.18</span></div>
+                      <div class="rw"><span class="nm">4 · Nellore Bypass</span><div class="tk"><i style="--w:80%"></i></div><span class="v">4.02</span></div>
+                      <div class="rw"><span class="nm">5 · Kadapa Highway</span><div class="tk"><i style="--w:74%;--c:var(--red)"></i></div><span class="v">3.74</span></div>
+                    </div>
+                    <div class="pn"><h6>Competitor Analysis</h6>
+                      <div class="vb">
+                        <div><b>4.41</b><i style="--h:7em;--c:var(--ink)"></i>You</div>
+                        <div><b>4.18</b><i style="--h:5.4em"></i>A</div>
+                        <div><b>3.96</b><i style="--h:3.9em"></i>B</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="dots" id="dots" aria-hidden="true"><button tabindex="-1" aria-current="true"></button><button tabindex="-1"></button><button tabindex="-1"></button><button tabindex="-1"></button></div>
+        <a class="tlink" href="#contact" data-interest="demo">Book a Demo <span class="ar">→</span></a>
+      </div>
+    </div>
+
+    <div class="alerts" data-rv>
+      <div class="ics" aria-hidden="true">
+        <span><svg><use href="#i-wa"/></svg></span><span><svg><use href="#i-mail"/></svg></span><span><svg><use href="#i-sms"/></svg></span>
+      </div>
+      <div>
+        <h3>WhatsApp · Email · SMS</h3>
+        <p>Reports, alerts and achievements delivered to every location, with a full log in one feed.</p>
+      </div>
+      <span class="tag"><i></i>News Feed</span>
+    </div>
+    <p class="setup" data-rv>Set up your own <b>locations, clusters, products, staff and keywords</b> to track.</p>
+  </div>
+</section>
+
+<!-- 4 · MULTI-LOCATION -->
+<section class="scale" id="scale" aria-labelledby="h-scale">
+  <div class="zoom" id="zoom">
+    <div class="zstick">
+      <div class="wrap zgrid">
+        <div class="zcopy">
+          <span class="tag" data-rv><i></i>Available now</span>
+          <h2 id="h-scale" data-rv>From one branch to <span class="gt">your whole network.</span></h2>
+          <p class="lede" data-rv>The same analysis at location, cluster and enterprise level.</p>
+          <ol class="lvls" id="lvls">
+            <li class="on"><b>Location</b><span>One branch, every review.</span></li>
+            <li><b>Cluster</b><span>The branches in a region, side by side.</span></li>
+            <li><b>Enterprise</b><span>Every cluster, one view.</span></li>
+          </ol>
+        </div>
+        <div class="zstage" id="zstage">
+          <!-- level 1: location -->
+          <div class="lvl" data-lvl="0">
+            <span class="lab"><i style="background-image:url(v2-img/manager.jpg)"></i>Location</span>
+            <div class="win" role="img" aria-label="Location Overview for one branch, with sample data"><div class="bar"><i></i><i></i><i></i><span>ReviewRani · Location Overview</span></div>
+              <div class="app"><div class="sb" data-on="Overview"></div>
+                <div class="mn">
+                  <div class="hd"><h6>Tirupati Central<small>Location overview</small></h6><div class="chp"><span class="on">Location</span><span>Last 30 days</span></div></div>
+                  <div class="kp">
+                    <div class="k"><span>Average Rating</span><b>4.41 <small>★</small></b><em>▲ 0.08</em></div>
+                    <div class="k"><span>Total Reviews</span><b>2,960</b></div>
+                    <div class="k"><span>Rank in cluster</span><b>#1</b><em>of 6</em></div>
+                    <div class="k"><span>Reviews this month</span><b>312</b><em>▲ 12%</em></div>
+                  </div>
+                  <div class="g2">
+                    <div class="pn"><h6>Rating trend</h6><svg class="ch" viewBox="0 0 400 120" preserveAspectRatio="none"><path d="M0 84 C60 80 90 66 140 62 S220 50 260 40 S340 30 400 22 V120 H0Z" fill="url(#fa)"/><path d="M0 84 C60 80 90 66 140 62 S220 50 260 40 S340 30 400 22" fill="none" stroke="url(#gg)" stroke-width="3" vector-effect="non-scaling-stroke"/></svg></div>
+                    <div class="pn"><h6>Top themes</h6><div class="th"><span class="p">Friendly staff</span><span class="p">Quick delivery</span><span class="p">Test drive</span><span class="n">Parking</span></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- level 2: cluster -->
+          <div class="lvl" data-lvl="1">
+            <span class="lab"><i style="background-image:url(v2-img/team.jpg)"></i>Cluster</span>
+            <div class="win" role="img" aria-label="Cluster Overview comparing six branches, with sample data"><div class="bar"><i></i><i></i><i></i><span>ReviewRani · Cluster Overview</span></div>
+              <div class="app"><div class="sb" data-on="Overview"></div>
+                <div class="mn">
+                  <div class="hd"><h6>South cluster<small>Cluster overview · 6 locations</small></h6><div class="chp"><span class="on">Cluster</span><span>Last 30 days</span></div></div>
+                  <div class="kp">
+                    <div class="k"><span>Average Rating</span><b>4.16 <small>★</small></b><em>▲ 0.03</em></div>
+                    <div class="k"><span>Total Reviews</span><b>11,240</b></div>
+                    <div class="k"><span>Rank in network</span><b>#2</b><em>of 4</em></div>
+                    <div class="k"><span>Reviews this month</span><b>1,103</b><em>▲ 5%</em></div>
+                  </div>
+                  <div class="pn"><h6>Locations in this cluster</h6>
+                    <div class="tiles">
+                      <div class="tile hl"><span>Tirupati Central</span><b>4.41</b><div class="tk"><i style="--w:88%;--c:var(--green)"></i></div></div>
+                      <div class="tile"><span>Ongole Ring Road</span><b>4.27</b><div class="tk"><i style="--w:85%;--c:var(--green)"></i></div></div>
+                      <div class="tile"><span>Madanapalle</span><b>4.18</b><div class="tk"><i style="--w:83%"></i></div></div>
+                      <div class="tile"><span>Nellore Bypass</span><b>4.02</b><div class="tk"><i style="--w:80%"></i></div></div>
+                      <div class="tile"><span>Chittoor Road</span><b>3.98</b><div class="tk"><i style="--w:79%"></i></div></div>
+                      <div class="tile"><span>Kadapa Highway</span><b>3.74</b><div class="tk"><i style="--w:74%;--c:var(--red)"></i></div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- level 3: enterprise -->
+          <div class="lvl" data-lvl="2">
+            <span class="lab"><i style="background-image:url(v2-img/owner.jpg)"></i>Enterprise</span>
+            <div class="win" role="img" aria-label="Enterprise Overview across four clusters, with sample data"><div class="bar"><i></i><i></i><i></i><span>ReviewRani · Enterprise Overview</span></div>
+              <div class="app"><div class="sb" data-on="Overview"></div>
+                <div class="mn">
+                  <div class="hd"><h6>All locations<small>Enterprise overview · 4 clusters · 24 locations</small></h6><div class="chp"><span class="on">Enterprise</span><span>Last 30 days</span></div></div>
+                  <div class="kp">
+                    <div class="k"><span>Average Rating</span><b>4.22 <small>★</small></b><em>▲ 0.06</em></div>
+                    <div class="k"><span>Total Reviews</span><b>18,420</b></div>
+                    <div class="k"><span>Locations</span><b>24</b></div>
+                    <div class="k"><span>Reviews this month</span><b>1,284</b><em class="dn">▼ 2.1%</em></div>
+                  </div>
+                  <div class="g2">
+                    <div class="pn"><h6>Cluster Rankings</h6>
+                      <div class="rw"><span class="nm">1 · Coastal</span><div class="tk"><i style="--w:89%;--c:var(--green)"></i></div><span class="v">4.34</span></div>
+                      <div class="rw"><span class="nm">2 · South</span><div class="tk"><i style="--w:84%;--c:var(--green)"></i></div><span class="v">4.16</span></div>
+                      <div class="rw"><span class="nm">3 · Central</span><div class="tk"><i style="--w:82%"></i></div><span class="v">4.11</span></div>
+                      <div class="rw"><span class="nm">4 · North</span><div class="tk"><i style="--w:76%;--c:var(--red)"></i></div><span class="v">3.89</span></div>
+                    </div>
+                    <div class="pn"><h6>Reviews by cluster</h6>
+                      <div class="vb">
+                        <div><b>412</b><i style="--h:7em;--c:var(--ink)"></i>Coastal</div>
+                        <div><b>338</b><i style="--h:5.8em"></i>South</div>
+                        <div><b>301</b><i style="--h:5.1em"></i>Central</div>
+                        <div><b>233</b><i style="--h:4em"></i>North</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 · WHAT'S NEXT (V3, coming soon: never present as live) -->
+<section id="v3" aria-labelledby="h-v3" style="padding-top:clamp(56px,7vw,96px)">
+  <div class="wrap">
+    <div class="panel" data-rv>
+      <div class="top">
+        <div>
+          <span class="badge-soon"><i></i>Coming soon</span>
+          <h2 id="h-v3">Next: from insight to action.</h2>
+        </div>
+        <p>The next ReviewRani is being built so that when it shows you a problem, there’s something to press.</p>
+      </div>
+
+      <div class="bento">
+        <article class="bc big">
+          <div class="row"><h3>Ask ReviewRani</h3><span class="tag soon"><i></i>Coming soon</span></div>
+          <p>Ask questions about your reviews in plain language. Every answer links to the page with the detail.</p>
+          <div class="pv" aria-hidden="true">
+            <div class="q">Which branch slipped most this month, and why?</div>
+            <div class="a">Kadapa Highway fell from 4.02 to 3.74. Most of the drop comes from billing waits, mentioned in 14 reviews.<br><span class="lnk">Open Performance Analysis →</span></div>
+            <div class="a" style="margin-top:8px">Nellore Bypass is next, down 0.09, mostly delivery time.<br><span class="lnk">Open Review Analysis →</span></div>
+            <div class="ask">Ask about your reviews…<b>↑</b></div>
+          </div>
+        </article>
+        <article class="bc">
+          <div class="row"><h3>Monitor</h3><span class="tag soon"><i></i>Coming soon</span></div>
+          <p>See which branches have gone quiet or are close to a rating drop.</p>
+          <div class="pv" aria-hidden="true"><div class="card">
+            <div class="mr"><span>Kadapa Highway</span><span class="pill-s ps-r">0.02 from 3.7</span></div>
+            <div class="mr"><span>Chittoor Road</span><span class="pill-s ps-a">Quiet 11 days</span></div>
+            <div class="mr"><span>Nellore Bypass</span><span class="pill-s ps-a">Reviews down 40%</span></div>
+          </div></div>
+        </article>
+        <article class="bc">
+          <div class="row"><h3>Fix</h3><span class="tag soon"><i></i>Coming soon</span></div>
+          <p>Turn repeat complaints into issues with an owner, a severity and a history.</p>
+          <div class="pv" aria-hidden="true"><div class="card">
+            <div class="mr"><b>Billing wait</b><span class="pill-s ps-r">High</span></div>
+            <small>Owner: Suresh K. · Kadapa Highway</small>
+            <div class="tl"><span>● Raised from 14 reviews</span><span>● Assigned to branch manager</span><span>● Escalated to cluster</span></div>
+          </div></div>
+        </article>
+        <article class="bc">
+          <div class="row"><h3>Respond</h3><span class="tag soon"><i></i>Coming soon</span></div>
+          <p>A prioritised reply queue with a ready draft for each review.</p>
+          <div class="pv" aria-hidden="true">
+            <div class="card"><div class="mr"><span><span class="stars">★★☆☆☆</span> Waited 40 minutes…</span><span class="pill-s ps-r">1st</span></div><small>Draft: Sorry for the wait at billing. We’ve…</small></div>
+            <div class="card"><div class="mr"><span><span class="stars">★★★★★</span> Ravi was great</span><span class="pill-s ps-v">2nd</span></div></div>
+          </div>
+        </article>
+        <article class="bc">
+          <div class="row"><h3>Request</h3><span class="tag soon"><i></i>Coming soon</span></div>
+          <p>Ask customers for reviews one by one, in bulk, or with a counter card and link.</p>
+          <div class="pv" aria-hidden="true"><div class="card qr">
+            <i></i><div><b>Counter card</b><br><small>Scan to review Tirupati Central</small><br><span class="pill-s ps-v" style="display:inline-block;margin-top:6px">Bulk · 120 customers</span></div>
+          </div></div>
+        </article>
+      </div>
+
+      <div class="foot">
+        <div class="also"><b>Also in the works:</b><span>Rating predictions</span><span>Sharper competitor matching</span><span>Staff and strengths views</span><span>Team coverage and admin roles</span></div>
+        <a class="btn light" href="#contact" data-interest="v3">Ask about V3 <span class="ar">→</span></a>
+      </div>
+    </div>
+    <p class="small v3note">Not live yet. Previews are from a prototype and may change.</p>
+  </div>
+</section>
+
+<div class="seam-wrap" aria-hidden="true" style="background:linear-gradient(transparent 50%, var(--soft) 50%)">
+  <svg class="seam" viewBox="0 0 1440 150" preserveAspectRatio="none"><path d="M0 0 H1440 V40 L1000 135 L420 30 L0 110 Z" fill="#fff"/><path d="M0 110 L420 30 L1000 135 L1440 40" fill="none" stroke="url(#sg)" stroke-width="5" vector-effect="non-scaling-stroke"/></svg>
+</div>
+
+<!-- 6 · FINAL CTA -->
+<section class="cta" id="contact" aria-labelledby="h-cta" style="padding-top:clamp(28px,4vw,56px)">
+  <div class="wrap">
+    <div class="copy">
+      <h2 id="h-cta" data-rv>See ReviewRani <span class="gt">in action.</span></h2>
+      <p class="lede" data-rv>Get a walkthrough of the live dashboard and an early look at what’s next.</p>
+      <form class="card" id="form" novalidate data-rv>
+        <div class="fgrid">
+          <label for="f-name">Name<input id="f-name" name="name" autocomplete="name" required></label>
+          <label for="f-mail">Work email<input id="f-mail" name="email" type="email" autocomplete="email" required></label>
+          <label for="f-co">Company<input id="f-co" name="company" autocomplete="organization" required></label>
+          <label for="f-n">Number of locations<select id="f-n" name="locations"><option>1–5</option><option>6–20</option><option>21–50</option><option>50+</option></select></label>
+        </div>
+        <fieldset>
+          <legend>I’m interested in</legend>
+          <div class="seg">
+            <label><input type="radio" name="interest" value="demo" checked><span>A demo</span></label>
+            <label><input type="radio" name="interest" value="v3"><span>V3 <span class="soon-b">Soon</span></span></label>
+          </div>
+        </fieldset>
+        <button class="btn" type="submit">Book a Demo <span class="ar">→</span></button>
+        <p class="done" id="done" hidden>This is a design preview, so nothing was sent. On the live site this form reaches the team.</p>
+      </form>
+    </div>
+    <div class="art" data-rv style="--d:.15s">
+      <div class="win" role="img" aria-label="The ReviewRani News Feed, with sample data"><div class="bar"><i></i><i></i><i></i><span>ReviewRani · News Feed</span></div>
+        <div class="app"><div class="sb" data-on="News Feed"></div>
+          <div class="mn">
+            <div class="hd"><h6>News Feed<small>All locations</small></h6><div class="chp"><span class="on">All</span><span>WhatsApp</span><span>Email</span><span>SMS</span></div></div>
+            <div class="feed">
+              <div><i class="c-wa">W</i><span><b>Weekly report sent</b><small>Tirupati Central · branch manager</small></span><em>9:00 am</em></div>
+              <div><i class="c-em">E</i><span><b>Achievement: 4.4★ reached</b><small>Ongole Ring Road · cluster head</small></span><em>Yesterday</em></div>
+              <div><i class="c-sms">S</i><span><b>Alert: 3 low ratings today</b><small>Kadapa Highway · branch manager</small></span><em>Yesterday</em></div>
+              <div><i class="c-wa">W</i><span><b>Monthly report sent</b><small>All locations · head office</small></span><em>1 Oct</em></div>
+              <div><i class="c-em">E</i><span><b>Alert: reviews down 40%</b><small>Nellore Bypass · branch manager</small></span><em>29 Sep</em></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="top">
+      <div style="display:grid;gap:14px;align-content:start">
+        <a class="brand" href="#top"><svg aria-hidden="true"><use href="#crown"/></svg>ReviewRani</a>
+        <p style="max-width:36ch">Clear performance insights from customer reviews, for every location, cluster and your whole business.</p>
+      </div>
+      <div><h4>Product</h4><ul><li><a href="#product">Product</a></li><li><a href="#scale">Multi-location</a></li><li><a href="#v3">What’s next</a></li></ul></div>
+      <div><h4>Get in touch</h4><ul><li><a href="#contact" data-interest="demo">Book a Demo</a></li><li><a href="#contact">Contact</a></li><!-- TODO: contact email --><li><a href="#" data-signin>Sign in</a></li></ul></div>
+      <div><h4>A SalesRaja product</h4><ul><li>ReviewRani</li><li>LeadsRaja</li><li>WebRani</li></ul></div>
+    </div>
+    <div class="bottom"><span>© ReviewRani · product screens show sample data</span><nav aria-label="Legal"><!-- TODO: link the existing legal documents --><a href="#">Privacy</a><a href="#">Terms</a></nav></div>
+  </div>
+</footer>
+
+<dialog class="vid" id="vid" aria-label="ReviewRani introduction video">
+  <button class="x" type="button" aria-label="Close video">×</button>
+  <div class="ph" id="vidph">The ReviewRani V2 introduction video goes here.</div>
+</dialog>
+
+<script>
+(function () {
+  /* Fill these in before going live. */
+  var SIGN_IN_URL = '';   // existing V2 dashboard login
+  var VIDEO_SRC = '';     // ReviewRani V2 introduction video (mp4)
+
+  var still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine = matchMedia('(pointer: fine)').matches;
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
+  var navH = function () { return parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--navh')) || 84; };
+
+  if (SIGN_IN_URL) $$('[data-signin]').forEach(function (a) { a.href = SIGN_IN_URL; });
+
+  /* the V2 sidebar, shared by every product screen */
+  var SB = ['Home', 'News Feed', 'Reports', 'Reviews', '|Analyse', 'Overview', 'Performance', 'Review Analysis', 'Product Analysis', 'Employee Analysis', 'Keywords', '|Compare', 'Rankings', 'Competitors', 'Setup'];
+  $$('.sb[data-on]').forEach(function (sb) {
+    var on = sb.dataset.on;
+    sb.innerHTML = '<div class="lg"><svg><use href="#crown"/></svg>ReviewRani</div>' + SB.map(function (n) {
+      return n[0] === '|' ? '<em>' + n.slice(1) + '</em>' : '<span' + (n === on ? ' class="on"' : '') + '>' + n + '</span>';
+    }).join('');
+  });
+
+  /* smooth scrolling on desktop, as on v3 */
+  var lenis = null;
+  if (fine && !still) {
+    var ls = document.createElement('script');
+    ls.src = 'https://unpkg.com/lenis@1.3.26/dist/lenis.min.js';
+    ls.onload = function () {
+      if (!window.Lenis) return;
+      lenis = new Lenis({ lerp: 0.1 });
+      (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(0);
+    };
+    document.head.appendChild(ls);
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    if (a.dataset.interest) { var r = $('input[name="interest"][value="' + a.dataset.interest + '"]'); if (r) r.checked = true; }
+    var href = a.getAttribute('href');
+    if (href.length < 2) { if (a.hasAttribute('data-signin') || a.closest('.bottom')) e.preventDefault(); return; }
+    var el = document.querySelector(href);
+    if (!el || !lenis) return;
+    e.preventDefault();
+    lenis.scrollTo(el, { offset: href === '#top' ? 0 : -navH() + 1 });
+  });
+
+  /* phone menu */
+  var nav = $('#nav'), mb = $('.menu-btn');
+  var setMenu = function (open) { nav.classList.toggle('open', open); mb.setAttribute('aria-expanded', open); mb.setAttribute('aria-label', open ? 'Close menu' : 'Open menu'); };
+  mb.addEventListener('click', function () { setMenu(!nav.classList.contains('open')); });
+  $$('#sheet a').forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
+  document.addEventListener('click', function (e) { if (nav.classList.contains('open') && !nav.contains(e.target)) setMenu(false); });
+  addEventListener('resize', function () { if (innerWidth > 860) setMenu(false); });
+
+  /* active link per section */
+  var links = $$('.nav nav a, #sheet a[href^="#"]');
+  var ids = ['why', 'product', 'scale', 'v3', 'contact'];
+  var setActive = function () {
+    var y = navH() + innerHeight * 0.3, cur = '';
+    ids.forEach(function (id) { var el = document.getElementById(id); if (el && el.getBoundingClientRect().top <= y) cur = id; });
+    links.forEach(function (a) { a.setAttribute('aria-current', a.getAttribute('href') === '#' + cur ? 'true' : 'false'); });
+  };
+
+  /* reveals */
+  if (!still && 'IntersectionObserver' in window) {
+    document.documentElement.classList.add('js');
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    $$('[data-rv], .crack, .probs').forEach(function (el) { io.observe(el); });
+  } else {
+    $$('.crack, .probs').forEach(function (el) { el.classList.add('in'); });
+  }
+
+  /* hero video */
+  var dlg = $('#vid');
+  $('[data-video]').addEventListener('click', function () {
+    if (VIDEO_SRC && !$('video', dlg)) {
+      var v = document.createElement('video');
+      v.src = VIDEO_SRC; v.controls = true; v.playsInline = true;
+      $('#vidph').replaceWith(v);
+    }
+    dlg.showModal();
+    var v2 = $('video', dlg); if (v2) v2.play().catch(function () {});
+  });
+  var closeVid = function () { var v = $('video', dlg); if (v) v.pause(); dlg.close(); };
+  $('.x', dlg).addEventListener('click', closeVid);
+  dlg.addEventListener('click', function (e) { if (e.target === dlg) closeVid(); });
+  dlg.addEventListener('close', function () { var v = $('video', dlg); if (v) v.pause(); });
+
+  /* product tabs: auto-advance every 6s until clicked; swipeable cards on phones */
+  var pt = $('#pt'), tabs = $$('.tab', pt), panes = $$('.tp', pt), dots = $$('#dots button'), stage = $('#stage');
+  var cur = 0, manual = false;
+  var phone = matchMedia('(max-width: 720px)');
+  var show = function (i, focus) {
+    cur = i;
+    tabs.forEach(function (t, k) { t.setAttribute('aria-selected', k === i); t.tabIndex = k === i ? 0 : -1; });
+    panes.forEach(function (p, k) { p.classList.toggle('on', k === i); });
+    dots.forEach(function (d, k) { d.setAttribute('aria-current', k === i); });
+    if (focus) tabs[i].focus();
+    if (pt.classList.contains('auto')) { pt.classList.remove('auto'); void pt.offsetWidth; pt.classList.add('auto'); }
+  };
+  if (!still) pt.classList.add('auto');
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { manual = true; pt.classList.remove('auto'); show(i); });
+    t.addEventListener('keydown', function (e) {
+      var n = e.key === 'ArrowDown' || e.key === 'ArrowRight' ? 1 : e.key === 'ArrowUp' || e.key === 'ArrowLeft' ? -1 : 0;
+      if (!n) return;
+      e.preventDefault(); manual = true; pt.classList.remove('auto'); show((i + n + tabs.length) % tabs.length, true);
+    });
+    $('.pg i', t).addEventListener('animationend', function () { if (!manual && !phone.matches) show((cur + 1) % tabs.length); });
+  });
+  pt.addEventListener('mouseenter', function () { pt.classList.add('paused'); });
+  pt.addEventListener('mouseleave', function () { pt.classList.remove('paused'); });
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) { pt.classList.toggle('paused', !es[0].isIntersecting); }, { threshold: .35 }).observe(pt);
+  }
+  var swipeT;
+  stage.addEventListener('scroll', function () {
+    if (!phone.matches) return;
+    clearTimeout(swipeT);
+    swipeT = setTimeout(function () {
+      var mid = stage.scrollLeft + stage.clientWidth / 2, best = 0, bd = 1e9;
+      panes.forEach(function (p, k) { var d = Math.abs(p.offsetLeft + p.offsetWidth / 2 - mid); if (d < bd) { bd = d; best = k; } });
+      if (best !== cur) show(best);
+    }, 60);
+  }, { passive: true });
+  dots.forEach(function (d, k) { d.addEventListener('click', function () { var p = panes[k]; stage.scrollTo({ left: p.offsetLeft - (stage.clientWidth - p.offsetWidth) / 2, behavior: still ? 'auto' : 'smooth' }); }); });
+
+  /* multi-location: zoom out level by level while the section is pinned */
+  var zoom = $('#zoom'), lvls = $$('.lvl'), steps = $$('#lvls li');
+  var zoomOn = matchMedia('(min-width: 901px) and (prefers-reduced-motion: no-preference)');
+  var clamp = function (v, a, b) { return Math.max(a, Math.min(b, v)); };
+  var doZoom = function () {
+    if (!zoomOn.matches) { lvls.forEach(function (l) { l.style.opacity = ''; l.style.transform = ''; l.style.visibility = ''; }); return; }
+    var r = zoom.getBoundingClientRect(), span = r.height - (innerHeight - navH());
+    var p = clamp(-r.top / span, 0, 1) * 2;          // 0 → 2 across the pinned scroll
+    lvls.forEach(function (l, i) {
+      var d = p - i;                                  // <0 still to come, 0 on screen, >0 behind us
+      var into = clamp((d + 1) / .55, 0, 1);          // fade in during the last 55% before it lands
+      var out = clamp((d - .45) / .55, 0, 1);         // shrink away after 45% past it
+      if (i === 0) into = 1;
+      if (i === lvls.length - 1) out = 0;
+      var s = (1 + (1 - into) * .35) * (1 - out * .42);
+      var o = into * (1 - out);
+      l.style.opacity = o.toFixed(3);
+      l.style.transform = 'scale(' + s.toFixed(4) + ')';
+      l.style.visibility = o < .01 ? 'hidden' : '';
+    });
+    var on = clamp(Math.round(p), 0, 2);
+    steps.forEach(function (s, k) { s.classList.toggle('on', k === on); });
+  };
+
+  /* hero parallax for the floating cards */
+  var floats = $$('[data-par]'), shot = $('.shot');
+  var doPar = function () {
+    if (still) return;
+    var t = shot.getBoundingClientRect().top - innerHeight / 2;
+    floats.forEach(function (f) { f.style.setProperty('--py', (t * +f.dataset.par).toFixed(1) + 'px'); });
+  };
+
+  var ticking = false;
+  var onScroll = function () {
+    ticking = false;
+    nav.classList.toggle('scrolled', scrollY > 10);
+    setActive(); doZoom(); doPar();
+  };
+  onScroll();
+  addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  addEventListener('resize', onScroll);
+
+  /* contact form: preview only */
+  $('#form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var bad = $$('[required]', e.target).filter(function (el) { return !el.checkValidity(); });
+    if (bad.length) { bad[0].focus(); if (bad[0].reportValidity) bad[0].reportValidity(); return; }
+    $('#done').hidden = false;
+  });
+})();
+</script>
+</body>
+</html>
