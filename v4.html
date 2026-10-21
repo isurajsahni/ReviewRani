@@ -113,24 +113,11 @@ section { position: relative; padding-block: clamp(72px, 9vw, 120px); scroll-mar
 .hero .btns { justify-content: center; }
 .shot { position: relative; width: 100%; max-width: 1140px; margin: clamp(36px, 5vw, 64px) auto 0; padding-bottom: clamp(60px, 8vw, 110px); }
 .shot::before { content: ""; position: absolute; inset: 6% 4% 10%; border-radius: 50%; background: radial-gradient(closest-side, rgba(143, 180, 232, .55), rgba(45, 212, 191, .18) 60%, transparent); filter: blur(40px); z-index: 0; }
-.shot > .win { position: relative; z-index: 1; }
-.float { position: absolute; z-index: 2; background: #fff; border-radius: 18px; box-shadow: var(--shadow); padding: 16px 18px; text-align: left; font-size: 14px; color: var(--ink); width: clamp(220px, 22vw, 280px); translate: 0 var(--py, 0px); transition: translate .25s linear; }
-.float h5 { font-size: 12px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--mute); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-.float h5 i { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-size: 12px; color: #fff; background: var(--g-d); }
-.float .fr { display: flex; justify-content: space-between; gap: 10px; padding: 5px 0; }
-.float .fr + .fr { border-top: 1px solid var(--line); }
-.float .fr b { font-weight: 600; font-variant-numeric: tabular-nums; }
-.float .up { color: var(--green); }
-.float .dn { color: var(--red); }
-.f1 { left: -3%; top: 34%; }
-.f2 { right: -3%; top: 9%; }
-.f3 { right: 5%; bottom: 3%; }
-.f3 .who { display: flex; gap: 12px; align-items: center; }
-.f3 .av { width: 40px; height: 40px; border-radius: 50%; background: center / cover; flex: none; }
-.f3 small { display: block; color: var(--mute); font-size: 12px; }
-.f3 .warn { display: inline-flex; margin-top: 10px; font-size: 12px; font-weight: 600; color: var(--red); background: var(--red-s); border-radius: 20px; padding: 4px 10px; }
-.play { position: absolute; z-index: 3; left: 50%; top: 52%; translate: -50% -50%; display: inline-flex; align-items: center; gap: 12px; padding: 8px 20px 8px 8px; border: 0; border-radius: 40px; cursor: pointer; background: rgba(29, 62, 99, .88); color: #fff; font: 600 15px/1 var(--font); backdrop-filter: blur(6px); box-shadow: 0 18px 40px -16px rgba(29, 62, 99, .8); transition: transform .3s var(--ease), background .3s; }
-.play:hover { transform: scale(1.04); background: var(--ink); }
+.thumb { position: relative; z-index: 1; display: block; width: 100%; aspect-ratio: 16 / 9; padding: 0; border: 0; border-radius: 18px; overflow: hidden; cursor: pointer; background: #12223a; box-shadow: var(--shadow), 0 0 0 1px rgba(29, 62, 99, .07); }
+.thumb img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
+.thumb:hover img { transform: scale(1.02); }
+.play { position: absolute; z-index: 3; left: 50%; top: 84%; translate: -50% -50%; display: inline-flex; align-items: center; gap: 12px; padding: 8px 20px 8px 8px; border: 0; border-radius: 40px; cursor: pointer; background: rgba(29, 62, 99, .88); color: #fff; font: 600 15px/1 var(--font); backdrop-filter: blur(6px); box-shadow: 0 18px 40px -16px rgba(29, 62, 99, .8); transition: transform .3s var(--ease), background .3s; }
+.thumb:hover .play { transform: scale(1.04); background: var(--ink); }
 .play i { width: 44px; height: 44px; border-radius: 50%; background: var(--g-d); display: grid; place-items: center; }
 .play i::before { content: ""; border-left: 13px solid #fff; border-top: 8px solid transparent; border-bottom: 8px solid transparent; margin-left: 3px; }
 @media (prefers-reduced-motion: no-preference) { .play i { animation: ping 2.4s var(--ease) infinite; } @keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(143, 180, 232, .7); } 70%, 100% { box-shadow: 0 0 0 14px rgba(143, 180, 232, 0); } } }
@@ -413,8 +400,6 @@ footer .bottom nav { display: flex; gap: 18px; }
   .nav nav a { padding: 8px 9px; }
   .bento { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .bc.big { grid-column: 1 / -1; grid-row: auto; }
-  .f1 { left: -1%; }
-  .f2 { right: -1%; }
 }
 @media (max-width: 960px) {
   .pt, .cta .wrap { grid-template-columns: minmax(0, 1fr); }
@@ -425,7 +410,6 @@ footer .bottom nav { display: flex; gap: 18px; }
   .panel .top { grid-template-columns: minmax(0, 1fr); }
   footer .top { grid-template-columns: 1fr 1fr; }
   footer .top > :first-child { grid-column: 1 / -1; }
-  .float { width: 210px; font-size: 13px; padding: 13px 14px; }
 }
 /* the zoom needs room: below 900px wide, or with reduced motion, the three levels simply stack */
 @media (max-width: 900px), (prefers-reduced-motion: reduce) {
@@ -463,10 +447,8 @@ footer .bottom nav { display: flex; gap: 18px; }
   .center, .why .wrap, .cta .copy { text-align: center; justify-items: center; }
   .btns { justify-content: center; }
   .tag { justify-self: center; }
-  .float { display: none; }
-  .float.f3 { display: block; position: relative; right: auto; bottom: auto; margin: -36px auto 0; width: min(300px, 88%); translate: none; }
   .shot { padding-bottom: 50px; }
-  .play { top: 45%; font-size: 14px; padding: 6px 16px 6px 6px; }
+  .play { top: 82%; font-size: 14px; padding: 6px 16px 6px 6px; }
   .play i { width: 36px; height: 36px; }
   /* product: tabs become swipeable cards */
   .tabs { display: none; }
@@ -550,53 +532,10 @@ footer .bottom nav { display: flex; gap: 18px; }
     </div>
 
     <div class="shot" data-rv style="--d:.3s">
-      <div class="win" id="homeWin" aria-label="The ReviewRani Home screen, with sample data" role="img">
-        <div class="bar"><i></i><i></i><i></i><span>ReviewRani · Home</span></div>
-        <div class="app">
-          <div class="sb" data-on="Home"></div>
-          <div class="mn">
-            <div class="hd"><h6>Home<small>All locations · last 30 days</small></h6><div class="chp"><span class="on">Enterprise</span><span>Last 30 days</span></div></div>
-            <div class="kp">
-              <div class="k"><span>Average Rating</span><b>4.22 <small>★</small></b><em>▲ 0.06</em></div>
-              <div class="k"><span>Total Reviews</span><b>18,420</b><em>▲ 7.4%</em></div>
-              <div class="k"><span>Rating this month</span><b>4.31 <small>★</small></b><em>▲ 0.09</em></div>
-              <div class="k"><span>Reviews this month</span><b>1,284</b><em class="dn">▼ 2.1%</em></div>
-            </div>
-            <div class="g2">
-              <div class="pn"><h6>Rating trend <b>Month on month</b></h6>
-                <svg class="ch" viewBox="0 0 400 120" preserveAspectRatio="none"><path d="M0 80 C40 76 60 60 100 64 S160 40 200 46 S260 70 300 52 S360 24 400 28 V120 H0Z" fill="url(#fa)"/><path d="M0 80 C40 76 60 60 100 64 S160 40 200 46 S260 70 300 52 S360 24 400 28" fill="none" stroke="url(#gg)" stroke-width="3" vector-effect="non-scaling-stroke"/><path d="M0 60 H400" stroke="#e7e8ef" stroke-dasharray="4 4" vector-effect="non-scaling-stroke"/></svg>
-              </div>
-              <div class="pn"><h6>Reviews by location</h6>
-                <div class="rw"><span class="nm">Tirupati Central</span><div class="tk"><i style="--w:92%"></i></div><span class="v">312</span></div>
-                <div class="rw"><span class="nm">Ongole Ring Road</span><div class="tk"><i style="--w:76%"></i></div><span class="v">258</span></div>
-                <div class="rw"><span class="nm">Nellore Bypass</span><div class="tk"><i style="--w:64%"></i></div><span class="v">219</span></div>
-                <div class="rw"><span class="nm">Madanapalle</span><div class="tk"><i style="--w:51%"></i></div><span class="v">174</span></div>
-                <div class="rw"><span class="nm">Kadapa Highway</span><div class="tk"><i style="--w:40%"></i></div><span class="v">138</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <button class="play" type="button" data-video>
-        <i aria-hidden="true"></i>Watch the intro
+      <button class="thumb" type="button" data-video aria-label="Watch the ReviewRani intro video">
+        <img src="v2-img/intro-thumb.jpg" width="1280" height="720" alt="" fetchpriority="high">
+        <span class="play"><i aria-hidden="true"></i>Watch the intro</span>
       </button>
-      <div class="float f1" data-par=".06">
-        <h5><i>★</i>Best performing locations</h5>
-        <div class="fr"><span>Tirupati Central</span><b class="up">4.41</b></div>
-        <div class="fr"><span>Ongole Ring Road</span><b class="up">4.27</b></div>
-        <div class="fr"><span>Madanapalle</span><b>4.18</b></div>
-      </div>
-      <div class="float f2" data-par="-.05">
-        <h5><i>!</i>Top customer concerns</h5>
-        <div class="fr"><span>Billing wait</span><b class="dn">41</b></div>
-        <div class="fr"><span>Delivery time</span><b class="dn">27</b></div>
-        <div class="fr"><span>Callback after service</span><b class="dn">19</b></div>
-      </div>
-      <div class="float f3" data-par=".1">
-        <h5><i>☺</i>Employee performance alert</h5>
-        <div class="who"><span class="av" style="background-image:url(v2-img/staff.jpg)"></span><div><b>Suresh K.</b><small>Kadapa Highway · front desk</small></div></div>
-        <span class="warn">6 negative mentions this month</span>
-      </div>
     </div>
   </div>
 </section>
@@ -1225,19 +1164,11 @@ footer .bottom nav { display: flex; gap: 18px; }
     steps.forEach(function (s, k) { s.classList.toggle('on', k === on); });
   };
 
-  /* hero parallax for the floating cards */
-  var floats = $$('[data-par]'), shot = $('.shot');
-  var doPar = function () {
-    if (still) return;
-    var t = shot.getBoundingClientRect().top - innerHeight / 2;
-    floats.forEach(function (f) { f.style.setProperty('--py', (t * +f.dataset.par).toFixed(1) + 'px'); });
-  };
-
   var ticking = false;
   var onScroll = function () {
     ticking = false;
     nav.classList.toggle('scrolled', scrollY > 10);
-    setActive(); doZoom(); doPar();
+    setActive(); doZoom();
   };
   onScroll();
   addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
