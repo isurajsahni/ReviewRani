@@ -104,9 +104,7 @@ section { position: relative; padding-block: clamp(72px, 9vw, 120px); scroll-mar
 .sheet { display: none; }
 
 /* ---------- 1 · hero ---------- */
-.hero { padding-block: calc(var(--navh) + clamp(48px, 7vw, 90px)) 0; text-align: center; overflow: clip; background:
-  radial-gradient(50% 40% at 15% 10%, rgba(143, 180, 232, .28), transparent 70%),
-  radial-gradient(40% 35% at 90% 20%, rgba(45, 212, 191, .16), transparent 70%); }
+.hero { padding-block: calc(var(--navh) + clamp(48px, 7vw, 90px)) 0; text-align: center; overflow: clip; background: var(--white); }
 .hero .wrap { display: grid; justify-items: center; gap: 24px; }
 .hero h1 { max-width: none; }
 .hero .sub { font-size: clamp(18px, 1.6vw, 21px); max-width: 52ch; color: var(--text); text-wrap: pretty; }
@@ -114,18 +112,14 @@ section { position: relative; padding-block: clamp(72px, 9vw, 120px); scroll-mar
 .shot { position: relative; width: 100%; max-width: 1140px; margin: clamp(36px, 5vw, 64px) auto 0; padding-bottom: clamp(60px, 8vw, 110px); }
 .shot::before { content: ""; position: absolute; inset: 6% 4% 10%; border-radius: 50%; background: radial-gradient(closest-side, rgba(143, 180, 232, .55), rgba(45, 212, 191, .18) 60%, transparent); filter: blur(40px); z-index: 0; }
 .thumb { position: relative; z-index: 1; display: block; width: 100%; aspect-ratio: 16 / 9; padding: 0; border: 0; border-radius: 18px; overflow: hidden; cursor: pointer; background: #12223a; box-shadow: var(--shadow), 0 0 0 1px rgba(29, 62, 99, .07); }
+.shot > iframe { display: block; position: relative; z-index: 1; width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 18px; background: #12223a; box-shadow: var(--shadow), 0 0 0 1px rgba(29, 62, 99, .07); }
 .thumb img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
 .thumb:hover img { transform: scale(1.02); }
-.play { position: absolute; z-index: 3; left: 50%; top: 84%; translate: -50% -50%; display: inline-flex; align-items: center; gap: 12px; padding: 8px 20px 8px 8px; border: 0; border-radius: 40px; cursor: pointer; background: rgba(29, 62, 99, .88); color: #fff; font: 600 15px/1 var(--font); backdrop-filter: blur(6px); box-shadow: 0 18px 40px -16px rgba(29, 62, 99, .8); transition: transform .3s var(--ease), background .3s; }
-.thumb:hover .play { transform: scale(1.04); background: var(--ink); }
-.play i { width: 44px; height: 44px; border-radius: 50%; background: var(--g-d); display: grid; place-items: center; }
-.play i::before { content: ""; border-left: 13px solid #fff; border-top: 8px solid transparent; border-bottom: 8px solid transparent; margin-left: 3px; }
+.play { position: absolute; z-index: 3; left: 50%; top: 50%; translate: -50% -50%; display: grid; place-items: center; padding: 8px; border-radius: 50%; background: rgba(255, 255, 255, .16); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); box-shadow: 0 18px 40px -12px rgba(0, 0, 0, .5); transition: transform .3s var(--ease); }
+.thumb:hover .play { transform: scale(1.06); }
+.play i { width: 64px; height: 64px; border-radius: 50%; background: var(--g-d); display: grid; place-items: center; }
+.play i::before { content: ""; border-left: 20px solid #fff; border-top: 12px solid transparent; border-bottom: 12px solid transparent; margin-left: 5px; }
 @media (prefers-reduced-motion: no-preference) { .play i { animation: ping 2.4s var(--ease) infinite; } @keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(143, 180, 232, .7); } 70%, 100% { box-shadow: 0 0 0 14px rgba(143, 180, 232, 0); } } }
-dialog.vid { border: 0; padding: 0; border-radius: 22px; width: min(960px, 92vw); background: #0d1b2e; color: #fff; box-shadow: 0 40px 90px -30px rgba(0, 0, 0, .6); }
-dialog.vid::backdrop { background: rgba(13, 27, 46, .7); backdrop-filter: blur(4px); }
-dialog.vid iframe, dialog.vid .ph { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; background: #0d1b2e; }
-dialog.vid .ph { display: grid; place-items: center; text-align: center; padding: 24px; color: #b8c0da; }
-dialog.vid .x { position: absolute; top: 12px; right: 12px; z-index: 1; width: 40px; height: 40px; border-radius: 50%; border: 0; background: rgba(255, 255, 255, .14); color: #fff; font-size: 20px; cursor: pointer; }
 
 /* ---------- product "screenshots": V2 screens drawn in HTML, sized off their own width ---------- */
 .win { border-radius: 18px; background: #fff; overflow: hidden; box-shadow: var(--shadow), 0 0 0 1px rgba(29, 62, 99, .07); container-type: inline-size; }
@@ -241,30 +235,27 @@ dialog.vid .x { position: absolute; top: 12px; right: 12px; z-index: 1; width: 4
 
 /* ---------- 3 · product: tabbed showcase ---------- */
 .prod .head { margin-bottom: clamp(36px, 5vw, 60px); }
-.pt { display: grid; grid-template-columns: minmax(0, .82fr) minmax(0, 1.6fr); gap: clamp(24px, 4vw, 56px); align-items: start; }
-.tabs { display: grid; gap: 10px; }
-.tab { position: relative; display: grid; gap: 6px; text-align: left; font: inherit; color: inherit; background: transparent; border: 0; border-radius: 20px; padding: 18px 20px 20px; cursor: pointer; overflow: hidden; transition: background .3s, box-shadow .3s; }
-.tab:hover { background: var(--soft); }
-.tab[aria-selected="true"] { background: #fff; box-shadow: var(--shadow), 0 0 0 1px var(--line); }
-.tab .tt { display: flex; align-items: center; gap: 12px; font-size: 20px; font-weight: 600; color: var(--ink); letter-spacing: -.01em; }
-.tab .tt b { font-size: 13px; font-weight: 600; color: var(--mute); font-variant-numeric: tabular-nums; }
-.tab[aria-selected="true"] .tt b { color: #2f63b8; }
-.tab p { font-size: 15px; }
-.tab .more { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .45s var(--ease); }
-.tab .more > span { overflow: hidden; min-height: 0; }
-.tab .more .ticks { padding-top: 10px; }
-.tab[aria-selected="true"] .more { grid-template-rows: 1fr; }
-.tab .pg { position: absolute; left: 20px; right: 20px; bottom: 8px; height: 3px; border-radius: 3px; background: var(--line); overflow: hidden; opacity: 0; }
+.pt { display: grid; justify-items: center; gap: clamp(22px, 3vw, 32px); }
+.tabs { display: inline-flex; gap: 4px; padding: 6px; border-radius: 999px; background: var(--soft); box-shadow: inset 0 0 0 1px var(--line); max-width: 100%; }
+.tab { position: relative; display: inline-flex; align-items: center; gap: 9px; white-space: nowrap; font: inherit; font-size: 16px; font-weight: 600; color: var(--mute); background: transparent; border: 0; border-radius: 999px; padding: 12px 22px; cursor: pointer; overflow: hidden; transition: background .3s, box-shadow .3s, color .3s; }
+.tab svg { width: 20px; height: 20px; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.tab:hover { color: var(--ink); }
+.tab[aria-selected="true"] { color: var(--ink); background: #fff; box-shadow: var(--shadow-sm), 0 0 0 1px var(--line); }
+.tab[aria-selected="true"] svg { color: #2f63b8; }
+.tab .pg { position: absolute; left: 22px; right: 22px; bottom: 5px; height: 2px; border-radius: 2px; background: var(--line); overflow: hidden; opacity: 0; }
 .tab .pg i { display: block; height: 100%; width: 100%; background: var(--g); transform-origin: left; transform: scaleX(0); }
 .pt.auto .tab[aria-selected="true"] .pg { opacity: 1; }
 .pt.auto .tab[aria-selected="true"] .pg i { animation: fill 6s linear forwards; }
 .pt.auto.paused .tab[aria-selected="true"] .pg i { animation-play-state: paused; }
 @keyframes fill { to { transform: scaleX(1); } }
-.stage-col { display: grid; gap: 18px; justify-items: start; min-width: 0; }
+.stage-col { display: grid; gap: 18px; justify-items: center; width: 100%; max-width: 1060px; min-width: 0; }
 .stage { position: relative; width: 100%; display: grid; }
 .stage .tp { grid-area: 1 / 1; opacity: 0; visibility: hidden; transform: translateY(10px) scale(.985); transition: opacity .55s var(--ease), transform .55s var(--ease), visibility 0s .55s; }
 .stage .tp.on { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
-.tp .cap { display: none; }
+.stage .tp { display: grid; gap: 18px; align-content: start; min-width: 0; }
+.tp .cap { text-align: center; }
+.tp .cap h3 { display: none; }
+.tp .cap p { font-size: 17px; }
 .dots { display: none; }
 .alerts { margin-top: clamp(36px, 5vw, 56px); display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 18px 28px; background: var(--soft); border-radius: 24px; padding: 22px clamp(20px, 3vw, 32px); }
 .alerts .ics { display: flex; }
@@ -403,7 +394,8 @@ footer .bottom nav { display: flex; gap: 18px; }
 }
 @media (max-width: 960px) {
   .pt, .cta .wrap { grid-template-columns: minmax(0, 1fr); }
-  .tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tab { padding: 11px 16px; font-size: 15px; }
+  .tab .pg { left: 16px; right: 16px; }
   .probs { grid-template-columns: minmax(0, 1fr); max-width: 520px; margin-inline: auto; }
   .wires { height: 44px; }
   .wires path:not(:nth-child(2)) { display: none; }
@@ -448,15 +440,16 @@ footer .bottom nav { display: flex; gap: 18px; }
   .btns { justify-content: center; }
   .tag { justify-self: center; }
   .shot { padding-bottom: 50px; }
-  .play { top: 82%; font-size: 14px; padding: 6px 16px 6px 6px; }
-  .play i { width: 36px; height: 36px; }
+  .play { padding: 6px; }
+  .play i { width: 52px; height: 52px; }
+  .play i::before { border-left-width: 16px; border-top-width: 10px; border-bottom-width: 10px; margin-left: 4px; }
   /* product: tabs become swipeable cards */
   .tabs { display: none; }
   .stage { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; margin-inline: calc(var(--gut) * -1); padding: 4px var(--gut) 18px; scrollbar-width: none; }
   .stage::-webkit-scrollbar { display: none; }
   .stage .tp { flex: 0 0 86%; scroll-snap-align: center; opacity: 1; visibility: visible; transform: none; display: grid; gap: 14px; align-content: start; }
   .tp .cap { display: grid; gap: 6px; text-align: left; }
-  .tp .cap h3 { font-size: 20px; }
+  .tp .cap h3 { display: block; font-size: 20px; }
   .tp .cap p { font-size: 15px; }
   .stage-col { justify-items: center; }
   .dots { display: flex; gap: 8px; justify-content: center; }
@@ -534,7 +527,7 @@ footer .bottom nav { display: flex; gap: 18px; }
     <div class="shot" data-rv style="--d:.3s">
       <button class="thumb" type="button" data-video aria-label="Watch the ReviewRani intro video">
         <img src="v2-img/intro-thumb.jpg" width="1280" height="720" alt="" fetchpriority="high">
-        <span class="play"><i aria-hidden="true"></i>Watch the intro</span>
+        <span class="play" aria-hidden="true"><i></i></span>
       </button>
     </div>
   </div>
@@ -600,27 +593,19 @@ footer .bottom nav { display: flex; gap: 18px; }
     <div class="pt" id="pt" data-rv>
       <div class="tabs" role="tablist" aria-label="What you can do today">
         <button class="tab" role="tab" id="tab-0" aria-controls="tp-0" aria-selected="true">
-          <span class="tt"><b>01</b>Performance</span>
-          <p>Track ratings and review trends, and see what new reviews would do to your rating.</p>
-          <span class="more"><span><span class="ticks"><span>Overview</span><span>Performance Analysis</span><span>Rating Estimator</span><span>Reports</span></span></span></span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17l5-5 4 3 7-8"/><path d="M15 7h5v5"/></svg>Performance
           <span class="pg"><i></i></span>
         </button>
         <button class="tab" role="tab" id="tab-1" aria-controls="tp-1" aria-selected="false" tabindex="-1">
-          <span class="tt"><b>02</b>Review Insights</span>
-          <p>See what’s driving positive and negative feedback.</p>
-          <span class="more"><span><span class="ticks"><span>Review Analysis</span><span>Keyword Analysis</span><span>Opportunities &amp; Threats</span><span>Reviews feed</span></span></span></span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14v10H10l-4 4v-4H5z"/></svg>Review Insights
           <span class="pg"><i></i></span>
         </button>
         <button class="tab" role="tab" id="tab-2" aria-controls="tp-2" aria-selected="false" tabindex="-1">
-          <span class="tt"><b>03</b>Products &amp; People</span>
-          <p>Know what customers say about your products and your staff.</p>
-          <span class="more"><span><span class="ticks"><span>Product Analysis</span><span>Employee Analysis</span></span></span></span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.5" r="3.5"/><path d="M5 20c.8-3.6 3.6-5.5 7-5.5s6.2 1.9 7 5.5"/></svg>Products &amp; People
           <span class="pg"><i></i></span>
         </button>
         <button class="tab" role="tab" id="tab-3" aria-controls="tp-3" aria-selected="false" tabindex="-1">
-          <span class="tt"><b>04</b>Rankings &amp; Competitors</span>
-          <p>Rank and compare branches, clusters and nearby competitors.</p>
-          <span class="more"><span><span class="ticks"><span>Location Rankings</span><span>Cluster Rankings</span><span>Compare Locations</span><span>Compare Clusters</span><span>Competitor Analysis</span></span></span></span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V12M12 20V5M19 20v-5"/></svg>Rankings
           <span class="pg"><i></i></span>
         </button>
       </div>
@@ -629,7 +614,7 @@ footer .bottom nav { display: flex; gap: 18px; }
         <div class="stage" id="stage">
           <!-- Performance -->
           <div class="tp on" role="tabpanel" id="tp-0" aria-labelledby="tab-0">
-            <div class="cap"><h3>Performance</h3><p>Track ratings and review trends, and see what new reviews would do to your rating.</p></div>
+            <div class="cap"><h3>Performance</h3><p>Ratings, trends, and what new reviews would do to your score.</p></div>
             <div class="win" aria-hidden="true"><div class="bar"><i></i><i></i><i></i><span>ReviewRani · Performance Analysis</span></div>
               <div class="app"><div class="sb" data-on="Performance"></div>
                 <div class="mn">
@@ -656,7 +641,7 @@ footer .bottom nav { display: flex; gap: 18px; }
           </div>
           <!-- Review insights -->
           <div class="tp" role="tabpanel" id="tp-1" aria-labelledby="tab-1">
-            <div class="cap"><h3>Review Insights</h3><p>See what’s driving positive and negative feedback.</p></div>
+            <div class="cap"><h3>Review Insights</h3><p>What’s driving the praise and the complaints.</p></div>
             <div class="win" aria-hidden="true"><div class="bar"><i></i><i></i><i></i><span>ReviewRani · Review Analysis</span></div>
               <div class="app"><div class="sb" data-on="Review Analysis"></div>
                 <div class="mn">
@@ -688,7 +673,7 @@ footer .bottom nav { display: flex; gap: 18px; }
           </div>
           <!-- Products & people -->
           <div class="tp" role="tabpanel" id="tp-2" aria-labelledby="tab-2">
-            <div class="cap"><h3>Products &amp; People</h3><p>Know what customers say about your products and your staff.</p></div>
+            <div class="cap"><h3>Products &amp; People</h3><p>What customers say about your products and your staff.</p></div>
             <div class="win" aria-hidden="true"><div class="bar"><i></i><i></i><i></i><span>ReviewRani · Employee Analysis</span></div>
               <div class="app"><div class="sb" data-on="Employee Analysis"></div>
                 <div class="mn">
@@ -718,7 +703,7 @@ footer .bottom nav { display: flex; gap: 18px; }
           </div>
           <!-- Rankings & competitors -->
           <div class="tp" role="tabpanel" id="tp-3" aria-labelledby="tab-3">
-            <div class="cap"><h3>Rankings &amp; Competitors</h3><p>Rank and compare branches, clusters and nearby competitors.</p></div>
+            <div class="cap"><h3>Rankings &amp; Competitors</h3><p>Branches, clusters and nearby competitors, side by side.</p></div>
             <div class="win" aria-hidden="true"><div class="bar"><i></i><i></i><i></i><span>ReviewRani · Location Rankings</span></div>
               <div class="app"><div class="sb" data-on="Rankings"></div>
                 <div class="mn">
@@ -997,11 +982,6 @@ footer .bottom nav { display: flex; gap: 18px; }
   </div>
 </footer>
 
-<dialog class="vid" id="vid" aria-label="ReviewRani introduction video">
-  <button class="x" type="button" aria-label="Close video">×</button>
-  <div class="ph" id="vidph">Loading the video…</div>
-</dialog>
-
 <script>
 (function () {
   /* Fill these in before going live. */
@@ -1088,20 +1068,15 @@ footer .bottom nav { display: flex; gap: 18px; }
     rb.textContent = '0.0'; rgo.observe(rb);
   }
 
-  /* hero video: the YouTube player loads only when asked for, and is removed on close so it stops */
-  var dlg = $('#vid'), vidBox = $('#vidph');
+  /* hero video: the YouTube player loads in place of the thumbnail only when asked for */
   $('[data-video]').addEventListener('click', function () {
     var f = document.createElement('iframe');
     f.src = 'https://www.youtube-nocookie.com/embed/' + VIDEO_ID + '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
     f.title = 'ReviewRani introduction video';
     f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
     f.allowFullscreen = true;
-    vidBox.replaceWith(f);
-    dlg.showModal();
+    this.replaceWith(f);
   });
-  $('.x', dlg).addEventListener('click', function () { dlg.close(); });
-  dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
-  dlg.addEventListener('close', function () { var f = $('iframe', dlg); if (f) f.replaceWith(vidBox); });
 
   /* product tabs: auto-advance every 6s until clicked; swipeable cards on phones */
   var pt = $('#pt'), tabs = $$('.tab', pt), panes = $$('.tp', pt), dots = $$('#dots button'), stage = $('#stage');
