@@ -90,8 +90,8 @@ section { position: relative; padding-block: clamp(72px, 9vw, 120px); scroll-mar
 .nav { position: fixed; inset: 0 0 auto; z-index: 50; transition: background .3s, box-shadow .3s, backdrop-filter .3s; }
 .nav.scrolled { background: rgba(255, 255, 255, .92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 8px 24px -18px rgba(29, 62, 99, .35); }
 .nav .wrap { display: flex; align-items: center; height: var(--navh); gap: 20px; }
-.brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 700; font-size: 24px; color: var(--ink); letter-spacing: -.02em; }
-.brand svg { width: 36px; height: 36px; }
+.brand { display: inline-flex; flex: none; text-decoration: none; }
+.brand img { display: block; height: 37px; width: auto; }
 .nav nav { display: flex; gap: 6px; margin-left: auto; }
 .nav nav a { position: relative; display: inline-flex; align-items: center; gap: 7px; text-decoration: none; color: var(--ink); font-weight: 500; font-size: 15px; padding: 8px 12px; border-radius: 30px; transition: color .2s, background .2s; }
 .nav nav a:hover { color: #2f63b8; }
@@ -453,8 +453,7 @@ footer { background: var(--soft); color: #b8c0da; font-size: 16px; }
 footer .fedge { display: block; width: 100%; height: clamp(60px, 9vw, 150px); margin-bottom: -1px; }
 footer .fbody { background: var(--ink); padding-block: clamp(8px, 2vw, 20px) 30px; }
 footer .ftop { display: flex; justify-content: space-between; align-items: center; gap: 24px 40px; flex-wrap: wrap; padding-bottom: clamp(28px, 4vw, 44px); border-bottom: 1px solid rgba(255, 255, 255, .12); }
-footer .brand { color: #fff; font-size: clamp(30px, 3.4vw, 44px); gap: 14px; }
-footer .brand svg { width: clamp(40px, 4.2vw, 56px); height: clamp(40px, 4.2vw, 56px); border-radius: 22%; box-shadow: 0 0 0 1px rgba(255, 255, 255, .22); }
+footer .brand img { height: clamp(37px, 4vw, 52px); filter: brightness(0) invert(1); }
 footer .fcta { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
 footer .fcta p { color: #fff; font-size: clamp(18px, 1.6vw, 22px); font-weight: 500; }
 footer .fmain { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 40px; padding-block: clamp(32px, 4.5vw, 56px); }
@@ -588,16 +587,14 @@ footer .bottom nav { display: flex; gap: 18px; }
 }
 @media (max-width: 420px) {
   .nav .btn { padding: 11px 14px; }
-  .brand { font-size: 21px; gap: 8px; }
-  .brand svg { width: 32px; height: 32px; }
+  .brand img { height: 33px; }
   .nav .wrap { gap: 10px; }
   footer .fcols { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   footer .fcols > :last-child { grid-column: 1 / -1; }
 }
 @media (max-width: 360px) {
   .nav .wrap { gap: 8px; }
-  .brand { font-size: 18px; gap: 6px; }
-  .brand svg { width: 28px; height: 28px; }
+  .brand img { height: 30px; }
   .nav .btn { padding: 9px 12px; font-size: 14px; }
   .menu-btn { width: 40px; height: 40px; }
   /* competitor table: drop the reviews column so names fit */
@@ -612,7 +609,7 @@ footer .bottom nav { display: flex; gap: 18px; }
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <linearGradient id="gg" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#2f63b8"/><stop offset=".5" stop-color="#5b8fd9"/><stop offset="1" stop-color="#17b3a3"/></linearGradient>
-    <linearGradient id="sg" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#2f63b8"/><stop offset=".5" stop-color="#5b8fd9"/><stop offset="1" stop-color="#17b3a3"/></linearGradient>
+    <linearGradient id="sg" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#8f6cf7"/><stop offset=".5" stop-color="#5a4be0"/><stop offset="1" stop-color="#3561c9"/></linearGradient>
     <linearGradient id="fa" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#5b8fd9" stop-opacity=".28"/><stop offset="1" stop-color="#5b8fd9" stop-opacity="0"/></linearGradient>
   </defs>
   <symbol id="crown" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#1D3E63"/><g transform="translate(4 4)" fill="#FFFFFF"><path d="M2.6 9.4L7.6 15.3L12 7.4L16.4 15.3L21.4 9.4L21.4 17.6C21.4 18.4 21 18.8 20.2 18.8L3.8 18.8C3 18.8 2.6 18.4 2.6 17.6ZM1 7.9a1.6 1.6 0 1 0 3.2 0a1.6 1.6 0 1 0-3.2 0ZM10.4 5.6a1.6 1.6 0 1 0 3.2 0a1.6 1.6 0 1 0-3.2 0ZM19.8 7.9a1.6 1.6 0 1 0 3.2 0a1.6 1.6 0 1 0-3.2 0Z"/></g></symbol>
@@ -623,7 +620,7 @@ footer .bottom nav { display: flex; gap: 18px; }
 
 <header class="nav" id="nav">
   <div class="wrap">
-    <a class="brand" href="#top"><svg aria-hidden="true"><use href="#crown"/></svg>ReviewRani</a>
+    <a class="brand" href="#top"><img src="reviewrani-logo.png" width="195" height="74" alt="ReviewRani"></a>
     <nav aria-label="Sections">
       <a href="#product">Product</a>
       <a href="#scale">Multi-location</a>
@@ -1102,7 +1099,7 @@ footer .bottom nav { display: flex; gap: 18px; }
   </div>
 </section>
 
-<div class="seam-wrap" aria-hidden="true" style="background:linear-gradient(transparent 50%, var(--soft) 50%)">
+<div class="seam-wrap" aria-hidden="true" style="background:var(--soft)">
   <svg class="seam" viewBox="0 0 1440 150" preserveAspectRatio="none"><path d="M0 0 H1440 V40 L1000 135 L420 30 L0 110 Z" fill="#fff"/><path d="M0 102 L420 24 L1000 131.9 L1440 39 L1440 41 L1000 138.1 L420 36 L0 118 Z" fill="url(#sg)"/></svg>
 </div>
 
@@ -1162,7 +1159,7 @@ footer .bottom nav { display: flex; gap: 18px; }
   <div class="fbody">
     <div class="wrap">
       <div class="ftop">
-        <a class="brand" href="#top"><svg aria-hidden="true"><use href="#crown"/></svg>ReviewRani</a>
+        <a class="brand" href="#top"><img src="reviewrani-logo.png" width="195" height="74" alt="ReviewRani"></a>
         <div class="fcta">
           <p>See every location, clearly.</p>
           <a class="btn light" href="#contact" data-interest="demo">Book a Demo <span class="ar">→</span></a>
