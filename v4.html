@@ -205,8 +205,8 @@ section { position: relative; padding-block: clamp(72px, 9vw, 120px); scroll-mar
 .wires { display: block; width: 100%; height: clamp(54px, 6vw, 90px); overflow: visible; }
 .wires path { fill: none; stroke: #8fb4e8; stroke-width: 2; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 0; }
 .probs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; width: 100%; text-align: left; }
-.prob { display: grid; gap: 14px; align-content: start; }
-.prob .box { background: var(--soft); border-radius: 24px; aspect-ratio: 1.35; display: grid; place-items: center; padding: 22px; }
+.prob { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; align-content: start; min-width: 0; }
+.prob .box { background: var(--soft); border-radius: 24px; aspect-ratio: 1.35; display: grid; grid-template-columns: minmax(0, 1fr); place-items: center; padding: 22px; min-width: 0; }
 .prob .ui { width: 100%; max-width: 300px; background: #fff; border-radius: 16px; padding: 16px; box-shadow: var(--shadow-sm); font-size: 14px; color: var(--ink); }
 .prob .ui h5 { font-size: 12px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--mute); margin-bottom: 10px; }
 .prob h3 { display: flex; align-items: center; gap: 12px; }
@@ -258,40 +258,65 @@ section { position: relative; padding-block: clamp(72px, 9vw, 120px); scroll-mar
 .tp .cap p { font-size: 17px; }
 .dots { display: none; }
 /* ---------- competitor analysis ---------- */
-.cmp .wrap { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
-.cmp .copy { display: grid; gap: 20px; }
-.cmp .pts { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 16px; }
-.cmp .pts li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 14px; align-items: start; }
+.cmp .head { margin-bottom: clamp(32px, 4.5vw, 56px); }
+.cgrid { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, .75fr); gap: clamp(24px, 3.5vw, 48px); align-items: center; }
+.cmp .pts { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.cmp .pts li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 14px; align-items: start; background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 18px 20px; }
 .cmp .pts .ic { grid-row: span 2; width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; background: var(--soft); color: #2f63b8; }
 .cmp .pts .ic svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .cmp .pts b { color: var(--ink); font-weight: 600; font-size: 18px; }
 .cmp .pts span:not(.ic) { font-size: 15px; }
-.board { position: relative; background: #fff; border-radius: 24px; padding: clamp(20px, 2.6vw, 30px); box-shadow: var(--shadow), 0 0 0 1px rgba(29, 62, 99, .07); display: grid; gap: 18px; }
+.board { position: relative; background: #fff; border-radius: 26px; padding: clamp(18px, 2.4vw, 28px); box-shadow: var(--shadow), 0 0 0 1px rgba(29, 62, 99, .07); display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; }
 .board::before { content: ""; position: absolute; inset: 8% -4% -6%; z-index: -1; border-radius: 50%; background: radial-gradient(closest-side, rgba(143, 180, 232, .45), rgba(45, 212, 191, .14) 60%, transparent); filter: blur(40px); }
-.board .bh { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
-.board .bh h4 { font-size: 18px; font-weight: 600; color: var(--ink); }
-.board .bh small { font-size: 13px; color: var(--mute); }
+.board .bh { display: flex; justify-content: space-between; align-items: center; gap: 12px; min-width: 0; }
+.locs { display: flex; gap: 4px; padding: 4px; border-radius: 999px; background: var(--soft); box-shadow: inset 0 0 0 1px var(--line); overflow-x: auto; scrollbar-width: none; min-width: 0; }
+.locs::-webkit-scrollbar { display: none; }
+.locs button { flex: none; font: inherit; font-size: 14px; font-weight: 600; color: var(--mute); background: transparent; border: 0; border-radius: 999px; padding: 8px 14px; cursor: pointer; white-space: nowrap; transition: background .25s, color .25s, box-shadow .25s; }
+.locs button:hover { color: var(--ink); }
+.locs button[aria-pressed="true"] { color: var(--ink); background: #fff; box-shadow: var(--shadow-sm), 0 0 0 1px var(--line); }
+.locs button:focus-visible { outline: 3px solid var(--blue); outline-offset: 1px; }
+.rank { flex: none; font-size: 22px; font-weight: 600; color: var(--ink); line-height: 1; }
+.rank small { font-size: 13px; font-weight: 500; color: var(--mute); }
 .board .hd2, .board .cr { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.2fr) 44px 58px 64px; align-items: center; gap: 12px; }
-.board .hd2 { font-size: 11px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--mute); padding: 0 12px; }
+.board .hd2 { font-size: 11px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--mute); padding: 0 12px 6px; }
 .board .hd2 span:nth-child(n+3), .board .cr > :nth-child(n+3) { text-align: right; }
-.board .cr { padding: 12px; font-size: 15px; font-variant-numeric: tabular-nums; }
-.board .cr + .cr { border-top: 1px solid var(--line); }
-.board .cr.you { border-radius: 14px; background: linear-gradient(90deg, rgba(47, 99, 184, .08), rgba(23, 179, 163, .06)); border-top-color: transparent; }
+.board .rows { position: relative; }
+.board .cr { position: relative; padding: 12px; font-size: 15px; font-variant-numeric: tabular-nums; border-top: 1px solid var(--line); background: #fff; }
+.board .cr:first-child { border-top-color: transparent; }
+.board .cr.you { z-index: 1; border-radius: 14px; border-top-color: transparent; background: linear-gradient(90deg, #edf2fa, #eaf6f4); }
 .board .cr.you + .cr { border-top-color: transparent; }
 .board .nm { font-weight: 600; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .board .you .nm::after { content: "You"; margin-left: 8px; font-size: 11px; font-weight: 600; color: #fff; background: var(--g-d); border-radius: 20px; padding: 2px 8px; vertical-align: 2px; }
 .board .tk { height: 8px; border-radius: 8px; background: var(--soft); overflow: hidden; }
-.board .tk i { display: block; height: 100%; width: var(--w); border-radius: 8px; background: var(--c, #c9cede); transform-origin: left; }
+.board .tk i { display: block; height: 100%; width: var(--w); border-radius: 8px; background: #c9cede; transition: width .7s var(--ease); }
 .board .you .tk i { background: var(--g); }
 .board .rt { font-weight: 600; color: var(--ink); }
 .board .rv { color: var(--mute); }
 .board .up { color: var(--green); font-weight: 600; }
 .board .dn { color: var(--red); font-weight: 600; }
-.board .note { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text); background: var(--soft); border-radius: 14px; padding: 12px 14px; }
-.board .note i { flex: none; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-size: 13px; color: #fff; background: var(--red); }
+.trend { border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px 10px; display: grid; gap: 8px; }
+.trend .th { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.trend h5 { font-size: 12px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--mute); }
+.trend .lg { display: flex; gap: 14px; font-size: 13px; color: var(--text); }
+.trend .lg span { display: inline-flex; align-items: center; gap: 6px; }
+.trend .lg i { width: 14px; height: 3px; border-radius: 3px; }
+.trend .l-you { background: #2f63b8; }
+.trend .l-avg { background: repeating-linear-gradient(90deg, #a3a8bb 0 4px, transparent 4px 7px); }
+.trend svg { width: 100%; height: 96px; display: block; overflow: visible; }
+.trend path { transition: d .7s var(--ease); }
+.trend .gl { fill: none; stroke: var(--line); stroke-dasharray: 3 4; }
+.trend .ar-you { fill: url(#cfill); }
+.trend .ln-you { fill: none; stroke: #2f63b8; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.trend .ln-avg { fill: none; stroke: #a3a8bb; stroke-width: 2; stroke-dasharray: 5 4; }
+.trend .mo { display: flex; justify-content: space-between; font-size: 11px; color: var(--mute); }
+.board .note { display: flex; align-items: center; gap: 10px; font-size: 15px; color: var(--ink); font-weight: 500; border-radius: 14px; padding: 12px 14px; background: var(--red-s); transition: background .3s; }
+.board .note i { flex: none; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-size: 13px; color: #fff; background: var(--red); transition: background .3s; }
+.board .note.up { background: var(--green-s); }
+.board .note.up i { background: var(--green); }
+.board .sd { position: absolute; right: clamp(18px, 2.4vw, 28px); bottom: 6px; font-size: 11px; color: var(--mute); }
 @media (prefers-reduced-motion: no-preference) {
-  .js .board .tk i { transform: scaleX(0); transition: transform 1.1s var(--ease); transition-delay: var(--dl, .2s); }
-  .js .board.in .tk i { transform: none; }
+  .js .board .tk { transform: scaleX(0); transform-origin: left; transition: transform 1.1s var(--ease) .3s; }
+  .js .board.in .tk { transform: none; }
 }
 
 .alerts { margin-top: clamp(36px, 5vw, 56px); display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 18px 28px; background: var(--soft); border-radius: 24px; padding: 22px clamp(20px, 3vw, 32px); }
@@ -372,37 +397,75 @@ section { position: relative; padding-block: clamp(72px, 9vw, 120px); scroll-mar
 
 /* ---------- 6 · final CTA ---------- */
 .cta { background: var(--soft); }
-.cta .wrap { display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
-.cta .copy { display: grid; gap: 18px; align-content: start; }
-form.card { margin-top: 10px; border-radius: 26px; background: #fff; box-shadow: var(--shadow); padding: clamp(22px, 3.4vw, 36px); display: grid; gap: 16px; }
-.fgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-form label, form fieldset { display: grid; gap: 6px; font-size: 14px; font-weight: 500; color: var(--ink); }
-form fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
-form legend { padding: 0; margin-bottom: 6px; }
-form input:not([type="radio"]), form select { font: 16px var(--font); color: var(--ink); background: var(--soft); border: 1px solid var(--line); border-radius: 14px; padding: 13px 16px; width: 100%; min-width: 0; transition: border-color .2s, box-shadow .2s, background .2s; }
-form input:not([type="radio"]):focus, form select:focus { outline: none; background: #fff; border-color: var(--blue); box-shadow: 0 0 0 4px rgba(91, 143, 217, .2); }
-.seg { display: grid; grid-template-columns: 1fr 1fr; background: var(--soft); border: 1px solid var(--line); border-radius: 14px; padding: 4px; gap: 4px; }
-.seg label { position: relative; display: block; cursor: pointer; }
-.seg input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
-.seg span { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 12px; border-radius: 10px; font-weight: 600; font-size: 15px; transition: background .25s, color .25s, box-shadow .25s; }
-.seg input:checked + span { background: #fff; box-shadow: var(--shadow-sm); }
-.seg input:focus-visible + span { outline: 3px solid var(--blue); outline-offset: 1px; }
-.seg input[value="v3"]:checked + span { color: var(--violet-d); }
-.seg .soon-b { font-size: 10px; }
-form .btn { justify-self: start; }
-.done { color: var(--green); font-size: 15px; }
-.cta .art { position: relative; }
-.cta .art::before { content: ""; position: absolute; inset: 0 4%; border-radius: 50%; background: radial-gradient(closest-side, rgba(143, 180, 232, .55), rgba(45, 212, 191, .16) 60%, transparent); filter: blur(36px); }
-.cta .art .win { position: relative; }
+.cbox { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); background: #fff; border-radius: 32px; box-shadow: var(--shadow), 0 0 0 1px rgba(29, 62, 99, .06); overflow: hidden; }
+.cbox .copy { position: relative; display: grid; gap: 18px; align-content: start; padding: clamp(28px, 4vw, 56px); color: #d6e2f5; background: var(--g-d); overflow: hidden; isolation: isolate; }
+.cbox .copy::before { content: ""; position: absolute; z-index: -1; width: 420px; height: 420px; right: -160px; bottom: -180px; border-radius: 50%; background: radial-gradient(closest-side, rgba(45, 212, 191, .45), transparent); }
+.cbox .copy::after { content: ""; position: absolute; z-index: -1; inset: 0; background: radial-gradient(rgba(255, 255, 255, .09) 1px, transparent 1.5px) 0 0 / 22px 22px; mask: linear-gradient(160deg, #000, transparent 60%); -webkit-mask: linear-gradient(160deg, #000, transparent 60%); }
+.cbox .eb { justify-self: start; font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #fff; background: rgba(255, 255, 255, .14); border: 1px solid rgba(255, 255, 255, .22); border-radius: 30px; padding: 6px 14px; }
+.cbox h2 { color: #fff; font-size: clamp(32px, 3.4vw, 46px); }
+.cbox .lede { color: #d6e2f5; }
+.gets { list-style: none; margin: 6px 0 0; padding: 0; display: grid; gap: 12px; }
+.gets li { display: flex; align-items: center; gap: 12px; color: #fff; font-weight: 500; }
+.gets li::before { content: ""; flex: none; width: 24px; height: 24px; border-radius: 50%; background: rgba(255, 255, 255, .16) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center / 13px no-repeat; }
+.mini { justify-self: start; margin-top: clamp(12px, 3vw, 36px); display: flex; align-items: center; gap: 14px; background: #fff; border-radius: 18px; padding: 12px 18px 12px 12px; box-shadow: 0 20px 40px -18px rgba(13, 27, 46, .55); }
+.mini .st { display: inline-flex; align-items: center; justify-content: center; gap: 4px; padding: 0 12px; min-width: 64px; height: 50px; border-radius: 12px; background: var(--soft); font-size: 20px; font-weight: 600; color: var(--ink); }
+.mini .st i { font-style: normal; color: var(--gold); font-size: 15px; }
+.mini b { display: block; color: var(--ink); font-weight: 600; }
+.mini small { color: var(--mute); font-size: 13px; }
 
-footer { background: var(--ink); color: #b8c0da; padding-block: 56px 30px; font-size: 15px; }
-footer .top { display: grid; grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, .7fr)); gap: 32px; padding-bottom: 36px; border-bottom: 1px solid rgba(255, 255, 255, .12); }
-footer .brand { color: #fff; }
-footer h4 { color: #fff; font-size: 15px; font-weight: 600; margin-bottom: 14px; }
-footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
-footer a { text-decoration: none; }
+form.card { display: grid; gap: 20px; align-content: start; padding: clamp(24px, 4vw, 52px); }
+.fh h3 { font-size: clamp(21px, 1.8vw, 24px); color: var(--ink); }
+.fh p { font-size: 15px; color: var(--mute); margin-top: 4px; }
+.fgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.fgrid .wide { grid-column: 1 / -1; }
+form label, form fieldset { display: grid; gap: 8px; font-size: 14px; font-weight: 600; color: var(--ink); }
+form fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+form legend { padding: 0; margin-bottom: 8px; font-weight: 600; }
+form input:not([type="radio"]) { font: 16px var(--font); color: var(--ink); background: #fff; border: 1.5px solid var(--line); border-radius: 12px; padding: 13px 16px; width: 100%; min-width: 0; transition: border-color .2s, box-shadow .2s; }
+form input::placeholder { color: #b2b6c6; }
+form input:not([type="radio"]):hover { border-color: #d3d6e2; }
+form input:not([type="radio"]):focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 4px rgba(91, 143, 217, .18); }
+form input:user-invalid { border-color: var(--red); }
+form input:user-invalid:focus { box-shadow: 0 0 0 4px rgba(224, 83, 61, .15); }
+.chips-r, .seg { display: grid; gap: 10px; }
+.chips-r { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.seg { grid-template-columns: 1fr 1fr; }
+.chips-r label, .seg label { position: relative; display: block; cursor: pointer; }
+.chips-r input, .seg input { position: absolute; opacity: 0; inset: 0; cursor: pointer; margin: 0; }
+.chips-r span, .seg > label > span { display: grid; height: 100%; border: 1.5px solid var(--line); border-radius: 12px; transition: border-color .2s, background .2s, color .2s, box-shadow .2s; }
+.chips-r span { place-items: center; padding: 11px 6px; font-size: 15px; font-weight: 600; color: var(--text); font-variant-numeric: tabular-nums; }
+.seg > label > span { gap: 2px; padding: 12px 14px 12px 44px; position: relative; }
+.seg > label > span::before { content: ""; position: absolute; left: 14px; top: 50%; translate: 0 -50%; width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid #c9cdda; background: #fff; transition: border .2s; }
+.seg b { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 600; color: var(--ink); }
+.seg small { font-size: 13px; font-weight: 400; color: var(--mute); }
+.chips-r label:hover span, .seg label:hover > span { border-color: #d3d6e2; }
+.chips-r input:checked + span { border-color: var(--ink); background: var(--ink); color: #fff; }
+.seg input:checked + span { border-color: #2f63b8; background: rgba(47, 99, 184, .05); box-shadow: 0 0 0 3px rgba(47, 99, 184, .1); }
+.seg input:checked + span::before { border: 5.5px solid #2f63b8; }
+.seg input[value="v3"]:checked + span { border-color: var(--violet); background: var(--violet-s); box-shadow: 0 0 0 3px rgba(124, 92, 214, .12); }
+.seg input[value="v3"]:checked + span::before { border-color: var(--violet); }
+.chips-r input:focus-visible + span, .seg input:focus-visible + span { outline: 3px solid var(--blue); outline-offset: 2px; }
+.seg .soon-b { font-size: 10px; }
+form .btn { justify-self: start; margin-top: 4px; }
+.done { color: var(--green); background: var(--green-s); border-radius: 12px; padding: 12px 16px; font-size: 15px; }
+
+footer { background: var(--soft); color: #b8c0da; font-size: 16px; }
+footer .fedge { display: block; width: 100%; height: clamp(60px, 9vw, 150px); margin-bottom: -1px; }
+footer .fbody { background: var(--ink); padding-block: clamp(8px, 2vw, 20px) 30px; }
+footer .ftop { display: flex; justify-content: space-between; align-items: center; gap: 24px 40px; flex-wrap: wrap; padding-bottom: clamp(28px, 4vw, 44px); border-bottom: 1px solid rgba(255, 255, 255, .12); }
+footer .brand { color: #fff; font-size: clamp(30px, 3.4vw, 44px); gap: 14px; }
+footer .brand svg { width: clamp(40px, 4.2vw, 56px); height: clamp(40px, 4.2vw, 56px); border-radius: 22%; box-shadow: 0 0 0 1px rgba(255, 255, 255, .22); }
+footer .fcta { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+footer .fcta p { color: #fff; font-size: clamp(18px, 1.6vw, 22px); font-weight: 500; }
+footer .fmain { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 40px; padding-block: clamp(32px, 4.5vw, 56px); }
+footer .fabout { color: #fff; font-size: clamp(19px, 1.7vw, 23px); line-height: 1.45; max-width: 26ch; }
+footer .fcols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+footer h4 { color: #fff; font-size: 18px; font-weight: 600; margin-bottom: 18px; }
+footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+footer a { color: inherit; text-decoration: none; transition: color .2s; }
 footer a:hover { color: #fff; }
-footer .bottom { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding-top: 22px; font-size: 13px; color: #8790b0; }
+footer .fcta .btn { color: var(--ink); }
+footer .bottom { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding-top: 22px; border-top: 1px solid rgba(255, 255, 255, .12); font-size: 13px; color: #8790b0; }
 footer .bottom nav { display: flex; gap: 18px; }
 
 /* ---------- motion ---------- */
@@ -430,16 +493,19 @@ footer .bottom nav { display: flex; gap: 18px; }
   .bc.big { grid-column: 1 / -1; grid-row: auto; }
 }
 @media (max-width: 960px) {
-  .cmp .wrap { grid-template-columns: minmax(0, 1fr); }
-  .pt, .cta .wrap { grid-template-columns: minmax(0, 1fr); }
+  .cgrid { grid-template-columns: minmax(0, 1fr); }
+  .cmp .pts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .cmp .pts li { grid-template-columns: minmax(0, 1fr); }
+  .cmp .pts .ic { grid-row: auto; margin-bottom: 6px; }
+  .pt, .cbox { grid-template-columns: minmax(0, 1fr); }
+  .mini { display: none; }
   .tab { padding: 11px 16px; font-size: 15px; }
   .tab .pg { left: 16px; right: 16px; }
   .probs { grid-template-columns: minmax(0, 1fr); max-width: 520px; margin-inline: auto; }
   .wires { height: 44px; }
   .wires path:not(:nth-child(2)) { display: none; }
   .panel .top { grid-template-columns: minmax(0, 1fr); }
-  footer .top { grid-template-columns: 1fr 1fr; }
-  footer .top > :first-child { grid-column: 1 / -1; }
+  footer .fmain { grid-template-columns: minmax(0, 1fr); }
 }
 /* the zoom needs room: below 900px wide, or with reduced motion, the three levels simply stack */
 @media (max-width: 900px), (prefers-reduced-motion: reduce) {
@@ -474,7 +540,7 @@ footer .bottom nav { display: flex; gap: 18px; }
   .sheet a:last-child { border-bottom: 0; color: #2f63b8; font-weight: 600; font-size: 17px; }
 }
 @media (max-width: 720px) {
-  .center, .why .wrap, .cta .copy { text-align: center; justify-items: center; }
+  .center, .why .wrap { text-align: center; justify-items: center; }
   .btns { justify-content: center; }
   .tag { justify-self: center; }
   .shot { padding-bottom: 50px; }
@@ -500,13 +566,23 @@ footer .bottom nav { display: flex; gap: 18px; }
   .foot { justify-content: center; text-align: center; }
   .foot .also { justify-content: center; }
   .fgrid { grid-template-columns: minmax(0, 1fr); }
-  .cmp .copy { text-align: left; }
-  .board .hd2, .board .cr { grid-template-columns: minmax(0, 1fr) 40px 52px 54px; gap: 8px; }
+  .chips-r { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .seg { grid-template-columns: minmax(0, 1fr); }
+  .cbox { border-radius: 24px; }
+  .cmp .pts { grid-template-columns: minmax(0, 1fr); }
+  .cmp .pts li { grid-template-columns: auto minmax(0, 1fr); }
+  .cmp .pts .ic { grid-row: span 2; margin-bottom: 0; }
+  .board .bh { flex-direction: column; align-items: stretch; }
+  .rank { align-self: flex-start; }
+  .locs .lx { display: none; }
+  .locs { align-self: flex-start; max-width: 100%; }
+  .board .hd2, .board .cr { grid-template-columns: minmax(0, 1fr) 40px 52px 56px; gap: 8px; }
   .board .hd2 span:nth-child(3), .board .cr .tk, .board .you .nm::after { display: none; }
   .board .hd2 span:nth-child(2) { text-align: right; }
   .board .cr { padding: 11px 10px; font-size: 14px; }
-  .board .hd2 { padding: 0 10px; letter-spacing: .03em; }
-  form.card { text-align: left; width: 100%; }
+  .board .hd2 { padding: 0 10px 6px; letter-spacing: .03em; }
+  .board .note { font-size: 14px; }
+
   form .btn { justify-self: center; }
   footer .bottom { justify-content: center; text-align: center; }
 }
@@ -515,7 +591,19 @@ footer .bottom nav { display: flex; gap: 18px; }
   .brand { font-size: 21px; gap: 8px; }
   .brand svg { width: 32px; height: 32px; }
   .nav .wrap { gap: 10px; }
-  footer .top { grid-template-columns: minmax(0, 1fr); }
+  footer .fcols { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  footer .fcols > :last-child { grid-column: 1 / -1; }
+}
+@media (max-width: 360px) {
+  .nav .wrap { gap: 8px; }
+  .brand { font-size: 18px; gap: 6px; }
+  .brand svg { width: 28px; height: 28px; }
+  .nav .btn { padding: 9px 12px; font-size: 14px; }
+  .menu-btn { width: 40px; height: 40px; }
+  /* competitor table: drop the reviews column so names fit */
+  .board .hd2, .board .cr { grid-template-columns: minmax(0, 1fr) 40px 56px; }
+  .board .hd2 span:nth-child(4), .board .cr .rv { display: none; }
+  .board { padding: 16px; }
 }
 </style>
 </head>
@@ -623,7 +711,7 @@ footer .bottom nav { display: flex; gap: 18px; }
 </section>
 
 <div class="seam-wrap" aria-hidden="true">
-  <svg class="seam" viewBox="0 0 1440 150" preserveAspectRatio="none"><path d="M0 120 L340 20 L1000 140 L1440 40" fill="none" stroke="url(#sg)" stroke-width="5" vector-effect="non-scaling-stroke"/></svg>
+  <svg class="seam" viewBox="0 0 1440 150" preserveAspectRatio="none"><path d="M0 112 L340 13.7 L1000 136.9 L1440 39 L1440 41 L1000 143.1 L340 26.3 L0 128 Z" fill="url(#sg)"/></svg>
 </div>
 
 <!-- 3 · PRODUCT (live today) -->
@@ -898,27 +986,51 @@ footer .bottom nav { display: flex; gap: 18px; }
 <!-- 5 · COMPETITOR ANALYSIS (live today) -->
 <section class="cmp" id="compete" aria-labelledby="h-cmp" style="padding-top:clamp(56px,7vw,96px)">
   <div class="wrap">
-    <div class="copy">
+    <div class="center head">
       <span class="tag" data-rv><i></i>Competitor Analysis</span>
       <h2 id="h-cmp" data-rv>Competitor analysis that shows <span class="gt">where you stand.</span></h2>
       <p class="lede" data-rv>See how each of your locations compares with the competitors around it.</p>
-      <ul class="pts" data-rv>
-        <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8z"/></svg></span><b>Rating, side by side</b><span>Your rating next to theirs, location by location.</span></li>
-        <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14v10H10l-4 4v-4H5z"/></svg></span><b>Review volume</b><span>Who customers are reviewing more, and how often.</span></li>
-        <li><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17l5-5 4 3 7-8"/><path d="M15 7h5v5"/></svg></span><b>Who’s gaining on you</b><span>Spot a rival climbing before it costs you customers.</span></li>
-      </ul>
     </div>
 
-    <div class="board" data-rv style="--d:.15s" role="img" aria-label="Sample comparison of one location with three nearby competitors">
-      <div class="bh"><h4>Kadapa Highway vs nearby</h4><small>Last 30 days · sample data</small></div>
-      <div aria-hidden="true">
-        <div class="hd2"><span>Business</span><span>Rating</span><span></span><span>Reviews</span><span>Trend</span></div>
-        <div class="cr"><span class="nm">Competitor A</span><div class="tk"><i style="--w:86%;--dl:.25s"></i></div><span class="rt">4.32</span><span class="rv">1,140</span><span class="up">▲ 0.12</span></div>
-        <div class="cr you"><span class="nm">Kadapa Highway</span><div class="tk"><i style="--w:80%;--dl:.35s"></i></div><span class="rt">4.02</span><span class="rv">962</span><span class="dn">▼ 0.05</span></div>
-        <div class="cr"><span class="nm">Competitor B</span><div class="tk"><i style="--w:77%;--dl:.45s"></i></div><span class="rt">3.87</span><span class="rv">615</span><span class="up">▲ 0.21</span></div>
-        <div class="cr"><span class="nm">Competitor C</span><div class="tk"><i style="--w:71%;--dl:.55s"></i></div><span class="rt">3.61</span><span class="rv">408</span><span class="dn">▼ 0.03</span></div>
+    <div class="cgrid">
+      <div class="board" id="board" data-rv role="group" aria-label="Sample competitor comparison">
+        <div class="bh">
+          <div class="locs" role="group" aria-label="Choose a location">
+            <button type="button" aria-pressed="true" aria-label="Kadapa Highway">Kadapa<span class="lx"> Highway</span></button>
+            <button type="button" aria-pressed="false" aria-label="Tirupati Central">Tirupati<span class="lx"> Central</span></button>
+            <button type="button" aria-pressed="false" aria-label="Nellore Bypass">Nellore<span class="lx"> Bypass</span></button>
+          </div>
+          <span class="rank" id="rank">#2 <small>of 4 nearby</small></span>
+        </div>
+        <div class="tbl" aria-hidden="true">
+          <div class="hd2"><span>Business</span><span>Rating</span><span></span><span>Reviews</span><span>30 days</span></div>
+          <div class="rows" id="crows">
+            <div class="cr" data-k="A"><span class="nm">Competitor A</span><div class="tk"><i style="--w:80%"></i></div><span class="rt">4.32</span><span class="rv">1,140</span><span class="up">▲ 0.12</span></div>
+            <div class="cr you" data-k="you"><span class="nm">Kadapa Highway</span><div class="tk"><i style="--w:59%"></i></div><span class="rt">4.02</span><span class="rv">962</span><span class="dn">▼ 0.05</span></div>
+            <div class="cr" data-k="B"><span class="nm">Competitor B</span><div class="tk"><i style="--w:48%"></i></div><span class="rt">3.87</span><span class="rv">615</span><span class="up">▲ 0.21</span></div>
+            <div class="cr" data-k="C"><span class="nm">Competitor C</span><div class="tk"><i style="--w:29%"></i></div><span class="rt">3.61</span><span class="rv">408</span><span class="dn">▼ 0.03</span></div>
+          </div>
+        </div>
+        <div class="trend" aria-hidden="true">
+          <div class="th"><h5>Rating, last 6 months</h5><span class="lg"><span><i class="l-you"></i>You</span><span><i class="l-avg"></i>Nearby average</span></span></div>
+          <svg viewBox="0 0 300 100" preserveAspectRatio="none">
+            <defs><linearGradient id="cfill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5b8fd9" stop-opacity=".22"/><stop offset="1" stop-color="#5b8fd9" stop-opacity="0"/></linearGradient></defs>
+            <path class="gl" d="M0 25H300M0 50H300M0 75H300" vector-effect="non-scaling-stroke"/>
+            <path class="ar-you" id="c-area" d=""/>
+            <path class="ln-avg" id="c-avg" d="" vector-effect="non-scaling-stroke"/>
+            <path class="ln-you" id="c-you" d="" vector-effect="non-scaling-stroke"/>
+          </svg>
+          <div class="mo"><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span></div>
+        </div>
+        <p class="note dn" id="cnote" aria-live="polite"><i aria-hidden="true">!</i><span>Competitor B is closing the gap: +0.21 this month.</span></p>
+        <small class="sd">Sample data</small>
       </div>
-      <p class="note"><i aria-hidden="true">!</i>Competitor B is closing the gap: +0.21 this month.</p>
+
+      <ul class="pts">
+        <li data-rv style="--d:.1s"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8z"/></svg></span><b>Rating, side by side</b><span>Your rating next to theirs, location by location.</span></li>
+        <li data-rv style="--d:.2s"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14v10H10l-4 4v-4H5z"/></svg></span><b>Review volume</b><span>Who customers are reviewing more, and how often.</span></li>
+        <li data-rv style="--d:.3s"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17l5-5 4 3 7-8"/><path d="M15 7h5v5"/></svg></span><b>Who’s gaining on you</b><span>Spot a rival climbing before it costs you customers.</span></li>
+      </ul>
     </div>
   </div>
 </section>
@@ -991,48 +1103,54 @@ footer .bottom nav { display: flex; gap: 18px; }
 </section>
 
 <div class="seam-wrap" aria-hidden="true" style="background:linear-gradient(transparent 50%, var(--soft) 50%)">
-  <svg class="seam" viewBox="0 0 1440 150" preserveAspectRatio="none"><path d="M0 0 H1440 V40 L1000 135 L420 30 L0 110 Z" fill="#fff"/><path d="M0 110 L420 30 L1000 135 L1440 40" fill="none" stroke="url(#sg)" stroke-width="5" vector-effect="non-scaling-stroke"/></svg>
+  <svg class="seam" viewBox="0 0 1440 150" preserveAspectRatio="none"><path d="M0 0 H1440 V40 L1000 135 L420 30 L0 110 Z" fill="#fff"/><path d="M0 102 L420 24 L1000 131.9 L1440 39 L1440 41 L1000 138.1 L420 36 L0 118 Z" fill="url(#sg)"/></svg>
 </div>
 
 <!-- 7 · FINAL CTA -->
 <section class="cta" id="contact" aria-labelledby="h-cta" style="padding-top:clamp(28px,4vw,56px)">
   <div class="wrap">
-    <div class="copy">
-      <h2 id="h-cta" data-rv>See ReviewRani <span class="gt">in action.</span></h2>
-      <p class="lede" data-rv>Get a walkthrough of the live dashboard and an early look at what’s next.</p>
-      <form class="card" id="form" novalidate data-rv>
-        <div class="fgrid">
-          <label for="f-name">Name<input id="f-name" name="name" autocomplete="name" required></label>
-          <label for="f-mail">Work email<input id="f-mail" name="email" type="email" autocomplete="email" required></label>
-          <label for="f-co">Company<input id="f-co" name="company" autocomplete="organization" required></label>
-          <label for="f-n">Number of locations<select id="f-n" name="locations"><option>1–5</option><option>6–20</option><option>21–50</option><option>50+</option></select></label>
+    <div class="cbox" data-rv>
+      <div class="copy">
+        <span class="eb">Book a Demo</span>
+        <h2 id="h-cta">See ReviewRani in action.</h2>
+        <p class="lede">Tell us a little about your business and we’ll set up a time that suits you.</p>
+        <ul class="gets">
+          <li>A walkthrough of the live dashboard</li>
+          <li>Your multi-location questions answered</li>
+          <li>An early look at V3</li>
+        </ul>
+        <div class="mini" aria-hidden="true">
+          <span class="st">4.22 <i>★</i></span>
+          <span><b>18,420 reviews</b><small>24 locations · one view</small></span>
         </div>
+      </div>
+
+      <form class="card" id="form" novalidate>
+        <div class="fh"><h3>Tell us about your business</h3><p>It takes under a minute.</p></div>
+        <div class="fgrid">
+          <label for="f-name">Name<input id="f-name" name="name" autocomplete="name" placeholder="Your name" required></label>
+          <label for="f-mail">Work email<input id="f-mail" name="email" type="email" autocomplete="email" placeholder="you@company.com" required></label>
+          <label class="wide" for="f-co">Company<input id="f-co" name="company" autocomplete="organization" placeholder="Company name" required></label>
+        </div>
+        <fieldset>
+          <legend>Number of locations</legend>
+          <div class="chips-r">
+            <label><input type="radio" name="locations" value="1–5" checked><span>1–5</span></label>
+            <label><input type="radio" name="locations" value="6–20"><span>6–20</span></label>
+            <label><input type="radio" name="locations" value="21–50"><span>21–50</span></label>
+            <label><input type="radio" name="locations" value="50+"><span>50+</span></label>
+          </div>
+        </fieldset>
         <fieldset>
           <legend>I’m interested in</legend>
           <div class="seg">
-            <label><input type="radio" name="interest" value="demo" checked><span>A demo</span></label>
-            <label><input type="radio" name="interest" value="v3"><span>V3 <span class="soon-b">Soon</span></span></label>
+            <label><input type="radio" name="interest" value="demo" checked><span><b>A demo</b><small>The live dashboard</small></span></label>
+            <label><input type="radio" name="interest" value="v3"><span><b>V3 <span class="soon-b">Soon</span></b><small>What’s coming next</small></span></label>
           </div>
         </fieldset>
         <button class="btn" type="submit">Book a Demo <span class="ar">→</span></button>
         <p class="done" id="done" hidden>This is a design preview, so nothing was sent. On the live site this form reaches the team.</p>
       </form>
-    </div>
-    <div class="art" data-rv style="--d:.15s">
-      <div class="win" role="img" aria-label="The ReviewRani News Feed, with sample data"><div class="bar"><i></i><i></i><i></i><span>ReviewRani · News Feed</span></div>
-        <div class="app"><div class="sb" data-on="News Feed"></div>
-          <div class="mn">
-            <div class="hd"><h6>News Feed<small>All locations</small></h6><div class="chp"><span class="on">All</span><span>WhatsApp</span><span>Email</span><span>SMS</span></div></div>
-            <div class="feed">
-              <div><i class="c-wa">W</i><span><b>Weekly report sent</b><small>Tirupati Central · branch manager</small></span><em>9:00 am</em></div>
-              <div><i class="c-em">E</i><span><b>Achievement: 4.4★ reached</b><small>Ongole Ring Road · cluster head</small></span><em>Yesterday</em></div>
-              <div><i class="c-sms">S</i><span><b>Alert: 3 low ratings today</b><small>Kadapa Highway · branch manager</small></span><em>Yesterday</em></div>
-              <div><i class="c-wa">W</i><span><b>Monthly report sent</b><small>All locations · head office</small></span><em>1 Oct</em></div>
-              <div><i class="c-em">E</i><span><b>Alert: reviews down 40%</b><small>Nellore Bypass · branch manager</small></span><em>29 Sep</em></div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -1040,17 +1158,26 @@ footer .bottom nav { display: flex; gap: 18px; }
 </main>
 
 <footer>
-  <div class="wrap">
-    <div class="top">
-      <div style="display:grid;gap:14px;align-content:start">
+  <svg class="fedge" viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true"><path d="M0 150 L380 12 L1440 140 V160 H0 Z" fill="var(--ink)"/><path d="M0 150 L380 12 L1440 140 L1440 138 L380 -1.8 L0 132 Z" fill="url(#sg)"/></svg>
+  <div class="fbody">
+    <div class="wrap">
+      <div class="ftop">
         <a class="brand" href="#top"><svg aria-hidden="true"><use href="#crown"/></svg>ReviewRani</a>
-        <p style="max-width:36ch">Clear performance insights from customer reviews, for every location, cluster and your whole business.</p>
+        <div class="fcta">
+          <p>See every location, clearly.</p>
+          <a class="btn light" href="#contact" data-interest="demo">Book a Demo <span class="ar">→</span></a>
+        </div>
       </div>
-      <div><h4>Product</h4><ul><li><a href="#product">Product</a></li><li><a href="#scale">Multi-location</a></li><li><a href="#v3">What’s next</a></li></ul></div>
-      <div><h4>Get in touch</h4><ul><li><a href="#contact" data-interest="demo">Book a Demo</a></li><li><a href="#contact">Contact</a></li><!-- TODO: contact email --><li><a href="#" data-signin>Sign in</a></li></ul></div>
-      <div><h4>A SalesRaja product</h4><ul><li>ReviewRani</li><li>LeadsRaja</li><li>WebRani</li></ul></div>
+      <div class="fmain">
+        <p class="fabout">Clear performance insights from customer reviews, for every location, cluster and your whole business.</p>
+        <div class="fcols">
+          <div><h4>Product</h4><ul><li><a href="#product">Product</a></li><li><a href="#scale">Multi-location</a></li><li><a href="#compete">Competitor analysis</a></li><li><a href="#v3">What’s next</a></li></ul></div>
+          <div><h4>Get in touch</h4><ul><li><a href="#contact" data-interest="demo">Book a Demo</a></li><li><a href="#contact">Contact</a></li><!-- TODO: contact email --><li><a href="#" data-signin>Sign in</a></li></ul></div>
+          <div><h4>A SalesRaja product</h4><ul><li>ReviewRani</li><li>LeadsRaja</li><li>WebRani</li></ul></div>
+        </div>
+      </div>
+      <div class="bottom"><span>© ReviewRani · product screens show sample data</span><nav aria-label="Legal"><!-- TODO: link the existing legal documents --><a href="#">Privacy</a><a href="#">Terms</a></nav></div>
     </div>
-    <div class="bottom"><span>© ReviewRani · product screens show sample data</span><nav aria-label="Legal"><!-- TODO: link the existing legal documents --><a href="#">Privacy</a><a href="#">Terms</a></nav></div>
   </div>
 </footer>
 
@@ -1220,6 +1347,50 @@ footer .bottom nav { display: flex; gap: 18px; }
   onScroll();
   addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
   addEventListener('resize', onScroll);
+
+  /* competitor board: switch location, rows re-rank with a FLIP move */
+  var CMP = [
+    { loc: 'Kadapa Highway', rows: [['A', 4.32, 1140, .12], ['you', 4.02, 962, -.05], ['B', 3.87, 615, .21], ['C', 3.61, 408, -.03]],
+      you: [4.12, 4.10, 4.09, 4.07, 4.07, 4.02], avg: [3.80, 3.82, 3.85, 3.88, 3.90, 3.93], note: ['dn', 'Competitor B is closing the gap: +0.21 this month.'] },
+    { loc: 'Tirupati Central', rows: [['you', 4.41, 1512, .06], ['A', 4.24, 1980, .02], ['B', 4.05, 720, -.04], ['C', 3.78, 390, .01]],
+      you: [4.30, 4.32, 4.35, 4.36, 4.38, 4.41], avg: [4.00, 4.01, 4.02, 4.03, 4.02, 4.02], note: ['up', 'You lead nearby, but Competitor A has 31% more reviews.'] },
+    { loc: 'Nellore Bypass', rows: [['A', 4.36, 870, .08], ['B', 4.12, 1230, .10], ['you', 4.02, 744, -.02], ['C', 3.70, 515, -.06]],
+      you: [4.10, 4.08, 4.06, 4.05, 4.04, 4.02], avg: [3.95, 3.98, 4.00, 4.03, 4.05, 4.06], note: ['dn', 'Two competitors are ahead, and both are still climbing.'] }
+  ];
+  var crows = $('#crows'), locBtns = $$('.locs button');
+  var line = function (vs, lo, hi) { return vs.map(function (v, i) { return (i ? 'L' : 'M') + i * 60 + ' ' + (92 - (v - lo) / (hi - lo) * 84).toFixed(1); }).join(' '); };
+  var cmpShow = function (n) {
+    var d = CMP[n], first = {};
+    locBtns.forEach(function (b, k) { b.setAttribute('aria-pressed', k === n); });
+    $$('.cr', crows).forEach(function (r) { first[r.dataset.k] = r.getBoundingClientRect().top; });
+    d.rows.forEach(function (x) {
+      var r = $('[data-k="' + x[0] + '"]', crows), c = r.children;
+      c[0].textContent = x[0] === 'you' ? d.loc : 'Competitor ' + x[0];
+      c[1].firstChild.style.setProperty('--w', Math.round((x[1] - 3.2) / 1.4 * 100) + '%');
+      c[2].textContent = x[1].toFixed(2);
+      c[3].textContent = x[2].toLocaleString('en-IN');
+      c[4].className = x[3] >= 0 ? 'up' : 'dn';
+      c[4].textContent = (x[3] >= 0 ? '▲ ' : '▼ ') + Math.abs(x[3]).toFixed(2);
+      crows.appendChild(r);
+    });
+    if (!still) $$('.cr', crows).forEach(function (r) {
+      var dy = first[r.dataset.k] - r.getBoundingClientRect().top;
+      if (!dy) return;
+      r.style.transition = 'none'; r.style.transform = 'translateY(' + dy + 'px)';
+      requestAnimationFrame(function () { requestAnimationFrame(function () { r.style.transition = 'transform .6s cubic-bezier(.2,.7,.2,1)'; r.style.transform = ''; }); });
+    });
+    var pos = d.rows.map(function (x) { return x[0]; }).indexOf('you') + 1;
+    $('#rank').innerHTML = '#' + pos + ' <small>of ' + d.rows.length + ' nearby</small>';
+    var all = d.you.concat(d.avg), lo = Math.min.apply(0, all) - .05, hi = Math.max.apply(0, all) + .05;
+    var ly = line(d.you, lo, hi);
+    $('#c-you').setAttribute('d', ly); $('#c-avg').setAttribute('d', line(d.avg, lo, hi));
+    $('#c-area').setAttribute('d', ly + ' L300 100 L0 100 Z');
+    var note = $('#cnote'); note.className = 'note ' + d.note[0];
+    $('i', note).textContent = d.note[0] === 'up' ? '✓' : '!';
+    $('span', note).textContent = d.note[1];
+  };
+  locBtns.forEach(function (b, k) { b.addEventListener('click', function () { cmpShow(k); }); });
+  cmpShow(0);
 
   /* contact form: preview only */
   $('#form').addEventListener('submit', function (e) {
