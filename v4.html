@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>ReviewRani | Every review. Every location. One clear view.</title>
 <meta name="description" content="ReviewRani turns customer reviews into clear performance insights for every location, cluster and your whole business.">
-<link rel="icon" href="reviewrani-crown.svg">
+<link rel="icon" type="image/png" href="reviewrani-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap">
@@ -117,9 +117,9 @@ section { position: relative; padding-block: clamp(72px, 9vw, 120px); scroll-mar
 .thumb:hover img { transform: scale(1.02); }
 .play { position: absolute; z-index: 3; left: 50%; top: 50%; translate: -50% -50%; display: grid; place-items: center; padding: 8px; border-radius: 50%; background: rgba(255, 255, 255, .16); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); box-shadow: 0 18px 40px -12px rgba(0, 0, 0, .5); transition: transform .3s var(--ease); }
 .thumb:hover .play { transform: scale(1.06); }
-.play i { width: 64px; height: 64px; border-radius: 50%; background: var(--g-d); display: grid; place-items: center; }
-.play i::before { content: ""; border-left: 20px solid #fff; border-top: 12px solid transparent; border-bottom: 12px solid transparent; margin-left: 5px; }
-@media (prefers-reduced-motion: no-preference) { .play i { animation: ping 2.4s var(--ease) infinite; } @keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(143, 180, 232, .7); } 70%, 100% { box-shadow: 0 0 0 14px rgba(143, 180, 232, 0); } } }
+.play i { width: 64px; height: 64px; border-radius: 50%; background: #fff; display: grid; place-items: center; }
+.play i::before { content: ""; border-left: 20px solid var(--ink); border-top: 12px solid transparent; border-bottom: 12px solid transparent; margin-left: 5px; }
+@media (prefers-reduced-motion: no-preference) { .play i { animation: ping 2.4s var(--ease) infinite; } @keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, .6); } 70%, 100% { box-shadow: 0 0 0 14px rgba(255, 255, 255, 0); } } }
 
 /* ---------- product "screenshots": V2 screens drawn in HTML, sized off their own width ---------- */
 .win { border-radius: 18px; background: #fff; overflow: hidden; box-shadow: var(--shadow), 0 0 0 1px rgba(29, 62, 99, .07); container-type: inline-size; }
@@ -232,6 +232,9 @@ section { position: relative; padding-block: clamp(72px, 9vw, 120px); scroll-mar
 /* slanted seam, as on v3 */
 .seam { display: block; width: 100%; height: clamp(60px, 10vw, 150px); }
 .seam-wrap { position: relative; line-height: 0; }
+/* gradient ribbons draw left to right as they scroll into view */
+.rib-track { fill: rgba(90, 75, 224, .12); }
+.rib { clip-path: inset(0 calc(100% - var(--p, 1) * 100%) 0 0); }
 
 /* ---------- 3 · product: tabbed showcase ---------- */
 .prod .head { margin-bottom: clamp(36px, 5vw, 60px); }
@@ -473,10 +476,10 @@ footer .bottom nav { display: flex; gap: 18px; }
   .js [data-rv].in { opacity: 1; transform: none; }
   .js .split .rate { opacity: 0; transform: translateY(16px) scale(.9); transition: opacity .7s var(--ease), transform .8s var(--ease); }
   .js .split.in .rate { opacity: 1; transform: none; }
-  .js .split .wires path { stroke-dashoffset: 1; transition: stroke-dashoffset 1s var(--ease) .55s; }
+  .js .split .wires path { stroke-dashoffset: 1; transition: stroke-dashoffset .6s var(--ease) .25s; }
   .js .split.in .wires path { stroke-dashoffset: 0; }
-  .js .probs .prob { opacity: 0; transform: translateY(-24px); transition: opacity .8s var(--ease), transform .9s var(--ease); }
-  .js .probs.in .prob { opacity: 1; transform: none; transition-delay: calc(1.25s + var(--d, 0s)); }
+  .js .probs .prob { opacity: 0; transform: translateY(-24px); transition: opacity .6s var(--ease), transform .7s var(--ease); }
+  .js .probs.in .prob { opacity: 1; transform: none; transition-delay: calc(.45s + var(--d, 0s) * .6); }
   .bob { animation: bob 5s ease-in-out infinite; animation-delay: var(--b, 0s); }
   @keyframes bob { 50% { transform: translateY(-10px); } }
 }
@@ -708,7 +711,7 @@ footer .bottom nav { display: flex; gap: 18px; }
 </section>
 
 <div class="seam-wrap" aria-hidden="true">
-  <svg class="seam" viewBox="0 0 1440 150" preserveAspectRatio="none"><path d="M0 112 L340 13.7 L1000 136.9 L1440 39 L1440 41 L1000 143.1 L340 26.3 L0 128 Z" fill="url(#sg)"/></svg>
+  <svg data-fill class="seam" viewBox="0 0 1440 150" preserveAspectRatio="none"><path class="rib-track" d="M0 112 L340 13.7 L1000 136.9 L1440 39 L1440 41 L1000 143.1 L340 26.3 L0 128 Z"/><path class="rib" d="M0 112 L340 13.7 L1000 136.9 L1440 39 L1440 41 L1000 143.1 L340 26.3 L0 128 Z" fill="url(#sg)"/></svg>
 </div>
 
 <!-- 3 · PRODUCT (live today) -->
@@ -1100,7 +1103,7 @@ footer .bottom nav { display: flex; gap: 18px; }
 </section>
 
 <div class="seam-wrap" aria-hidden="true" style="background:var(--soft)">
-  <svg class="seam" viewBox="0 0 1440 150" preserveAspectRatio="none"><path d="M0 0 H1440 V40 L1000 135 L420 30 L0 110 Z" fill="#fff"/><path d="M0 102 L420 24 L1000 131.9 L1440 39 L1440 41 L1000 138.1 L420 36 L0 118 Z" fill="url(#sg)"/></svg>
+  <svg data-fill class="seam" viewBox="0 0 1440 150" preserveAspectRatio="none"><path d="M0 0 H1440 V40 L1000 135 L420 30 L0 110 Z" fill="#fff"/><path class="rib-track" d="M0 102 L420 24 L1000 131.9 L1440 39 L1440 41 L1000 138.1 L420 36 L0 118 Z"/><path class="rib" d="M0 102 L420 24 L1000 131.9 L1440 39 L1440 41 L1000 138.1 L420 36 L0 118 Z" fill="url(#sg)"/></svg>
 </div>
 
 <!-- 7 · FINAL CTA -->
@@ -1155,7 +1158,7 @@ footer .bottom nav { display: flex; gap: 18px; }
 </main>
 
 <footer>
-  <svg class="fedge" viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true"><path d="M0 150 L380 12 L1440 140 V160 H0 Z" fill="var(--ink)"/><path d="M0 150 L380 12 L1440 140 L1440 138 L380 -1.8 L0 132 Z" fill="url(#sg)"/></svg>
+  <svg data-fill class="fedge" viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true"><path d="M0 150 L380 12 L1440 140 V160 H0 Z" fill="var(--ink)"/><path class="rib-track" d="M0 150 L380 12 L1440 140 L1440 138 L380 -1.8 L0 132 Z"/><path class="rib" d="M0 150 L380 12 L1440 140 L1440 138 L380 -1.8 L0 132 Z" fill="url(#sg)"/></svg>
   <div class="fbody">
     <div class="wrap">
       <div class="ftop">
@@ -1335,11 +1338,23 @@ footer .bottom nav { display: flex; gap: 18px; }
     steps.forEach(function (s, k) { s.classList.toggle('on', k === on); });
   };
 
+  /* ribbons: fill from 0 when the line enters at the bottom to 1 by 35% from the top (or the page end) */
+  var fills = $$('[data-fill]');
+  var doFill = function () {
+    fills.forEach(function (f) {
+      var r = f.getBoundingClientRect(), mid = r.top + r.height / 2;
+      var maxY = document.documentElement.scrollHeight - innerHeight;
+      var end = Math.max(innerHeight * .35, mid + scrollY - maxY);   // a line near the page end finishes where scrolling stops
+      var p = still ? 1 : Math.min(1, Math.max(0, (innerHeight - mid) / Math.max(1, innerHeight - end)));
+      f.style.setProperty('--p', p.toFixed(3));
+    });
+  };
+
   var ticking = false;
   var onScroll = function () {
     ticking = false;
     nav.classList.toggle('scrolled', scrollY > 10);
-    setActive(); doZoom();
+    setActive(); doZoom(); doFill();
   };
   onScroll();
   addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
