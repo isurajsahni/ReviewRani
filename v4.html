@@ -38,6 +38,7 @@
   --gut: clamp(16px, 4vw, 40px);
   --max: 1340px;
   --navh: 84px;
+  --navo: 0px;   /* space a fixed nav would cover; 0 now the nav scrolls away */
   --ease: cubic-bezier(.2, .7, .2, 1);
   --shadow: 0 2px 4px rgba(29, 62, 99, .04), 0 24px 50px -24px rgba(29, 62, 99, .28);
   --shadow-sm: 0 1px 2px rgba(29, 62, 99, .05), 0 12px 26px -16px rgba(29, 62, 99, .3);
@@ -57,7 +58,7 @@ h2 { font-size: clamp(34px, 4.2vw, 56px); line-height: 1.1; }
 h3 { font-size: clamp(21px, 1.9vw, 25px); line-height: 1.2; }
 .gt { background: var(--g); -webkit-background-clip: text; background-clip: text; color: transparent; padding-bottom: .06em; }
 .wrap { max-width: var(--max); margin: 0 auto; padding-inline: var(--gut); }
-section { position: relative; padding-block: clamp(72px, 9vw, 120px); scroll-margin-top: var(--navh); }
+section { position: relative; padding-block: clamp(72px, 9vw, 120px); scroll-margin-top: var(--navo); }
 .center { text-align: center; display: grid; justify-items: center; gap: 20px; }
 .lede { font-size: clamp(17px, 1.4vw, 19px); max-width: 60ch; text-wrap: pretty; }
 :focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; border-radius: 8px; }
@@ -87,7 +88,7 @@ section { position: relative; padding-block: clamp(72px, 9vw, 120px); scroll-mar
 .stars { color: var(--gold); letter-spacing: 1px; }
 
 /* ---------- nav: transparent over the hero, solid after scroll ---------- */
-.nav { position: fixed; inset: 0 0 auto; z-index: 50; transition: background .3s, box-shadow .3s, backdrop-filter .3s; }
+.nav { position: absolute; inset: 0 0 auto; z-index: 50; transition: background .3s, box-shadow .3s, backdrop-filter .3s; }
 .nav.scrolled { background: rgba(255, 255, 255, .92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 8px 24px -18px rgba(29, 62, 99, .35); }
 .nav .wrap { display: flex; align-items: center; height: var(--navh); gap: 20px; }
 .brand { display: inline-flex; flex: none; text-decoration: none; }
@@ -451,7 +452,7 @@ section { position: relative; padding-block: clamp(72px, 9vw, 120px); scroll-mar
 .fx { padding-top: clamp(24px, 3vw, 48px); }
 .fx .head { margin-bottom: clamp(52px, 7vw, 96px); }
 .fx-list { display: grid; gap: clamp(96px, 11vw, 160px); }
-.fx-blk { display: grid; gap: clamp(32px, 4vw, 52px); min-width: 0; scroll-margin-top: calc(var(--navh) + 32px); }
+.fx-blk { display: grid; gap: clamp(32px, 4vw, 52px); min-width: 0; scroll-margin-top: calc(var(--navo) + 32px); }
 .fx-blk h3 { font-size: clamp(28px, 3vw, 42px); line-height: 1.12; }
 .fx-top { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px clamp(32px, 6vw, 96px); align-items: end; }
 .fx-top > div { display: grid; gap: 18px; justify-items: start; min-width: 0; }
@@ -680,16 +681,27 @@ section { position: relative; padding-block: clamp(72px, 9vw, 120px); scroll-mar
 /* ---------- 4 · multi-location: three-step zoom ---------- */
 .scale { padding-block: 0; }
 .zoom { height: 330vh; }
-.zstick { position: sticky; top: var(--navh); height: calc(100vh - var(--navh)); min-height: 560px; display: grid; align-items: center; overflow: hidden; padding-top: 40px; }
+.zstick { position: sticky; top: var(--navo); height: calc(100vh - var(--navo)); min-height: 600px; display: grid; align-items: center; overflow: hidden; padding-block: 40px; }
 .zgrid { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.5fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
-.zcopy { display: grid; gap: 20px; }
+.zcopy { display: grid; gap: 16px; }
+/* short laptop screens: the pinned copy column must fit, third level included */
+@media (min-width: 901px) and (max-height: 820px) {
+  .zstick { padding-block: 24px; }
+  .zcopy { gap: 12px; }
+  .zcopy h2 { font-size: clamp(30px, 6vh, 50px); }
+  .zcopy .lede { font-size: 16px; }
+  .lvls { margin-top: 2px; }
+  .lvls li { padding: 6px 0; }
+  .lvls b { font-size: 17px; }
+  .lvls span { font-size: 14px; line-height: 1.4; }
+}
 .lvls { display: grid; gap: 4px; margin-top: 10px; counter-reset: l; }
-.lvls li { list-style: none; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 2px 14px; padding: 12px 0; opacity: .45; transition: opacity .4s; }
+.lvls li { list-style: none; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 2px 14px; padding: 8px 0; opacity: .45; transition: opacity .4s; }
 .lvls li::before { counter-increment: l; content: counter(l); grid-row: span 2; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 14px; color: var(--ink); background: var(--soft); transition: background .4s, color .4s; }
 .lvls li.on { opacity: 1; }
 .lvls li.on::before { background: var(--g-d); color: #fff; }
 .lvls b { color: var(--ink); font-size: 18px; font-weight: 600; }
-.lvls span { font-size: 15px; }
+.lvls span { font-size: 15px; line-height: 1.5; }
 .lvls { padding: 0; margin-bottom: 0; }
 .zstage { position: relative; display: grid; }
 .zstage::before { content: ""; position: absolute; inset: 0 6%; border-radius: 50%; background: radial-gradient(closest-side, rgba(143, 180, 232, .5), rgba(45, 212, 191, .14) 60%, transparent); filter: blur(40px); }
@@ -1150,6 +1162,121 @@ footer .bottom nav { display: flex; gap: 18px; }
   </div>
 </section>
 
+<!-- 2c · MULTI-LOCATION: one dashboard at every level -->
+<section class="scale" id="scale" aria-labelledby="h-scale">
+  <div class="zoom" id="zoom">
+    <div class="zstick">
+      <div class="wrap zgrid">
+        <div class="zcopy">
+          <span class="tag plain" data-rv>One dashboard, every level</span>
+          <h2 id="h-scale" data-rv>From one branch to <span class="gt">your whole network.</span></h2>
+          <p class="lede" data-rv>The same dashboard for a branch manager, a city head and the owner. Switch the scope and every number follows you.</p>
+          <ol class="lvls" id="lvls">
+            <li class="on"><b>Location</b><span>The branch manager sees their rating, their reviews and what to do today.</span></li>
+            <li><b>Cluster</b><span>A city head sees every branch side by side, and the issues they share.</span></li>
+            <li><b>Enterprise</b><span>The owner sees every cluster, and where the network stands against rivals.</span></li>
+          </ol>
+        </div>
+        <div class="zstage prod" id="zstage">
+          <!-- each level is drawn in the v3 dashboard's tokens (.prod .win) -->
+          <div class="lvl" data-lvl="0">
+            <span class="lab"><i style="background-image:url(v2-img/manager.jpg)"></i>Location</span>
+            <div class="win" role="img" aria-label="Location overview for Powai, with sample data"><div class="bar"><i></i><i></i><i></i><span>ReviewRani · Overview · Powai</span></div>
+              <div class="app"><div class="sb" data-v3="loc" data-name="Powai" data-on="Overview"></div>
+                <div class="mn">
+                  <div class="hd"><h6>Overview<small>Powai · Mumbai · last 30 days</small></h6><div class="chp"><span class="on">Location</span><span>Cluster</span><span>Enterprise</span></div></div>
+                  <div class="kp">
+                    <div class="k f-g"><span>Google rating</span><b>4.31</b><em>On track · 2,140 reviews</em></div>
+                    <div class="k f-a"><span>This period</span><b>3.88</b><em>Needs improvement</em></div>
+                    <div class="k"><span>Waiting for a reply</span><b>12</b><em>Oldest 6 days</em></div>
+                    <div class="k"><span>Reviews to 4.4</span><b>14</b><em>Five-star reviews needed</em></div>
+                  </div>
+                  <div class="g2">
+                    <div class="pn"><h6>Google rating against this period <b>month by month</b></h6>
+                      <svg class="ch" viewBox="0 0 600 160" preserveAspectRatio="none">
+                        <path d="M0 20H600M0 60H600M0 100H600M0 140H600" stroke="var(--grid)" stroke-width="1" vector-effect="non-scaling-stroke"/>
+                        <g fill="var(--navy-d2)"><rect x="28" y="44" width="56" height="96" rx="5"/><rect x="128" y="50" width="56" height="90" rx="5"/><rect x="228" y="65.6" width="56" height="74.4" rx="5"/><rect x="328" y="80" width="56" height="60" rx="5"/><rect x="428" y="98" width="56" height="42" rx="5"/><rect x="528" y="106.4" width="56" height="33.6" rx="5" fill="var(--amber)"/></g>
+                        <path d="M0 49 L600 55" stroke="var(--navy)" stroke-width="3" stroke-linecap="round" fill="none" vector-effect="non-scaling-stroke"/>
+                      </svg>
+                    </div>
+                    <div class="pn"><h6>What needs doing today</h6>
+                      <div class="rw"><span class="nm">Billing wait to fix</span><div class="tk"><i style="--w:90%;--c:var(--red)"></i></div><span class="v">High</span></div>
+                      <div class="rw"><span class="nm">Reviews waiting</span><div class="tk"><i style="--w:60%;--c:var(--amber)"></i></div><span class="v">12</span></div>
+                      <div class="rw"><span class="nm">Customers to ask</span><div class="tk"><i style="--w:45%;--c:var(--navy)"></i></div><span class="v">140</span></div>
+                      <div class="rw"><span class="nm">Rank in Mumbai</span><div class="tk"><i style="--w:15%;--c:var(--navy)"></i></div><span class="v">#16</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lvl" data-lvl="1">
+            <span class="lab"><i style="background-image:url(v2-img/team.jpg)"></i>Cluster</span>
+            <div class="win" role="img" aria-label="Cluster overview for Mumbai, comparing its branches, with sample data"><div class="bar"><i></i><i></i><i></i><span>ReviewRani · Overview · Mumbai</span></div>
+              <div class="app"><div class="sb" data-v3="cl" data-name="Mumbai" data-on="Overview"></div>
+                <div class="mn">
+                  <div class="hd"><h6>Overview<small>Mumbai · 16 locations · last 30 days</small></h6><div class="chp"><span>Location</span><span class="on">Cluster</span><span>Enterprise</span></div></div>
+                  <div class="kp">
+                    <div class="k"><span>Cluster rating</span><b>4.16</b><em>▲ 0.03 this period</em></div>
+                    <div class="k f-a"><span>Falling</span><b>4</b><em>Branches below lifetime</em></div>
+                    <div class="k"><span>Open issues</span><b>5</b><em>2 shared across branches</em></div>
+                    <div class="k"><span>Reply rate</span><b>91%</b><em>Within 2 days</em></div>
+                  </div>
+                  <div class="g2">
+                    <div class="pn"><h6>Branches side by side <b>this period</b></h6>
+                      <div class="tiles">
+                        <div class="tile"><span>Andheri West</span><b>4.41</b><div class="tk"><i style="--w:88%;--c:var(--green)"></i></div></div>
+                        <div class="tile"><span>Thane</span><b>4.27</b><div class="tk"><i style="--w:85%;--c:var(--green)"></i></div></div>
+                        <div class="tile"><span>Bandra</span><b>4.18</b><div class="tk"><i style="--w:83%;--c:var(--navy)"></i></div></div>
+                        <div class="tile"><span>Kurla</span><b>4.02</b><div class="tk"><i style="--w:80%;--c:var(--navy)"></i></div></div>
+                        <div class="tile"><span>Chembur</span><b>3.98</b><div class="tk"><i style="--w:79%;--c:var(--amber)"></i></div></div>
+                        <div class="tile hl"><span>Powai</span><b>3.90</b><div class="tk"><i style="--w:76%;--c:var(--red)"></i></div></div>
+                      </div>
+                    </div>
+                    <div class="pn"><h6>Issues shared across branches</h6>
+                      <div class="rw"><span class="nm">Billing wait</span><div class="tk"><i style="--w:69%;--c:var(--red)"></i></div><span class="v">11</span></div>
+                      <div class="rw"><span class="nm">Delivery slots</span><div class="tk"><i style="--w:38%;--c:var(--amber)"></i></div><span class="v">6</span></div>
+                      <div class="rw"><span class="nm">Parking</span><div class="tk"><i style="--w:13%;--c:var(--navy)"></i></div><span class="v">2</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lvl" data-lvl="2">
+            <span class="lab"><i style="background-image:url(v2-img/owner.jpg)"></i>Enterprise</span>
+            <div class="win" role="img" aria-label="Enterprise overview across three clusters, with sample data"><div class="bar"><i></i><i></i><i></i><span>ReviewRani · Overview · All locations</span></div>
+              <div class="app"><div class="sb" data-v3="ent" data-name="All locations" data-on="Overview"></div>
+                <div class="mn">
+                  <div class="hd"><h6>Overview<small>All locations · 3 clusters · 47 locations</small></h6><div class="chp"><span>Location</span><span>Cluster</span><span class="on">Enterprise</span></div></div>
+                  <div class="kp">
+                    <div class="k f-g"><span>Network rating</span><b>4.22</b><em>▲ 0.06 this period</em></div>
+                    <div class="k"><span>Reviews this month</span><b>3,840</b><em>Across 47 locations</em></div>
+                    <div class="k f-a"><span>Need attention</span><b>12</b><em>Falling, quiet or no replies</em></div>
+                    <div class="k"><span>#1 nearby</span><b>22</b><em>Locations ahead of every rival</em></div>
+                  </div>
+                  <div class="g2">
+                    <div class="pn"><h6>Cluster rankings <b>this period</b></h6>
+                      <div class="rw"><span class="nm">1 · Bangalore</span><div class="tk"><i style="--w:89%;--c:var(--green)"></i></div><span class="v">4.34</span></div>
+                      <div class="rw"><span class="nm">2 · Mumbai</span><div class="tk"><i style="--w:84%;--c:var(--navy)"></i></div><span class="v">4.16</span></div>
+                      <div class="rw"><span class="nm">3 · Delhi NCR</span><div class="tk"><i style="--w:82%;--c:var(--amber)"></i></div><span class="v">4.11</span></div>
+                    </div>
+                    <div class="pn"><h6>Against nearby competitors</h6>
+                      <div class="rw"><span class="nm">Ahead of average</span><div class="tk"><i style="--w:66%;--c:var(--green)"></i></div><span class="v">31</span></div>
+                      <div class="rw"><span class="nm">Behind a rival</span><div class="tk"><i style="--w:34%;--c:var(--red)"></i></div><span class="v">16</span></div>
+                      <div class="rw"><span class="nm">Rival closing in</span><div class="tk"><i style="--w:15%;--c:var(--amber)"></i></div><span class="v">7</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- 3 · PRODUCT (hidden for now): the six v3 features, as tabs. Screens are drawn in the v3 dashboard's own tokens (see .prod .win) -->
 <section class="prod" id="product" aria-labelledby="h-prod" hidden style="padding-top:clamp(36px,5vw,64px)">
   <div class="wrap">
@@ -1580,121 +1707,6 @@ footer .bottom nav { display: flex; gap: 18px; }
   </div>
 </section>
 
-<!-- 4 · MULTI-LOCATION -->
-<section class="scale" id="scale" aria-labelledby="h-scale">
-  <div class="zoom" id="zoom">
-    <div class="zstick">
-      <div class="wrap zgrid">
-        <div class="zcopy">
-          <span class="tag plain" data-rv>One dashboard, every level</span>
-          <h2 id="h-scale" data-rv>From one branch to <span class="gt">your whole network.</span></h2>
-          <p class="lede" data-rv>The same dashboard for a branch manager, a city head and the owner. Switch the scope and every number follows you.</p>
-          <ol class="lvls" id="lvls">
-            <li class="on"><b>Location</b><span>The branch manager sees their rating, their reviews and what to do today.</span></li>
-            <li><b>Cluster</b><span>A city head sees every branch side by side, and the issues they share.</span></li>
-            <li><b>Enterprise</b><span>The owner sees every cluster, and where the network stands against rivals.</span></li>
-          </ol>
-        </div>
-        <div class="zstage prod" id="zstage">
-          <!-- each level is drawn in the v3 dashboard's tokens (.prod .win) -->
-          <div class="lvl" data-lvl="0">
-            <span class="lab"><i style="background-image:url(v2-img/manager.jpg)"></i>Location</span>
-            <div class="win" role="img" aria-label="Location overview for Powai, with sample data"><div class="bar"><i></i><i></i><i></i><span>ReviewRani · Overview · Powai</span></div>
-              <div class="app"><div class="sb" data-v3="loc" data-name="Powai" data-on="Overview"></div>
-                <div class="mn">
-                  <div class="hd"><h6>Overview<small>Powai · Mumbai · last 30 days</small></h6><div class="chp"><span class="on">Location</span><span>Cluster</span><span>Enterprise</span></div></div>
-                  <div class="kp">
-                    <div class="k f-g"><span>Google rating</span><b>4.31</b><em>On track · 2,140 reviews</em></div>
-                    <div class="k f-a"><span>This period</span><b>3.88</b><em>Needs improvement</em></div>
-                    <div class="k"><span>Waiting for a reply</span><b>12</b><em>Oldest 6 days</em></div>
-                    <div class="k"><span>Reviews to 4.4</span><b>14</b><em>Five-star reviews needed</em></div>
-                  </div>
-                  <div class="g2">
-                    <div class="pn"><h6>Google rating against this period <b>month by month</b></h6>
-                      <svg class="ch" viewBox="0 0 600 160" preserveAspectRatio="none">
-                        <path d="M0 20H600M0 60H600M0 100H600M0 140H600" stroke="var(--grid)" stroke-width="1" vector-effect="non-scaling-stroke"/>
-                        <g fill="var(--navy-d2)"><rect x="28" y="44" width="56" height="96" rx="5"/><rect x="128" y="50" width="56" height="90" rx="5"/><rect x="228" y="65.6" width="56" height="74.4" rx="5"/><rect x="328" y="80" width="56" height="60" rx="5"/><rect x="428" y="98" width="56" height="42" rx="5"/><rect x="528" y="106.4" width="56" height="33.6" rx="5" fill="var(--amber)"/></g>
-                        <path d="M0 49 L600 55" stroke="var(--navy)" stroke-width="3" stroke-linecap="round" fill="none" vector-effect="non-scaling-stroke"/>
-                      </svg>
-                    </div>
-                    <div class="pn"><h6>What needs doing today</h6>
-                      <div class="rw"><span class="nm">Billing wait to fix</span><div class="tk"><i style="--w:90%;--c:var(--red)"></i></div><span class="v">High</span></div>
-                      <div class="rw"><span class="nm">Reviews waiting</span><div class="tk"><i style="--w:60%;--c:var(--amber)"></i></div><span class="v">12</span></div>
-                      <div class="rw"><span class="nm">Customers to ask</span><div class="tk"><i style="--w:45%;--c:var(--navy)"></i></div><span class="v">140</span></div>
-                      <div class="rw"><span class="nm">Rank in Mumbai</span><div class="tk"><i style="--w:15%;--c:var(--navy)"></i></div><span class="v">#16</span></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="lvl" data-lvl="1">
-            <span class="lab"><i style="background-image:url(v2-img/team.jpg)"></i>Cluster</span>
-            <div class="win" role="img" aria-label="Cluster overview for Mumbai, comparing its branches, with sample data"><div class="bar"><i></i><i></i><i></i><span>ReviewRani · Overview · Mumbai</span></div>
-              <div class="app"><div class="sb" data-v3="cl" data-name="Mumbai" data-on="Overview"></div>
-                <div class="mn">
-                  <div class="hd"><h6>Overview<small>Mumbai · 16 locations · last 30 days</small></h6><div class="chp"><span>Location</span><span class="on">Cluster</span><span>Enterprise</span></div></div>
-                  <div class="kp">
-                    <div class="k"><span>Cluster rating</span><b>4.16</b><em>▲ 0.03 this period</em></div>
-                    <div class="k f-a"><span>Falling</span><b>4</b><em>Branches below lifetime</em></div>
-                    <div class="k"><span>Open issues</span><b>5</b><em>2 shared across branches</em></div>
-                    <div class="k"><span>Reply rate</span><b>91%</b><em>Within 2 days</em></div>
-                  </div>
-                  <div class="g2">
-                    <div class="pn"><h6>Branches side by side <b>this period</b></h6>
-                      <div class="tiles">
-                        <div class="tile"><span>Andheri West</span><b>4.41</b><div class="tk"><i style="--w:88%;--c:var(--green)"></i></div></div>
-                        <div class="tile"><span>Thane</span><b>4.27</b><div class="tk"><i style="--w:85%;--c:var(--green)"></i></div></div>
-                        <div class="tile"><span>Bandra</span><b>4.18</b><div class="tk"><i style="--w:83%;--c:var(--navy)"></i></div></div>
-                        <div class="tile"><span>Kurla</span><b>4.02</b><div class="tk"><i style="--w:80%;--c:var(--navy)"></i></div></div>
-                        <div class="tile"><span>Chembur</span><b>3.98</b><div class="tk"><i style="--w:79%;--c:var(--amber)"></i></div></div>
-                        <div class="tile hl"><span>Powai</span><b>3.90</b><div class="tk"><i style="--w:76%;--c:var(--red)"></i></div></div>
-                      </div>
-                    </div>
-                    <div class="pn"><h6>Issues shared across branches</h6>
-                      <div class="rw"><span class="nm">Billing wait</span><div class="tk"><i style="--w:69%;--c:var(--red)"></i></div><span class="v">11</span></div>
-                      <div class="rw"><span class="nm">Delivery slots</span><div class="tk"><i style="--w:38%;--c:var(--amber)"></i></div><span class="v">6</span></div>
-                      <div class="rw"><span class="nm">Parking</span><div class="tk"><i style="--w:13%;--c:var(--navy)"></i></div><span class="v">2</span></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="lvl" data-lvl="2">
-            <span class="lab"><i style="background-image:url(v2-img/owner.jpg)"></i>Enterprise</span>
-            <div class="win" role="img" aria-label="Enterprise overview across three clusters, with sample data"><div class="bar"><i></i><i></i><i></i><span>ReviewRani · Overview · All locations</span></div>
-              <div class="app"><div class="sb" data-v3="ent" data-name="All locations" data-on="Overview"></div>
-                <div class="mn">
-                  <div class="hd"><h6>Overview<small>All locations · 3 clusters · 47 locations</small></h6><div class="chp"><span>Location</span><span>Cluster</span><span class="on">Enterprise</span></div></div>
-                  <div class="kp">
-                    <div class="k f-g"><span>Network rating</span><b>4.22</b><em>▲ 0.06 this period</em></div>
-                    <div class="k"><span>Reviews this month</span><b>3,840</b><em>Across 47 locations</em></div>
-                    <div class="k f-a"><span>Need attention</span><b>12</b><em>Falling, quiet or no replies</em></div>
-                    <div class="k"><span>#1 nearby</span><b>22</b><em>Locations ahead of every rival</em></div>
-                  </div>
-                  <div class="g2">
-                    <div class="pn"><h6>Cluster rankings <b>this period</b></h6>
-                      <div class="rw"><span class="nm">1 · Bangalore</span><div class="tk"><i style="--w:89%;--c:var(--green)"></i></div><span class="v">4.34</span></div>
-                      <div class="rw"><span class="nm">2 · Mumbai</span><div class="tk"><i style="--w:84%;--c:var(--navy)"></i></div><span class="v">4.16</span></div>
-                      <div class="rw"><span class="nm">3 · Delhi NCR</span><div class="tk"><i style="--w:82%;--c:var(--amber)"></i></div><span class="v">4.11</span></div>
-                    </div>
-                    <div class="pn"><h6>Against nearby competitors</h6>
-                      <div class="rw"><span class="nm">Ahead of average</span><div class="tk"><i style="--w:66%;--c:var(--green)"></i></div><span class="v">31</span></div>
-                      <div class="rw"><span class="nm">Behind a rival</span><div class="tk"><i style="--w:34%;--c:var(--red)"></i></div><span class="v">16</span></div>
-                      <div class="rw"><span class="nm">Rival closing in</span><div class="tk"><i style="--w:15%;--c:var(--amber)"></i></div><span class="v">7</span></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- 6 · WHAT'S NEXT (hidden for now; V3, coming soon: never present as live) -->
 <section id="v3" aria-labelledby="h-v3" hidden style="padding-top:clamp(56px,7vw,96px)">
   <div class="wrap">
@@ -1851,7 +1863,7 @@ footer .bottom nav { display: flex; gap: 18px; }
   var fine = matchMedia('(pointer: fine)').matches;
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
-  var navH = function () { return parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--navh')) || 84; };
+  var navH = function () { return parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--navo')) || 0; };
 
   if (SIGN_IN_URL) $$('[data-signin]').forEach(function (a) { a.href = SIGN_IN_URL; });
 
