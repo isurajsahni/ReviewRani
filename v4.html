@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>ReviewRani | Every review. Every location. One clear view.</title>
-<meta name="description" content="ReviewRani turns customer reviews into clear performance insights for every location, cluster and your whole business.">
+<title>ReviewRani | Better ratings at every location</title>
+<meta name="description" content="Better ratings at every location. See how every branch is really doing, what customers keep praising and complaining about, and which location needs you first.">
 <link rel="icon" type="image/png" href="reviewrani-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Geist:wght@400;600&family=Geist+Mono:wght@400;600&display=swap">
 <style>
 /* ReviewRani single-page landing, built to the "Single-Page Landing Blueprint" (Notion) in the v3 page's style:
    white page, brand navy ink, one brand gradient on the words that matter, soft panels and slanted gradient seams.
@@ -260,6 +260,120 @@ section { position: relative; padding-block: clamp(72px, 9vw, 120px); scroll-mar
 .tp .cap h3 { display: none; }
 .tp .cap p { font-size: 17px; }
 .dots { display: none; }
+/* product screens use the v3 dashboard's own tokens (v3 prototype: docs/reviewrani-tokens.css, light theme).
+   Redefining the page's names inside .prod .win recolours the shared screen classes for this section only. */
+.prod .win {
+  --ink: #17171C; --text: #5C5C67; --mute: #8A8A94; --line: #E4E4E8; --soft: #F4F4F6;
+  --navy: #1D3E63; --green: #2C6C65; --amber: #B45309; --red: #C62828;
+  --navy-s: rgba(29, 62, 99, .10); --green-s: rgba(44, 108, 101, .12); --amber-s: rgba(180, 83, 9, .10); --red-s: rgba(198, 40, 40, .09);
+  --navy-d2: rgba(29, 62, 99, .34); --grid: #EDEDF0; --card-raised: #F7F7F9;
+  --mono: 'Geist Mono', ui-monospace, monospace;
+  font-family: 'Geist', system-ui, sans-serif;
+}
+.prod .win .bar { background: #fff; }
+.prod .win .bar span { font-family: var(--font); }
+.prod .app { background: var(--soft); font-family: 'Geist', system-ui, sans-serif; min-height: 44em; }
+/* taller screen: the last row of panels stretches to fill it */
+.prod .mn { display: flex; flex-direction: column; }
+.prod .mn > :last-child { flex: 1; }
+.prod .pn svg.ch { height: 14em; }
+.prod .app h6 { letter-spacing: -.01em; }
+.prod .sb { background: #F2F2F4; }
+.prod .sb .lg { color: var(--navy); font-weight: 600; }
+.prod .sb .sw { display: flex; align-items: center; gap: .6em; background: var(--navy); color: #fff; border-radius: .7em; padding: .65em .8em; font-weight: 600; margin-bottom: .7em; white-space: nowrap; }
+.prod .sb .sw svg { width: 1.1em; height: 1.1em; opacity: .75; flex: none; fill: none; stroke: currentColor; stroke-width: 2; }
+.prod .sb .sw b { flex: 1; font-weight: 600; overflow: hidden; text-overflow: ellipsis; }
+.prod .sb .sw::after { content: ""; width: .45em; height: .45em; border: solid currentColor; border-width: 0 .15em .15em 0; transform: rotate(45deg) translateY(-.15em); opacity: .7; }
+.prod .sb span::before { display: none; }
+.prod .sb span svg { width: 1.05em; height: 1.05em; flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.prod .sb span.l3 { margin-left: 1.1em; border-left: 1px solid var(--line); border-radius: 0 .6em .6em 0; }
+.prod .sb span.on { background: var(--navy-s); color: var(--navy); }
+.prod .sb em { text-transform: none; letter-spacing: 0; font-size: .82em; }
+.prod .chp span { border-radius: .6em; color: var(--text); }
+.prod .chp span.on { background: var(--navy-s); color: var(--navy); border-color: transparent; font-weight: 600; }
+.prod .k { border-radius: .8em; }
+.prod .k span { color: var(--text); }
+.prod .k b { font-family: var(--mono); letter-spacing: -.03em; }
+.prod .k em { color: var(--mute); font-weight: 400; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* light-theme fill rule: a status is a solid fill with white ink */
+.prod .k.f-g, .prod .k.f-a { border-color: transparent; color: #fff; }
+.prod .k.f-g { background: var(--green); } .prod .k.f-a { background: var(--amber); }
+.prod .k.f-g span, .prod .k.f-g em, .prod .k.f-a span, .prod .k.f-a em { color: rgba(255, 255, 255, .85); }
+.prod .pn { border-radius: .8em; }
+.prod .pn h6 { text-transform: none; letter-spacing: 0; font-size: 1em; color: var(--ink); justify-content: flex-start; align-items: center; }
+.prod .pn h6 b { color: var(--mute); font-weight: 400; }
+.prod .rw .v, .prod .v-fn .v { font-family: var(--mono); }
+.prod .v-lg { display: flex; justify-content: space-between; font-size: .85em; color: var(--mute); }
+.v-bd { display: inline-flex; align-items: center; font-size: .85em; font-weight: 600; border-radius: 2em; padding: .2em .7em; white-space: nowrap; line-height: 1.4; }
+.v-bd.r { color: var(--red); background: var(--red-s); } .v-bd.a { color: var(--amber); background: var(--amber-s); }
+.v-bd.m { color: var(--text); background: var(--card-raised); box-shadow: inset 0 0 0 1px var(--line); }
+.v-tbl { width: 100%; border-collapse: collapse; }
+.v-tbl th, .v-tbl td { padding: .65em .6em; text-align: right; border-top: 1px solid var(--line); white-space: nowrap; }
+.v-tbl th:first-child, .v-tbl td:first-child { text-align: left; }
+.v-tbl thead th { border-top: 0; font-size: .85em; font-weight: 600; color: var(--mute); }
+.v-tbl td { font-family: var(--mono); color: var(--text); }
+.v-tbl td:first-child { font-family: inherit; color: var(--ink); font-weight: 600; }
+.v-tbl td small { display: block; font-weight: 400; color: var(--mute); font-size: .85em; }
+.v-tbl .dn { color: var(--red); } .v-tbl .up { color: var(--green); }
+.v-tbl .warn { color: var(--amber); font-weight: 600; } .v-tbl .crit { color: var(--red); font-weight: 600; }
+.v-tbl tr.dim { opacity: .35; }
+.v-li { display: flex; align-items: center; justify-content: space-between; gap: .8em; padding: .6em .7em; border-radius: .6em; border: 1px solid var(--line); }
+.v-li b { display: block; font-weight: 600; }
+.v-li small { color: var(--mute); }
+.v-li.on { border-color: var(--navy); box-shadow: 0 0 0 .2em var(--navy-s); }
+.v-li.crit { box-shadow: inset .3em 0 0 var(--red); border-color: rgba(198, 40, 40, .35); }
+.v-tag { display: flex; align-items: center; gap: .6em; }
+.v-tag i { width: 2em; height: 2em; border-radius: 50%; background: center / cover; flex: none; }
+.v-hist { list-style: none; margin: 0; padding: 0 0 0 1.1em; border-left: 2px solid var(--line); display: grid; gap: .55em; }
+.v-hist li { position: relative; }
+.v-hist li::before { content: ""; position: absolute; left: -1.55em; top: .35em; width: .7em; height: .7em; border-radius: 50%; background: #fff; border: 2px solid #CFCFD6; }
+.v-hist li.n::before { background: var(--navy); border-color: var(--navy); }
+.v-hist small { margin-left: .5em; color: var(--mute); font-family: var(--mono); }
+.v-btn { justify-self: start; background: var(--navy); color: #fff; border-radius: .6em; padding: .5em 1em; font-weight: 600; }
+.v-q { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: .8em; align-items: center; background: #fff; border: 1px solid var(--line); border-radius: .8em; padding: .75em 1em; }
+.v-q .ps { font-family: var(--mono); color: var(--mute); }
+.v-q .st { color: var(--navy); letter-spacing: .1em; }
+.v-q .tx { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.v-q .tx small { display: block; color: var(--mute); }
+.v-q.open { border-color: var(--navy); box-shadow: 0 0 0 .25em var(--navy-s); }
+.v-q .dr { grid-column: 1 / -1; display: grid; gap: .6em; border-top: 1px solid var(--line); padding-top: .8em; }
+.v-q .dr small { color: var(--mute); }
+.v-q .dr p { background: var(--card-raised); border-radius: .6em; padding: .8em 1em; color: var(--ink); }
+.v-q .acts { display: flex; gap: .6em; }
+.v-q .acts span { border-radius: .6em; padding: .45em 1em; font-weight: 600; border: 1px solid var(--line); color: var(--text); }
+.v-q .acts span.p { background: var(--navy); border-color: var(--navy); color: #fff; }
+.v-fld { border: 1px solid var(--line); border-radius: .6em; padding: .45em .8em; display: grid; }
+.v-fld small { color: var(--mute); font-size: .8em; }
+.v-ch { display: flex; gap: .4em; }
+.v-ch span { display: inline-flex; align-items: center; gap: .4em; border-radius: .6em; padding: .4em .8em; border: 1px solid var(--line); color: var(--text); }
+.v-ch span.on { background: var(--navy-s); color: var(--navy); border-color: transparent; font-weight: 600; }
+.v-ch svg { width: 1.1em; height: 1.1em; }
+.v-wa { background: #efe7de; border-radius: .8em; padding: .8em; display: grid; gap: .3em; }
+.v-wa b { font-size: .85em; color: var(--mute); font-weight: 600; }
+.v-wa span { color: #027eb5; font-weight: 600; border-top: 1px solid rgba(0, 0, 0, .08); padding-top: .4em; text-align: center; }
+.v-fn { display: grid; grid-template-columns: 5.5em minmax(0, 1fr) 3.5em; gap: .8em; align-items: center; }
+.v-fn .tk { height: 1.4em; border-radius: .4em; background: var(--grid); }
+.v-fn .tk i { border-radius: .4em; }
+.v-fn .v { text-align: right; font-weight: 600; }
+.v-gap { color: var(--amber); font-size: .85em; padding-left: 6.3em; }
+.v-read { background: var(--navy-s) !important; color: var(--navy) !important; border-color: transparent !important; font-weight: 600; }
+.v-chat { display: grid; gap: .8em; }
+.v-chat .q { justify-self: end; background: var(--navy-s); border-radius: 1em 1em .3em 1em; padding: .6em 1em; }
+.v-chat .a { display: grid; grid-template-columns: 2.2em minmax(0, 1fr); gap: .7em; align-items: start; max-width: 88%; }
+.v-chat .a .av svg { width: 2.2em; height: 2.2em; }
+.v-chat .a > div { background: #fff; border: 1px solid var(--line); border-radius: 1em 1em 1em .3em; padding: .8em 1em; line-height: 1.5; }
+.v-chat .a b { font-family: var(--mono); font-weight: 600; }
+.v-chat .a b.am { color: var(--amber); } .v-chat .a b.gr { color: var(--green); }
+.v-chat .go { display: table; margin-top: .6em; font-size: .9em; font-weight: 600; color: var(--navy); border: 1px solid var(--line); border-radius: 2em; padding: .25em .8em; }
+.v-ask { display: flex; align-items: center; gap: .7em; background: #fff; border: 1px solid var(--line); border-radius: 2em; padding: .5em .6em .5em 1.1em; color: var(--mute); }
+.v-ask b { margin-left: auto; width: 2em; height: 2em; border-radius: 50%; background: var(--navy); color: #fff; display: grid; place-items: center; }
+.tag.plain { color: var(--ink); background: #eaf1fc; }
+.tabs { overflow-x: auto; scrollbar-width: none; }
+.tabs::-webkit-scrollbar { display: none; }
+@container (max-width: 620px) {
+  .prod .v-tbl th:nth-child(n+4):not(:nth-child(7)), .prod .v-tbl td:nth-child(n+4):not(:nth-child(7)) { display: none; }
+}
+
 /* ---------- competitor analysis ---------- */
 .cmp .head { margin-bottom: clamp(32px, 4.5vw, 56px); }
 .cgrid { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, .75fr); gap: clamp(24px, 3.5vw, 48px); align-items: center; }
@@ -331,6 +445,237 @@ section { position: relative; padding-block: clamp(72px, 9vw, 120px); scroll-mar
 .alerts p { font-size: 15px; }
 .setup { margin-top: 18px; text-align: center; font-size: 15px; color: var(--text); }
 .setup b { color: var(--ink); font-weight: 600; }
+/* feature deep dives: the layout follows the amount of content.
+   Rich features (Analyse, Monitor, Fix) get a header plus a bento, signal cards or a step track;
+   light ones (Respond, Request) keep a split; Ask ReviewRani is centred. */
+.fx { padding-top: clamp(24px, 3vw, 48px); }
+.fx .head { margin-bottom: clamp(52px, 7vw, 96px); }
+.fx-list { display: grid; gap: clamp(96px, 11vw, 160px); }
+.fx-blk { display: grid; gap: clamp(32px, 4vw, 52px); min-width: 0; scroll-margin-top: calc(var(--navh) + 32px); }
+.fx-blk h3 { font-size: clamp(28px, 3vw, 42px); line-height: 1.12; }
+.fx-top { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px clamp(32px, 6vw, 96px); align-items: end; }
+.fx-top > div { display: grid; gap: 18px; justify-items: start; min-width: 0; }
+.fx-top p, .fx-copy > p, .fx-askp p { font-size: clamp(17px, 1.3vw, 18px); text-wrap: pretty; }
+.fx-eb { display: inline-flex; align-items: center; gap: 12px; font-size: 14px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #2f63b8; }
+.fx-eb .ic { width: 40px; height: 40px; border-radius: 12px; background: var(--g-d); display: grid; place-items: center; box-shadow: 0 10px 22px -10px rgba(47, 99, 184, .6); }
+.fx-eb .ic svg { width: 20px; height: 20px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+/* split (light content) */
+.fx-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr); gap: clamp(32px, 6vw, 96px); align-items: center; }
+.fx-row.rev { grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr); }
+.fx-row.rev .fx-copy { order: 2; }
+.fx-copy { display: grid; gap: 18px; justify-items: start; min-width: 0; max-width: 540px; }
+.fx-pts { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 12px; }
+.fx-pts li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 12px; font-size: 16px; line-height: 1.5; }
+.fx-pts li::before { content: ""; width: 22px; height: 22px; margin-top: 1px; border-radius: 50%; background: var(--ink) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 6.2 5 8.5l4.5-5' fill='none' stroke='%23fff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 11px no-repeat; }
+.fx-pts b { color: var(--ink); font-weight: 600; }
+.fx-copy .tlink { margin-top: 8px; }
+/* bento (Analyse) */
+.fx-bento { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+.fx-bc { display: grid; gap: 14px; align-content: start; min-width: 0; padding: 24px; border-radius: 24px; background: linear-gradient(180deg, #f3f7fd, #f7f8fb); box-shadow: inset 0 0 0 1px rgba(29, 62, 99, .06); }
+.fx-bc.big { grid-column: span 2; grid-row: span 2; }
+.fx-bc.wide { grid-column: span 2; }
+.fx-bc h4 { font-size: 19px; }
+.fx-bc > p { font-size: 15px; }
+.fx-bc .fx-card { max-width: none; box-shadow: var(--shadow-sm), 0 0 0 1px rgba(29, 62, 99, .06); }
+.fx-bc.big { grid-template-rows: auto auto minmax(0, 1fr); }
+.fx-bc.big .fx-card { grid-template-rows: auto minmax(150px, 1fr) auto; }
+.fx-perf svg { width: 100%; height: 100%; min-height: 150px; display: block; }
+.fx-perf .mo { display: flex; justify-content: space-around; font-size: 12px; color: var(--mute); }
+.fx-kv { display: flex; gap: 18px; flex-wrap: wrap; }
+.fx-kv div { display: grid; }
+.fx-kv small { font-size: 12px; color: var(--mute); }
+.fx-kv b { font-size: 24px; font-weight: 600; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.fx-stack { display: flex; height: 10px; border-radius: 10px; overflow: hidden; gap: 2px; }
+.fx-stack i { display: block; width: var(--w); background: var(--c); }
+.fx-leg { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 12px; color: var(--mute); }
+.fx-leg span::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--c); margin-right: 6px; }
+.fx-staff { display: flex; align-items: center; gap: 10px; }
+.fx-staff .dot { width: 32px; height: 32px; border-radius: 50%; flex: none; display: grid; place-items: center; font-size: 11px; font-weight: 700; color: #fff; background: var(--g-d); }
+.fx-staff small { display: block; font-size: 12px; color: var(--mute); }
+.fx-vis { position: relative; min-width: 0; display: grid; place-items: center; padding: clamp(64px, 6vw, 84px) clamp(20px, 4vw, 56px); border-radius: 28px; background: radial-gradient(rgba(47, 99, 184, .13) 1px, transparent 1.2px) 0 0 / 18px 18px, radial-gradient(120% 90% at 85% 0%, rgba(143, 180, 232, .45), transparent 60%), radial-gradient(90% 80% at 0% 100%, rgba(45, 212, 191, .16), transparent 60%), #f2f6fc; box-shadow: inset 0 0 0 1px rgba(29, 62, 99, .06); }
+.fx-card { position: relative; z-index: 1; width: 100%; max-width: 440px; display: grid; gap: 12px; background: #fff; border-radius: 18px; padding: 20px; font-size: 14px; line-height: 1.45; color: var(--ink); box-shadow: var(--shadow), 0 0 0 1px rgba(29, 62, 99, .06); }
+.fx-card h5 { display: flex; justify-content: space-between; gap: 10px; font-size: 12px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--mute); }
+.fx-card h5 b { font-weight: 600; color: #2f63b8; letter-spacing: 0; text-transform: none; }
+.fx-chip { position: absolute; z-index: 2; display: flex; align-items: center; gap: 10px; max-width: calc(100% - 32px); background: #fff; border-radius: 14px; padding: 10px 14px; font-size: 13px; line-height: 1.3; color: var(--ink); box-shadow: var(--shadow-sm), 0 0 0 1px rgba(29, 62, 99, .07); }
+.fx-chip small { display: block; font-size: 12px; color: var(--mute); }
+.fx-chip b { font-weight: 600; }
+.fx-chip.c1 { top: 18px; right: 18px; }
+.fx-chip.c2 { bottom: 18px; left: 18px; }
+.fx-chip .big { font-size: 22px; font-weight: 600; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.fx-chip .dot { width: 34px; height: 34px; border-radius: 50%; flex: none; display: grid; place-items: center; font-size: 12px; font-weight: 700; color: #fff; background: var(--g-d); }
+.fx-chip svg { width: 26px; height: 26px; flex: none; }
+.fx-pl { display: inline-flex; align-items: center; font-size: 12px; font-weight: 600; border-radius: 20px; padding: 3px 10px; white-space: nowrap; }
+.fx-pl.r { color: var(--red); background: var(--red-s); }
+.fx-pl.a { color: #b45309; background: #fdf1e3; }
+.fx-pl.g { color: var(--green); background: var(--green-s); }
+.fx-pl.v { color: var(--violet-d); background: var(--violet-s); }
+.fx-up { color: var(--green); font-weight: 600; }
+.fx-dn { color: var(--red); font-weight: 600; }
+/* analyse: theme bars */
+.fx-th { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) 2.6em; gap: 12px; align-items: center; }
+.fx-th .tk { height: 9px; }
+.fx-th span:last-child { text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; }
+/* monitor: branch rows */
+.fx-br { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 0; border-top: 1px solid var(--line); }
+.fx-br small { display: block; font-size: 12px; color: var(--mute); }
+/* fix: issue timeline */
+.fx-tl { list-style: none; margin: 0; padding: 0 0 0 18px; display: grid; gap: 10px; border-left: 2px solid var(--line); margin-left: 6px; }
+.fx-tl li { position: relative; }
+.fx-tl li::before { content: ""; position: absolute; left: -25px; top: 5px; width: 10px; height: 10px; border-radius: 50%; background: #fff; border: 2px solid #c9cede; }
+.fx-tl li.on::before { background: var(--green); border-color: var(--green); }
+.fx-tl small { color: var(--mute); }
+/* respond: review and draft */
+.fx-rv { display: grid; gap: 4px; }
+.fx-draft { background: var(--soft); border-radius: 12px; padding: 12px 14px; color: var(--text); }
+.fx-draft b { display: block; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--mute); margin-bottom: 4px; }
+.fx-acts { display: flex; justify-content: flex-end; gap: 8px; }
+.fx-acts span { border-radius: 20px; padding: 7px 14px; font-weight: 600; font-size: 13px; box-shadow: inset 0 0 0 1px var(--line); }
+.fx-acts span:last-child { background: var(--ink); color: #fff; box-shadow: none; }
+/* request: message preview */
+.fx-msg { background: #e7f6ec; border-radius: 14px 14px 14px 4px; padding: 12px 14px; display: grid; gap: 10px; }
+.fx-msg span { justify-self: start; background: #fff; color: #1f8f4e; font-weight: 600; border-radius: 20px; padding: 6px 14px; font-size: 13px; }
+.fx-chs { display: flex; gap: 8px; flex-wrap: wrap; }
+.fx-chs span { display: inline-flex; align-items: center; gap: 6px; border-radius: 20px; padding: 5px 12px; font-size: 13px; box-shadow: inset 0 0 0 1px var(--line); color: var(--text); }
+.fx-chs span.on { background: var(--ink); color: #fff; box-shadow: none; }
+.fx-chs svg { width: 15px; height: 15px; }
+.fx-qr { width: 34px; height: 34px; border-radius: 6px; flex: none; background: conic-gradient(var(--ink) 25%, #fff 0 50%, var(--ink) 0 75%, #fff 0) 0 0 / 11px 11px; box-shadow: 0 0 0 3px #fff, 0 0 0 4px var(--line); }
+/* ask: chat */
+.fx-q { justify-self: end; max-width: 85%; background: var(--ink); color: #fff; border-radius: 14px 14px 4px 14px; padding: 10px 14px; }
+.fx-a { max-width: 92%; background: var(--soft); border-radius: 14px 14px 14px 4px; padding: 12px 14px; display: grid; gap: 8px; color: var(--text); }
+.fx-a b { color: var(--ink); }
+.fx-a .tlink { font-size: 13px; }
+.fx-in { display: flex; align-items: center; justify-content: space-between; border-radius: 30px; padding: 6px 6px 6px 16px; color: var(--mute); box-shadow: inset 0 0 0 1px var(--line); }
+.fx-in i { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; font-style: normal; color: #fff; background: var(--ink); }
+@media (prefers-reduced-motion: no-preference) {
+  .fx-chip { animation: fxf 6s ease-in-out infinite; }
+  .fx-chip.c2 { animation-delay: -3s; }
+  @keyframes fxf { 50% { transform: translateY(-6px); } }
+}
+/* Monitor: a dashboard bento, with Competitor Analysis as its largest tile */
+.fx-dash { padding: clamp(12px, 1.6vw, 20px); border-radius: 32px; background: radial-gradient(rgba(47, 99, 184, .12) 1px, transparent 1.2px) 0 0 / 18px 18px, radial-gradient(120% 90% at 100% 0%, rgba(143, 180, 232, .4), transparent 60%), radial-gradient(90% 80% at 0% 100%, rgba(45, 212, 191, .14), transparent 60%), #f2f6fc; box-shadow: inset 0 0 0 1px rgba(29, 62, 99, .06); }
+.fx-dg { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(12px, 1.4vw, 18px); }
+.fx-t { display: grid; gap: 14px; align-content: start; min-width: 0; padding: 20px; border-radius: 22px; background: #fff; font-size: 14px; line-height: 1.45; color: var(--ink); box-shadow: 0 0 0 1px rgba(29, 62, 99, .07), 0 14px 30px -24px rgba(29, 62, 99, .4); }
+.fx-t > h4 { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; font-size: 16px; }
+.fx-t > h4 small { font-size: 12px; font-weight: 500; color: var(--mute); letter-spacing: 0; }
+.fx-t.cmp { grid-column: span 2; grid-row: span 3; }
+.fx-t.cmp .tag { justify-self: start; }
+.fx-t.cmp > h4 { display: block; font-size: clamp(19px, 1.6vw, 22px); line-height: 1.25; }
+.fx-t .board { padding: 0 0 14px; background: transparent; box-shadow: none; border-radius: 0; }
+.fx-t .board::before { display: none; }
+.fx-t .board .sd { right: 0; bottom: -4px; }
+.fx-t.sig, .fx-t.need { grid-column: span 2; }
+.fx-t.gap { grid-column: 1 / -1; }
+.fx-t > h4 + .fx-br { border-top: 0; padding-top: 0; }
+.fx-nt { font-size: 13px; color: var(--mute); }
+.fx-cn { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.fx-cn div { display: grid; gap: 2px; align-content: start; padding: 12px; border-radius: 14px; background: var(--soft); box-shadow: inset 0 3px 0 var(--c); }
+.fx-cn b { font-size: 26px; font-weight: 600; line-height: 1.15; color: var(--c); }
+.fx-cn span { font-size: 12.5px; line-height: 1.3; color: var(--text); }
+.fx-wa { display: grid; gap: 6px; padding: 12px 14px; border-radius: 4px 14px 14px 14px; background: #e7f6ec; }
+.fx-wa .h { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 13px; }
+.fx-wa svg { width: 18px; height: 18px; }
+.fx-wa small { justify-self: end; font-size: 11px; color: var(--mute); }
+.fx-vb { display: grid; gap: 9px; }
+.fx-vb div { display: grid; grid-template-columns: 7em minmax(0, 1fr) 2.2em; gap: 8px; align-items: center; font-size: 13px; }
+.fx-vb .tk { height: 8px; }
+.fx-vb span:last-child { text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; }
+.fx-gp { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.fx-gp > div { display: grid; gap: 10px; padding: 14px; border-radius: 16px; background: var(--soft); }
+.fx-gp .nm { display: flex; justify-content: space-between; gap: 8px; font-weight: 600; }
+.fx-gp .nm b { font-variant-numeric: tabular-nums; }
+.fx-mt { position: relative; height: 6px; border-radius: 6px; background: linear-gradient(90deg, #f6c9c1, #e6e8ef 50%, #bfe3da); }
+.fx-mt i { position: absolute; top: 50%; left: var(--p); width: 14px; height: 14px; border-radius: 50%; background: var(--ink); border: 3px solid #fff; transform: translate(-50%, -50%); box-shadow: 0 2px 6px rgba(29, 62, 99, .35); }
+.fx-gp .lr { display: flex; justify-content: space-between; gap: 8px; font-size: 12px; }
+/* Fix: an issue tracker; pick an issue to see its owner, mentions and history */
+.fx-trk { border-radius: 24px; background: #fff; overflow: hidden; box-shadow: var(--shadow), 0 0 0 1px rgba(29, 62, 99, .07); }
+.fx-bar { display: flex; align-items: center; gap: 6px; height: 38px; padding: 0 16px; border-bottom: 1px solid var(--line); }
+.fx-bar i { width: 10px; height: 10px; border-radius: 50%; background: #e3e5ee; }
+.fx-bar span { margin: 0 auto; font-size: 12px; color: var(--mute); background: var(--soft); border-radius: 20px; padding: 3px 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.fx-trk-b { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.3fr); min-height: 500px; }
+.fx-il { display: grid; align-content: start; gap: 8px; padding: 20px; background: #f7f8fb; border-right: 1px solid var(--line); }
+.fx-il h5, .fx-mn h6 { display: flex; justify-content: space-between; gap: 10px; font-size: 12px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--mute); }
+.fx-il h5 { margin-bottom: 4px; }
+.fx-il h5 b { color: #2f63b8; font-weight: 600; letter-spacing: 0; text-transform: none; }
+.fx-is { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 3px 10px; align-items: center; width: 100%; text-align: left; font: inherit; font-size: 15px; color: var(--ink); background: #fff; border: 0; border-radius: 14px; padding: 12px 14px; cursor: pointer; box-shadow: inset 0 0 0 1px var(--line); transition: box-shadow .2s; }
+.fx-is:hover { box-shadow: inset 0 0 0 1px #b9c9e4; }
+.fx-is[aria-pressed="true"] { box-shadow: inset 0 0 0 2px #2f63b8, var(--shadow-sm); }
+.fx-is b { font-weight: 600; }
+.fx-is small { font-size: 12px; color: var(--mute); }
+.fx-is .fx-pl { grid-row: span 2; }
+.fx-id { display: grid; gap: 16px; align-content: start; padding: 24px 26px; font-size: 14px; color: var(--ink); }
+.fx-id > * { animation: fxin .45s var(--ease) both; }
+.fx-id .tt { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.fx-id .tt h4 { font-size: 24px; }
+.fx-id .fx-nt { margin-top: -10px; font-size: 14px; }
+.fx-own { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 14px; background: var(--soft); }
+.fx-own .dot { width: 34px; height: 34px; border-radius: 50%; flex: none; display: grid; place-items: center; font-size: 12px; font-weight: 700; color: #fff; background: var(--g-d); }
+.fx-own b { font-weight: 600; }
+.fx-own small { display: block; font-size: 12px; color: var(--mute); }
+.fx-own .wa { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: #1f8f4e; background: #fff; border-radius: 20px; padding: 5px 10px; }
+.fx-own .wa svg { width: 15px; height: 15px; }
+.fx-mn { display: grid; gap: 8px; }
+.fx-mn svg { width: 100%; height: 80px; display: block; }
+.fx-id .fx-tl { min-height: 8.2em; align-content: start; margin-top: 4px; }
+.fx-tl li.a::before { background: #b45309; border-color: #b45309; }
+.fx-tl li.r::before { background: var(--red); border-color: var(--red); }
+.fx-tl li.b::before { background: #2f63b8; border-color: #2f63b8; }
+.fx-pl.n { color: var(--text); background: var(--soft); }
+.fx-why { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px clamp(18px, 3vw, 40px); }
+.fx-why li { display: grid; gap: 4px; align-content: start; padding-left: 18px; border-left: 2px solid #cfdcf0; }
+.fx-why b { color: var(--ink); font-weight: 600; font-size: 17px; }
+.fx-why span { font-size: 15px; }
+/* Respond: a live queue; the draft follows the review you pick */
+.fx-stats { display: flex; flex-wrap: wrap; gap: 10px 32px; }
+.fx-stats div { display: grid; }
+.fx-stats b { font-size: 28px; font-weight: 600; line-height: 1.15; letter-spacing: -.02em; color: var(--ink); font-variant-numeric: tabular-nums; }
+.fx-stats span { font-size: 13px; color: var(--mute); }
+.fx-rq { max-width: 480px; }
+.fx-q3 { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.fx-q3 button { display: grid; grid-template-columns: 26px minmax(0, 1fr) auto; gap: 2px 10px; align-items: center; width: 100%; text-align: left; font: inherit; font-size: 14px; color: var(--ink); background: transparent; border: 0; border-radius: 12px; padding: 10px; cursor: pointer; transition: background .25s; }
+.fx-q3 button:hover { background: var(--soft); }
+.fx-q3 button[aria-pressed="true"] { background: #eef3fb; }
+.fx-q3 .rk { grid-row: span 2; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font-size: 12px; font-weight: 700; color: var(--text); background: var(--soft); transition: background .25s, color .25s; }
+.fx-q3 [aria-pressed="true"] .rk { color: #fff; background: var(--ink); }
+.fx-q3 .tx { min-width: 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.4; }
+.fx-q3 .fx-pl { grid-column: 3; grid-row: 1 / span 2; }
+.fx-q3 small { grid-column: 2; font-size: 12px; color: var(--mute); }
+.fx-draft.swap > * { animation: fxin .45s var(--ease) both; }
+.fx-draft span { display: block; }
+@keyframes fxin { from { opacity: 0; transform: translateY(6px); } }
+/* Ask ReviewRani: a dark panel; pick a question and the answer card follows */
+.fx-askp { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: clamp(32px, 5vw, 72px); align-items: center; padding: clamp(28px, 5vw, 64px); border-radius: 32px; overflow: hidden; background: radial-gradient(80% 90% at 100% 0%, rgba(91, 143, 217, .45), transparent 60%), radial-gradient(70% 80% at 0% 100%, rgba(23, 179, 163, .25), transparent 60%), linear-gradient(135deg, #10233f, #1d3e63); }
+.fx-askp .l { display: grid; gap: 18px; justify-items: start; min-width: 0; }
+.fx-askp h3 { color: #fff; }
+.fx-askp .gt { background: linear-gradient(90deg, #9cc0f0, #5eead4); -webkit-background-clip: text; background-clip: text; }
+.fx-askp p { color: rgba(255, 255, 255, .78); }
+.fx-askp .fx-eb { color: #a9c5ee; }
+.fx-askp .fx-eb .ic { background: rgba(255, 255, 255, .12); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .22); }
+.fx-ex { display: flex; flex-wrap: wrap; gap: 8px; }
+.fx-ex small { width: 100%; font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: rgba(255, 255, 255, .55); }
+.fx-ex button { font: inherit; font-size: 14px; line-height: 1.35; text-align: left; color: #fff; background: rgba(255, 255, 255, .08); border: 0; border-radius: 999px; padding: 8px 14px; cursor: pointer; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .2); transition: background .2s, color .2s; }
+.fx-ex button:hover { background: rgba(255, 255, 255, .16); }
+.fx-ex button[aria-pressed="true"] { color: var(--ink); background: #fff; }
+.fx-askp .btn { margin-top: 6px; }
+.fx-chat { max-width: none; box-shadow: 0 40px 70px -36px rgba(0, 0, 0, .6); }
+.fx-chat .fx-a { min-height: 11.5em; align-content: start; }
+.fx-a .rws { display: grid; gap: 8px; }
+.fx-a .lk { display: flex; flex-wrap: wrap; gap: 6px; }
+.fx-a .lk span { font-size: 12px; font-weight: 600; color: #2f63b8; background: #fff; border-radius: 20px; padding: 4px 10px; box-shadow: inset 0 0 0 1px var(--line); }
+.fx-a > * { animation: fxin .45s var(--ease) both; }
+.fx-a.typing > * { display: none; }
+.fx-a.typing::before { content: "Reading 2,140 reviews…"; color: var(--mute); font-style: italic; }
+/* feature highlights: one card per v3 feature, each linking to its own section (sections to come) */
+.hl .head { margin-bottom: clamp(36px, 5vw, 60px); }
+.hl-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.hl-c { position: relative; display: flex; flex-direction: column; gap: 14px; min-width: 0; padding: 28px 28px 26px; border-radius: 24px; background: #fff; box-shadow: inset 0 0 0 1px var(--line), var(--shadow-sm); text-align: left; transition: transform .35s var(--ease), box-shadow .35s var(--ease); }
+.hl-c:hover { transform: translateY(-4px); box-shadow: inset 0 0 0 1px #cfdcf0, var(--shadow); }
+.hl-c .n { position: absolute; top: 26px; right: 28px; font-size: 14px; font-weight: 600; color: #c3c9d8; font-variant-numeric: tabular-nums; }
+.hl-c .ic { width: 48px; height: 48px; border-radius: 14px; background: var(--g-d); display: grid; place-items: center; box-shadow: 0 10px 22px -10px rgba(47, 99, 184, .6); }
+.hl-c .ic svg { width: 22px; height: 22px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.hl-c h3 { margin-top: 6px; }
+.hl-c p { font-size: 16px; text-wrap: pretty; }
+.hl-c .ticks { margin-bottom: 6px; }
+.hl-c .tlink { margin-top: auto; padding-top: 16px; border-top: 1px solid var(--line); }
 
 /* ---------- 4 · multi-location: three-step zoom ---------- */
 .scale { padding-block: 0; }
@@ -491,18 +836,26 @@ footer .bottom nav { display: flex; gap: 18px; }
 /* ---------- responsive ---------- */
 @media (max-width: 1080px) {
   .nav nav a { padding: 8px 9px; }
+  .tab { padding: 12px 16px; }
+  .tab .pg { left: 16px; right: 16px; }
   .bento { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .bc.big { grid-column: 1 / -1; grid-row: auto; }
 }
 @media (max-width: 960px) {
+  .fx-bento, .fx-dg { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .fx-t.cmp { grid-row: auto; }
+  .fx-gp { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .fx-bc.big { grid-row: auto; }
+  .hl-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .cgrid { grid-template-columns: minmax(0, 1fr); }
   .cmp .pts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .cmp .pts li { grid-template-columns: minmax(0, 1fr); }
   .cmp .pts .ic { grid-row: auto; margin-bottom: 6px; }
   .pt, .cbox { grid-template-columns: minmax(0, 1fr); }
   .mini { display: none; }
-  .tab { padding: 11px 16px; font-size: 15px; }
-  .tab .pg { left: 16px; right: 16px; }
+  .tab { padding: 11px 14px; font-size: 15px; gap: 7px; }
+  .tab .pg { left: 14px; right: 14px; }
+  .tab svg { display: none; }
   .probs { grid-template-columns: minmax(0, 1fr); max-width: 520px; margin-inline: auto; }
   .wires { height: 44px; }
   .wires path:not(:nth-child(2)) { display: none; }
@@ -526,6 +879,9 @@ footer .bottom nav { display: flex; gap: 18px; }
   .zcopy { text-align: center; justify-items: center; }
 }
 @media (max-width: 860px) {
+  .fx-top, .fx-row, .fx-row.rev, .fx-askp { grid-template-columns: minmax(0, 1fr); }
+  .fx-row.rev .fx-copy { order: 0; }
+  .fx-copy { max-width: 620px; }
   .nav nav, .nav .signin { display: none; }
   .nav .btn { margin-left: auto; padding: 12px 18px; font-size: 14px; }
   .menu-btn { display: inline-grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; border: 0; background: var(--soft); cursor: pointer; padding: 0; flex: none; }
@@ -542,6 +898,27 @@ footer .bottom nav { display: flex; gap: 18px; }
   .sheet a:last-child { border-bottom: 0; color: #2f63b8; font-weight: 600; font-size: 17px; }
 }
 @media (max-width: 720px) {
+  .fx-vis { padding: 76px 14px; border-radius: 22px; }
+  .fx-chip.c1 { top: 14px; right: 14px; }
+  .fx-chip.c2 { bottom: 14px; left: 14px; }
+  .fx-card { padding: 16px; }
+  .fx-bento, .fx-dg, .fx-trk-b, .fx-why { grid-template-columns: minmax(0, 1fr); }
+  .fx-t.cmp, .fx-t.sig, .fx-t.need, .fx-t.gap { grid-column: auto; }
+  .fx-cn { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .fx-gp { grid-template-columns: minmax(0, 1fr); }
+  .fx-dash { padding: 10px; border-radius: 24px; }
+  .fx-t { padding: 16px; }
+  .fx-il { display: flex; gap: 8px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; border-right: 0; border-bottom: 1px solid var(--line); padding: 14px; }
+  .fx-il::-webkit-scrollbar { display: none; }
+  .fx-il h5 { display: none; }
+  .fx-is { flex: 0 0 76%; scroll-snap-align: start; }
+  .fx-id { padding: 18px 16px; }
+  .fx-askp { padding: 28px 18px; border-radius: 24px; }
+  .fx-bc.big, .fx-bc.wide { grid-column: auto; grid-row: auto; }
+  .fx-bc { padding: 20px; }
+  .hl-grid { grid-template-columns: minmax(0, 1fr); }
+  .hl-c { padding: 24px 22px 22px; }
+  .hl-c .n { top: 22px; right: 22px; }
   .center, .why .wrap { text-align: center; justify-items: center; }
   .btns { justify-content: center; }
   .tag { justify-self: center; }
@@ -625,9 +1002,8 @@ footer .bottom nav { display: flex; gap: 18px; }
   <div class="wrap">
     <a class="brand" href="#top"><img src="reviewrani-logo.png" width="195" height="74" alt="ReviewRani"></a>
     <nav aria-label="Sections">
-      <a href="#product">Product</a>
+      <a href="#features">Product</a>
       <a href="#scale">Multi-location</a>
-      <a href="#v3">What’s next <span class="soon-b">Soon</span></a>
       <a href="#contact">Contact</a>
     </nav>
     <!-- TODO: point Sign in at the live V2 dashboard login -->
@@ -636,9 +1012,8 @@ footer .bottom nav { display: flex; gap: 18px; }
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="sheet" aria-label="Open menu"><span></span></button>
   </div>
   <div class="sheet" id="sheet">
-    <a href="#product">Product</a>
+    <a href="#features">Product</a>
     <a href="#scale">Multi-location</a>
-    <a href="#v3">What’s next <span class="soon-b">Soon</span></a>
     <a href="#contact">Contact</a>
     <a href="#" data-signin>Sign in</a>
   </div>
@@ -649,11 +1024,11 @@ footer .bottom nav { display: flex; gap: 18px; }
 <!-- 1 · HERO -->
 <section class="hero" id="hero-sec" aria-labelledby="h-hero">
   <div class="wrap">
-    <h1 id="h-hero" data-rv>Every review. Every location.<br><span class="gt">One clear view.</span></h1>
-    <p class="sub" data-rv style="--d:.1s">ReviewRani turns customer reviews into clear performance insights for every location, cluster and your whole business.</p>
+    <h1 id="h-hero" data-rv>Better ratings at every location.<br><span class="gt">Not just on average.</span></h1>
+    <p class="sub" data-rv style="--d:.1s">See how every branch is really doing, what customers keep praising and complaining about, and which location needs you first.</p>
     <div class="btns" data-rv style="--d:.2s">
       <a class="btn" href="#contact" data-interest="demo">Book a Demo <span class="ar">→</span></a>
-      <a class="btn ghost" href="#v3">See what’s next</a>
+      <a class="btn ghost" href="#features">Explore the product</a>
     </div>
 
     <div class="shot" data-rv style="--d:.3s">
@@ -685,7 +1060,7 @@ footer .bottom nav { display: flex; gap: 18px; }
           <div class="lg2"><span><i style="background:#1d3e63"></i>Lifetime 4.3</span><span><i style="background:#e0533d"></i>This month 3.6</span></div>
         </div></div>
         <h3><span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></span>It lags</h3>
-        <p>A lifetime average hides how a branch is doing now.</p>
+        <p>Kadapa Highway still shows 4.3, but this month it’s running at 3.6. Years of old reviews cushion the average, so by the time it moves, the damage is months old.</p>
       </article>
       <article class="prob" style="--d:.15s">
         <div class="box"><div class="ui one">
@@ -693,7 +1068,7 @@ footer .bottom nav { display: flex; gap: 18px; }
           <div class="chips"><span class="n">Billing wait</span><span class="p">Friendly staff</span><span class="n">Slow delivery</span><span class="p">Clean store</span><span class="n">No callback</span></div>
         </div></div>
         <h3><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8z"/></svg></span>It’s one number</h3>
-        <p>It can’t tell you what’s actually going wrong.</p>
+        <p>A 4.2 doesn’t say whether it’s the billing queue, a rude shift or late deliveries. Without the why, managers guess, and the same complaint keeps coming back.</p>
       </article>
       <article class="prob" style="--d:.3s">
         <div class="box"><div class="ui brs">
@@ -704,7 +1079,7 @@ footer .bottom nav { display: flex; gap: 18px; }
           <div class="b"><span>Ongole Ring Road</span><em>4.27</em><span class="up">▲</span></div>
         </div></div>
         <h3><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.4"/></svg></span>It’s one branch at a time</h3>
-        <p>Nobody above a location sees the pattern.</p>
+        <p>Each manager sees only their own branch. Nobody above them spots the same problem spreading across locations, or which branch is slipping fastest.</p>
       </article>
     </div>
   </div>
@@ -714,154 +1089,252 @@ footer .bottom nav { display: flex; gap: 18px; }
   <svg data-fill class="seam" viewBox="0 0 1440 150" preserveAspectRatio="none"><path class="rib-track" d="M0 112 L340 13.7 L1000 136.9 L1440 39 L1440 41 L1000 143.1 L340 26.3 L0 128 Z"/><path class="rib" d="M0 112 L340 13.7 L1000 136.9 L1440 39 L1440 41 L1000 143.1 L340 26.3 L0 128 Z" fill="url(#sg)"/></svg>
 </div>
 
-<!-- 3 · PRODUCT (live today) -->
-<section class="prod" id="product" aria-labelledby="h-prod" style="padding-top:clamp(36px,5vw,64px)">
+<!-- 2b · FEATURE HIGHLIGHTS: each card's CTA points at that feature's own section (#f-*), to be built -->
+<section class="hl" id="features" aria-labelledby="h-hl" style="padding-top:clamp(36px,5vw,64px)">
   <div class="wrap">
     <div class="center head">
-      <span class="tag" data-rv><i></i>Available now</span>
-      <h2 id="h-prod" data-rv>Your reputation data, <span class="gt">all in one place.</span></h2>
+      <span class="tag plain" data-rv>The product</span>
+      <h2 id="h-hl" data-rv>Six tools. <span class="gt">One job: better ratings.</span></h2>
+      <p class="lede" data-rv>See the problem, find the cause, fix it and win back the stars, from one branch to the whole network.</p>
+    </div>
+    <div class="hl-grid">
+      <article class="hl-c" data-rv style="--d:0.0s">
+        <span class="n" aria-hidden="true">01</span>
+        <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 19V11M11 19V5M17 19v-6M3 19h18"/></svg></span>
+        <h3>Analyse</h3>
+        <p>Find out why the rating is moving. Themes, staff mentions and the trend, for one branch or all of them.</p>
+        <div class="ticks"><span>Themes</span><span>Staff mentions</span><span>Rating trend</span></div>
+        <a class="tlink" href="#f-analyse">Explore Analyse <span class="ar">→</span></a>
+      </article>
+      <article class="hl-c" data-rv style="--d:0.1s">
+        <span class="n" aria-hidden="true">02</span>
+        <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2.5 12s3.5-6.5 9.5-6.5S21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.8"/></svg></span>
+        <h3>Monitor</h3>
+        <p>Spot the branch that has gone quiet, stopped replying or is close to a rating drop, and the rival gaining on it.</p>
+        <div class="ticks"><span>Falling branches</span><span>Reply gaps</span><span>Competitors</span></div>
+        <a class="tlink" href="#f-monitor">Explore Monitor <span class="ar">→</span></a>
+      </article>
+      <article class="hl-c" data-rv style="--d:0.2s">
+        <span class="n" aria-hidden="true">03</span>
+        <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14.7 5.3a4 4 0 0 0-5.2 5.2L4 16l4 4 5.5-5.5a4 4 0 0 0 5.2-5.2l-2.6 2.6-2.6-.6-.6-2.6z"/></svg></span>
+        <h3>Fix</h3>
+        <p>Turn a repeat complaint into an issue with an owner, a severity and a history, and see it resolved.</p>
+        <div class="ticks"><span>Owners</span><span>Severity</span><span>Escalation</span></div>
+        <a class="tlink" href="#f-fix">Explore Fix <span class="ar">→</span></a>
+      </article>
+      <article class="hl-c" data-rv style="--d:0.0s">
+        <span class="n" aria-hidden="true">04</span>
+        <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 7.5 4 12l5 4.5"/><path d="M4.5 12H14a6 6 0 0 1 6 6v.5"/></svg></span>
+        <h3>Respond</h3>
+        <p>Reply to every review, worst first, with a draft ready to copy and post on Google.</p>
+        <div class="ticks"><span>Priority queue</span><span>Ready drafts</span></div>
+        <a class="tlink" href="#f-respond">Explore Respond <span class="ar">→</span></a>
+      </article>
+      <article class="hl-c" data-rv style="--d:0.1s">
+        <span class="n" aria-hidden="true">05</span>
+        <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 3 10.5 13.5"/><path d="M21 3l-6.5 18-4-7.5L3 9.5z"/></svg></span>
+        <h3>Request</h3>
+        <p>Ask happy customers for a review on WhatsApp, email or SMS, one at a time or in bulk.</p>
+        <div class="ticks"><span>WhatsApp</span><span>Bulk sends</span><span>Counter card</span></div>
+        <a class="tlink" href="#f-request">Explore Request <span class="ar">→</span></a>
+      </article>
+      <article class="hl-c" data-rv style="--d:0.2s">
+        <span class="n" aria-hidden="true">06</span>
+        <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 8.5l4.5 5 4-7 4 7 4.5-5V17a1 1 0 0 1-1 1H4.5a1 1 0 0 1-1-1z"/></svg></span>
+        <h3>Ask ReviewRani</h3>
+        <p>Ask a question in plain words. The answer comes from your reviews and links to the detail.</p>
+        <div class="ticks"><span>Plain language</span><span>Linked answers</span></div>
+        <a class="tlink" href="#f-ask">Explore Ask ReviewRani <span class="ar">→</span></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 3 · PRODUCT (hidden for now): the six v3 features, as tabs. Screens are drawn in the v3 dashboard's own tokens (see .prod .win) -->
+<section class="prod" id="product" aria-labelledby="h-prod" hidden style="padding-top:clamp(36px,5vw,64px)">
+  <div class="wrap">
+    <div class="center head">
+      <span class="tag plain" data-rv>Features</span>
+      <h2 id="h-prod" data-rv>Everything after the review, <span class="gt">in one place.</span></h2>
     </div>
 
     <div class="pt" id="pt" data-rv>
-      <div class="tabs" role="tablist" aria-label="What you can do today">
+      <div class="tabs" role="tablist" aria-label="ReviewRani features">
         <button class="tab" role="tab" id="tab-0" aria-controls="tp-0" aria-selected="true">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17l5-5 4 3 7-8"/><path d="M15 7h5v5"/></svg>Performance
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19V11M11 19V5M17 19v-6M3 19h18"/></svg>Analyse
           <span class="pg"><i></i></span>
         </button>
         <button class="tab" role="tab" id="tab-1" aria-controls="tp-1" aria-selected="false" tabindex="-1">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14v10H10l-4 4v-4H5z"/></svg>Review Insights
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.5-6.5 9.5-6.5S21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.8"/></svg>Monitor
           <span class="pg"><i></i></span>
         </button>
         <button class="tab" role="tab" id="tab-2" aria-controls="tp-2" aria-selected="false" tabindex="-1">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.5" r="3.5"/><path d="M5 20c.8-3.6 3.6-5.5 7-5.5s6.2 1.9 7 5.5"/></svg>Products &amp; People
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 5.3a4 4 0 0 0-5.2 5.2L4 16l4 4 5.5-5.5a4 4 0 0 0 5.2-5.2l-2.6 2.6-2.6-.6-.6-2.6z"/></svg>Fix
           <span class="pg"><i></i></span>
         </button>
         <button class="tab" role="tab" id="tab-3" aria-controls="tp-3" aria-selected="false" tabindex="-1">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V12M12 20V5M19 20v-5"/></svg>Rankings
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7.5 4 12l5 4.5"/><path d="M4.5 12H14a6 6 0 0 1 6 6v.5"/></svg>Respond
+          <span class="pg"><i></i></span>
+        </button>
+        <button class="tab" role="tab" id="tab-4" aria-controls="tp-4" aria-selected="false" tabindex="-1">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 3 10.5 13.5"/><path d="M21 3l-6.5 18-4-7.5L3 9.5z"/></svg>Request
+          <span class="pg"><i></i></span>
+        </button>
+        <button class="tab" role="tab" id="tab-5" aria-controls="tp-5" aria-selected="false" tabindex="-1">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 8.5l4.5 5 4-7 4 7 4.5-5V17a1 1 0 0 1-1 1H4.5a1 1 0 0 1-1-1z"/></svg>Ask ReviewRani
           <span class="pg"><i></i></span>
         </button>
       </div>
 
       <div class="stage-col">
         <div class="stage" id="stage">
-          <!-- Performance -->
+          <!-- Analyse -->
           <div class="tp on" role="tabpanel" id="tp-0" aria-labelledby="tab-0">
-            <div class="cap"><h3>Performance</h3><p>Ratings, trends, and what new reviews would do to your score.</p></div>
-            <div class="win" aria-hidden="true"><div class="bar"><i></i><i></i><i></i><span>ReviewRani · Performance Analysis</span></div>
-              <div class="app"><div class="sb" data-on="Performance"></div>
+            <div class="cap"><h3>Analyse</h3><p>Know what customers really think: by theme, by staff member, and where the rating is heading.</p></div>
+            <div class="win" aria-hidden="true"><div class="bar"><i></i><i></i><i></i><span>ReviewRani · Analyse · Powai</span></div>
+              <div class="app"><div class="sb" data-v3="loc" data-name="Powai" data-on="Analyse"></div>
                 <div class="mn">
-                  <div class="hd"><h6>Performance Analysis<small>Tirupati Central</small></h6><div class="chp"><span class="on">Month on month</span><span>Year on year</span><span>Custom range</span></div></div>
+                  <div class="hd"><h6>Analyse<small>Powai · Mumbai · October</small></h6><div class="chp"><span class="on">Performance</span><span>Sentiment</span><span>Reviews</span><span>Strengths</span><span>Staff</span><span>Predictions</span></div></div>
                   <div class="kp">
-                    <div class="k"><span>Rating</span><b>4.41 <small>★</small></b><em>▲ 0.08</em></div>
-                    <div class="k"><span>Reviews</span><b>312</b><em>▲ 12%</em></div>
-                    <div class="k"><span>5★ share</span><b>71%</b><em>▲ 4 pts</em></div>
-                    <div class="k"><span>1–2★ share</span><b>9%</b><em>▼ 2 pts</em></div>
+                    <div class="k f-g"><span>Google rating</span><b>4.31</b><em>On track · 2,140 reviews</em></div>
+                    <div class="k f-a"><span>Rating this period</span><b>3.88</b><em>Needs improvement · 96 reviews</em></div>
+                    <div class="k"><span>Reviews to 4.4</span><b>14</b><em>Five-star reviews needed</em></div>
+                    <div class="k"><span>Read as positive</span><b>72%</b><em>Of this period’s reviews</em></div>
                   </div>
                   <div class="g2">
-                    <div class="pn"><h6>Rating, month on month <b>2026</b></h6>
-                      <svg class="ch" viewBox="0 0 400 120" preserveAspectRatio="none"><path d="M0 90 L50 84 L100 70 L150 76 L200 58 L250 50 L300 44 L350 30 L400 24 V120 H0Z" fill="url(#fa)"/><path d="M0 90 L50 84 L100 70 L150 76 L200 58 L250 50 L300 44 L350 30 L400 24" fill="none" stroke="url(#gg)" stroke-width="3" vector-effect="non-scaling-stroke"/></svg>
+                    <div class="pn"><h6>Google rating against this period <b>month by month</b></h6>
+                      <svg class="ch" viewBox="0 0 600 160" preserveAspectRatio="none">
+                        <path d="M0 20H600M0 60H600M0 100H600M0 140H600" stroke="var(--grid)" stroke-width="1" vector-effect="non-scaling-stroke"/>
+                        <g fill="var(--navy-d2)"><rect x="28" y="44" width="56" height="96" rx="5"/><rect x="128" y="50" width="56" height="90" rx="5"/><rect x="228" y="65.6" width="56" height="74.4" rx="5"/><rect x="328" y="80" width="56" height="60" rx="5"/><rect x="428" y="98" width="56" height="42" rx="5"/><rect x="528" y="106.4" width="56" height="33.6" rx="5" fill="var(--amber)"/></g>
+                        <path d="M0 49 L600 55" stroke="var(--navy)" stroke-width="3" stroke-linecap="round" fill="none" vector-effect="non-scaling-stroke"/>
+                      </svg>
+                      <div class="v-lg"><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span></div>
                     </div>
-                    <div class="pn"><h6>Rating Estimator</h6>
-                      <div class="est"><span>Today</span><b class="big">4.41</b><span>+ 20 reviews at 5★</span><b class="big gt">4.46</b></div>
-                      <div class="tk"><i style="--w:88%;--c:var(--green)"></i></div>
-                      <span style="color:var(--mute)">What new reviews would do to your rating</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Review insights -->
-          <div class="tp" role="tabpanel" id="tp-1" aria-labelledby="tab-1">
-            <div class="cap"><h3>Review Insights</h3><p>What’s driving the praise and the complaints.</p></div>
-            <div class="win" aria-hidden="true"><div class="bar"><i></i><i></i><i></i><span>ReviewRani · Review Analysis</span></div>
-              <div class="app"><div class="sb" data-on="Review Analysis"></div>
-                <div class="mn">
-                  <div class="hd"><h6>Review Analysis<small>All locations · last 30 days</small></h6><div class="chp"><span class="on">Themes</span><span>Keywords</span></div></div>
-                  <div class="g2 eq">
-                    <div class="pn"><h6>Driving positive feedback</h6>
+                    <div class="pn"><h6>What customers keep saying</h6>
                       <div class="rw"><span class="nm">Friendly staff</span><div class="tk"><i style="--w:90%;--c:var(--green)"></i></div><span class="v">128</span></div>
-                      <div class="rw"><span class="nm">Service quality</span><div class="tk"><i style="--w:70%;--c:var(--green)"></i></div><span class="v">96</span></div>
-                      <div class="rw"><span class="nm">Clean store</span><div class="tk"><i style="--w:48%;--c:var(--green)"></i></div><span class="v">64</span></div>
-                    </div>
-                    <div class="pn"><h6>Driving negative feedback</h6>
-                      <div class="rw"><span class="nm">Delivery time</span><div class="tk"><i style="--w:62%;--c:var(--red)"></i></div><span class="v">41</span></div>
-                      <div class="rw"><span class="nm">Billing wait</span><div class="tk"><i style="--w:44%;--c:var(--red)"></i></div><span class="v">27</span></div>
-                      <div class="rw"><span class="nm">No callback</span><div class="tk"><i style="--w:30%;--c:var(--red)"></i></div><span class="v">19</span></div>
-                    </div>
-                  </div>
-                  <div class="g2">
-                    <div class="pn"><h6>Reviews <span class="ro">Read-only</span></h6>
-                      <div class="rvw"><span class="av" style="background-image:url(v2-img/happy.jpg)"></span><span><span class="stars">★★★★★</span> Ravi made the whole purchase easy.<small>Tirupati Central · today</small></span></div>
-                      <div class="rvw"><span class="av" style="background-image:url(v2-img/counter.jpg)"></span><span><span class="stars">★★☆☆☆</span> Waited 40 minutes at billing.<small>Kadapa Highway · yesterday</small></span></div>
-                    </div>
-                    <div class="pn"><h6>Opportunities &amp; Threats</h6>
-                      <div class="th"><span class="p">Weekend staffing</span><span class="p">Test drives</span><span class="n">Billing queue</span><span class="n">Service callbacks</span></div>
+                      <div class="rw"><span class="nm">Fresh food</span><div class="tk"><i style="--w:52%;--c:var(--green)"></i></div><span class="v">64</span></div>
+                      <div class="rw"><span class="nm">Billing wait</span><div class="tk"><i style="--w:36%;--c:var(--red)"></i></div><span class="v">41</span></div>
+                      <div class="rw"><span class="nm">Ravi M., staff</span><div class="tk"><i style="--w:20%;--c:var(--navy)"></i></div><span class="v">22</span></div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <!-- Products & people -->
+          <!-- Monitor -->
+          <div class="tp" role="tabpanel" id="tp-1" aria-labelledby="tab-1">
+            <div class="cap"><h3>Monitor</h3><p>Spot the branch that has gone quiet, stopped replying or fallen behind a rival.</p></div>
+            <div class="win" aria-hidden="true"><div class="bar"><i></i><i></i><i></i><span>ReviewRani · Monitor · All locations</span></div>
+              <div class="app"><div class="sb" data-v3="ent" data-name="All locations" data-on="Monitor"></div>
+                <div class="mn">
+                  <div class="hd"><h6>Monitor<small>All locations · 47 locations · 3 clusters</small></h6><div class="chp"><span class="on">Falling · 4</span><span>Near a drop · 3</span><span>No replies in 14 days · 2</span><span>No requests in 30 days · 3</span></div></div>
+                  <div class="pn">
+                    <table class="v-tbl">
+                      <thead><tr><th>Location</th><th>This period</th><th>Movement</th><th>Waiting</th><th>Last reply</th><th>Requests sent</th><th>To drop</th><th>To climb</th></tr></thead>
+                      <tbody>
+                        <tr><td>Powai<small>Mumbai</small></td><td>3.90</td><td class="dn">▼ 0.40</td><td>12</td><td>3d</td><td>140</td><td>4</td><td>22</td></tr>
+                        <tr><td>Kurla<small>Mumbai</small></td><td>4.02</td><td class="dn">▼ 0.20</td><td>5</td><td>2d</td><td class="warn">0</td><td class="crit">2</td><td>15</td></tr>
+                        <tr><td>Connaught Place<small>Delhi NCR</small></td><td>4.25</td><td class="dn">▼ 0.10</td><td>3</td><td>1d</td><td>96</td><td class="crit">1</td><td>9</td></tr>
+                        <tr><td>Cyber Hub<small>Delhi NCR</small></td><td>4.30</td><td class="dn">▼ 0.06</td><td>1</td><td>1d</td><td>75</td><td class="crit">1</td><td>10</td></tr>
+                        <tr class="dim"><td>Indiranagar<small>Bangalore</small></td><td>4.41</td><td class="up">▲ 0.05</td><td>9</td><td class="warn">16d</td><td>210</td><td>6</td><td>12</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Fix -->
           <div class="tp" role="tabpanel" id="tp-2" aria-labelledby="tab-2">
-            <div class="cap"><h3>Products &amp; People</h3><p>What customers say about your products and your staff.</p></div>
-            <div class="win" aria-hidden="true"><div class="bar"><i></i><i></i><i></i><span>ReviewRani · Employee Analysis</span></div>
-              <div class="app"><div class="sb" data-on="Employee Analysis"></div>
+            <div class="cap"><h3>Fix</h3><p>Turn repeat complaints into issues someone owns, and see them resolved.</p></div>
+            <div class="win" aria-hidden="true"><div class="bar"><i></i><i></i><i></i><span>ReviewRani · Fix · Mumbai</span></div>
+              <div class="app"><div class="sb" data-v3="cl" data-name="Mumbai" data-on="Fix"></div>
                 <div class="mn">
-                  <div class="hd"><h6>Products &amp; People<small>All locations · last 90 days</small></h6><div class="chp"><span>Products</span><span class="on">Employees</span></div></div>
-                  <div class="g2 eq">
-                    <div class="pn"><h6>Most praised staff</h6>
-                      <div class="rvw"><span class="av" style="background-image:url(v2-img/staff.jpg)"></span><span><b>Lakshmi R.</b> · named in 29 reviews<small>Ongole Ring Road · 27 positive</small></span></div>
-                      <div class="rvw"><span class="av" style="background-image:url(v2-img/manager.jpg)"></span><span><b>Ravi M.</b> · named in 22 reviews<small>Tirupati Central · 21 positive</small></span></div>
-                      <div class="rvw"><span class="av" style="background-image:url(v2-img/owner.jpg)"></span><span><b>Arjun P.</b> · named in 15 reviews<small>Madanapalle · 13 positive</small></span></div>
+                  <div class="hd"><h6>Fix<small>Mumbai · 16 locations · 5 open issues</small></h6><div class="chp"><span class="on">All</span><span>Shared</span><span>Regional</span><span>Local</span></div></div>
+                  <div class="g2">
+                    <div class="pn"><h6>Issues</h6>
+                      <div class="v-li crit"><span><b>“Scam”</b><small>Andheri West · 1 mention · Local</small></span><span class="v-bd r">Critical</span></div>
+                      <div class="v-li on"><span><b>Billing wait</b><small>11 of 16 locations · Shared</small></span><span class="v-bd a">High</span></div>
+                      <div class="v-li"><span><b>Delivery slots</b><small>6 of 16 locations · Regional</small></span><span class="v-bd m">Standard</span></div>
+                      <div class="v-li"><span><b>Parking</b><small>Powai, Kurla · Local</small></span><span class="v-bd m">Standard</span></div>
                     </div>
-                    <div class="pn"><h6>Product sentiment</h6>
-                      <div class="rw"><span class="nm">SUV range</span><div class="tk"><i style="--w:86%;--c:var(--green)"></i></div><span class="v">86%</span></div>
-                      <div class="rw"><span class="nm">Hatchbacks</span><div class="tk"><i style="--w:74%;--c:var(--green)"></i></div><span class="v">74%</span></div>
-                      <div class="rw"><span class="nm">Accessories</span><div class="tk"><i style="--w:58%"></i></div><span class="v">58%</span></div>
-                      <div class="rw"><span class="nm">Extended warranty</span><div class="tk"><i style="--w:39%;--c:var(--red)"></i></div><span class="v">39%</span></div>
+                    <div class="pn"><h6>Billing wait <span class="v-bd r">Returning</span></h6>
+                      <div class="v-tag"><i style="background-image:url(v2-img/manager.jpg)"></i><span><b>Suresh K.</b> tagged · reached on WhatsApp</span></div>
+                      <ol class="v-hist">
+                        <li>Detected from 6 reviews<small>2 Aug</small></li>
+                        <li>Raised to High, 11 mentions<small>9 Aug</small></li>
+                        <li>Marked resolved<small>2 Sep</small></li>
+                        <li class="n">Returned, 3 new mentions<small>3 Oct</small></li>
+                      </ol>
+                      <span class="v-btn">Mark resolved</span>
                     </div>
-                  </div>
-                  <div class="kp">
-                    <div class="k"><span>Staff named</span><b>64</b></div>
-                    <div class="k"><span>Positive mentions</span><b>412</b><em>▲ 9%</em></div>
-                    <div class="k"><span>Products tracked</span><b>18</b></div>
-                    <div class="k"><span>Negative mentions</span><b>57</b><em class="dn">▲ 3</em></div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <!-- Rankings & competitors -->
+          <!-- Respond -->
           <div class="tp" role="tabpanel" id="tp-3" aria-labelledby="tab-3">
-            <div class="cap"><h3>Rankings &amp; Competitors</h3><p>Branches, clusters and nearby competitors, side by side.</p></div>
-            <div class="win" aria-hidden="true"><div class="bar"><i></i><i></i><i></i><span>ReviewRani · Location Rankings</span></div>
-              <div class="app"><div class="sb" data-on="Rankings"></div>
+            <div class="cap"><h3>Respond</h3><p>Reply to every review, worst first, with a draft ready.</p></div>
+            <div class="win" aria-hidden="true"><div class="bar"><i></i><i></i><i></i><span>ReviewRani · Respond · Powai</span></div>
+              <div class="app"><div class="sb" data-v3="loc" data-name="Powai" data-on="Respond"></div>
                 <div class="mn">
-                  <div class="hd"><h6>Location Rankings<small>All locations · last 30 days</small></h6><div class="chp"><span class="on">Locations</span><span>Clusters</span><span>Compare</span></div></div>
+                  <div class="hd"><h6>Respond<small>Powai · 12 waiting · worst first</small></h6><div class="chp"><span>Oldest waiting 6 days</span></div></div>
+                  <div class="v-q"><span class="ps">1</span><span class="tx"><span class="st">★☆☆☆☆</span> Felt like a scam, charged twice…<small>Critical keyword · 2 days</small></span><span class="v-bd r">Critical</span></div>
+                  <div class="v-q open"><span class="ps">2</span><span class="tx"><span class="st">★★☆☆☆</span> Waited 40 minutes for the bill<small>Meera J. · Billing wait · yesterday</small></span><span class="v-bd a">1 to 2 stars</span>
+                    <div class="dr"><small>Draft from the Billing wait reply</small><p>Hi Meera, sorry you waited so long at billing on Saturday. We have opened a second counter for weekend evenings, and we would love to see you back. Suresh, Powai</p><div class="acts"><span class="p">Copy reply</span><span>Open on Google</span></div></div>
+                  </div>
+                  <div class="v-q"><span class="ps">3</span><span class="tx"><span class="st">★★★☆☆</span> Good food, rude at the door<small>Unhappy 3-star · 2 days</small></span><span class="v-bd m">3 stars</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Request -->
+          <div class="tp" role="tabpanel" id="tp-4" aria-labelledby="tab-4">
+            <div class="cap"><h3>Request</h3><p>Ask happy customers for reviews on WhatsApp, email or SMS.</p></div>
+            <div class="win" aria-hidden="true"><div class="bar"><i></i><i></i><i></i><span>ReviewRani · Request · Powai</span></div>
+              <div class="app"><div class="sb" data-v3="loc" data-name="Powai" data-on="Request"></div>
+                <div class="mn">
+                  <div class="hd"><h6>Request<small>Powai · every customer goes to your Google review page</small></h6><div class="chp"><span class="on">One customer</span><span>Many customers</span><span>At the counter</span></div></div>
                   <div class="g2">
-                    <div class="pn"><h6>Ranked by rating</h6>
-                      <div class="rw"><span class="nm">1 · Tirupati Central</span><div class="tk"><i style="--w:88%;--c:var(--green)"></i></div><span class="v">4.41</span></div>
-                      <div class="rw"><span class="nm">2 · Ongole Ring Road</span><div class="tk"><i style="--w:85%;--c:var(--green)"></i></div><span class="v">4.27</span></div>
-                      <div class="rw"><span class="nm">3 · Madanapalle</span><div class="tk"><i style="--w:83%"></i></div><span class="v">4.18</span></div>
-                      <div class="rw"><span class="nm">4 · Nellore Bypass</span><div class="tk"><i style="--w:80%"></i></div><span class="v">4.02</span></div>
-                      <div class="rw"><span class="nm">5 · Kadapa Highway</span><div class="tk"><i style="--w:74%;--c:var(--red)"></i></div><span class="v">3.74</span></div>
+                    <div class="pn"><h6>Send a request</h6>
+                      <div class="v-fld"><small>Name</small>Rahul Mehta</div>
+                      <div class="v-fld"><small>Number</small>+91 98765 43210</div>
+                      <div class="v-ch"><span class="on"><svg><use href="#i-wa"/></svg>WhatsApp</span><span>Email</span><span>SMS</span></div>
+                      <div class="v-wa"><b>Powai</b>Hi Rahul, thanks for visiting Powai today. Would you take a minute to review us on Google?<span>Leave a review</span></div>
                     </div>
-                    <div class="pn"><h6>Competitor Analysis</h6>
-                      <div class="vb">
-                        <div><b>4.41</b><i style="--h:7em;--c:var(--ink)"></i>You</div>
-                        <div><b>4.18</b><i style="--h:5.4em"></i>A</div>
-                        <div><b>3.96</b><i style="--h:3.9em"></i>B</div>
-                      </div>
+                    <div class="pn"><h6>Last 30 days</h6>
+                      <div class="v-fn"><span>Sent</span><div class="tk"><i style="--w:100%;--c:var(--navy)"></i></div><span class="v">1,240</span></div>
+                      <div class="v-fn"><span>Delivered</span><div class="tk"><i style="--w:92.9%;--c:var(--navy)"></i></div><span class="v">1,152</span></div>
+                      <div class="v-gap">88 never arrived</div>
+                      <div class="v-fn"><span>Opened</span><div class="tk"><i style="--w:65%;--c:var(--navy)"></i></div><span class="v">806</span></div>
+                      <div class="v-fn"><span>Reviewed</span><div class="tk"><i style="--w:17.3%;--c:var(--navy)"></i></div><span class="v">214</span></div>
                     </div>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Ask ReviewRani -->
+          <div class="tp" role="tabpanel" id="tp-5" aria-labelledby="tab-5">
+            <div class="cap"><h3>Ask ReviewRani</h3><p>Ask a question in plain words and get the answer from your reviews.</p></div>
+            <div class="win" aria-hidden="true"><div class="bar"><i></i><i></i><i></i><span>ReviewRani · Ask ReviewRani · All locations</span></div>
+              <div class="app"><div class="sb" data-v3="ent" data-name="All locations" data-on="Ask ReviewRani"></div>
+                <div class="mn">
+                  <div class="hd"><h6>Ask ReviewRani<small>Answers only about the locations you cover</small></h6><div class="chp"><span class="v-read">Reading all locations</span></div></div>
+                  <div class="v-chat">
+                    <div class="q">Why is Powai falling behind?</div>
+                    <div class="a"><span class="av"><svg><use href="#crown"/></svg></span><div>Powai’s rating this period is <b class="am">3.90</b>, down <b>0.40</b>. Billing wait is behind most of it: <b>11</b> of its <b>18</b> low reviews mention it. Andheri West, nearby, is at <b class="gr">4.48</b>.<span class="go">Open Powai Fix →</span></div></div>
+                    <div class="q">Who has stopped asking for reviews?</div>
+                    <div class="a"><span class="av"><svg><use href="#crown"/></svg></span><div><b>3</b> locations sent no requests in 30 days: Kurla, Saket and Whitefield.<span class="go">Open Monitor →</span></div></div>
+                  </div>
+                  <div class="v-ask">Ask about all locations…<b>↑</b></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="dots" id="dots" aria-hidden="true"><button tabindex="-1" aria-current="true"></button><button tabindex="-1"></button><button tabindex="-1"></button><button tabindex="-1"></button></div>
+        <div class="dots" id="dots" aria-hidden="true"><button tabindex="-1" aria-current="true"></button><button tabindex="-1"></button><button tabindex="-1"></button><button tabindex="-1"></button><button tabindex="-1"></button><button tabindex="-1"></button></div>
         <a class="tlink" href="#contact" data-interest="demo">Book a Demo <span class="ar">→</span></a>
       </div>
     </div>
@@ -871,12 +1344,239 @@ footer .bottom nav { display: flex; gap: 18px; }
         <span><svg><use href="#i-wa"/></svg></span><span><svg><use href="#i-mail"/></svg></span><span><svg><use href="#i-sms"/></svg></span>
       </div>
       <div>
-        <h3>WhatsApp · Email · SMS</h3>
-        <p>Reports, alerts and achievements delivered to every location, with a full log in one feed.</p>
+        <h3>Alerts on WhatsApp</h3>
+        <p>Sent only when something changes, never a daily repeat, with a record of who was told and when.</p>
       </div>
-      <span class="tag"><i></i>News Feed</span>
+      <span class="tag plain">Alerts</span>
     </div>
-    <p class="setup" data-rv>Set up your own <b>locations, clusters, products, staff and keywords</b> to track.</p>
+    <p class="setup" data-rv>One dashboard for <b>a branch, a city or the whole network</b>. Switch scope and every number follows you.</p>
+  </div>
+</section>
+
+<!-- 3b · FEATURE DEEP DIVES: one block per feature, laid out by how much it has to say; the highlight cards (#features) link here -->
+<section class="fx" id="feature-detail" aria-labelledby="h-fx">
+  <div class="wrap">
+    <div class="center head">
+      <span class="tag plain" data-rv>A closer look</span>
+      <h2 id="h-fx" data-rv>How each tool <span class="gt">wins back the stars.</span></h2>
+    </div>
+    <div class="fx-list">
+      <article class="fx-blk" id="f-analyse" aria-labelledby="fh-analyse">
+        <div class="fx-top" data-rv>
+          <div><span class="fx-eb"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 19V11M11 19V5M17 19v-6M3 19h18"/></svg></span>01 · Analyse</span><h3 id="fh-analyse">Know why the rating moved, <span class="gt">not just that it did.</span></h3></div>
+          <div><p>A 4.3 says nothing about the billing queue. Analyse reads every review and breaks the rating down four ways, for one branch, a city or the whole network.</p><a class="tlink" href="#contact" data-interest="demo">See Analyse in a demo <span class="ar">→</span></a></div>
+        </div>
+        <div class="fx-bento" aria-hidden="true">
+          <div class="fx-bc big" data-rv>
+            <h4>Performance</h4><p>The Google rating against this period, month by month, so a slide shows before the lifetime number moves.</p>
+            <div class="fx-card fx-perf">
+              <div class="fx-kv"><div><small>Google rating</small><b>4.31</b></div><div><small>This period</small><b class="fx-dn">3.88</b></div><div><small>Reviews to 4.4</small><b>14</b></div></div>
+              <svg viewBox="0 0 600 160" preserveAspectRatio="none">
+                <path d="M0 20H600M0 60H600M0 100H600M0 140H600" stroke="#EDEDF0" stroke-width="1" vector-effect="non-scaling-stroke"/>
+                <g fill="rgba(29, 62, 99, .3)"><rect x="28" y="44" width="56" height="96" rx="5"/><rect x="128" y="50" width="56" height="90" rx="5"/><rect x="228" y="65.6" width="56" height="74.4" rx="5"/><rect x="328" y="80" width="56" height="60" rx="5"/><rect x="428" y="98" width="56" height="42" rx="5"/><rect x="528" y="106.4" width="56" height="33.6" rx="5" fill="#B45309"/></g>
+                <path d="M0 49 L600 55" stroke="#1D3E63" stroke-width="3" stroke-linecap="round" fill="none" vector-effect="non-scaling-stroke"/>
+              </svg>
+              <div class="mo"><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span></div>
+            </div>
+          </div>
+          <div class="fx-bc wide" data-rv style="--d:.1s">
+            <h4>Themes</h4><p>What customers praise and complain about, counted.</p>
+            <div class="fx-card">
+              <div class="fx-th"><span>Friendly staff</span><div class="tk"><i style="--w:90%;--c:var(--green)"></i></div><span>128</span></div>
+              <div class="fx-th"><span>Fresh food</span><div class="tk"><i style="--w:52%;--c:var(--green)"></i></div><span>64</span></div>
+              <div class="fx-th"><span>Billing wait</span><div class="tk"><i style="--w:36%;--c:var(--red)"></i></div><span>41</span></div>
+            </div>
+          </div>
+          <div class="fx-bc" data-rv style="--d:.2s">
+            <h4>Sentiment</h4><p>How this period’s reviews read.</p>
+            <div class="fx-card">
+              <div class="fx-kv"><div><small>Positive</small><b>72%</b></div></div>
+              <div class="fx-stack"><i style="--w:72%;--c:var(--green)"></i><i style="--w:12%;--c:#c9cede"></i><i style="--w:16%;--c:var(--red)"></i></div>
+              <div class="fx-leg"><span style="--c:var(--green)">Positive</span><span style="--c:#c9cede">Neutral 12%</span><span style="--c:var(--red)">Negative 16%</span></div>
+            </div>
+          </div>
+          <div class="fx-bc" data-rv style="--d:.3s">
+            <h4>Staff</h4><p>Who gets named in reviews, and how.</p>
+            <div class="fx-card">
+              <div class="fx-staff"><span class="dot">RM</span><div>Ravi M.<small>22 reviews · 95% positive</small></div></div>
+              <div class="fx-staff"><span class="dot">AP</span><div>Anjali P.<small>14 reviews · 86% positive</small></div></div>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article class="fx-blk" id="f-monitor" aria-labelledby="fh-monitor">
+        <div class="fx-top" data-rv>
+          <div><span class="fx-eb"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2.5 12s3.5-6.5 9.5-6.5S21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.8"/></svg></span>02 · Monitor</span><h3 id="fh-monitor">Catch the slipping branch <span class="gt">before customers do.</span></h3></div>
+          <div><p>With dozens of branches, the one that’s sliding is easy to miss. Monitor watches every location for warning signs, and every competitor around it, on one screen.</p><a class="tlink" href="#contact" data-interest="demo">See Monitor in a demo <span class="ar">→</span></a></div>
+        </div>
+        <div class="fx-dash" data-rv>
+          <div class="fx-dg">
+            <div class="fx-t cmp" id="compete" aria-labelledby="h-cmp">
+              <span class="tag"><i></i>Competitor Analysis</span>
+              <h4 id="h-cmp">Where each branch stands against the rivals around it</h4>
+              <div class="board" id="board" data-rv role="group" aria-label="Sample competitor comparison">
+              <div class="bh">
+              <div class="locs" role="group" aria-label="Choose a location">
+              <button type="button" aria-pressed="true" aria-label="Powai">Powai</button>
+              <button type="button" aria-pressed="false" aria-label="Kurla">Kurla</button>
+              <button type="button" aria-pressed="false" aria-label="Andheri West">Andheri<span class="lx"> West</span></button>
+              </div>
+              <span class="rank" id="rank">#2 <small>of 4 nearby</small></span>
+              </div>
+              <div class="tbl" aria-hidden="true">
+              <div class="hd2"><span>Business</span><span>Rating</span><span></span><span>Reviews</span><span>30 days</span></div>
+              <div class="rows" id="crows">
+              <div class="cr" data-k="A"><span class="nm">Competitor A</span><div class="tk"><i style="--w:80%"></i></div><span class="rt">4.32</span><span class="rv">1,140</span><span class="up">▲ 0.12</span></div>
+              <div class="cr you" data-k="you"><span class="nm">Powai</span><div class="tk"><i style="--w:59%"></i></div><span class="rt">4.02</span><span class="rv">962</span><span class="dn">▼ 0.05</span></div>
+              <div class="cr" data-k="B"><span class="nm">Competitor B</span><div class="tk"><i style="--w:48%"></i></div><span class="rt">3.87</span><span class="rv">615</span><span class="up">▲ 0.21</span></div>
+              <div class="cr" data-k="C"><span class="nm">Competitor C</span><div class="tk"><i style="--w:29%"></i></div><span class="rt">3.61</span><span class="rv">408</span><span class="dn">▼ 0.03</span></div>
+              </div>
+              </div>
+              <div class="trend" aria-hidden="true">
+              <div class="th"><h5>Rating, last 6 months</h5><span class="lg"><span><i class="l-you"></i>You</span><span><i class="l-avg"></i>Nearby average</span></span></div>
+              <svg viewBox="0 0 300 100" preserveAspectRatio="none">
+              <defs><linearGradient id="cfill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5b8fd9" stop-opacity=".22"/><stop offset="1" stop-color="#5b8fd9" stop-opacity="0"/></linearGradient></defs>
+              <path class="gl" d="M0 25H300M0 50H300M0 75H300" vector-effect="non-scaling-stroke"/>
+              <path class="ar-you" id="c-area" d=""/>
+              <path class="ln-avg" id="c-avg" d="" vector-effect="non-scaling-stroke"/>
+              <path class="ln-you" id="c-you" d="" vector-effect="non-scaling-stroke"/>
+              </svg>
+              <div class="mo"><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span></div>
+              </div>
+              <p class="note dn" id="cnote" aria-live="polite"><i aria-hidden="true">!</i><span>Competitor B is closing the gap: +0.21 this month.</span></p>
+              <small class="sd">Sample data</small>
+              </div>
+            </div>
+            <div class="fx-t sig" aria-hidden="true">
+              <h4>Warning signs <small>47 locations</small></h4>
+              <div class="fx-cn">
+                <div style="--c:var(--red)"><b>4</b><span>Falling</span></div>
+                <div style="--c:#b45309"><b>3</b><span>Near a drop</span></div>
+                <div style="--c:var(--violet-d)"><b>2</b><span>No replies in 14 days</span></div>
+                <div style="--c:#2f63b8"><b>3</b><span>No requests in 30 days</span></div>
+              </div>
+            </div>
+            <div class="fx-t" aria-hidden="true">
+              <h4>Alerts</h4>
+              <div class="fx-wa"><span class="h"><svg><use href="#i-wa"/></svg>ReviewRani</span>Powai fell below 3.9 this week. 12 reviews are waiting for a reply.<small>9:42 am</small></div>
+              <p class="fx-nt">Sent only when something changes.</p>
+            </div>
+            <div class="fx-t" aria-hidden="true">
+              <h4>Review volume <small>October</small></h4>
+              <div class="fx-vb">
+                <div><span>Competitor A</span><div class="tk"><i style="--w:100%;--c:#c9cede"></i></div><span>142</span></div>
+                <div><span>Powai</span><div class="tk"><i style="--w:68%;--c:#2f63b8"></i></div><span>96</span></div>
+                <div><span>Competitor B</span><div class="tk"><i style="--w:62%;--c:#c9cede"></i></div><span>88</span></div>
+              </div>
+              <p class="fx-nt">Competitor A is getting 48% more reviews.</p>
+            </div>
+            <div class="fx-t need" aria-hidden="true">
+              <h4>Needs attention today</h4>
+              <div class="fx-br"><div>Powai<small>Mumbai · 3.90</small></div><span class="fx-pl r">Falling 0.40</span></div>
+              <div class="fx-br"><div>Kurla<small>Mumbai · 4.02</small></div><span class="fx-pl a">No replies · 9 days</span></div>
+              <div class="fx-br"><div>Thane<small>Mumbai · 4.21</small></div><span class="fx-pl v">Behind a rival</span></div>
+            </div>
+            <div class="fx-t gap" aria-hidden="true">
+              <h4>Rating gap <small>reviews to the next step down, and up</small></h4>
+              <div class="fx-gp">
+                <div><span class="nm">Powai <b>3.90</b></span><span class="fx-mt"><i style="--p:14%"></i></span><span class="lr"><span class="fx-dn">4 to drop</span><span class="fx-up">22 to climb</span></span></div>
+                <div><span class="nm">Kurla <b>4.02</b></span><span class="fx-mt"><i style="--p:10%"></i></span><span class="lr"><span class="fx-dn">2 to drop</span><span class="fx-up">15 to climb</span></span></div>
+                <div><span class="nm">Andheri West <b>4.18</b></span><span class="fx-mt"><i style="--p:78%"></i></span><span class="lr"><span class="fx-dn">9 to drop</span><span class="fx-up">6 to climb</span></span></div>
+                <div><span class="nm">Thane <b>4.21</b></span><span class="fx-mt"><i style="--p:42%"></i></span><span class="lr"><span class="fx-dn">7 to drop</span><span class="fx-up">18 to climb</span></span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article class="fx-blk" id="f-fix" aria-labelledby="fh-fix">
+        <div class="fx-top" data-rv>
+          <div><span class="fx-eb"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14.7 5.3a4 4 0 0 0-5.2 5.2L4 16l4 4 5.5-5.5a4 4 0 0 0 5.2-5.2l-2.6 2.6-2.6-.6-.6-2.6z"/></svg></span>03 · Fix</span><h3 id="fh-fix">Turn repeat complaints <span class="gt">into fixed problems.</span></h3></div>
+          <div><p>The same complaint turns up review after review, and nobody owns it. Fix turns it into an issue with an owner and a history, and keeps watching after it’s marked fixed. Pick an issue to see its story.</p><a class="tlink" href="#contact" data-interest="demo">See Fix in a demo <span class="ar">→</span></a></div>
+        </div>
+        <div class="fx-trk" id="trk" data-rv>
+          <div class="fx-bar" aria-hidden="true"><i></i><i></i><i></i><span>ReviewRani · Fix · Mumbai</span></div>
+          <div class="fx-trk-b">
+            <div class="fx-il" role="group" aria-label="Sample issues">
+              <h5>Open issues <b>16 locations</b></h5>
+                <button type="button" class="fx-is" aria-pressed="true"><b>Billing wait</b><span class="fx-pl r">High</span><small>Shared · 11 of 16 locations</small></button>
+                <button type="button" class="fx-is" aria-pressed="false"><b>“Scam”</b><span class="fx-pl r">Critical</span><small>Local · Andheri West</small></button>
+                <button type="button" class="fx-is" aria-pressed="false"><b>Delivery slots</b><span class="fx-pl n">Standard</span><small>Regional · 6 of 16 locations</small></button>
+                <button type="button" class="fx-is" aria-pressed="false"><b>Parking</b><span class="fx-pl n">Standard</span><small>Local · Powai, Kurla</small></button>
+            </div>
+            <div class="fx-id" aria-live="polite">
+              <div class="tt"><h4 id="fi-n">Billing wait</h4><span id="fi-p"><span class="fx-pl r">High</span> <span class="fx-pl a">Returning</span></span></div>
+              <p class="fx-nt" id="fi-r">Shared · 11 of 16 locations</p>
+              <div class="fx-own"><span class="dot" id="fi-i">SK</span><div><b id="fi-w">Suresh K.</b><small id="fi-o">Cluster manager, Mumbai</small></div><span class="wa"><svg><use href="#i-wa"/></svg>Reached on WhatsApp</span></div>
+              <div class="fx-mn"><h6>Mentions per week</h6><svg viewBox="0 0 330 80" preserveAspectRatio="none" aria-hidden="true"><g id="fi-b"><rect x="5" y="65.3" width="20" height="12.7" rx="4" fill="#c3cfe3"/><rect x="35" y="52.5" width="20" height="25.5" rx="4" fill="#c3cfe3"/><rect x="65" y="39.8" width="20" height="38.2" rx="4" fill="#c3cfe3"/><rect x="95" y="20.7" width="20" height="57.3" rx="4" fill="#c3cfe3"/><rect x="125" y="8.0" width="20" height="70.0" rx="4" fill="#c3cfe3"/><rect x="155" y="33.5" width="20" height="44.5" rx="4" fill="#c3cfe3"/><rect x="185" y="58.9" width="20" height="19.1" rx="4" fill="#c3cfe3"/><rect x="215" y="71.6" width="20" height="6.4" rx="4" fill="#c3cfe3"/><rect x="245" y="76.0" width="20" height="2.0" rx="4" fill="#c3cfe3"/><rect x="275" y="71.6" width="20" height="6.4" rx="4" fill="#c3cfe3"/><rect x="305" y="58.9" width="20" height="19.1" rx="4" fill="#b45309"/></g></svg></div>
+              <ul class="fx-tl" id="fi-t"><li class="on">Detected from 6 reviews <small>· 2 Aug</small></li><li class="on">Raised to High, 11 mentions <small>· 9 Aug</small></li><li class="on">Marked resolved <small>· 2 Sep</small></li><li class="a">Returned, 3 new mentions <small>· 3 Oct</small></li></ul>
+            </div>
+          </div>
+        </div>
+        <ul class="fx-why" data-rv>
+          <li><b>Raised from reviews</b><span>Issues come from what customers keep repeating, not from guesswork.</span></li>
+          <li><b>Owned, with a nudge</b><span>Each one has a severity, a reach and a person reached on WhatsApp.</span></li>
+          <li><b>Watched after it’s fixed</b><span>If the complaint comes back, the issue opens again on its own.</span></li>
+        </ul>
+      </article>
+      <article class="fx-blk fx-row" id="f-respond" aria-labelledby="fh-respond">
+        <div class="fx-copy" data-rv>
+          <span class="fx-eb"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 7.5 4 12l5 4.5"/><path d="M4.5 12H14a6 6 0 0 1 6 6v.5"/></svg></span>04 · Respond</span>
+          <h3 id="fh-respond">Reply to every review, <span class="gt">worst first.</span></h3>
+          <p>Unanswered reviews tell customers nobody’s listening, and replying to hundreds by hand never happens. Respond lines up every review in one queue, the worst at the top, with a reply already drafted.</p>
+          <div class="fx-stats" aria-hidden="true"><div><b>12</b><span>waiting</span></div><div><b>6 days</b><span>oldest</span></div><div><b>96%</b><span>reply rate</span></div></div>
+          <ul class="fx-pts"><li><span><b>One queue</b> for every branch you look after.</span></li><li><span><b>Worst first</b>: critical words like “scam”, then 1 and 2 stars, then unhappy 3s.</span></li><li><span><b>A draft for each review</b>, from the matching issue reply, ready to copy and post on Google.</span></li></ul>
+          <a class="tlink" href="#contact" data-interest="demo">See Respond in a demo <span class="ar">→</span></a>
+        </div>
+        <div class="fx-vis" id="rq" data-rv style="--d:.12s">
+          <div class="fx-card fx-rq">
+            <h5>Reply queue <b>Mumbai · worst first</b></h5>
+            <ol class="fx-q3" aria-label="Sample reviews waiting for a reply">
+              <li><button type="button" aria-pressed="true"><span class="rk">1</span><span class="tx"><span class="stars">★</span><span style="color:#d6d9e3">★★★★</span> Felt like a scam, charged twice for one order.</span><span class="fx-pl r">Critical word</span><small>Anil K. · Andheri West · 2 days</small></button></li>
+              <li><button type="button" aria-pressed="false"><span class="rk">2</span><span class="tx"><span class="stars">★★</span><span style="color:#d6d9e3">★★★</span> Waited 40 minutes for the bill.</span><span class="fx-pl a">1 to 2 stars</span><small>Meera J. · Powai · yesterday</small></button></li>
+              <li><button type="button" aria-pressed="false"><span class="rk">3</span><span class="tx"><span class="stars">★★★</span><span style="color:#d6d9e3">★★</span> Good food, but rude at the door.</span><span class="fx-pl v">Unhappy 3 stars</span><small>Karan V. · Kurla · 2 days</small></button></li>
+            </ol>
+            <div class="fx-draft" id="rq-d" aria-live="polite"><b id="rq-l">Draft for a critical review</b><span id="rq-t">Hi Anil, being charged twice is not okay, and we’re sorry. Priya, our branch manager, will call you today to refund the extra charge.</span></div>
+            <div class="fx-acts" aria-hidden="true"><span>Copy reply</span><span>Open on Google</span></div>
+          </div>
+        </div>
+      </article>
+      <article class="fx-blk fx-row rev" id="f-request" aria-labelledby="fh-request">
+        <div class="fx-copy" data-rv>
+          <span class="fx-eb"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 3 10.5 13.5"/><path d="M21 3l-6.5 18-4-7.5L3 9.5z"/></svg></span>05 · Request</span>
+          <h3 id="fh-request">More reviews from the customers <span class="gt">who loved you.</span></h3>
+          <p>Happy customers rarely write a review unless someone asks, so the unhappy ones end up setting your rating. Request asks them for you, on WhatsApp, email or SMS.</p>
+          <ul class="fx-pts"><li><span><b>One customer, a whole list</b>, or a QR card at the counter.</span></li><li><span><b>A message that links straight</b> to your Google review page.</span></li><li><span><b>See who opened it</b> and who left a review.</span></li></ul>
+          <a class="tlink" href="#contact" data-interest="demo">See Request in a demo <span class="ar">→</span></a>
+        </div>
+        <div class="fx-vis" data-rv style="--d:.12s" aria-hidden="true">
+          <div class="fx-card">
+            <h5>Send a request <b>Powai</b></h5>
+            <div class="fx-chs"><span class="on">One customer</span><span>Many customers</span><span>At the counter</span></div>
+            <div class="fx-chs"><span class="on"><svg><use href="#i-wa"/></svg>WhatsApp</span><span>Email</span><span>SMS</span></div>
+            <div class="fx-msg">Hi Rahul, thanks for visiting Powai today. Would you take a minute to review us on Google?<span>Leave a review</span></div>
+          </div>
+          <div class="fx-chip c1"><div><small>Last 30 days</small><b>1,240 sent · 214 reviews</b></div></div>
+          <div class="fx-chip c2"><span class="fx-qr"></span><div><b>Counter card</b><small>Scan to review Powai</small></div></div>
+        </div>
+      </article>
+      <article class="fx-blk" id="f-ask" aria-labelledby="fh-ask">
+        <div class="fx-askp" id="ak" data-rv>
+          <div class="l">
+            <span class="fx-eb"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 8.5l4.5 5 4-7 4 7 4.5-5V17a1 1 0 0 1-1 1H4.5a1 1 0 0 1-1-1z"/></svg></span>06 · Ask ReviewRani</span>
+            <h3 id="fh-ask">Ask your reviews <span class="gt">anything.</span></h3>
+            <p>Getting a straight answer out of thousands of reviews shouldn’t need an analyst or a spreadsheet. Ask in plain words, for a branch, a city or the network, and every answer links to the page with the detail.</p>
+            <div class="fx-ex" role="group" aria-label="Example questions"><small>Try asking</small><button type="button" aria-pressed="true">Which branch slipped most this month, and why?</button><button type="button" aria-pressed="false">What do customers say about delivery?</button><button type="button" aria-pressed="false">Who improved most in Delhi NCR?</button><button type="button" aria-pressed="false">Which competitor is gaining on us?</button></div>
+            <a class="btn light" href="#contact" data-interest="demo">See Ask ReviewRani in a demo <span class="ar">→</span></a>
+          </div>
+          <div class="fx-card fx-chat">
+            <h5>Ask ReviewRani <b>All locations</b></h5>
+            <div class="fx-q" id="ak-q">Which branch slipped most this month, and why?</div>
+            <div class="fx-a" id="ak-a" aria-live="polite"><span><b>Powai</b> fell from 4.31 to 3.88. Most of the drop is billing waits, mentioned in 41 reviews.</span><div class="rws"><div class="fx-th"><span>Billing wait</span><div class="tk"><i style="--w:100%;--c:var(--red)"></i></div><span>41</span></div><div class="fx-th"><span>Rude at the door</span><div class="tk"><i style="--w:22%;--c:var(--red)"></i></div><span>9</span></div></div><div class="lk"><span>Open Analyse · Powai →</span><span>Open Fix · Billing wait →</span></div></div>
+            <div class="fx-in" aria-hidden="true">Ask about your reviews…<i>↑</i></div>
+          </div>
+        </div>
+      </article>
+    </div>
   </div>
 </section>
 
@@ -886,91 +1586,103 @@ footer .bottom nav { display: flex; gap: 18px; }
     <div class="zstick">
       <div class="wrap zgrid">
         <div class="zcopy">
-          <span class="tag" data-rv><i></i>Available now</span>
+          <span class="tag plain" data-rv>One dashboard, every level</span>
           <h2 id="h-scale" data-rv>From one branch to <span class="gt">your whole network.</span></h2>
-          <p class="lede" data-rv>The same analysis at location, cluster and enterprise level.</p>
+          <p class="lede" data-rv>The same dashboard for a branch manager, a city head and the owner. Switch the scope and every number follows you.</p>
           <ol class="lvls" id="lvls">
-            <li class="on"><b>Location</b><span>One branch, every review.</span></li>
-            <li><b>Cluster</b><span>The branches in a region, side by side.</span></li>
-            <li><b>Enterprise</b><span>Every cluster, one view.</span></li>
+            <li class="on"><b>Location</b><span>The branch manager sees their rating, their reviews and what to do today.</span></li>
+            <li><b>Cluster</b><span>A city head sees every branch side by side, and the issues they share.</span></li>
+            <li><b>Enterprise</b><span>The owner sees every cluster, and where the network stands against rivals.</span></li>
           </ol>
         </div>
-        <div class="zstage" id="zstage">
-          <!-- level 1: location -->
+        <div class="zstage prod" id="zstage">
+          <!-- each level is drawn in the v3 dashboard's tokens (.prod .win) -->
           <div class="lvl" data-lvl="0">
             <span class="lab"><i style="background-image:url(v2-img/manager.jpg)"></i>Location</span>
-            <div class="win" role="img" aria-label="Location Overview for one branch, with sample data"><div class="bar"><i></i><i></i><i></i><span>ReviewRani · Location Overview</span></div>
-              <div class="app"><div class="sb" data-on="Overview"></div>
+            <div class="win" role="img" aria-label="Location overview for Powai, with sample data"><div class="bar"><i></i><i></i><i></i><span>ReviewRani · Overview · Powai</span></div>
+              <div class="app"><div class="sb" data-v3="loc" data-name="Powai" data-on="Overview"></div>
                 <div class="mn">
-                  <div class="hd"><h6>Tirupati Central<small>Location overview</small></h6><div class="chp"><span class="on">Location</span><span>Last 30 days</span></div></div>
+                  <div class="hd"><h6>Overview<small>Powai · Mumbai · last 30 days</small></h6><div class="chp"><span class="on">Location</span><span>Cluster</span><span>Enterprise</span></div></div>
                   <div class="kp">
-                    <div class="k"><span>Average Rating</span><b>4.41 <small>★</small></b><em>▲ 0.08</em></div>
-                    <div class="k"><span>Total Reviews</span><b>2,960</b></div>
-                    <div class="k"><span>Rank in cluster</span><b>#1</b><em>of 6</em></div>
-                    <div class="k"><span>Reviews this month</span><b>312</b><em>▲ 12%</em></div>
+                    <div class="k f-g"><span>Google rating</span><b>4.31</b><em>On track · 2,140 reviews</em></div>
+                    <div class="k f-a"><span>This period</span><b>3.88</b><em>Needs improvement</em></div>
+                    <div class="k"><span>Waiting for a reply</span><b>12</b><em>Oldest 6 days</em></div>
+                    <div class="k"><span>Reviews to 4.4</span><b>14</b><em>Five-star reviews needed</em></div>
                   </div>
                   <div class="g2">
-                    <div class="pn"><h6>Rating trend</h6><svg class="ch" viewBox="0 0 400 120" preserveAspectRatio="none"><path d="M0 84 C60 80 90 66 140 62 S220 50 260 40 S340 30 400 22 V120 H0Z" fill="url(#fa)"/><path d="M0 84 C60 80 90 66 140 62 S220 50 260 40 S340 30 400 22" fill="none" stroke="url(#gg)" stroke-width="3" vector-effect="non-scaling-stroke"/></svg></div>
-                    <div class="pn"><h6>Top themes</h6><div class="th"><span class="p">Friendly staff</span><span class="p">Quick delivery</span><span class="p">Test drive</span><span class="n">Parking</span></div></div>
+                    <div class="pn"><h6>Google rating against this period <b>month by month</b></h6>
+                      <svg class="ch" viewBox="0 0 600 160" preserveAspectRatio="none">
+                        <path d="M0 20H600M0 60H600M0 100H600M0 140H600" stroke="var(--grid)" stroke-width="1" vector-effect="non-scaling-stroke"/>
+                        <g fill="var(--navy-d2)"><rect x="28" y="44" width="56" height="96" rx="5"/><rect x="128" y="50" width="56" height="90" rx="5"/><rect x="228" y="65.6" width="56" height="74.4" rx="5"/><rect x="328" y="80" width="56" height="60" rx="5"/><rect x="428" y="98" width="56" height="42" rx="5"/><rect x="528" y="106.4" width="56" height="33.6" rx="5" fill="var(--amber)"/></g>
+                        <path d="M0 49 L600 55" stroke="var(--navy)" stroke-width="3" stroke-linecap="round" fill="none" vector-effect="non-scaling-stroke"/>
+                      </svg>
+                    </div>
+                    <div class="pn"><h6>What needs doing today</h6>
+                      <div class="rw"><span class="nm">Billing wait to fix</span><div class="tk"><i style="--w:90%;--c:var(--red)"></i></div><span class="v">High</span></div>
+                      <div class="rw"><span class="nm">Reviews waiting</span><div class="tk"><i style="--w:60%;--c:var(--amber)"></i></div><span class="v">12</span></div>
+                      <div class="rw"><span class="nm">Customers to ask</span><div class="tk"><i style="--w:45%;--c:var(--navy)"></i></div><span class="v">140</span></div>
+                      <div class="rw"><span class="nm">Rank in Mumbai</span><div class="tk"><i style="--w:15%;--c:var(--navy)"></i></div><span class="v">#16</span></div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <!-- level 2: cluster -->
           <div class="lvl" data-lvl="1">
             <span class="lab"><i style="background-image:url(v2-img/team.jpg)"></i>Cluster</span>
-            <div class="win" role="img" aria-label="Cluster Overview comparing six branches, with sample data"><div class="bar"><i></i><i></i><i></i><span>ReviewRani · Cluster Overview</span></div>
-              <div class="app"><div class="sb" data-on="Overview"></div>
+            <div class="win" role="img" aria-label="Cluster overview for Mumbai, comparing its branches, with sample data"><div class="bar"><i></i><i></i><i></i><span>ReviewRani · Overview · Mumbai</span></div>
+              <div class="app"><div class="sb" data-v3="cl" data-name="Mumbai" data-on="Overview"></div>
                 <div class="mn">
-                  <div class="hd"><h6>South cluster<small>Cluster overview · 6 locations</small></h6><div class="chp"><span class="on">Cluster</span><span>Last 30 days</span></div></div>
+                  <div class="hd"><h6>Overview<small>Mumbai · 16 locations · last 30 days</small></h6><div class="chp"><span>Location</span><span class="on">Cluster</span><span>Enterprise</span></div></div>
                   <div class="kp">
-                    <div class="k"><span>Average Rating</span><b>4.16 <small>★</small></b><em>▲ 0.03</em></div>
-                    <div class="k"><span>Total Reviews</span><b>11,240</b></div>
-                    <div class="k"><span>Rank in network</span><b>#2</b><em>of 4</em></div>
-                    <div class="k"><span>Reviews this month</span><b>1,103</b><em>▲ 5%</em></div>
-                  </div>
-                  <div class="pn"><h6>Locations in this cluster</h6>
-                    <div class="tiles">
-                      <div class="tile hl"><span>Tirupati Central</span><b>4.41</b><div class="tk"><i style="--w:88%;--c:var(--green)"></i></div></div>
-                      <div class="tile"><span>Ongole Ring Road</span><b>4.27</b><div class="tk"><i style="--w:85%;--c:var(--green)"></i></div></div>
-                      <div class="tile"><span>Madanapalle</span><b>4.18</b><div class="tk"><i style="--w:83%"></i></div></div>
-                      <div class="tile"><span>Nellore Bypass</span><b>4.02</b><div class="tk"><i style="--w:80%"></i></div></div>
-                      <div class="tile"><span>Chittoor Road</span><b>3.98</b><div class="tk"><i style="--w:79%"></i></div></div>
-                      <div class="tile"><span>Kadapa Highway</span><b>3.74</b><div class="tk"><i style="--w:74%;--c:var(--red)"></i></div></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- level 3: enterprise -->
-          <div class="lvl" data-lvl="2">
-            <span class="lab"><i style="background-image:url(v2-img/owner.jpg)"></i>Enterprise</span>
-            <div class="win" role="img" aria-label="Enterprise Overview across four clusters, with sample data"><div class="bar"><i></i><i></i><i></i><span>ReviewRani · Enterprise Overview</span></div>
-              <div class="app"><div class="sb" data-on="Overview"></div>
-                <div class="mn">
-                  <div class="hd"><h6>All locations<small>Enterprise overview · 4 clusters · 24 locations</small></h6><div class="chp"><span class="on">Enterprise</span><span>Last 30 days</span></div></div>
-                  <div class="kp">
-                    <div class="k"><span>Average Rating</span><b>4.22 <small>★</small></b><em>▲ 0.06</em></div>
-                    <div class="k"><span>Total Reviews</span><b>18,420</b></div>
-                    <div class="k"><span>Locations</span><b>24</b></div>
-                    <div class="k"><span>Reviews this month</span><b>1,284</b><em class="dn">▼ 2.1%</em></div>
+                    <div class="k"><span>Cluster rating</span><b>4.16</b><em>▲ 0.03 this period</em></div>
+                    <div class="k f-a"><span>Falling</span><b>4</b><em>Branches below lifetime</em></div>
+                    <div class="k"><span>Open issues</span><b>5</b><em>2 shared across branches</em></div>
+                    <div class="k"><span>Reply rate</span><b>91%</b><em>Within 2 days</em></div>
                   </div>
                   <div class="g2">
-                    <div class="pn"><h6>Cluster Rankings</h6>
-                      <div class="rw"><span class="nm">1 · Coastal</span><div class="tk"><i style="--w:89%;--c:var(--green)"></i></div><span class="v">4.34</span></div>
-                      <div class="rw"><span class="nm">2 · South</span><div class="tk"><i style="--w:84%;--c:var(--green)"></i></div><span class="v">4.16</span></div>
-                      <div class="rw"><span class="nm">3 · Central</span><div class="tk"><i style="--w:82%"></i></div><span class="v">4.11</span></div>
-                      <div class="rw"><span class="nm">4 · North</span><div class="tk"><i style="--w:76%;--c:var(--red)"></i></div><span class="v">3.89</span></div>
-                    </div>
-                    <div class="pn"><h6>Reviews by cluster</h6>
-                      <div class="vb">
-                        <div><b>412</b><i style="--h:7em;--c:var(--ink)"></i>Coastal</div>
-                        <div><b>338</b><i style="--h:5.8em"></i>South</div>
-                        <div><b>301</b><i style="--h:5.1em"></i>Central</div>
-                        <div><b>233</b><i style="--h:4em"></i>North</div>
+                    <div class="pn"><h6>Branches side by side <b>this period</b></h6>
+                      <div class="tiles">
+                        <div class="tile"><span>Andheri West</span><b>4.41</b><div class="tk"><i style="--w:88%;--c:var(--green)"></i></div></div>
+                        <div class="tile"><span>Thane</span><b>4.27</b><div class="tk"><i style="--w:85%;--c:var(--green)"></i></div></div>
+                        <div class="tile"><span>Bandra</span><b>4.18</b><div class="tk"><i style="--w:83%;--c:var(--navy)"></i></div></div>
+                        <div class="tile"><span>Kurla</span><b>4.02</b><div class="tk"><i style="--w:80%;--c:var(--navy)"></i></div></div>
+                        <div class="tile"><span>Chembur</span><b>3.98</b><div class="tk"><i style="--w:79%;--c:var(--amber)"></i></div></div>
+                        <div class="tile hl"><span>Powai</span><b>3.90</b><div class="tk"><i style="--w:76%;--c:var(--red)"></i></div></div>
                       </div>
+                    </div>
+                    <div class="pn"><h6>Issues shared across branches</h6>
+                      <div class="rw"><span class="nm">Billing wait</span><div class="tk"><i style="--w:69%;--c:var(--red)"></i></div><span class="v">11</span></div>
+                      <div class="rw"><span class="nm">Delivery slots</span><div class="tk"><i style="--w:38%;--c:var(--amber)"></i></div><span class="v">6</span></div>
+                      <div class="rw"><span class="nm">Parking</span><div class="tk"><i style="--w:13%;--c:var(--navy)"></i></div><span class="v">2</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lvl" data-lvl="2">
+            <span class="lab"><i style="background-image:url(v2-img/owner.jpg)"></i>Enterprise</span>
+            <div class="win" role="img" aria-label="Enterprise overview across three clusters, with sample data"><div class="bar"><i></i><i></i><i></i><span>ReviewRani · Overview · All locations</span></div>
+              <div class="app"><div class="sb" data-v3="ent" data-name="All locations" data-on="Overview"></div>
+                <div class="mn">
+                  <div class="hd"><h6>Overview<small>All locations · 3 clusters · 47 locations</small></h6><div class="chp"><span>Location</span><span>Cluster</span><span class="on">Enterprise</span></div></div>
+                  <div class="kp">
+                    <div class="k f-g"><span>Network rating</span><b>4.22</b><em>▲ 0.06 this period</em></div>
+                    <div class="k"><span>Reviews this month</span><b>3,840</b><em>Across 47 locations</em></div>
+                    <div class="k f-a"><span>Need attention</span><b>12</b><em>Falling, quiet or no replies</em></div>
+                    <div class="k"><span>#1 nearby</span><b>22</b><em>Locations ahead of every rival</em></div>
+                  </div>
+                  <div class="g2">
+                    <div class="pn"><h6>Cluster rankings <b>this period</b></h6>
+                      <div class="rw"><span class="nm">1 · Bangalore</span><div class="tk"><i style="--w:89%;--c:var(--green)"></i></div><span class="v">4.34</span></div>
+                      <div class="rw"><span class="nm">2 · Mumbai</span><div class="tk"><i style="--w:84%;--c:var(--navy)"></i></div><span class="v">4.16</span></div>
+                      <div class="rw"><span class="nm">3 · Delhi NCR</span><div class="tk"><i style="--w:82%;--c:var(--amber)"></i></div><span class="v">4.11</span></div>
+                    </div>
+                    <div class="pn"><h6>Against nearby competitors</h6>
+                      <div class="rw"><span class="nm">Ahead of average</span><div class="tk"><i style="--w:66%;--c:var(--green)"></i></div><span class="v">31</span></div>
+                      <div class="rw"><span class="nm">Behind a rival</span><div class="tk"><i style="--w:34%;--c:var(--red)"></i></div><span class="v">16</span></div>
+                      <div class="rw"><span class="nm">Rival closing in</span><div class="tk"><i style="--w:15%;--c:var(--amber)"></i></div><span class="v">7</span></div>
                     </div>
                   </div>
                 </div>
@@ -983,60 +1695,8 @@ footer .bottom nav { display: flex; gap: 18px; }
   </div>
 </section>
 
-<!-- 5 · COMPETITOR ANALYSIS (live today) -->
-<section class="cmp" id="compete" aria-labelledby="h-cmp" style="padding-top:clamp(56px,7vw,96px)">
-  <div class="wrap">
-    <div class="center head">
-      <span class="tag" data-rv><i></i>Competitor Analysis</span>
-      <h2 id="h-cmp" data-rv>Competitor analysis that shows <span class="gt">where you stand.</span></h2>
-      <p class="lede" data-rv>See how each of your locations compares with the competitors around it.</p>
-    </div>
-
-    <div class="cgrid">
-      <div class="board" id="board" data-rv role="group" aria-label="Sample competitor comparison">
-        <div class="bh">
-          <div class="locs" role="group" aria-label="Choose a location">
-            <button type="button" aria-pressed="true" aria-label="Kadapa Highway">Kadapa<span class="lx"> Highway</span></button>
-            <button type="button" aria-pressed="false" aria-label="Tirupati Central">Tirupati<span class="lx"> Central</span></button>
-            <button type="button" aria-pressed="false" aria-label="Nellore Bypass">Nellore<span class="lx"> Bypass</span></button>
-          </div>
-          <span class="rank" id="rank">#2 <small>of 4 nearby</small></span>
-        </div>
-        <div class="tbl" aria-hidden="true">
-          <div class="hd2"><span>Business</span><span>Rating</span><span></span><span>Reviews</span><span>30 days</span></div>
-          <div class="rows" id="crows">
-            <div class="cr" data-k="A"><span class="nm">Competitor A</span><div class="tk"><i style="--w:80%"></i></div><span class="rt">4.32</span><span class="rv">1,140</span><span class="up">▲ 0.12</span></div>
-            <div class="cr you" data-k="you"><span class="nm">Kadapa Highway</span><div class="tk"><i style="--w:59%"></i></div><span class="rt">4.02</span><span class="rv">962</span><span class="dn">▼ 0.05</span></div>
-            <div class="cr" data-k="B"><span class="nm">Competitor B</span><div class="tk"><i style="--w:48%"></i></div><span class="rt">3.87</span><span class="rv">615</span><span class="up">▲ 0.21</span></div>
-            <div class="cr" data-k="C"><span class="nm">Competitor C</span><div class="tk"><i style="--w:29%"></i></div><span class="rt">3.61</span><span class="rv">408</span><span class="dn">▼ 0.03</span></div>
-          </div>
-        </div>
-        <div class="trend" aria-hidden="true">
-          <div class="th"><h5>Rating, last 6 months</h5><span class="lg"><span><i class="l-you"></i>You</span><span><i class="l-avg"></i>Nearby average</span></span></div>
-          <svg viewBox="0 0 300 100" preserveAspectRatio="none">
-            <defs><linearGradient id="cfill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5b8fd9" stop-opacity=".22"/><stop offset="1" stop-color="#5b8fd9" stop-opacity="0"/></linearGradient></defs>
-            <path class="gl" d="M0 25H300M0 50H300M0 75H300" vector-effect="non-scaling-stroke"/>
-            <path class="ar-you" id="c-area" d=""/>
-            <path class="ln-avg" id="c-avg" d="" vector-effect="non-scaling-stroke"/>
-            <path class="ln-you" id="c-you" d="" vector-effect="non-scaling-stroke"/>
-          </svg>
-          <div class="mo"><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span></div>
-        </div>
-        <p class="note dn" id="cnote" aria-live="polite"><i aria-hidden="true">!</i><span>Competitor B is closing the gap: +0.21 this month.</span></p>
-        <small class="sd">Sample data</small>
-      </div>
-
-      <ul class="pts">
-        <li data-rv style="--d:.1s"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8z"/></svg></span><b>Rating, side by side</b><span>Your rating next to theirs, location by location.</span></li>
-        <li data-rv style="--d:.2s"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14v10H10l-4 4v-4H5z"/></svg></span><b>Review volume</b><span>Who customers are reviewing more, and how often.</span></li>
-        <li data-rv style="--d:.3s"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17l5-5 4 3 7-8"/><path d="M15 7h5v5"/></svg></span><b>Who’s gaining on you</b><span>Spot a rival climbing before it costs you customers.</span></li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- 6 · WHAT'S NEXT (V3, coming soon: never present as live) -->
-<section id="v3" aria-labelledby="h-v3" style="padding-top:clamp(56px,7vw,96px)">
+<!-- 6 · WHAT'S NEXT (hidden for now; V3, coming soon: never present as live) -->
+<section id="v3" aria-labelledby="h-v3" hidden style="padding-top:clamp(56px,7vw,96px)">
   <div class="wrap">
     <div class="panel" data-rv>
       <div class="top">
@@ -1171,7 +1831,7 @@ footer .bottom nav { display: flex; gap: 18px; }
       <div class="fmain">
         <p class="fabout">Clear performance insights from customer reviews, for every location, cluster and your whole business.</p>
         <div class="fcols">
-          <div><h4>Product</h4><ul><li><a href="#product">Product</a></li><li><a href="#scale">Multi-location</a></li><li><a href="#compete">Competitor analysis</a></li><li><a href="#v3">What’s next</a></li></ul></div>
+          <div><h4>Product</h4><ul><li><a href="#features">Product</a></li><li><a href="#scale">Multi-location</a></li><li><a href="#compete">Competitor analysis</a></li></ul></div>
           <div><h4>Get in touch</h4><ul><li><a href="#contact" data-interest="demo">Book a Demo</a></li><li><a href="#contact">Contact</a></li><!-- TODO: contact email --><li><a href="#" data-signin>Sign in</a></li></ul></div>
           <div><h4>A SalesRaja product</h4><ul><li>ReviewRani</li><li>LeadsRaja</li><li>WebRani</li></ul></div>
         </div>
@@ -1202,6 +1862,34 @@ footer .bottom nav { display: flex; gap: 18px; }
     sb.innerHTML = '<div class="lg"><svg><use href="#crown"/></svg>ReviewRani</div>' + SB.map(function (n) {
       return n[0] === '|' ? '<em>' + n.slice(1) + '</em>' : '<span' + (n === on ? ' class="on"' : '') + '>' + n + '</span>';
     }).join('');
+  });
+
+  /* the v3 sidebar, for the feature screens: scope switcher, the scope's own pages, then the verbs */
+  var P = {
+    ov: '<path d="M4 11 12 4l8 7v8.5a.5.5 0 0 1-.5.5H15v-6H9v6H4.5a.5.5 0 0 1-.5-.5z"/>',
+    ask: '<path d="M3.5 8.5l4.5 5 4-7 4 7 4.5-5V17a1 1 0 0 1-1 1H4.5a1 1 0 0 1-1-1z"/>',
+    an: '<path d="M5 19V11M11 19V5M17 19v-6M3 19h18"/>',
+    mo: '<path d="M2.5 12s3.5-6.5 9.5-6.5S21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.8"/>',
+    fx: '<path d="M14.7 5.3a4 4 0 0 0-5.2 5.2L4 16l4 4 5.5-5.5a4 4 0 0 0 5.2-5.2l-2.6 2.6-2.6-.6-.6-2.6z"/>',
+    rs: '<path d="M9 7.5 4 12l5 4.5"/><path d="M4.5 12H14a6 6 0 0 1 6 6v.5"/>',
+    rq: '<path d="M21 3 10.5 13.5"/><path d="M21 3l-6.5 18-4-7.5L3 9.5z"/>',
+    cp: '<path d="M7 4v16M17 4v16M3 8h8M13 15h8"/>',
+    st: '<circle cx="12" cy="12" r="3"/><path d="M12 3v2.5M12 18.5V21M3 12h2.5M18.5 12H21"/>',
+    loc: '<path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.4"/>',
+    cl: '<rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/>',
+    ent: '<path d="M12 3.5 21 8l-9 4.5L3 8z"/><path d="M3 12.5l9 4.5 9-4.5"/><path d="M3 16.5 12 21l9-4.5"/>'
+  };
+  var V3 = {
+    ent: [['Overview', 'ov'], ['Ask ReviewRani', 'ask'], ['Analyse', 'an', 1], ['Monitor', 'mo', 1], ['Fix', 'fx', 1], ['Compare', 'cp', 1], ['Settings', 'st']],
+    loc: [['Overview', 'ov'], ['Ask ReviewRani', 'ask'], ['Analyse', 'an', 1], ['Fix', 'fx', 1], ['Respond', 'rs', 1], ['Request', 'rq', 1], ['Compare', 'cp', 1], ['Settings', 'st']]
+  };
+  V3.cl = V3.ent;
+  var ico = function (k) { return '<svg viewBox="0 0 24 24">' + P[k] + '</svg>'; };
+  $$('.sb[data-v3]').forEach(function (sb) {
+    var sc = sb.dataset.v3, on = sb.dataset.on;
+    sb.innerHTML = '<div class="lg"><svg><use href="#crown"/></svg>ReviewRani</div><div class="sw">' + ico(sc) + '<b>' + sb.dataset.name + '</b></div>' +
+      V3[sc].map(function (r) { return '<span class="' + (r[2] ? 'l3' : '') + (r[0] === on ? ' on' : '') + '">' + ico(r[1]) + r[0] + '</span>'; }).join('') +
+      (sc === 'loc' ? '' : '<em>Utility</em><span>' + ico('an') + 'Usage</span><span>' + ico('ent') + 'Admins</span>');
   });
 
   /* smooth scrolling on desktop, as on v3 */
@@ -1362,11 +2050,11 @@ footer .bottom nav { display: flex; gap: 18px; }
 
   /* competitor board: switch location, rows re-rank with a FLIP move */
   var CMP = [
-    { loc: 'Kadapa Highway', rows: [['A', 4.32, 1140, .12], ['you', 4.02, 962, -.05], ['B', 3.87, 615, .21], ['C', 3.61, 408, -.03]],
+    { loc: 'Powai', rows: [['A', 4.32, 1140, .12], ['you', 4.02, 962, -.05], ['B', 3.87, 615, .21], ['C', 3.61, 408, -.03]],
       you: [4.12, 4.10, 4.09, 4.07, 4.07, 4.02], avg: [3.80, 3.82, 3.85, 3.88, 3.90, 3.93], note: ['dn', 'Competitor B is closing the gap: +0.21 this month.'] },
-    { loc: 'Tirupati Central', rows: [['you', 4.41, 1512, .06], ['A', 4.24, 1980, .02], ['B', 4.05, 720, -.04], ['C', 3.78, 390, .01]],
+    { loc: 'Kurla', rows: [['you', 4.41, 1512, .06], ['A', 4.24, 1980, .02], ['B', 4.05, 720, -.04], ['C', 3.78, 390, .01]],
       you: [4.30, 4.32, 4.35, 4.36, 4.38, 4.41], avg: [4.00, 4.01, 4.02, 4.03, 4.02, 4.02], note: ['up', 'You lead nearby, but Competitor A has 31% more reviews.'] },
-    { loc: 'Nellore Bypass', rows: [['A', 4.36, 870, .08], ['B', 4.12, 1230, .10], ['you', 4.02, 744, -.02], ['C', 3.70, 515, -.06]],
+    { loc: 'Andheri West', rows: [['A', 4.36, 870, .08], ['B', 4.12, 1230, .10], ['you', 4.02, 744, -.02], ['C', 3.70, 515, -.06]],
       you: [4.10, 4.08, 4.06, 4.05, 4.04, 4.02], avg: [3.95, 3.98, 4.00, 4.03, 4.05, 4.06], note: ['dn', 'Two competitors are ahead, and both are still climbing.'] }
   ];
   var crows = $('#crows'), locBtns = $$('.locs button');
@@ -1403,6 +2091,52 @@ footer .bottom nav { display: flex; gap: 18px; }
   };
   locBtns.forEach(function (b, k) { b.addEventListener('click', function () { cmpShow(k); }); });
   cmpShow(0);
+
+  /* feature demos: the Fix tracker, Respond queue and Ask answers switch on click;
+     Respond and Ask also step through on their own while on screen, until someone clicks */
+  var autoStep = function (root, n, show, ms) {
+    var i = 0, t = null, seen = false, held = false;
+    var run = function () { clearInterval(t); if (seen && !held && !still) t = setInterval(function () { i = (i + 1) % n; show(i); }, ms); };
+    new IntersectionObserver(function (es) { seen = es[0].isIntersecting; run(); }, { threshold: .4 }).observe(root);
+    return function (k) { held = true; clearInterval(t); i = k; show(k); };
+  };
+  var press = function (btns, k) { btns.forEach(function (b, j) { b.setAttribute('aria-pressed', j === k); }); };
+
+  var FIX = [{"n": "Billing wait", "sev": ["r", "High"], "reach": "Shared · 11 of 16 locations", "st": ["a", "Returning"], "who": ["SK", "Suresh K.", "Cluster manager, Mumbai"], "w": [2, 4, 6, 9, 11, 7, 3, 1, 0, 1, 3], "tl": [["Detected from 6 reviews", "2 Aug", "on"], ["Raised to High, 11 mentions", "9 Aug", "on"], ["Marked resolved", "2 Sep", "on"], ["Returned, 3 new mentions", "3 Oct", "a"]]}, {"n": "“Scam”", "sev": ["r", "Critical"], "reach": "Local · Andheri West", "st": ["r", "Open"], "who": ["PN", "Priya N.", "Branch manager, Andheri West"], "w": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], "tl": [["Flagged at once: critical word", "28 Oct", "r"], ["Owner reached on WhatsApp", "28 Oct", "on"], ["Customer called back", "29 Oct", "b"]]}, {"n": "Delivery slots", "sev": ["n", "Standard"], "reach": "Regional · 6 of 16 locations", "st": ["v", "Owned"], "who": ["RS", "Rohit S.", "Regional operations"], "w": [1, 1, 2, 2, 3, 4, 4, 5, 5, 6, 6], "tl": [["Detected from 5 reviews", "14 Sep", "on"], ["Assigned to regional operations", "18 Sep", "on"], ["Escalated: now in 6 locations", "12 Oct", "b"]]}, {"n": "Parking", "sev": ["n", "Standard"], "reach": "Local · Powai, Kurla", "st": ["g", "Resolved"], "who": ["SK", "Suresh K.", "Cluster manager, Mumbai"], "w": [3, 4, 4, 3, 2, 1, 1, 0, 0, 0, 0], "tl": [["Detected from 7 reviews", "5 Jul", "on"], ["Valet partner added", "20 Aug", "on"], ["Resolved: no mentions in 6 weeks", "1 Oct", "on"]]}];
+  var FIXC = { a: '#b45309', r: '#c62828', v: '#5b3fc4', g: '#2c6c65' };
+  var fixBtns = $$('.fx-is');
+  fixBtns.forEach(function (b, k) { b.addEventListener('click', function () {
+    var d = FIX[k], m = Math.max.apply(0, d.w.concat(1));
+    press(fixBtns, k);
+    $('#fi-n').textContent = d.n;
+    $('#fi-p').innerHTML = '<span class="fx-pl ' + d.sev[0] + '">' + d.sev[1] + '</span> <span class="fx-pl ' + d.st[0] + '">' + d.st[1] + '</span>';
+    $('#fi-r').textContent = d.reach;
+    $('#fi-i').textContent = d.who[0]; $('#fi-w').textContent = d.who[1]; $('#fi-o').textContent = d.who[2];
+    $('#fi-b').innerHTML = d.w.map(function (v, j) { var h = Math.max(v / m * 70, 2); return '<rect x="' + (j * 30 + 5) + '" y="' + (78 - h).toFixed(1) + '" width="20" height="' + h.toFixed(1) + '" rx="4" fill="' + (j === d.w.length - 1 ? FIXC[d.st[0]] : '#c3cfe3') + '"/>'; }).join('');
+    $('#fi-t').innerHTML = d.tl.map(function (x) { return '<li class="' + x[2] + '">' + x[0] + ' <small>· ' + x[1] + '</small></li>'; }).join('');
+    $$('.fx-id > *').forEach(function (el) { el.style.animation = 'none'; el.offsetWidth; el.style.animation = ''; });
+  }); });
+
+  var RQ = [["Draft for a critical review", "Hi Anil, being charged twice is not okay, and we’re sorry. Priya, our branch manager, will call you today to refund the extra charge."], ["Draft from the Billing wait reply", "Hi Meera, sorry you waited so long at billing on Saturday. We’ve opened a second counter for weekend evenings, and we’d love to see you back."], ["Draft for an unhappy 3-star", "Hi Karan, thank you for the kind words about the food, and sorry about the welcome. We’ve shared this with the team at the door and hope to make it right next time."]];
+  var rqBtns = $$('.fx-q3 button'), rqD = $('#rq-d');
+  var rqPick = autoStep($('#rq'), RQ.length, function (k) {
+    press(rqBtns, k);
+    $('#rq-l').textContent = RQ[k][0]; $('#rq-t').textContent = RQ[k][1];
+    rqD.classList.remove('swap'); rqD.offsetWidth; rqD.classList.add('swap');
+  }, 4500);
+  rqBtns.forEach(function (b, k) { b.addEventListener('click', function () { rqPick(k); }); });
+
+  var AK = [["Which branch slipped most this month, and why?", "<span><b>Powai</b> fell from 4.31 to 3.88. Most of the drop is billing waits, mentioned in 41 reviews.</span><div class=\"rws\"><div class=\"fx-th\"><span>Billing wait</span><div class=\"tk\"><i style=\"--w:100%;--c:var(--red)\"></i></div><span>41</span></div><div class=\"fx-th\"><span>Rude at the door</span><div class=\"tk\"><i style=\"--w:22%;--c:var(--red)\"></i></div><span>9</span></div></div><div class=\"lk\"><span>Open Analyse · Powai →</span><span>Open Fix · Billing wait →</span></div>"], ["What do customers say about delivery?", "<span>Delivery comes up in <b>212 reviews</b> across 16 locations. 58% are negative, mostly late slots in Thane and Kurla.</span><div class=\"rws\"><div class=\"fx-th\"><span>Late slot</span><div class=\"tk\"><i style=\"--w:100%;--c:var(--red)\"></i></div><span>96</span></div><div class=\"fx-th\"><span>Packaging</span><div class=\"tk\"><i style=\"--w:43%;--c:var(--green)\"></i></div><span>41</span></div></div><div class=\"lk\"><span>Open Analyse · Delivery →</span></div>"], ["Who improved most in Delhi NCR?", "<span><b>Cyber Hub</b>, up from 4.12 to 4.30 since August. Its reply rate went from 40% to 92%.</span><div class=\"rws\"><div class=\"fx-th\"><span>Reply rate</span><div class=\"tk\"><i style=\"--w:92%;--c:var(--green)\"></i></div><span>92%</span></div><div class=\"fx-th\"><span>Rating</span><div class=\"tk\"><i style=\"--w:75%;--c:var(--green)\"></i></div><span>4.30</span></div></div><div class=\"lk\"><span>Open Compare · Delhi NCR →</span></div>"], ["Which competitor is gaining on us?", "<span><b>Competitor B</b> near Kurla is up 0.21 this month, with 31% more reviews than last month.</span><div class=\"rws\"><div class=\"fx-th\"><span>Competitor B</span><div class=\"tk\"><i style=\"--w:62%;--c:#c9cede\"></i></div><span>4.05</span></div><div class=\"fx-th\"><span>Kurla</span><div class=\"tk\"><i style=\"--w:59%;--c:#2f63b8\"></i></div><span>4.02</span></div></div><div class=\"lk\"><span>Open Monitor · Competitors →</span></div>"]];
+  var akBtns = $$('.fx-ex button'), akA = $('#ak-a'), akT = null;
+  var akPick = autoStep($('#ak'), AK.length, function (k) {
+    press(akBtns, k);
+    $('#ak-q').textContent = AK[k][0];
+    clearTimeout(akT);
+    if (still) { akA.innerHTML = AK[k][1]; return; }
+    akA.classList.add('typing');
+    akT = setTimeout(function () { akA.innerHTML = AK[k][1]; akA.classList.remove('typing'); }, 700);
+  }, 6000);
+  akBtns.forEach(function (b, k) { b.addEventListener('click', function () { akPick(k); }); });
 
   /* contact form: preview only */
   $('#form').addEventListener('submit', function (e) {
