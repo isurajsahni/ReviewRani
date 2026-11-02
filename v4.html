@@ -8,7 +8,7 @@
 <link rel="icon" type="image/png" href="reviewrani-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Geist:wght@400;600&family=Geist+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Nunito:wght@400;600;700&family=Geist:wght@400;600&family=Geist+Mono:wght@400;600&display=swap">
 <style>
 /* ReviewRani single-page landing, built to the "Single-Page Landing Blueprint" (Notion) in the v3 page's style:
    white page, brand navy ink, one brand gradient on the words that matter, soft panels and slanted gradient seams.
@@ -680,7 +680,7 @@ section { position: relative; padding-block: clamp(72px, 9vw, 120px); scroll-mar
 
 /* ---------- 4 · multi-location: three-step zoom ---------- */
 .scale { padding-block: 0; }
-.zoom { height: 330vh; }
+.zoom { height: 430vh; }
 .zstick { position: sticky; top: var(--navo); height: calc(100vh - var(--navo)); min-height: 600px; display: grid; align-items: center; overflow: hidden; padding-block: 40px; }
 .zgrid { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.5fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
 .zcopy { display: grid; gap: 16px; }
@@ -694,6 +694,8 @@ section { position: relative; padding-block: clamp(72px, 9vw, 120px); scroll-mar
   .lvls li { padding: 6px 0; }
   .lvls b { font-size: 17px; }
   .lvls span { font-size: 14px; line-height: 1.4; }
+  .lvls li:not(.on) span { display: none; }
+  .lvls li:not(.on)::before { grid-row: auto; }
 }
 .lvls { display: grid; gap: 4px; margin-top: 10px; counter-reset: l; }
 .lvls li { list-style: none; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 2px 14px; padding: 8px 0; opacity: .45; transition: opacity .4s; }
@@ -710,6 +712,92 @@ section { position: relative; padding-block: clamp(72px, 9vw, 120px); scroll-mar
 .lvl .lab { transition: opacity .3s; }
 .lvl .lab { position: absolute; z-index: 2; left: 22px; top: -18px; display: inline-flex; align-items: center; gap: 8px; padding: 4px 14px 4px 4px; border-radius: 30px; background: var(--g-d); color: #fff; font-weight: 600; font-size: 14px; line-height: 1; box-shadow: 0 8px 18px -8px rgba(47, 99, 184, .5); }
 .lvl .lab i { width: 28px; height: 28px; border-radius: 50%; border: 2px solid rgba(255, 255, 255, .9); background: center / cover; }
+.ztags { display: flex; flex-wrap: wrap; gap: 8px; }
+@media (max-width: 900px) { .ztags { justify-content: center; } }
+
+/* the live (v2) dashboard, redrawn with sample data */
+.vd { --vn: #022c3d; --vb: #e0e5f1; --vt: #1f7a8c; --vi: #1c2530; --vm: #5b6472; font-family: 'Nunito', system-ui, sans-serif; font-size: clamp(10px, 1.5cqw, 12px); line-height: 1.3; color: var(--vi); background: var(--vb); display: grid; grid-template-rows: auto minmax(0, 1fr); text-align: left; }
+@media (min-width: 901px) and (prefers-reduced-motion: no-preference) { .vd { height: clamp(460px, calc(100vh - 170px), 640px); } }
+.vd-top { display: flex; align-items: center; gap: 1.5em; height: 3.4em; padding: 0 1.2em 0 1.5em; background: var(--vn); color: #fff; }
+.vd-top strong { font-size: 1.35em; font-weight: 600; margin-right: 1.4em; }
+.vd-top > span { font-size: .95em; white-space: nowrap; }
+.vd-top > span.on { background: #fff; color: var(--vn); padding: .3em .7em; border-radius: .4em; }
+.vd-top > span.c::after { content: ""; display: inline-block; width: .38em; height: .38em; margin: 0 0 .16em .5em; border: solid currentColor; border-width: 0 1px 1px 0; transform: rotate(45deg); }
+.vd-top em { margin-left: auto; font-style: normal; font-size: .9em; white-space: nowrap; padding: .45em .8em; border: 1px solid rgba(255, 255, 255, .7); border-radius: .5em; }
+.vd-app { display: grid; grid-template-columns: 13.6em minmax(0, 1fr); min-height: 0; }
+.vd-sb { display: flex; flex-direction: column; gap: .15em; padding: .7em .5em .8em; background: var(--vn); color: #fff; overflow: hidden; }
+.vd-sb > span { display: flex; align-items: center; gap: .7em; padding: .6em .75em; border-radius: 2em; font-size: .92em; white-space: nowrap; }
+.vd-sb > span.on { background: #bedcf7; color: var(--vn); }
+.vd svg.vi { width: 1.5em; height: 1.5em; flex: none; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.vd-sb > div { margin-top: auto; text-align: center; font-size: .86em; }
+.vd-sb > div small { display: block; margin-top: .7em; padding: .6em .4em; border: 1px solid rgba(255, 255, 255, .35); border-radius: .9em; font-size: .85em; opacity: .85; }
+.vd-sb > div small svg { display: block; width: 1.5em; height: 1.1em; margin: 0 auto .3em; fill: #fff; }
+.vd-mn { position: relative; display: grid; align-content: start; gap: .9em; padding: 1.1em 1.3em; overflow: hidden; min-width: 0; }
+@media (min-width: 901px) and (prefers-reduced-motion: no-preference) { .vd-mn::after { content: ""; position: absolute; inset: auto 0 0; height: 2.6em; background: linear-gradient(transparent, var(--vb)); pointer-events: none; } }
+.vd h6 { margin: 0; font: inherit; font-size: 1.22em; font-weight: 600; color: var(--vi); }
+.vd p { margin: .2em 0 0; font-size: .88em; line-height: 1.35; color: var(--vi); }
+.vd-kp { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75em; }
+.vd-c { background: #fff; border-radius: .7em; padding: .85em 1em; min-width: 0; }
+.vd-k { position: relative; display: grid; gap: .55em; }
+.vd-k span { font-size: 1.02em; padding-right: 2.5em; }
+.vd-k b { font-size: 1.6em; font-weight: 700; line-height: 1; }
+.vd-k svg.vi { position: absolute; right: 0; top: 50%; transform: translateY(-50%); width: 2.5em; height: 2.5em; color: #6f7681; stroke-width: 1.3; }
+.vd-tf { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: .5em .7em; align-items: start; font-size: .96em; }
+.vd-tf span { display: flex; flex-wrap: wrap; gap: .3em; }
+.vd-tf i { font-style: normal; font-size: .72em; padding: .35em .6em; border: 1px solid #c4c8cf; border-radius: .4em; color: #6f7681; white-space: nowrap; }
+.vd-tf i.on { background: var(--vt); border-color: var(--vt); color: #fff; }
+.vd-g2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75em; }
+.vd-ch h6 { font-size: 1.05em; margin-bottom: .6em; }
+.vd-pl { position: relative; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: .55em; height: 11.5em; margin-left: 2.9em; padding-inline: .3em; align-items: end; background: repeating-linear-gradient(to bottom, #e8eaef 0 1px, transparent 1px 25%); border-bottom: 1px solid #d6d9e0; }
+.vd-pl ol { position: absolute; left: -3.1em; top: -.4em; bottom: -.4em; width: 2.6em; margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; justify-content: space-between; text-align: right; font-size: .78em; color: var(--vm); }
+.vd-pl > div { position: relative; }
+.vd-pl > div b { position: absolute; left: 50%; bottom: 100%; transform: translateX(-50%); font-size: .68em; font-weight: 400; color: var(--vm); white-space: nowrap; padding-bottom: .15em; }
+.vd-yr { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: .55em; margin: .3em 0 0 2.9em; padding-inline: .3em; font-size: .76em; text-align: center; color: var(--vm); }
+.vd-tb { display: flex; gap: 1.5em; border-bottom: 1px solid #dfe2e8; margin-bottom: .75em; font-size: .9em; font-weight: 600; color: var(--vm); }
+.vd-tb span { padding: .1em .5em .55em; }
+.vd-tb span.on { color: var(--vt); box-shadow: inset 0 -2px var(--vt); }
+.vd-lb h5 { margin: 0 0 .5em; font: inherit; font-size: 1em; font-weight: 600; color: var(--vi); }
+.vd-r { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr) auto; gap: .5em; align-items: center; padding: .6em .7em; margin-bottom: .5em; border-radius: .6em; box-shadow: 0 1px 5px rgba(2, 44, 61, .13); }
+.vd-r.nc { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr); }
+.vd-r span { display: grid; gap: .2em; font-size: .62em; letter-spacing: .02em; text-transform: uppercase; color: #39424e; min-width: 0; }
+.vd-r span b { font-size: 1.62em; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--vt); }
+.vd-r > i { width: 1.9em; height: 1.9em; border-radius: 50%; background: #bedcf7; color: var(--vn); display: grid; place-items: center; font-style: normal; font-size: .9em; line-height: 1; }
+.vd-map { display: block; width: 100%; height: 13em; border-radius: .5em; }
+.vd-sr { padding: .5em .9em; background: #fff; border-radius: .5em; font-size: .86em; color: #8a909a; max-width: 60%; }
+.vd-cp { display: grid; gap: .55em; }
+.vd-cp .vd-r { grid-template-columns: minmax(0, 1.5fr) repeat(3, minmax(0, 1fr)) auto; box-shadow: none; padding: 0; margin: 0; }
+.vd-cp .vd-r > a { font-size: .8em; color: var(--vt); font-weight: 600; white-space: nowrap; }
+.vd-cp h5 { margin: 0; font: inherit; font-size: .62em; letter-spacing: .02em; text-transform: uppercase; color: #39424e; }
+.vd-cp table { width: 100%; border-collapse: collapse; font-size: .82em; }
+.vd-cp th, .vd-cp td { padding: .42em .4em; text-align: left; border-bottom: 1px solid #eceef2; font-weight: 400; white-space: nowrap; }
+.vd-cp th { color: var(--vm); font-size: .92em; }
+.vd-r.cd { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1.05fr) minmax(0, .9fr) minmax(0, .9fr) auto; }
+.is-cl .vd-pl { height: 8.5em; }
+.vd-ov { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: .75em; }
+.vd-ov > div:last-child { display: grid; gap: .75em; }
+.vd-ov .vd-pl { height: 5.6em; }
+.vd-ov .vd-ch h6 { margin-bottom: .55em; font-size: .95em; }
+.vd-mp { display: grid; grid-template-rows: auto minmax(0, 1fr); gap: .5em; }
+.vd-mp header { display: flex; align-items: center; gap: .6em; }
+.vd-mp header h6 { margin-right: auto; }
+.vd-mp header i { font-style: normal; font-size: .72em; padding: .3em .6em; border: 1px solid #c4c8cf; border-radius: .4em; color: #6f7681; white-space: nowrap; }
+.vd-mp .vd-map { height: 100%; min-height: 16em; }
+@container (min-width: 521px) and (max-width: 680px) { .vd-ov .vd-pl > div b { display: none; } }
+@container (max-width: 520px) {
+  .vd { font-size: 11px; }
+  .vd-app { grid-template-columns: minmax(0, 1fr); }
+  .vd-sb, .vd-top > span, .vd-tf, .vd-g2 > :nth-child(2), .vd-map + p { display: none; }
+  .vd-kp { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .vd-g2, .vd-ov { grid-template-columns: minmax(0, 1fr); }
+  .vd-ov > div:last-child > :nth-child(2) { display: none; }
+  .vd-r.cd { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr) auto; }
+  .vd-r.cd > :nth-child(2) { display: none; }
+  .vd-lb > :nth-child(2) { display: block; }
+  .vd-mn { padding: 1em; }
+  .vd-sr { max-width: none; }
+  .vd-cp .vd-r { grid-template-columns: minmax(0, 1.5fr) repeat(2, minmax(0, 1fr)); }
+  .vd-cp .vd-r > :nth-child(2), .vd-cp .vd-r > a, .vd-cp th:nth-child(2), .vd-cp td:nth-child(2), .vd-cp th:nth-child(3), .vd-cp td:nth-child(3) { display: none; }
+}
 
 /* ---------- 5 · what's next (V3, coming soon) ---------- */
 .panel { border-radius: 30px; background: var(--g-v); padding: clamp(28px, 5vw, 64px); position: relative; overflow: hidden; }
@@ -874,7 +962,7 @@ footer .bottom nav { display: flex; gap: 18px; }
   .panel .top { grid-template-columns: minmax(0, 1fr); }
   footer .fmain { grid-template-columns: minmax(0, 1fr); }
 }
-/* the zoom needs room: below 900px wide, or with reduced motion, the three levels simply stack */
+/* the zoom needs room: below 900px wide, or with reduced motion, the levels simply stack */
 @media (max-width: 900px), (prefers-reduced-motion: reduce) {
   .scale { padding-block: clamp(72px, 9vw, 120px); }
   .zoom { height: auto; }
@@ -1168,108 +1256,33 @@ footer .bottom nav { display: flex; gap: 18px; }
     <div class="zstick">
       <div class="wrap zgrid">
         <div class="zcopy">
-          <span class="tag plain" data-rv>One dashboard, every level</span>
+          <div class="ztags" data-rv><span class="tag plain">One dashboard, every level</span><span class="tag">Available now</span></div>
           <h2 id="h-scale" data-rv>From one branch to <span class="gt">your whole network.</span></h2>
           <p class="lede" data-rv>The same dashboard for a branch manager, a city head and the owner. Switch the scope and every number follows you.</p>
           <ol class="lvls" id="lvls">
-            <li class="on"><b>Location</b><span>The branch manager sees their rating, their reviews and what to do today.</span></li>
-            <li><b>Cluster</b><span>A city head sees every branch side by side, and the issues they share.</span></li>
-            <li><b>Enterprise</b><span>The owner sees every cluster, and where the network stands against rivals.</span></li>
+            <li class="on"><b>Location</b><span>The branch manager sees their rating, opportunities, threats and how each employee is doing.</span></li>
+            <li><b>Cluster</b><span>A city head sees the cluster's trend, and which locations lead and which lag.</span></li>
+            <li><b>Enterprise</b><span>The owner sees every cluster ranked, and every location on one map.</span></li>
+            <li><b>Competitors</b><span>Everyone sees how each location stacks up against the rivals around it.</span></li>
           </ol>
         </div>
-        <div class="zstage prod" id="zstage">
-          <!-- each level is drawn in the v3 dashboard's tokens (.prod .win) -->
+        <div class="zstage" id="zstage">
+          <!-- each level is drawn in the live dashboard's look, with sample data (.vd, built from VD in the script) -->
           <div class="lvl" data-lvl="0">
             <span class="lab"><i style="background-image:url(v2-img/manager.jpg)"></i>Location</span>
-            <div class="win" role="img" aria-label="Location overview for Powai, with sample data"><div class="bar"><i></i><i></i><i></i><span>ReviewRani · Overview · Powai</span></div>
-              <div class="app"><div class="sb" data-v3="loc" data-name="Powai" data-on="Overview"></div>
-                <div class="mn">
-                  <div class="hd"><h6>Overview<small>Powai · Mumbai · last 30 days</small></h6><div class="chp"><span class="on">Location</span><span>Cluster</span><span>Enterprise</span></div></div>
-                  <div class="kp">
-                    <div class="k f-g"><span>Google rating</span><b>4.31</b><em>On track · 2,140 reviews</em></div>
-                    <div class="k f-a"><span>This period</span><b>3.88</b><em>Needs improvement</em></div>
-                    <div class="k"><span>Waiting for a reply</span><b>12</b><em>Oldest 6 days</em></div>
-                    <div class="k"><span>Reviews to 4.4</span><b>14</b><em>Five-star reviews needed</em></div>
-                  </div>
-                  <div class="g2">
-                    <div class="pn"><h6>Google rating against this period <b>month by month</b></h6>
-                      <svg class="ch" viewBox="0 0 600 160" preserveAspectRatio="none">
-                        <path d="M0 20H600M0 60H600M0 100H600M0 140H600" stroke="var(--grid)" stroke-width="1" vector-effect="non-scaling-stroke"/>
-                        <g fill="var(--navy-d2)"><rect x="28" y="44" width="56" height="96" rx="5"/><rect x="128" y="50" width="56" height="90" rx="5"/><rect x="228" y="65.6" width="56" height="74.4" rx="5"/><rect x="328" y="80" width="56" height="60" rx="5"/><rect x="428" y="98" width="56" height="42" rx="5"/><rect x="528" y="106.4" width="56" height="33.6" rx="5" fill="var(--amber)"/></g>
-                        <path d="M0 49 L600 55" stroke="var(--navy)" stroke-width="3" stroke-linecap="round" fill="none" vector-effect="non-scaling-stroke"/>
-                      </svg>
-                    </div>
-                    <div class="pn"><h6>What needs doing today</h6>
-                      <div class="rw"><span class="nm">Billing wait to fix</span><div class="tk"><i style="--w:90%;--c:var(--red)"></i></div><span class="v">High</span></div>
-                      <div class="rw"><span class="nm">Reviews waiting</span><div class="tk"><i style="--w:60%;--c:var(--amber)"></i></div><span class="v">12</span></div>
-                      <div class="rw"><span class="nm">Customers to ask</span><div class="tk"><i style="--w:45%;--c:var(--navy)"></i></div><span class="v">140</span></div>
-                      <div class="rw"><span class="nm">Rank in Mumbai</span><div class="tk"><i style="--w:15%;--c:var(--navy)"></i></div><span class="v">#16</span></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <div class="win" role="img" aria-label="Location overview for Powai in the live dashboard, with sample data"><div class="bar"><i></i><i></i><i></i><span>Location · Powai</span></div><div class="vd" data-vd="0"></div></div>
           </div>
           <div class="lvl" data-lvl="1">
             <span class="lab"><i style="background-image:url(v2-img/team.jpg)"></i>Cluster</span>
-            <div class="win" role="img" aria-label="Cluster overview for Mumbai, comparing its branches, with sample data"><div class="bar"><i></i><i></i><i></i><span>ReviewRani · Overview · Mumbai</span></div>
-              <div class="app"><div class="sb" data-v3="cl" data-name="Mumbai" data-on="Overview"></div>
-                <div class="mn">
-                  <div class="hd"><h6>Overview<small>Mumbai · 16 locations · last 30 days</small></h6><div class="chp"><span>Location</span><span class="on">Cluster</span><span>Enterprise</span></div></div>
-                  <div class="kp">
-                    <div class="k"><span>Cluster rating</span><b>4.16</b><em>▲ 0.03 this period</em></div>
-                    <div class="k f-a"><span>Falling</span><b>4</b><em>Branches below lifetime</em></div>
-                    <div class="k"><span>Open issues</span><b>5</b><em>2 shared across branches</em></div>
-                    <div class="k"><span>Reply rate</span><b>91%</b><em>Within 2 days</em></div>
-                  </div>
-                  <div class="g2">
-                    <div class="pn"><h6>Branches side by side <b>this period</b></h6>
-                      <div class="tiles">
-                        <div class="tile"><span>Andheri West</span><b>4.41</b><div class="tk"><i style="--w:88%;--c:var(--green)"></i></div></div>
-                        <div class="tile"><span>Thane</span><b>4.27</b><div class="tk"><i style="--w:85%;--c:var(--green)"></i></div></div>
-                        <div class="tile"><span>Bandra</span><b>4.18</b><div class="tk"><i style="--w:83%;--c:var(--navy)"></i></div></div>
-                        <div class="tile"><span>Kurla</span><b>4.02</b><div class="tk"><i style="--w:80%;--c:var(--navy)"></i></div></div>
-                        <div class="tile"><span>Chembur</span><b>3.98</b><div class="tk"><i style="--w:79%;--c:var(--amber)"></i></div></div>
-                        <div class="tile hl"><span>Powai</span><b>3.90</b><div class="tk"><i style="--w:76%;--c:var(--red)"></i></div></div>
-                      </div>
-                    </div>
-                    <div class="pn"><h6>Issues shared across branches</h6>
-                      <div class="rw"><span class="nm">Billing wait</span><div class="tk"><i style="--w:69%;--c:var(--red)"></i></div><span class="v">11</span></div>
-                      <div class="rw"><span class="nm">Delivery slots</span><div class="tk"><i style="--w:38%;--c:var(--amber)"></i></div><span class="v">6</span></div>
-                      <div class="rw"><span class="nm">Parking</span><div class="tk"><i style="--w:13%;--c:var(--navy)"></i></div><span class="v">2</span></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <div class="win" role="img" aria-label="Cluster overview for Mumbai in the live dashboard, with sample data"><div class="bar"><i></i><i></i><i></i><span>Cluster · Mumbai</span></div><div class="vd" data-vd="1"></div></div>
           </div>
           <div class="lvl" data-lvl="2">
             <span class="lab"><i style="background-image:url(v2-img/owner.jpg)"></i>Enterprise</span>
-            <div class="win" role="img" aria-label="Enterprise overview across three clusters, with sample data"><div class="bar"><i></i><i></i><i></i><span>ReviewRani · Overview · All locations</span></div>
-              <div class="app"><div class="sb" data-v3="ent" data-name="All locations" data-on="Overview"></div>
-                <div class="mn">
-                  <div class="hd"><h6>Overview<small>All locations · 3 clusters · 47 locations</small></h6><div class="chp"><span>Location</span><span>Cluster</span><span class="on">Enterprise</span></div></div>
-                  <div class="kp">
-                    <div class="k f-g"><span>Network rating</span><b>4.22</b><em>▲ 0.06 this period</em></div>
-                    <div class="k"><span>Reviews this month</span><b>3,840</b><em>Across 47 locations</em></div>
-                    <div class="k f-a"><span>Need attention</span><b>12</b><em>Falling, quiet or no replies</em></div>
-                    <div class="k"><span>#1 nearby</span><b>22</b><em>Locations ahead of every rival</em></div>
-                  </div>
-                  <div class="g2">
-                    <div class="pn"><h6>Cluster rankings <b>this period</b></h6>
-                      <div class="rw"><span class="nm">1 · Bangalore</span><div class="tk"><i style="--w:89%;--c:var(--green)"></i></div><span class="v">4.34</span></div>
-                      <div class="rw"><span class="nm">2 · Mumbai</span><div class="tk"><i style="--w:84%;--c:var(--navy)"></i></div><span class="v">4.16</span></div>
-                      <div class="rw"><span class="nm">3 · Delhi NCR</span><div class="tk"><i style="--w:82%;--c:var(--amber)"></i></div><span class="v">4.11</span></div>
-                    </div>
-                    <div class="pn"><h6>Against nearby competitors</h6>
-                      <div class="rw"><span class="nm">Ahead of average</span><div class="tk"><i style="--w:66%;--c:var(--green)"></i></div><span class="v">31</span></div>
-                      <div class="rw"><span class="nm">Behind a rival</span><div class="tk"><i style="--w:34%;--c:var(--red)"></i></div><span class="v">16</span></div>
-                      <div class="rw"><span class="nm">Rival closing in</span><div class="tk"><i style="--w:15%;--c:var(--amber)"></i></div><span class="v">7</span></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <div class="win" role="img" aria-label="Enterprise overview in the live dashboard, with sample data"><div class="bar"><i></i><i></i><i></i><span>Enterprise · Sample Group</span></div><div class="vd" data-vd="2"></div></div>
+          </div>
+          <div class="lvl" data-lvl="3">
+            <span class="lab"><i style="background-image:url(v2-img/staff.jpg)"></i>Competitors</span>
+            <div class="win" role="img" aria-label="Competitor analysis in the live dashboard, with sample data"><div class="bar"><i></i><i></i><i></i><span>Competitor Analysis</span></div><div class="vd" data-vd="3"></div></div>
           </div>
         </div>
       </div>
@@ -1904,6 +1917,95 @@ footer .bottom nav { display: flex; gap: 18px; }
       (sc === 'loc' ? '' : '<em>Utility</em><span>' + ico('an') + 'Usage</span><span>' + ico('ent') + 'Admins</span>');
   });
 
+  /* the three level screens, drawn like the live dashboard: all figures are sample data */
+  var VI = {
+    ov: '<rect x="3" y="3" width="8" height="10" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="11" width="7" height="10" rx="1.5"/><rect x="3" y="16" width="8" height="5" rx="1.5"/>',
+    pf: '<path d="M5 19a9 9 0 1 1 14 0"/><path d="M12 11c-1.5 2-2 3-2 4a2 2 0 0 0 4 0c0-1-.5-2-2-4z"/>',
+    rv: '<path d="M4 4h12a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H9l-3 3v-3H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M21 9v8a2 2 0 0 1-2 2v3l-3-3h-5"/>',
+    pd: '<path d="M12 2.5 21 7.5v9l-9 5-9-5v-9z"/><path d="M3 7.5l9 5 9-5M12 12.5v9"/>',
+    em: '<circle cx="12" cy="7.5" r="4.5"/><path d="M4 21a8 8 0 0 1 16 0z"/>',
+    kw: '<circle cx="16" cy="8" r="5"/><path d="M12.5 11.5 3 21M6 18l3 3"/>',
+    st: '<path d="m12 3 2.7 5.6 6.1.8-4.5 4.2 1.2 6.1L12 16.7l-5.5 3 1.2-6.1L3.2 9.4l6.1-.8z"/>',
+    cm: '<rect x="3" y="4" width="7" height="16" rx="1.5"/><path d="M14 4h2M20 4h1v2M21 10v4M21 18v2h-1M14 20h2"/>',
+    wr: '<path d="M12 3.5 22 20.5H2z"/><path d="M12 10v5M12 18v.01"/>',
+    tr: '<path d="M7 4h10v6a5 5 0 0 1-10 0zM7 6H3v2a4 4 0 0 0 4 4M17 6h4v2a4 4 0 0 1-4 4M12 15v4M8 21h8l-1-2H9z"/>',
+    th: '<rect x="3" y="3" width="18" height="18" rx="5"/><path d="m7 10 3.5 3.5 3-2.5L17 14.5"/>',
+    fl: '<path d="M6 22V3l13 2-3 4.5 3 4.5-13-2"/>',
+    pn: '<path d="M12 22c-5-6-8-9.5-8-13a8 8 0 0 1 16 0c0 3.5-3 7-8 13z"/><circle cx="12" cy="9" r="3"/>',
+    rk: '<circle cx="12" cy="5" r="2.5"/><path d="M9 21v-9h6v9M3 21v-5h6M15 18h6v3"/>'
+  };
+  var vi = function (k) { return '<svg class="vi" viewBox="0 0 24 24" aria-hidden="true">' + VI[k] + '</svg>'; };
+  var VC = ['#005f73', '#52b09b', '#f2d24b', '#ee9b00', '#9b2226', '#e63946'], VY = [2021, 2022, 2023, 2024, 2025, 2026];
+  var VS = [['Overview', 'ov'], ['Performance Analysis', 'pf'], ['Review Analysis', 'rv'], ['Product Analysis', 'pd'], ['Employee Analysis', 'em'], ['Keyword Analysis', 'kw']];
+  var VD = [
+    { sc: 'Location', nm: 'Powai', side: VS.concat([['Rating Estimator', 'st'], ['Competitor Analysis', 'cm']]),
+      kp: [['Average Rating [4.3]', '4.31', 'st'], ['Total Reviews', '2,140', 'rv'], 0, ['Opportunity Count To 4.4', '321', 'tr'], ['Threat Count To 4.3', '7', 'th'], ['Red Flag Count', '0', 'fl']],
+      rt: [4.02, 4.11, 4.18, 4.24, 4.28, 4.31], rc: [410, 690, 1020, 1390, 1780, 2140], top: 2500,
+      tabs: ['Employees', 'Products'], kind: 'Employee', code: 0,
+      best: [['Asha', '186', '4.92'], ['Rohan', '142', '4.88']], low: [['Imran', '6', '2.83'], ['Kiran', '4', '3.25']] },
+    { sc: 'Cluster', nm: 'Mumbai', side: VS,
+      kp: [['Average Rating', '4.16', 'st'], ['Total Reviews', '28,460', 'rv'], 0],
+      rt: [4.13, 4.16, 4.14, 4.15, 4.17, 4.16], rc: [6120, 9840, 14210, 19060, 23980, 28460], top: 30000,
+      tabs: ['Locations', 'Employees', 'Products'], kind: 'Location', code: 1,
+      best: [['Andheri West', 'MUM-AW', '3,210', '4.41'], ['Powai', 'MUM-PW', '2,140', '4.31'], ['Thane', 'MUM-TH', '2,870', '4.27']], low: [['Chembur', 'MUM-CH', '1,980', '3.98'], ['Kurla', 'MUM-KU', '2,440', '4.02'], ['Vikhroli', 'MUM-VK', '1,720', '4.06']] },
+    { sc: 'Enterprise', nm: 'Sample Group', on: 'Enterprise', side: VS.concat([['Opp/Threat Info', 'wr']]), map: 1,
+      kp: [['Average Rating', '4.21', 'st'], ['Total Reviews', '84,920', 'rv'], 0],
+      rt: [3.62, 3.78, 3.93, 4.05, 4.14, 4.21], rc: [18200, 29700, 43100, 57800, 71600, 84920], top: 100000,
+      tabs: ['Clusters', 'Locations', 'Employees', 'Products'], kind: 'Cluster', code: 1, rl: 'Lifetime rating',
+      best: [['Bangalore', 'BLR', '31,240', '4.34'], ['Mumbai', 'MUM', '28,460', '4.16']], low: [['Delhi NCR', 'DEL', '25,220', '4.11']] },
+    { sc: 'Enterprise', nm: 'Sample Group', sideOn: 3, side: [['Select Location', 'pn'], ['Location Rankings', 'rk'], ['Compare Locations', 'cm'], ['Competitor Analysis', 'cm']],
+      kp: [['Average Rating', '4.21', 'st'], ['Total Reviews', '84,920', 'rv'], 0],
+      cmp: [
+        ['Powai', 'MUM-PW', '4.31', '2,140', [['Competitor A', 'COMP-A', '4.4', '4.38', '3,120', '4.5'], ['Competitor B', 'COMP-B', '4.2', '4.19', '1,460', '4'], ['Competitor C', 'COMP-C', '3.9', '3.93', '870', '3.5'], ['Competitor D', 'COMP-D', '4.1', '4.07', '640', '0']]],
+        ['Andheri West', 'MUM-AW', '4.41', '3,210', [['Competitor E', 'COMP-E', '4.5', '4.46', '2,780', '5'], ['Competitor F', 'COMP-F', '4.2', '4.24', '1,950', '4.2'], ['Competitor G', 'COMP-G', '4.0', '3.98', '1,120', '3']]],
+        ['Kurla', 'MUM-KU', '4.02', '2,440', [['Competitor H', 'COMP-H', '4.3', '4.27', '1,830', '4.6'], ['Competitor I', 'COMP-I', '3.9', '3.88', '960', '3']]]
+      ] }
+  ];
+  var vdChart = function (t, vals, top, fmt, ticks) {
+    return '<div class="vd-c vd-ch"><h6>' + t + '</h6><div class="vd-pl"><ol>' + ticks.map(function (v) { return '<li>' + v + '</li>'; }).join('') + '</ol>' +
+      vals.map(function (v, i) { return '<div style="height:' + (v / top * 100).toFixed(1) + '%;background:' + VC[i] + '"><b>' + fmt(v) + '</b></div>'; }).join('') +
+      '</div><div class="vd-yr">' + VY.map(function (y) { return '<span>' + y + '</span>'; }).join('') + '</div></div>';
+  };
+  var vdRows = function (d, list) {
+    return list.map(function (r) {
+      var cells = [[d.kind + ' name', r[0]]];
+      if (d.code) cells.push([d.kind + ' code', r[1]]);
+      cells.push(['Review count', r[d.code + 1]], [d.rl || 'Average rating', r[d.code + 2]]);
+      return '<div class="vd-r ' + (d.code ? 'cd' : 'nc') + '">' + cells.map(function (c) { return '<span>' + c[0] + '<b>' + c[1] + '</b></span>'; }).join('') + (d.code ? '<i>↗</i>' : '') + '</div>';
+    }).join('');
+  };
+  var vdMap = '<svg class="vd-map" viewBox="0 0 320 170" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="320" height="170" fill="#eef1ea"/><path d="M0 128C60 112 98 138 150 122s90-44 170-30v78H0z" fill="#dfe9d6"/><path d="M226 0c-8 30 10 46 2 76s-26 40-16 94" fill="none" stroke="#bcd9ea" stroke-width="5"/><path d="M0 44 92 70l70 12 158-30M60 170l40-100 40-70M162 82l-12 88M162 82l70 88M92 70 0 104" fill="none" stroke="#fff" stroke-width="3"/><path d="M0 44 92 70l70 12 158-30M60 170l40-100" fill="none" stroke="#f1d58e" stroke-width="1.2"/>' +
+    [[70, 54], [98, 84], [132, 58], [158, 72], [172, 96], [196, 66], [214, 104], [146, 118], [246, 80], [116, 128], [268, 124]].map(function (m) { return '<path transform="translate(' + m[0] + ' ' + m[1] + ')" d="M0 0c-5-7-8-10-8-14a8 8 0 0 1 16 0c0 4-3 7-8 14z" fill="#d92d2d" stroke="#a51d1d" stroke-width=".6"/><circle cx="' + m[0] + '" cy="' + (m[1] - 14) + '" r="2.8" fill="#8e1616"/>'; }).join('') + '</svg>';
+  var vdCmp = function (c) {
+    return '<div class="vd-c vd-cp"><div class="vd-r"><span>Location name<b>' + c[0] + '</b></span><span>Location code<b>' + c[1] + '</b></span><span>Average rating<b>' + c[2] + '</b></span><span>Review count<b>' + c[3] + '</b></span><a>View Map ↗</a></div><h5>Competitors</h5>' +
+      '<table><tr>' + ['Location Name', 'Location Code', 'Google Rating', 'Average Rating', 'Total Reviews', 'Rating'].map(function (h) { return '<th>' + h + '</th>'; }).join('') + '</tr>' +
+      c[4].map(function (r) { return '<tr>' + r.map(function (v) { return '<td>' + v + '</td>'; }).join('') + '</tr>'; }).join('') + '</table></div>';
+  };
+  $$('.vd[data-vd]').forEach(function (el) {
+    var d = VD[+el.dataset.vd];
+    var card = function (k) {
+      if (!k) return '<div class="vd-c vd-tf">Select Time<br>Frame<span><i class="on">Lifetime</i><i>Month</i><i>Date Range</i></span></div>';
+      return '<div class="vd-c vd-k"><span>' + k[0] + '</span><b>' + k[1] + '</b>' + vi(k[2]) + '</div>';
+    };
+    var board = d.cmp ? '' : '<div class="vd-c"><div class="vd-tb">' + d.tabs.map(function (t, i) { return '<span class="' + (i ? '' : 'on') + '">' + t + '</span>'; }).join('') + '</div>' +
+      '<div class="vd-g2 vd-lb"><div><h5>Best Performing</h5>' + vdRows(d, d.best) + '</div><div><h5>Low Performing</h5>' + vdRows(d, d.low) + '</div></div></div>';
+    var charts = d.cmp ? '' : vdChart('Average Rating Over Year', d.rt, 5, function (v) { return v.toFixed(2); }, ['5.0', '3.75', '2.5', '1.25', '0']) +
+      vdChart('Review Count Over Year', d.rc, d.top, function (v) { return v.toLocaleString('en-IN'); }, [1, .75, .5, .25, 0].map(function (f) { return (d.top * f).toLocaleString('en-IN'); }));
+    el.innerHTML = '<div class="vd-top"><strong>ReviewRani</strong><span>Home</span>' +
+      ['Insights', 'Enterprise', 'Clusters', 'Locations'].map(function (n) { return '<span class="c' + (n === d.on ? ' on' : '') + '">' + n + '</span>'; }).join('') + '<em>Sample Group</em></div>' +
+      '<div class="vd-app"><div class="vd-sb">' + d.side.map(function (r, i) { return '<span class="' + (i === (d.sideOn || 0) ? 'on' : '') + '">' + vi(r[1]) + r[0] + '</span>'; }).join('') +
+      '<div>' + d.sc + ' | ' + d.nm + '<small><svg><use href="#crown"/></svg>Terms of use | Privacy Policy</small></div></div>' +
+      '<div class="vd-mn' + (d.code && !d.map ? ' is-cl' : '') + '">' + (d.cmp ? '<div class="vd-kp">' + d.kp.map(card).join('') + '</div>' +
+      '<div><h6>Competitor Analysis</h6><p>Monitor how your locations stack up against nearby competitors with ratings and reviews.</p></div><div class="vd-sr">Search Location</div>' +
+      d.cmp.map(vdCmp).join('') + '</div></div>' :
+      '<div><h6>' + d.sc + ' - ' + d.nm + '</h6><p>All the data shown here is associated with the ' + d.sc + ' – ' + d.nm + '.</p></div>' +
+      '<div class="vd-kp">' + d.kp.map(card).join('') + '</div>' +
+      (d.map ? '<div><h6>' + d.sc + ' Performance Overview</h6></div><div class="vd-ov"><div class="vd-c vd-mp"><header><h6>Map View</h6><i>Select Cluster</i><i>Reset</i></header>' + vdMap + '</div><div>' + charts + '</div></div>' :
+      '<div><h6>' + d.sc + ' Performance Overview</h6><p>See overall performance at a glance. View total reviews, average rating, and track changes over time.</p></div><div class="vd-g2">' + charts + '</div>') +
+      '<div><h6>Leaderboard</h6></div>' + board +
+      '</div></div>');
+  });
+
   /* smooth scrolling on desktop, as on v3 */
   var lenis = null;
   if (fine && !still) {
@@ -2023,13 +2125,13 @@ footer .bottom nav { display: flex; gap: 18px; }
   var doZoom = function () {
     if (!zoomOn.matches) { lvls.forEach(function (l) { l.style.transform = ''; l.style.visibility = ''; l.style.removeProperty('--dim'); $('.lab', l).style.opacity = ''; }); return; }
     var r = zoom.getBoundingClientRect(), span = r.height - (innerHeight - navH());
-    var p = clamp(-r.top / span, 0, 1) * 2;          // 0 → 2 across the pinned scroll
+    var p = clamp(-r.top / span, 0, 1) * (lvls.length - 1);          // 0 → last level across the pinned scroll
     // how far each level has slid in: the first is already there, the next rise from below and land on top
     var ins = lvls.map(function (l, i) { if (!i) return 1; var t = clamp((p - (i - 1) - .15) / .7, 0, 1); return 1 - Math.pow(1 - t, 3); });
     lvls.forEach(function (l, i) {
       var depth = 0;                                  // how many cards now sit on top of this one
       for (var j = i + 1; j < ins.length; j++) depth += ins[j];
-      l.style.transform = 'translateY(calc(' + ((1 - ins[i]) * 115).toFixed(2) + '% - ' + (depth * 30).toFixed(1) + 'px)) scale(' + (1 - depth * .06).toFixed(4) + ')';
+      l.style.transform = 'translateY(calc(' + ((1 - ins[i]) * 115).toFixed(2) + '% - ' + (depth * 24).toFixed(1) + 'px)) scale(' + (1 - depth * .06).toFixed(4) + ')';
       l.style.visibility = ins[i] < .001 ? 'hidden' : '';
       l.style.setProperty('--dim', Math.min(.3, depth * .22).toFixed(3));
       $('.lab', l).style.opacity = clamp(1 - depth * 2, 0, 1).toFixed(2);
