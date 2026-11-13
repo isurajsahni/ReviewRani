@@ -8,7 +8,7 @@
 <link rel="icon" type="image/png" href="reviewrani-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Nunito:wght@400;600;700&family=Geist:wght@400;600&family=Geist+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;600&display=swap">
 <style>
 /* ReviewRani single-page landing, built to the "Single-Page Landing Blueprint" (Notion) in the v3 page's style:
    white page, brand navy ink, one brand gradient on the words that matter, soft panels and slanted gradient seams.
@@ -715,88 +715,107 @@ section { position: relative; padding-block: clamp(72px, 9vw, 120px); scroll-mar
 .ztags { display: flex; flex-wrap: wrap; gap: 8px; }
 @media (max-width: 900px) { .ztags { justify-content: center; } }
 
-/* the live (v2) dashboard, redrawn with sample data */
-.vd { --vn: #022c3d; --vb: #e0e5f1; --vt: #1f7a8c; --vi: #1c2530; --vm: #5b6472; font-family: 'Nunito', system-ui, sans-serif; font-size: clamp(10px, 1.5cqw, 12px); line-height: 1.3; color: var(--vi); background: var(--vb); display: grid; grid-template-rows: auto minmax(0, 1fr); text-align: left; }
-@media (min-width: 901px) and (prefers-reduced-motion: no-preference) { .vd { height: clamp(460px, calc(100vh - 170px), 640px); } }
-.vd-top { display: flex; align-items: center; gap: 1.5em; height: 3.4em; padding: 0 1.2em 0 1.5em; background: var(--vn); color: #fff; }
-.vd-top strong { font-size: 1.35em; font-weight: 600; margin-right: 1.4em; }
-.vd-top > span { font-size: .95em; white-space: nowrap; }
-.vd-top > span.on { background: #fff; color: var(--vn); padding: .3em .7em; border-radius: .4em; }
-.vd-top > span.c::after { content: ""; display: inline-block; width: .38em; height: .38em; margin: 0 0 .16em .5em; border: solid currentColor; border-width: 0 1px 1px 0; transform: rotate(45deg); }
-.vd-top em { margin-left: auto; font-style: normal; font-size: .9em; white-space: nowrap; padding: .45em .8em; border: 1px solid rgba(255, 255, 255, .7); border-radius: .5em; }
-.vd-app { display: grid; grid-template-columns: 13.6em minmax(0, 1fr); min-height: 0; }
-.vd-sb { display: flex; flex-direction: column; gap: .15em; padding: .7em .5em .8em; background: var(--vn); color: #fff; overflow: hidden; }
-.vd-sb > span { display: flex; align-items: center; gap: .7em; padding: .6em .75em; border-radius: 2em; font-size: .92em; white-space: nowrap; }
-.vd-sb > span.on { background: #bedcf7; color: var(--vn); }
-.vd svg.vi { width: 1.5em; height: 1.5em; flex: none; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
-.vd-sb > div { margin-top: auto; text-align: center; font-size: .86em; }
-.vd-sb > div small { display: block; margin-top: .7em; padding: .6em .4em; border: 1px solid rgba(255, 255, 255, .35); border-radius: .9em; font-size: .85em; opacity: .85; }
-.vd-sb > div small svg { display: block; width: 1.5em; height: 1.1em; margin: 0 auto .3em; fill: #fff; }
-.vd-mn { position: relative; display: grid; align-content: start; gap: .9em; padding: 1.1em 1.3em; overflow: hidden; min-width: 0; }
-@media (min-width: 901px) and (prefers-reduced-motion: no-preference) { .vd-mn::after { content: ""; position: absolute; inset: auto 0 0; height: 2.6em; background: linear-gradient(transparent, var(--vb)); pointer-events: none; } }
-.vd h6 { margin: 0; font: inherit; font-size: 1.22em; font-weight: 600; color: var(--vi); }
-.vd p { margin: .2em 0 0; font-size: .88em; line-height: 1.35; color: var(--vi); }
-.vd-kp { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75em; }
-.vd-c { background: #fff; border-radius: .7em; padding: .85em 1em; min-width: 0; }
-.vd-k { position: relative; display: grid; gap: .55em; }
-.vd-k span { font-size: 1.02em; padding-right: 2.5em; }
-.vd-k b { font-size: 1.6em; font-weight: 700; line-height: 1; }
-.vd-k svg.vi { position: absolute; right: 0; top: 50%; transform: translateY(-50%); width: 2.5em; height: 2.5em; color: #6f7681; stroke-width: 1.3; }
-.vd-tf { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: .5em .7em; align-items: start; font-size: .96em; }
-.vd-tf span { display: flex; flex-wrap: wrap; gap: .3em; }
-.vd-tf i { font-style: normal; font-size: .72em; padding: .35em .6em; border: 1px solid #c4c8cf; border-radius: .4em; color: #6f7681; white-space: nowrap; }
-.vd-tf i.on { background: var(--vt); border-color: var(--vt); color: #fff; }
-.vd-g2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75em; }
-.vd-ch h6 { font-size: 1.05em; margin-bottom: .6em; }
-.vd-pl { position: relative; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: .55em; height: 11.5em; margin-left: 2.9em; padding-inline: .3em; align-items: end; background: repeating-linear-gradient(to bottom, #e8eaef 0 1px, transparent 1px 25%); border-bottom: 1px solid #d6d9e0; }
-.vd-pl ol { position: absolute; left: -3.1em; top: -.4em; bottom: -.4em; width: 2.6em; margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; justify-content: space-between; text-align: right; font-size: .78em; color: var(--vm); }
-.vd-pl > div { position: relative; }
-.vd-pl > div b { position: absolute; left: 50%; bottom: 100%; transform: translateX(-50%); font-size: .68em; font-weight: 400; color: var(--vm); white-space: nowrap; padding-bottom: .15em; }
-.vd-yr { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: .55em; margin: .3em 0 0 2.9em; padding-inline: .3em; font-size: .76em; text-align: center; color: var(--vm); }
-.vd-tb { display: flex; gap: 1.5em; border-bottom: 1px solid #dfe2e8; margin-bottom: .75em; font-size: .9em; font-weight: 600; color: var(--vm); }
-.vd-tb span { padding: .1em .5em .55em; }
-.vd-tb span.on { color: var(--vt); box-shadow: inset 0 -2px var(--vt); }
-.vd-lb h5 { margin: 0 0 .5em; font: inherit; font-size: 1em; font-weight: 600; color: var(--vi); }
-.vd-r { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr) auto; gap: .5em; align-items: center; padding: .6em .7em; margin-bottom: .5em; border-radius: .6em; box-shadow: 0 1px 5px rgba(2, 44, 61, .13); }
-.vd-r.nc { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr); }
-.vd-r span { display: grid; gap: .2em; font-size: .62em; letter-spacing: .02em; text-transform: uppercase; color: #39424e; min-width: 0; }
-.vd-r span b { font-size: 1.62em; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--vt); }
-.vd-r > i { width: 1.9em; height: 1.9em; border-radius: 50%; background: #bedcf7; color: var(--vn); display: grid; place-items: center; font-style: normal; font-size: .9em; line-height: 1; }
-.vd-map { display: block; width: 100%; height: 13em; border-radius: .5em; }
-.vd-sr { padding: .5em .9em; background: #fff; border-radius: .5em; font-size: .86em; color: #8a909a; max-width: 60%; }
-.vd-cp { display: grid; gap: .55em; }
-.vd-cp .vd-r { grid-template-columns: minmax(0, 1.5fr) repeat(3, minmax(0, 1fr)) auto; box-shadow: none; padding: 0; margin: 0; }
-.vd-cp .vd-r > a { font-size: .8em; color: var(--vt); font-weight: 600; white-space: nowrap; }
-.vd-cp h5 { margin: 0; font: inherit; font-size: .62em; letter-spacing: .02em; text-transform: uppercase; color: #39424e; }
-.vd-cp table { width: 100%; border-collapse: collapse; font-size: .82em; }
-.vd-cp th, .vd-cp td { padding: .42em .4em; text-align: left; border-bottom: 1px solid #eceef2; font-weight: 400; white-space: nowrap; }
-.vd-cp th { color: var(--vm); font-size: .92em; }
-.vd-r.cd { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1.05fr) minmax(0, .9fr) minmax(0, .9fr) auto; }
-.is-cl .vd-pl { height: 8.5em; }
-.vd-ov { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: .75em; }
-.vd-ov > div:last-child { display: grid; gap: .75em; }
-.vd-ov .vd-pl { height: 5.6em; }
-.vd-ov .vd-ch h6 { margin-bottom: .55em; font-size: .95em; }
-.vd-mp { display: grid; grid-template-rows: auto minmax(0, 1fr); gap: .5em; }
-.vd-mp header { display: flex; align-items: center; gap: .6em; }
-.vd-mp header h6 { margin-right: auto; }
-.vd-mp header i { font-style: normal; font-size: .72em; padding: .3em .6em; border: 1px solid #c4c8cf; border-radius: .4em; color: #6f7681; white-space: nowrap; }
-.vd-mp .vd-map { height: 100%; min-height: 16em; }
-@container (min-width: 521px) and (max-width: 680px) { .vd-ov .vd-pl > div b { display: none; } }
+/* the new (v3) dashboard, redrawn from the prototype's tokens (docs/reviewrani-tokens.css, light theme) with sample data */
+.nd { --ni: #17171C; --n2: #5C5C67; --n3: #8A8A94; --nl: #E4E4E8; --nv: #1D3E63; --ng: #2C6C65; --na: #B45309; --nr: #C62828; --nm: 'Geist Mono', ui-monospace, monospace;
+  font-family: 'Geist', system-ui, sans-serif; font-size: clamp(10px, 1.5cqw, 12px); line-height: 1.35; color: var(--ni); background: #F4F4F6; display: grid; grid-template-columns: 12.6em minmax(0, 1fr); text-align: left; }
+@media (min-width: 901px) and (prefers-reduced-motion: no-preference) { .nd { height: clamp(460px, calc(100vh - 170px), 640px); } }
+.nd svg.ni { width: 1.15em; height: 1.15em; flex: none; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.nd-sb { display: flex; flex-direction: column; gap: .15em; padding: 1.1em .8em 1em; background: #F2F2F4; border-right: 1px solid var(--nl); overflow: hidden; white-space: nowrap; }
+.nd-sb .lg { display: flex; align-items: center; gap: .5em; padding: 0 .4em; font-size: 1.1em; font-weight: 600; color: var(--nv); }
+.nd-sb .lg svg { width: 1.3em; height: 1.3em; }
+.nd-sb .us { padding: .35em .45em .9em; font-size: .9em; color: var(--n2); }
+.nd-sb .sw { display: flex; align-items: center; gap: .6em; margin-bottom: .6em; padding: .7em .8em; border-radius: .75em; background: var(--nv); color: #fff; font-weight: 600; }
+.nd-sb .sw b { flex: 1; font-weight: 600; overflow: hidden; text-overflow: ellipsis; }
+.nd-sb .sw::after { content: ""; width: .4em; height: .4em; border: solid currentColor; border-width: 0 .13em .13em 0; transform: rotate(45deg) translateY(-.15em); opacity: .7; }
+.nd-sb > span { display: flex; align-items: center; gap: .65em; padding: .55em .7em; border-radius: .6em; color: var(--n2); }
+.nd-sb > span.s { margin-left: 1.5em; }
+.nd-sb > span.on { background: rgba(29, 62, 99, .12); color: var(--nv); font-weight: 600; }
+.nd-sb em { margin-top: auto; padding: .4em .7em; font-style: normal; font-size: .82em; color: var(--n3); }
+.nd-mn { position: relative; display: grid; align-content: start; gap: 1em; padding: 1.3em 1.6em; overflow: hidden; min-width: 0; }
+@media (min-width: 901px) and (prefers-reduced-motion: no-preference) { .nd-mn::after { content: ""; position: absolute; inset: auto 0 0; height: 2.6em; background: linear-gradient(rgba(244, 244, 246, 0), #F4F4F6); pointer-events: none; } }
+.nd-hd { display: flex; align-items: center; justify-content: space-between; gap: 1em; }
+.nd-cr { font-size: .9em; color: var(--n3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.nd-cr b { font-weight: 400; color: var(--ni); }
+.nd-cr i { margin: 0 .5em; font-style: normal; opacity: .6; }
+.nd-seg { display: flex; flex: none; padding: .25em; background: #fff; border: 1px solid var(--nl); border-radius: .7em; font-size: .86em; color: var(--n2); white-space: nowrap; }
+.nd-seg span { padding: .35em .8em; border-radius: .5em; }
+.nd-seg span.on { background: rgba(29, 62, 99, .1); color: var(--nv); font-weight: 600; }
+.nd-c { background: #fff; border: 1px solid var(--nl); border-radius: 1em; min-width: 0; }
+.nd-ask { display: flex; align-items: center; gap: .8em; padding: .95em 1.1em; font-size: 1.05em; color: var(--n3); }
+.nd-ask kbd { margin-left: auto; padding: .1em .45em; border: 1px solid var(--nl); border-radius: .4em; font: inherit; font-size: .7em; }
+.nd-q { display: flex; flex-wrap: wrap; gap: .5em; margin-top: -.3em; }
+.nd-q span { padding: .4em .9em; background: #fff; border: 1px solid var(--nl); border-radius: 2em; font-size: .86em; white-space: nowrap; }
+.nd-al > div { display: flex; align-items: center; gap: .8em; padding: .8em 1.1em; font-size: .95em; }
+.nd-al > div + div { border-top: 1px solid var(--nl); }
+.nd-al i { width: .5em; height: .5em; flex: none; border-radius: 50%; background: var(--nr); }
+.nd-al i.a { background: var(--na); }
+.nd-al span { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.nd-al small { font-size: .82em; color: var(--n3); white-space: nowrap; }
+.nd-kp { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .9em; }
+.nd-k { display: grid; gap: .45em; justify-items: center; padding: 1.5em .6em 1.4em; border-radius: .9em; background: var(--nv); color: #fff; text-align: center; }
+.nd-k.g { background: var(--ng); }
+.nd-k.a { background: var(--na); }
+.nd-k.r { background: var(--nr); }
+.nd-k span, .nd-k em { max-width: 100%; font-style: normal; font-size: .82em; opacity: .92; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.nd-k b { font-family: var(--nm); font-weight: 400; font-size: 2.1em; line-height: 1.1; letter-spacing: -.03em; }
+.nd-st { display: flex; align-items: baseline; justify-content: space-between; gap: 1em; margin-top: .3em; }
+.nd-st h6 { margin: 0; font: inherit; font-size: 1.12em; font-weight: 600; color: var(--ni); }
+.nd-st small { font-size: .85em; color: var(--n3); white-space: nowrap; }
+.nd-g3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .9em; }
+.nd-g3 .nd-c { display: grid; gap: .7em; align-content: start; padding: 1.1em 1em; }
+.nd-ch { display: flex; align-items: center; justify-content: space-between; gap: .5em; min-width: 0; }
+.nd-ch > span:first-child { font-size: .84em; color: var(--n2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.nd-ch b { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.nd-ch b small { display: block; font-weight: 400; font-size: .78em; color: var(--n3); }
+.nd-bd { flex: none; display: inline-flex; align-items: center; gap: .4em; padding: .3em .6em; border-radius: 2em; font-size: .68em; font-weight: 600; white-space: nowrap; background: rgba(44, 108, 101, .12); color: var(--ng); }
+.nd-bd::before { content: ""; width: .45em; height: .45em; border-radius: 50%; background: currentColor; }
+.nd-bd.a { background: rgba(180, 83, 9, .1); color: var(--na); }
+.nd-bd.r { background: rgba(198, 40, 40, .09); color: var(--nr); }
+.nd-bd.o { background: none; box-shadow: inset 0 0 0 1px #CFCFD6; color: var(--n2); font-weight: 400; }
+.nd-bd.o::before { display: none; }
+.nd-fg { display: flex; align-items: baseline; gap: .6em; font-size: .84em; color: var(--n2); }
+.nd-fg b, .nd-two b { font-family: var(--nm); font-weight: 400; font-size: 1.9em; line-height: 1; letter-spacing: -.03em; color: var(--ni); }
+.nd-two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .8em; }
+.nd-two div { display: grid; gap: .45em; align-content: start; font-size: .8em; color: var(--n2); }
+.nd b.r, .nd em.r, .nd .nd-ft.r, .nd td.r { color: var(--nr); }
+.nd-br { position: relative; height: .5em; border-radius: 1em; background: #E9E9ED; }
+.nd-br i { position: absolute; inset: 0 auto 0 0; width: var(--w); border-radius: inherit; background: var(--c, var(--nv)); }
+.nd-br u { position: absolute; left: var(--m); top: -.3em; bottom: -.3em; width: 2px; background: var(--ni); }
+.nd-vb { display: flex; align-items: flex-end; gap: .25em; height: 3em; }
+.nd-vb i { flex: 1; height: var(--h); border-radius: .15em; background: rgba(29, 62, 99, .34); }
+.nd-vb i:last-child { background: var(--nv); }
+.nd-ft { font-size: .8em; color: var(--n2); }
+.nd-mv { display: flex; align-items: baseline; justify-content: space-between; gap: .5em; font-size: .84em; white-space: nowrap; }
+.nd-mv b { font-family: var(--nm); font-weight: 400; font-size: 1.25em; }
+.nd-mv em { font-style: normal; font-size: .92em; color: var(--n2); }
+.nd-sd { display: grid; grid-template-columns: minmax(0, 2.2fr) minmax(0, 1fr); gap: .9em; }
+.nd-sd .nd-c { display: grid; gap: .8em; align-content: start; padding: 1.2em 1.3em; }
+.nd-sd h5 { margin: 0; font: inherit; font-size: 1.3em; font-weight: 500; letter-spacing: -.01em; line-height: 1.3; color: var(--ni); }
+.nd-sd h5 span { color: var(--nr); }
+.nd-sd p { margin: 0; font-size: .84em; line-height: 1.6; color: var(--n2); }
+.nd-sd small { display: block; margin-bottom: .5em; font-size: .78em; color: var(--n2); }
+.nd-tb { width: 100%; border-collapse: collapse; font-size: .9em; }
+.nd-tb th { padding: .8em 1.1em; font-weight: 400; font-size: .84em; color: var(--n3); text-align: right; white-space: nowrap; }
+.nd-tb td { padding: .72em 1.1em; border-top: 1px solid var(--nl); font-family: var(--nm); text-align: right; white-space: nowrap; }
+.nd-tb th:first-child, .nd-tb td:first-child { font-family: inherit; text-align: left; }
+.nd-tb td:first-child u { display: inline-block; width: 2em; font-family: var(--nm); font-size: .82em; color: var(--n3); text-decoration: none; }
+.nd-tb tr.me td { background: #ECECF0; }
+.nd-tb tr.me td:first-child { font-weight: 600; }
+.nd-tb tr.gap td { padding-block: .5em; font-family: var(--nm); font-size: .84em; color: var(--n3); }
+.nd-tb .pl { display: inline-block; margin-left: .6em; padding: .15em .7em; border: 1px solid #CFCFD6; border-radius: 2em; font-family: 'Geist', system-ui, sans-serif; font-size: .8em; font-weight: 400; color: var(--n2); }
+.nd-tb td:not(:first-child) .pl { margin: 0; }
+.nd-tb td b { font-weight: 600; }
+.nd-tb td b.g { color: var(--ng); }
+.nd-tb td b.a { color: var(--na); }
+.nd-tb td b.n { color: var(--nv); }
+.nd-tb td.up { color: var(--ng); }
 @container (max-width: 520px) {
-  .vd { font-size: 11px; }
-  .vd-app { grid-template-columns: minmax(0, 1fr); }
-  .vd-sb, .vd-top > span, .vd-tf, .vd-g2 > :nth-child(2), .vd-map + p { display: none; }
-  .vd-kp { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .vd-g2, .vd-ov { grid-template-columns: minmax(0, 1fr); }
-  .vd-ov > div:last-child > :nth-child(2) { display: none; }
-  .vd-r.cd { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr) auto; }
-  .vd-r.cd > :nth-child(2) { display: none; }
-  .vd-lb > :nth-child(2) { display: block; }
-  .vd-mn { padding: 1em; }
-  .vd-sr { max-width: none; }
-  .vd-cp .vd-r { grid-template-columns: minmax(0, 1.5fr) repeat(2, minmax(0, 1fr)); }
-  .vd-cp .vd-r > :nth-child(2), .vd-cp .vd-r > a, .vd-cp th:nth-child(2), .vd-cp td:nth-child(2), .vd-cp th:nth-child(3), .vd-cp td:nth-child(3) { display: none; }
+  .nd { font-size: 11px; grid-template-columns: minmax(0, 1fr); }
+  .nd-sb, .nd-seg, .nd-q, .nd .x, .nd-g3 > :nth-child(n+3), .nd-tb.cp th:nth-child(2), .nd-tb.cp td:nth-child(2) { display: none; }
+  .nd-mn { padding: 1em; }
+  .nd-kp { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .nd-g3, .nd-sd { grid-template-columns: minmax(0, 1fr); }
+  .nd-tb th, .nd-tb td { padding-inline: .7em; }
 }
 
 /* ---------- 5 · what's next (V3, coming soon) ---------- */
@@ -1256,33 +1275,33 @@ footer .bottom nav { display: flex; gap: 18px; }
     <div class="zstick">
       <div class="wrap zgrid">
         <div class="zcopy">
-          <div class="ztags" data-rv><span class="tag plain">One dashboard, every level</span><span class="tag">Available now</span></div>
+          <div class="ztags" data-rv><span class="tag plain">One dashboard, every level</span></div>
           <h2 id="h-scale" data-rv>From one branch to <span class="gt">your whole network.</span></h2>
           <p class="lede" data-rv>The same dashboard for a branch manager, a city head and the owner. Switch the scope and every number follows you.</p>
           <ol class="lvls" id="lvls">
-            <li class="on"><b>Location</b><span>The branch manager sees their rating, opportunities, threats and how each employee is doing.</span></li>
-            <li><b>Cluster</b><span>A city head sees the cluster's trend, and which locations lead and which lag.</span></li>
-            <li><b>Enterprise</b><span>The owner sees every cluster ranked, and every location on one map.</span></li>
+            <li class="on"><b>Location</b><span>The branch manager sees their rating, what needs attention and how close the next rating level is.</span></li>
+            <li><b>Cluster</b><span>A city head sees which locations to look into, and the issues they share.</span></li>
+            <li><b>Enterprise</b><span>The owner sees every cluster ranked, and the locations that need a look.</span></li>
             <li><b>Competitors</b><span>Everyone sees how each location stacks up against the rivals around it.</span></li>
           </ol>
         </div>
         <div class="zstage" id="zstage">
-          <!-- each level is drawn in the live dashboard's look, with sample data (.vd, built from VD in the script) -->
+          <!-- each level is drawn in the new (v3) dashboard's look, from the prototype, with sample data (.nd, built from ND in the script) -->
           <div class="lvl" data-lvl="0">
             <span class="lab"><i style="background-image:url(v2-img/manager.jpg)"></i>Location</span>
-            <div class="win" role="img" aria-label="Location overview for Powai in the live dashboard, with sample data"><div class="bar"><i></i><i></i><i></i><span>Location · Powai</span></div><div class="vd" data-vd="0"></div></div>
+            <div class="win" role="img" aria-label="Location overview for Powai in the new dashboard, with sample data"><div class="bar"><i></i><i></i><i></i><span>ReviewRani · Overview · Powai</span></div><div class="nd" data-nd="0"></div></div>
           </div>
           <div class="lvl" data-lvl="1">
             <span class="lab"><i style="background-image:url(v2-img/team.jpg)"></i>Cluster</span>
-            <div class="win" role="img" aria-label="Cluster overview for Mumbai in the live dashboard, with sample data"><div class="bar"><i></i><i></i><i></i><span>Cluster · Mumbai</span></div><div class="vd" data-vd="1"></div></div>
+            <div class="win" role="img" aria-label="Cluster overview for Mumbai in the new dashboard, with sample data"><div class="bar"><i></i><i></i><i></i><span>ReviewRani · Overview · Mumbai</span></div><div class="nd" data-nd="1"></div></div>
           </div>
           <div class="lvl" data-lvl="2">
             <span class="lab"><i style="background-image:url(v2-img/owner.jpg)"></i>Enterprise</span>
-            <div class="win" role="img" aria-label="Enterprise overview in the live dashboard, with sample data"><div class="bar"><i></i><i></i><i></i><span>Enterprise · Sample Group</span></div><div class="vd" data-vd="2"></div></div>
+            <div class="win" role="img" aria-label="Enterprise overview in the new dashboard, with sample data"><div class="bar"><i></i><i></i><i></i><span>ReviewRani · Overview · All locations</span></div><div class="nd" data-nd="2"></div></div>
           </div>
           <div class="lvl" data-lvl="3">
             <span class="lab"><i style="background-image:url(v2-img/staff.jpg)"></i>Competitors</span>
-            <div class="win" role="img" aria-label="Competitor analysis in the live dashboard, with sample data"><div class="bar"><i></i><i></i><i></i><span>Competitor Analysis</span></div><div class="vd" data-vd="3"></div></div>
+            <div class="win" role="img" aria-label="Powai compared with nearby competitors in the new dashboard, with sample data"><div class="bar"><i></i><i></i><i></i><span>ReviewRani · Compare · Powai</span></div><div class="nd" data-nd="3"></div></div>
           </div>
         </div>
       </div>
@@ -1917,93 +1936,89 @@ footer .bottom nav { display: flex; gap: 18px; }
       (sc === 'loc' ? '' : '<em>Utility</em><span>' + ico('an') + 'Usage</span><span>' + ico('ent') + 'Admins</span>');
   });
 
-  /* the three level screens, drawn like the live dashboard: all figures are sample data */
-  var VI = {
-    ov: '<rect x="3" y="3" width="8" height="10" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="11" width="7" height="10" rx="1.5"/><rect x="3" y="16" width="8" height="5" rx="1.5"/>',
-    pf: '<path d="M5 19a9 9 0 1 1 14 0"/><path d="M12 11c-1.5 2-2 3-2 4a2 2 0 0 0 4 0c0-1-.5-2-2-4z"/>',
-    rv: '<path d="M4 4h12a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H9l-3 3v-3H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M21 9v8a2 2 0 0 1-2 2v3l-3-3h-5"/>',
-    pd: '<path d="M12 2.5 21 7.5v9l-9 5-9-5v-9z"/><path d="M3 7.5l9 5 9-5M12 12.5v9"/>',
-    em: '<circle cx="12" cy="7.5" r="4.5"/><path d="M4 21a8 8 0 0 1 16 0z"/>',
-    kw: '<circle cx="16" cy="8" r="5"/><path d="M12.5 11.5 3 21M6 18l3 3"/>',
-    st: '<path d="m12 3 2.7 5.6 6.1.8-4.5 4.2 1.2 6.1L12 16.7l-5.5 3 1.2-6.1L3.2 9.4l6.1-.8z"/>',
-    cm: '<rect x="3" y="4" width="7" height="16" rx="1.5"/><path d="M14 4h2M20 4h1v2M21 10v4M21 18v2h-1M14 20h2"/>',
-    wr: '<path d="M12 3.5 22 20.5H2z"/><path d="M12 10v5M12 18v.01"/>',
-    tr: '<path d="M7 4h10v6a5 5 0 0 1-10 0zM7 6H3v2a4 4 0 0 0 4 4M17 6h4v2a4 4 0 0 1-4 4M12 15v4M8 21h8l-1-2H9z"/>',
-    th: '<rect x="3" y="3" width="18" height="18" rx="5"/><path d="m7 10 3.5 3.5 3-2.5L17 14.5"/>',
-    fl: '<path d="M6 22V3l13 2-3 4.5 3 4.5-13-2"/>',
-    pn: '<path d="M12 22c-5-6-8-9.5-8-13a8 8 0 0 1 16 0c0 3.5-3 7-8 13z"/><circle cx="12" cy="9" r="3"/>',
-    rk: '<circle cx="12" cy="5" r="2.5"/><path d="M9 21v-9h6v9M3 21v-5h6M15 18h6v3"/>'
+  /* the four level screens, drawn like the new (v3) dashboard prototype: all figures are sample data */
+  var ni = function (k) { return '<svg class="ni" viewBox="0 0 24 24" aria-hidden="true">' + P[k] + '</svg>'; };
+  var ndBd = function (c, t) { return '<span class="nd-bd ' + c + '">' + t + '</span>'; };
+  var ndSt = function (t, note, x) { return '<div class="nd-st' + (x ? ' x' : '') + '"><h6>' + t + '</h6><small>' + note + '</small></div>'; };
+  var NC = { g: 'var(--ng)', a: 'var(--na)', r: 'var(--nr)', n: 'var(--nv)', o: '#C3C3CB' };
+  var NB = { g: 'On track', a: 'Needs improvement', r: 'Needs attention', n: 'Exceptional' };
+  // a place card: [name, parent, band, rating in period, moved, lifetime, note, note is a warning]
+  var ndPlace = function (r) {
+    var pc = function (v) { return ((v - 1) / 4 * 100).toFixed(1) + '%'; };
+    return '<div class="nd-c"><div class="nd-ch"><b>' + r[0] + (r[1] ? '<small>' + r[1] + '</small>' : '') + '</b>' + ndBd(r[2], NB[r[2]]) + '</div>' +
+      '<div class="nd-mv"><span><b>' + r[3].toFixed(2) + '</b> in this period</span><em' + (r[4] < 0 ? ' class="r"' : '') + '>moved ' + (r[4] < 0 ? '−' : '+') + Math.abs(r[4]).toFixed(2) + '</em></div>' +
+      '<div class="nd-br" style="--w:' + pc(r[3]) + ';--c:' + NC[r[2]] + ';--m:' + pc(r[5]) + '"><i></i><u></u></div>' +
+      '<div class="nd-ft' + (r[7] ? ' r' : '') + '">' + r[6] + '</div></div>';
   };
-  var vi = function (k) { return '<svg class="vi" viewBox="0 0 24 24" aria-hidden="true">' + VI[k] + '</svg>'; };
-  var VC = ['#005f73', '#52b09b', '#f2d24b', '#ee9b00', '#9b2226', '#e63946'], VY = [2021, 2022, 2023, 2024, 2025, 2026];
-  var VS = [['Overview', 'ov'], ['Performance Analysis', 'pf'], ['Review Analysis', 'rv'], ['Product Analysis', 'pd'], ['Employee Analysis', 'em'], ['Keyword Analysis', 'kw']];
-  var VD = [
-    { sc: 'Location', nm: 'Powai', side: VS.concat([['Rating Estimator', 'st'], ['Competitor Analysis', 'cm']]),
-      kp: [['Average Rating [4.3]', '4.31', 'st'], ['Total Reviews', '2,140', 'rv'], 0, ['Opportunity Count To 4.4', '321', 'tr'], ['Threat Count To 4.3', '7', 'th'], ['Red Flag Count', '0', 'fl']],
-      rt: [4.02, 4.11, 4.18, 4.24, 4.28, 4.31], rc: [410, 690, 1020, 1390, 1780, 2140], top: 2500,
-      tabs: ['Employees', 'Products'], kind: 'Employee', code: 0,
-      best: [['Asha', '186', '4.92'], ['Rohan', '142', '4.88']], low: [['Imran', '6', '2.83'], ['Kiran', '4', '3.25']] },
-    { sc: 'Cluster', nm: 'Mumbai', side: VS,
-      kp: [['Average Rating', '4.16', 'st'], ['Total Reviews', '28,460', 'rv'], 0],
-      rt: [4.13, 4.16, 4.14, 4.15, 4.17, 4.16], rc: [6120, 9840, 14210, 19060, 23980, 28460], top: 30000,
-      tabs: ['Locations', 'Employees', 'Products'], kind: 'Location', code: 1,
-      best: [['Andheri West', 'MUM-AW', '3,210', '4.41'], ['Powai', 'MUM-PW', '2,140', '4.31'], ['Thane', 'MUM-TH', '2,870', '4.27']], low: [['Chembur', 'MUM-CH', '1,980', '3.98'], ['Kurla', 'MUM-KU', '2,440', '4.02'], ['Vikhroli', 'MUM-VK', '1,720', '4.06']] },
-    { sc: 'Enterprise', nm: 'Sample Group', on: 'Enterprise', side: VS.concat([['Opp/Threat Info', 'wr']]), map: 1,
-      kp: [['Average Rating', '4.21', 'st'], ['Total Reviews', '84,920', 'rv'], 0],
-      rt: [3.62, 3.78, 3.93, 4.05, 4.14, 4.21], rc: [18200, 29700, 43100, 57800, 71600, 84920], top: 100000,
-      tabs: ['Clusters', 'Locations', 'Employees', 'Products'], kind: 'Cluster', code: 1, rl: 'Lifetime rating',
-      best: [['Bangalore', 'BLR', '31,240', '4.34'], ['Mumbai', 'MUM', '28,460', '4.16']], low: [['Delhi NCR', 'DEL', '25,220', '4.11']] },
-    { sc: 'Enterprise', nm: 'Sample Group', sideOn: 3, side: [['Select Location', 'pn'], ['Location Rankings', 'rk'], ['Compare Locations', 'cm'], ['Competitor Analysis', 'cm']],
-      kp: [['Average Rating', '4.21', 'st'], ['Total Reviews', '84,920', 'rv'], 0],
-      cmp: [
-        ['Powai', 'MUM-PW', '4.31', '2,140', [['Competitor A', 'COMP-A', '4.4', '4.38', '3,120', '4.5'], ['Competitor B', 'COMP-B', '4.2', '4.19', '1,460', '4'], ['Competitor C', 'COMP-C', '3.9', '3.93', '870', '3.5'], ['Competitor D', 'COMP-D', '4.1', '4.07', '640', '0']]],
-        ['Andheri West', 'MUM-AW', '4.41', '3,210', [['Competitor E', 'COMP-E', '4.5', '4.46', '2,780', '5'], ['Competitor F', 'COMP-F', '4.2', '4.24', '1,950', '4.2'], ['Competitor G', 'COMP-G', '4.0', '3.98', '1,120', '3']]],
-        ['Kurla', 'MUM-KU', '4.02', '2,440', [['Competitor H', 'COMP-H', '4.3', '4.27', '1,830', '4.6'], ['Competitor I', 'COMP-I', '3.9', '3.88', '960', '3']]]
-      ] }
+  // an issue card: [name, badge colour, badge, locations with it, locations in scope]
+  var ndIssue = function (r) {
+    return '<div class="nd-c"><div class="nd-ch"><b>' + r[0] + '</b>' + ndBd(r[1], r[2]) + '</div>' +
+      '<div class="nd-br" style="--w:' + (r[3] / r[4] * 100).toFixed(1) + '%;--c:' + NC[r[1]] + '"><i></i></div><div class="nd-ft"><b>' + r[3] + '</b> of ' + r[4] + ' locations</div></div>';
+  };
+  var ndG3 = function (list, fn, x) { return '<div class="nd-g3' + (x ? ' x' : '') + '">' + list.map(fn).join('') + '</div>'; };
+  var ndTwo = function (a, b) { return '<div class="nd-two">' + [a, b].map(function (f) { return '<div><b' + (f[2] ? ' class="r"' : '') + '>' + f[0] + '</b>' + f[1] + '</div>'; }).join('') + '</div>'; };
+  var ndCard = function (t, badge, body) { return '<div class="nd-c"><div class="nd-ch"><span>' + t + '</span>' + (badge || '') + '</div>' + body + '</div>'; };
+  var ndTable = function (cls, heads, rows) {
+    return '<div class="nd-c' + (cls === 'in' ? ' x' : '') + '"><table class="nd-tb ' + cls + '"><tr>' + heads.map(function (h) { return '<th>' + h + '</th>'; }).join('') + '</tr>' +
+      rows.map(function (r) { return typeof r === 'string' ? '<tr class="gap"><td colspan="' + heads.length + '">' + r + '</td></tr>' : '<tr' + (r.me ? ' class="me"' : '') + '>' + r.map(function (c) { return '<td' + (c[0] === '+' ? ' class="up"' : c[0] === '−' ? ' class="r"' : '') + '>' + c + '</td>'; }).join('') + '</tr>'; }).join('') + '</table></div>';
+  };
+  var me = function (r) { r.me = 1; return r; }, pl = function (t) { return '<span class="pl">' + t + '</span>'; }, rt = function (c, v) { return '<b class="' + c + '">' + v + '</b>'; };
+  var powai = ['Powai', '', 'a', 3.90, -0.40, 4.31, '4 reviews from a lower rating', 1];
+  var ND = [
+    { sc: 'loc', nm: 'Powai', cr: ['Sample Group', 'Mumbai', 'Powai'], ask: 'Ask about Powai', q: ['What are customers unhappy about here?', 'How close are we to dropping a level?'],
+      al: [['r', 'Powai is 4 reviews from a lower rating.', 'Predictions'], ['a', 'Billing wait is back: 3 new mentions this week.', 'Fix']],
+      kp: [['g', 'Google rating', '4.3', '2,140 lifetime reviews'], ['a', 'Rating in this period', '3.90', '96 reviews in period'], ['n', 'The gap', '−0.41', 'Falling behind Google'], ['n', 'Reviews in period', '96', '4.5% of the lifetime base']],
+      body: function () {
+        return '<div class="nd-g3">' +
+          ndCard('Sentiment', ndBd('a', 'Needs improvement'), '<div class="nd-fg"><b>0.58</b>across 96 reviews</div><div class="nd-br" style="--w:58%;--m:58%"><i></i><u></u></div><div class="nd-ft">Dragging it down: billing wait, 41 mentions</div>') +
+          ndCard('Review velocity', ndBd('g', 'Audible'), '<div class="nd-fg"><b>8.0</b>reviews per month</div><div class="nd-vb">' + [62, 54, 70, 84, 58, 66, 48, 72, 68, 74, 70, 88].map(function (h) { return '<i style="--h:' + h + '%"></i>'; }).join('') + '</div><div class="nd-ft">No silent months in the last 12</div>') +
+          ndCard('Boundary distance', ndBd('r', 'Needs attention'), ndTwo(['4', 'one-star reviews from a lower rating', 1], ['22', 'five-star reviews from a higher rating']) + '<div class="nd-br" style="--w:0%;--m:16%"><i></i><u></u></div>') +
+          '</div><div class="nd-g3 x">' +
+          ndCard('Within Mumbai', '', ndTwo(['16th', 'of 16 on rating'], ['−0.40', 'last of 16 on movement', 1])) +
+          ndCard('Waiting on a reply', '', ndTwo(['12', 'unanswered right now'], ['6', 'days the oldest has waited'])) +
+          ndCard('Reviews asked for', '', '<div class="nd-fg"><b>140</b>asked in this period</div><div class="nd-br" style="--w:26%"><i></i></div><div class="nd-ft">36 came back</div>') + '</div>';
+      } },
+    { sc: 'cl', nm: 'Mumbai', cr: ['Sample Group', 'Mumbai'], ask: 'Ask about Mumbai', q: ['Which locations here are close to a drop?', 'What is the widest issue in this cluster?'],
+      al: [['r', 'Powai is 4 reviews from a lower rating.', 'Predictions'], ['a', 'Kurla has sent no review requests in 30 days.', 'Monitor']],
+      kp: [['n', 'Cluster rating', '4.2', '28,460 reviews · 16 locations'], ['a', 'Rating in this period', '4.16', '−0.04 against lifetime'], ['n', 'Locations falling', '4', 'of 16 in this period'], ['r', 'Locations at risk', '1', 'Closest: Powai']],
+      body: function () {
+        return ndSt('Locations to look into', '3 of 16 in this period') + ndG3([powai, ['Kurla', '', 'a', 4.02, -0.20, 4.1, 'No requests sent in 30 days'], ['Chembur', '', 'a', 3.98, -0.12, 4.0, '15th of 16 on rating']], ndPlace) +
+          ndSt('Top issues', 'In the selected period', 1) + ndG3([['Billing wait', 'r', 'Shared', 11, 16], ['Delivery slots', 'a', 'Regional', 6, 16], ['Parking', 'o', 'Local', 2, 16]], ndIssue, 1);
+      } },
+    { sc: 'ent', nm: 'Sample Group', cr: ['Sample Group'], ask: 'Ask about all 47 locations', q: ['Why is Powai falling behind?', 'Who has stopped asking for reviews?'],
+      al: [['r', 'Powai is 4 reviews from a lower rating.', 'Predictions'], ['a', 'Saket has had no reviews in 34 days.', 'Analyse']],
+      kp: [['g', 'Lifetime average', '4.2', 'across 84,920 reviews'], ['g', 'Rating in this period', '4.22', 'in this period'], ['n', 'The gap', '+0.01', 'Aligned with Google'], ['n', 'Reviews in this period', '3,840', '4.5% of the lifetime base']],
+      body: function () {
+        return ndSt('Clusters', 'Worst first') + ndG3([['Delhi NCR', '', 'a', 4.11, -0.07, 4.2, 'Worst rated of the 3 clusters'], ['Mumbai', '', 'a', 4.16, -0.04, 4.2, 'One location 4 reviews from a lower rating', 1], ['Bangalore', '', 'g', 4.34, 0.06, 4.3, 'Furthest above its Google numbers']], ndPlace) +
+          ndSt('Locations to look into', '4 of 47 in this period', 1) + ndG3([powai.slice(0, 1).concat('Mumbai', powai.slice(2)), ['Kurla', 'Mumbai', 'a', 4.02, -0.20, 4.1, 'No requests sent in 30 days'], ['Connaught Place', 'Delhi NCR', 'g', 4.25, -0.10, 4.3, '1 review from a lower rating', 1]], ndPlace, 1);
+      } },
+    { sc: 'loc', nm: 'Powai', on: 'Compare', cr: ['Sample Group', 'Mumbai', 'Powai', 'Compare'],
+      body: function () {
+        return ndSt('Where this location stands', 'Powai · Mumbai') +
+          '<div class="nd-sd"><div class="nd-c"><h5>3rd of 5 nearby on rating, and <span>last of 16 in Mumbai on where it is going</span>.</h5><p>At 4.3 on Google, Powai sits behind two rivals within a kilometre. Over the period it averages 3.90, the largest fall in the cluster.</p></div>' +
+          '<div class="nd-c"><div><small>Rating over the period</small><div class="nd-fg"><b>3.90</b>cluster is at 4.16</div></div><div><small>Movement across the period</small><div class="nd-fg"><b class="r">−0.40</b>4.30 to 3.90</div></div></div></div>' +
+          ndSt('Against the competition nearby', 'Within 2.1 km') +
+          ndTable('cp', ['Where', 'Tracked for', 'Distance', 'Rating', 'Reviews'], [
+            ['Competitor A', pl('This location'), '0.4 km', rt('n', '4.6'), '3,120'], ['Competitor B', pl('The account'), '0.8 km', rt('g', '4.4'), '1,460'],
+            me(['Powai' + pl('This location'), '', '', rt('g', '4.3'), '2,140']),
+            ['Competitor C', pl('The account'), '1.6 km', rt('a', '4.1'), '870'], ['Competitor D', pl('This location'), '2.1 km', rt('a', '3.9'), '640']]) +
+          ndSt('Within Mumbai', 'By movement', 1) +
+          ndTable('in', ['Location', 'Rating', 'Reviews', 'Movement', 'Lifetime'], [
+            ['<u>1</u>Andheri West', rt('g', '4.41'), '148', '+0.21', '4.4'], ['<u>2</u>Thane', rt('g', '4.27'), '121', '+0.12', '4.3'], '13 locations in between',
+            ['<u>15</u>Kurla', rt('a', '4.02'), '88', '−0.20', '4.1'], me(['<u>16</u>Powai' + pl('This location'), rt('a', '3.90'), '96', '−0.40', '4.3'])]);
+      } }
   ];
-  var vdChart = function (t, vals, top, fmt, ticks) {
-    return '<div class="vd-c vd-ch"><h6>' + t + '</h6><div class="vd-pl"><ol>' + ticks.map(function (v) { return '<li>' + v + '</li>'; }).join('') + '</ol>' +
-      vals.map(function (v, i) { return '<div style="height:' + (v / top * 100).toFixed(1) + '%;background:' + VC[i] + '"><b>' + fmt(v) + '</b></div>'; }).join('') +
-      '</div><div class="vd-yr">' + VY.map(function (y) { return '<span>' + y + '</span>'; }).join('') + '</div></div>';
-  };
-  var vdRows = function (d, list) {
-    return list.map(function (r) {
-      var cells = [[d.kind + ' name', r[0]]];
-      if (d.code) cells.push([d.kind + ' code', r[1]]);
-      cells.push(['Review count', r[d.code + 1]], [d.rl || 'Average rating', r[d.code + 2]]);
-      return '<div class="vd-r ' + (d.code ? 'cd' : 'nc') + '">' + cells.map(function (c) { return '<span>' + c[0] + '<b>' + c[1] + '</b></span>'; }).join('') + (d.code ? '<i>↗</i>' : '') + '</div>';
-    }).join('');
-  };
-  var vdMap = '<svg class="vd-map" viewBox="0 0 320 170" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="320" height="170" fill="#eef1ea"/><path d="M0 128C60 112 98 138 150 122s90-44 170-30v78H0z" fill="#dfe9d6"/><path d="M226 0c-8 30 10 46 2 76s-26 40-16 94" fill="none" stroke="#bcd9ea" stroke-width="5"/><path d="M0 44 92 70l70 12 158-30M60 170l40-100 40-70M162 82l-12 88M162 82l70 88M92 70 0 104" fill="none" stroke="#fff" stroke-width="3"/><path d="M0 44 92 70l70 12 158-30M60 170l40-100" fill="none" stroke="#f1d58e" stroke-width="1.2"/>' +
-    [[70, 54], [98, 84], [132, 58], [158, 72], [172, 96], [196, 66], [214, 104], [146, 118], [246, 80], [116, 128], [268, 124]].map(function (m) { return '<path transform="translate(' + m[0] + ' ' + m[1] + ')" d="M0 0c-5-7-8-10-8-14a8 8 0 0 1 16 0c0 4-3 7-8 14z" fill="#d92d2d" stroke="#a51d1d" stroke-width=".6"/><circle cx="' + m[0] + '" cy="' + (m[1] - 14) + '" r="2.8" fill="#8e1616"/>'; }).join('') + '</svg>';
-  var vdCmp = function (c) {
-    return '<div class="vd-c vd-cp"><div class="vd-r"><span>Location name<b>' + c[0] + '</b></span><span>Location code<b>' + c[1] + '</b></span><span>Average rating<b>' + c[2] + '</b></span><span>Review count<b>' + c[3] + '</b></span><a>View Map ↗</a></div><h5>Competitors</h5>' +
-      '<table><tr>' + ['Location Name', 'Location Code', 'Google Rating', 'Average Rating', 'Total Reviews', 'Rating'].map(function (h) { return '<th>' + h + '</th>'; }).join('') + '</tr>' +
-      c[4].map(function (r) { return '<tr>' + r.map(function (v) { return '<td>' + v + '</td>'; }).join('') + '</tr>'; }).join('') + '</table></div>';
-  };
-  $$('.vd[data-vd]').forEach(function (el) {
-    var d = VD[+el.dataset.vd];
-    var card = function (k) {
-      if (!k) return '<div class="vd-c vd-tf">Select Time<br>Frame<span><i class="on">Lifetime</i><i>Month</i><i>Date Range</i></span></div>';
-      return '<div class="vd-c vd-k"><span>' + k[0] + '</span><b>' + k[1] + '</b>' + vi(k[2]) + '</div>';
-    };
-    var board = d.cmp ? '' : '<div class="vd-c"><div class="vd-tb">' + d.tabs.map(function (t, i) { return '<span class="' + (i ? '' : 'on') + '">' + t + '</span>'; }).join('') + '</div>' +
-      '<div class="vd-g2 vd-lb"><div><h5>Best Performing</h5>' + vdRows(d, d.best) + '</div><div><h5>Low Performing</h5>' + vdRows(d, d.low) + '</div></div></div>';
-    var charts = d.cmp ? '' : vdChart('Average Rating Over Year', d.rt, 5, function (v) { return v.toFixed(2); }, ['5.0', '3.75', '2.5', '1.25', '0']) +
-      vdChart('Review Count Over Year', d.rc, d.top, function (v) { return v.toLocaleString('en-IN'); }, [1, .75, .5, .25, 0].map(function (f) { return (d.top * f).toLocaleString('en-IN'); }));
-    el.innerHTML = '<div class="vd-top"><strong>ReviewRani</strong><span>Home</span>' +
-      ['Insights', 'Enterprise', 'Clusters', 'Locations'].map(function (n) { return '<span class="c' + (n === d.on ? ' on' : '') + '">' + n + '</span>'; }).join('') + '<em>Sample Group</em></div>' +
-      '<div class="vd-app"><div class="vd-sb">' + d.side.map(function (r, i) { return '<span class="' + (i === (d.sideOn || 0) ? 'on' : '') + '">' + vi(r[1]) + r[0] + '</span>'; }).join('') +
-      '<div>' + d.sc + ' | ' + d.nm + '<small><svg><use href="#crown"/></svg>Terms of use | Privacy Policy</small></div></div>' +
-      '<div class="vd-mn' + (d.code && !d.map ? ' is-cl' : '') + '">' + (d.cmp ? '<div class="vd-kp">' + d.kp.map(card).join('') + '</div>' +
-      '<div><h6>Competitor Analysis</h6><p>Monitor how your locations stack up against nearby competitors with ratings and reviews.</p></div><div class="vd-sr">Search Location</div>' +
-      d.cmp.map(vdCmp).join('') + '</div></div>' :
-      '<div><h6>' + d.sc + ' - ' + d.nm + '</h6><p>All the data shown here is associated with the ' + d.sc + ' – ' + d.nm + '.</p></div>' +
-      '<div class="vd-kp">' + d.kp.map(card).join('') + '</div>' +
-      (d.map ? '<div><h6>' + d.sc + ' Performance Overview</h6></div><div class="vd-ov"><div class="vd-c vd-mp"><header><h6>Map View</h6><i>Select Cluster</i><i>Reset</i></header>' + vdMap + '</div><div>' + charts + '</div></div>' :
-      '<div><h6>' + d.sc + ' Performance Overview</h6><p>See overall performance at a glance. View total reviews, average rating, and track changes over time.</p></div><div class="vd-g2">' + charts + '</div>') +
-      '<div><h6>Leaderboard</h6></div>' + board +
-      '</div></div>');
+  $$('.nd[data-nd]').forEach(function (el) {
+    var d = ND[+el.dataset.nd], on = d.on || 'Overview';
+    el.innerHTML = '<div class="nd-sb"><div class="lg"><svg><use href="#crown"/></svg>ReviewRani</div><div class="us">Sample user</div><div class="sw">' + ni(d.sc) + '<b>' + d.nm + '</b></div>' +
+      V3[d.sc].map(function (r) { return '<span class="' + (r[2] ? 's' : '') + (r[0] === on ? ' on' : '') + '">' + ni(r[1]) + r[0] + '</span>'; }).join('') +
+      '<em>Utility</em><span>' + ni('an') + 'Usage</span><span>' + ni('ent') + 'Admins</span></div>' +
+      '<div class="nd-mn"><div class="nd-hd"><div class="nd-cr">' + d.cr.map(function (c, i) { return i === d.cr.length - 1 ? '<b>' + c + '</b>' : c + '<i>/</i>'; }).join('') + '</div>' +
+      '<div class="nd-seg"><span>30 days</span><span>3 months</span><span class="on">12 months</span><span>Custom</span></div></div>' +
+      (d.ask ? '<div class="nd-c nd-ask">' + ni('ask') + d.ask + '<kbd>⌘K</kbd></div><div class="nd-q">' + d.q.map(function (q) { return '<span>' + q + '</span>'; }).join('') + '</div>' +
+        '<div class="nd-c nd-al">' + d.al.map(function (a) { return '<div><i class="' + a[0] + '"></i><span>' + a[1] + '</span><small>' + a[2] + ' →</small></div>'; }).join('') + '</div>' +
+        '<div class="nd-kp">' + d.kp.map(function (k) { return '<div class="nd-k ' + k[0] + '"><span>' + k[1] + '</span><b>' + k[2] + '</b><em>' + k[3] + '</em></div>'; }).join('') + '</div>' : '') +
+      d.body() + '</div>';
   });
 
   /* smooth scrolling on desktop, as on v3 */
